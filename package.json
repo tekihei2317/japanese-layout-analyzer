@@ -7,6 +7,7 @@
     "packages/*"
   ],
   "scripts": {
+    "layouts:build": "bun run scripts/convert-layouts.ts",
     "web:dev": "bun run --filter web dev",
     "web:build": "bun run --filter web build"
   },
