@@ -46,6 +46,7 @@ export const TypingGame = () => {
     { id: "tukiringo", label: "月林檎配列" },
     { id: "buna", label: "ぶな配列" },
     { id: "burichutoro-20221015", label: "ブリ中トロ配列" },
+    { id: "hana", label: "花配列" },
   ];
   const selectedLayout =
     layoutOptions.find((option) => option.id === settings.layoutId) ??

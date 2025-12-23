@@ -3,6 +3,7 @@ import burichutoroTable from "./layouts/burichutoro-20221015.json";
 import qwertyTable from "./layouts/qwerty.json";
 import tsukiTable from "./layouts/tsuki-2-263.json";
 import tukiringoTable from "./layouts/tukiringo.json";
+import hanaTable from "./layouts/hana.json";
 
 /**
  * ローマ字テーブルのエントリ
@@ -20,6 +21,7 @@ const layoutTables = {
   qwerty: qwertyTable as RomanTable,
   "tsuki-2-263": tsukiTable as RomanTable,
   tukiringo: tukiringoTable as RomanTable,
+  hana: hanaTable as RomanTable,
 } as const;
 
 export type LayoutId = keyof typeof layoutTables;
@@ -62,14 +64,15 @@ export function createStrokeProcessor(table: RomanTable): Processer {
     if (prefixes.length >= 2) {
       // バッファに対する変換候補が複数ある場合は、変換を保留する
       return { newBuffer: next, output: "" };
-    }
-
-    if (exact) {
+    } else if (exact) {
       // 変換ルールが1つしかない場合は、それを使って変換する
       return {
         output: exact.output,
         newBuffer: exact.nextInput ?? "",
       };
+    } else if (prefixes.length === 1) {
+      // まだ今後変換される可能性がある
+      return { newBuffer: next, output: "" };
     }
 
     // 変換ルールが見つからなかった場合は、文字を|str|-1文字と1文字に分割してそれぞれ変換する

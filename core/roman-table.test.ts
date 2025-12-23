@@ -74,4 +74,31 @@ describe(createStrokeProcessor, () => {
       expect(processStrokes("rl").output).toBe("で");
     });
   });
+
+  describe("花配列", () => {
+    const hanaRomanTable = getRomanTable("hana");
+    const processStrokes = makeProcessStrokes(
+      createStrokeProcessor(hanaRomanTable)
+    );
+
+    test("tkgを ぱ に変換すること", () => {
+      expect(processStrokes("tkg")).toEqual({ output: "ぱ", buffer: "" });
+    });
+
+    test("krkgを ぽ に変換すること", () => {
+      expect(processStrokes("krkg")).toEqual({ output: "ぽ", buffer: "" });
+    });
+
+    test("tdgを ぱ に変換すること", () => {
+      expect(processStrokes("tdg")).toEqual({ output: "ぱ", buffer: "" });
+    });
+
+    test("krdgを ぽ に変換すること", () => {
+      expect(processStrokes("krdg")).toEqual({ output: "ぽ", buffer: "" });
+    });
+
+    test("tkrを はほ に変換すること", () => {
+      expect(processStrokes("tkr")).toEqual({ output: "は", buffer: "ほ" });
+    });
+  });
 });
