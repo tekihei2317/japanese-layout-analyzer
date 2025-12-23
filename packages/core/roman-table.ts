@@ -1,3 +1,9 @@
+import bunaTable from "./layouts/buna.json";
+import burichutoroTable from "./layouts/burichutoro-20221015.json";
+import qwertyTable from "./layouts/qwerty.json";
+import tsukiTable from "./layouts/tsuki-2-263.json";
+import tukiringoTable from "./layouts/tukiringo.json";
+
 /**
  * ローマ字テーブルのエントリ
  */
@@ -7,6 +13,20 @@ export type TableEntry = { input: string; output: string; nextInput?: string };
  * ローマ字テーブル
  */
 export type RomanTable = TableEntry[];
+
+const layoutTables = {
+  buna: bunaTable as RomanTable,
+  "burichutoro-20221015": burichutoroTable as RomanTable,
+  qwerty: qwertyTable as RomanTable,
+  "tsuki-2-263": tsukiTable as RomanTable,
+  tukiringo: tukiringoTable as RomanTable,
+} as const;
+
+export type LayoutId = keyof typeof layoutTables;
+
+export function getRomanTable(layoutId: LayoutId): RomanTable {
+  return layoutTables[layoutId];
+}
 
 function findEntry(table: RomanTable, text: string): TableEntry | undefined {
   return table.find((entry) => entry.input === text);
@@ -58,3 +78,9 @@ export function createStrokeProcessor(table: RomanTable): Processer {
 
   return processStroke;
 }
+
+export function createStrokeProcessorForLayout(layoutId: LayoutId): Processer {
+  return createStrokeProcessor(getRomanTable(layoutId));
+}
+
+export const processStroke = createStrokeProcessorForLayout("qwerty");

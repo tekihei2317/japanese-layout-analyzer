@@ -1,1 +1,7 @@
-export { createStrokeProcessor } from "./roman-table";
+export {
+  createStrokeProcessor,
+  createStrokeProcessorForLayout,
+  getRomanTable,
+  type LayoutId,
+  processStroke,
+} from "./roman-table";
