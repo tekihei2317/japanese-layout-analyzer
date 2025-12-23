@@ -1,19 +1,32 @@
 ---
-import { add } from "@japanese-layout-analyzer/core"
-
-const sum = add(1, 2)
+import "../styles/global.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Japanese Layout Analyzer</title>
-	</head>
-	<body>
-		<h1>Japanese Layout Analyzer</h1>
-		<div>1 + 2 = {sum}</div>
-	</body>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Japanese Layout Analyzer</title>
+  </head>
+  <body class="min-h-screen">
+    <main class="mx-auto flex min-h-screen max-w-4xl flex-col items-start justify-center gap-6 px-6">
+      <div class="rounded-full border border-slate-200 bg-white/80 px-4 py-1 text-xs uppercase tracking-[0.35em] text-slate-500 shadow-sm">
+        Mockup Entry
+      </div>
+      <h1 class="text-4xl font-semibold text-slate-900 sm:text-5xl">
+        Japanese Layout Analyzer
+      </h1>
+      <p class="max-w-xl text-sm text-slate-600 sm:text-base">
+        日本語配列の定量評価を視覚化する静的サイト。まずはテーブル画面のモックアップから進めます。
+      </p>
+      <a
+        href="/table"
+        class="rounded-full bg-teal-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-teal-600/20 transition hover:-translate-y-0.5"
+      >
+        指標テーブルを見る
+      </a>
+    </main>
+  </body>
 </html>

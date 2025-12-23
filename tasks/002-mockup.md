@@ -10,3 +10,38 @@
   - [ ] 指標表示画面のモックアップを作成する
   - [ ] テーブル画面のモックアップを作成する
   - [ ] タイピング画面のモックアップを作成する
+
+## メモ
+
+テーブル画面のモックアップについて。
+
+縦のデータ（配列）
+
+- QWERTY
+- 大西配列
+- 花配列
+- 月配列2-263式
+- 幸花配列
+- ミズナラ配列
+- ハイブリッド月配列
+- ぶな配列
+- 中指シフト月光
+- 英月配列
+- 月見草配列
+- 月林檎配列
+- ブリ中トロ配列
+- 月見草エキス配列
+- 文月配列
+
+横のデータ（指標）
+
+- 打鍵効率
+- SFBs（Same Finger Bigrams）
+- SFSs（Same Finger Skipgrams）
+- Scissors
+- Trigram alt
+- Trigram redirect
+- Trigram roll
+- Trigram 3roll
+- In:out roll
+- Hand use

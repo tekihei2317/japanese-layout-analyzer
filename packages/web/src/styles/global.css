@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0f172a;
+  --paper: #f8fafc;
+  --accent: #0f766e;
+  --accent-strong: #0f172a;
+  --sun: #f97316;
+}
+
+body {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+    "Meiryo", sans-serif;
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+::selection {
+  background: rgba(15, 118, 110, 0.25);
+}

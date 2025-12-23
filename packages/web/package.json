@@ -9,7 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.6",
-    "@japanese-layout-analyzer/core": "workspace:*"
+    "@japanese-layout-analyzer/core": "workspace:*",
+    "astro": "^5.16.6"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14"
   }
 }

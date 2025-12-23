@@ -1,0 +1,347 @@
+---
+import "../styles/global.css";
+
+const metrics = [
+  { key: "efficiency", label: "打鍵効率", unit: "%" },
+  { key: "sfb", label: "SFBs", unit: "%" },
+  { key: "sfs", label: "SFSs", unit: "%" },
+  { key: "scissors", label: "Scissors", unit: "%" },
+  { key: "alt", label: "Trigram alt", unit: "%" },
+  { key: "redirect", label: "Trigram redirect", unit: "%" },
+  { key: "roll", label: "Trigram roll", unit: "%" },
+  { key: "roll3", label: "Trigram 3roll", unit: "%" },
+  { key: "inOut", label: "In:out roll", unit: "ratio" },
+  { key: "hand", label: "Hand use", unit: "%" },
+];
+
+const rows = [
+  {
+    name: "QWERTY",
+    values: {
+      efficiency: 37.4,
+      sfb: 7.8,
+      sfs: 5.6,
+      scissors: 1.9,
+      alt: 24.8,
+      redirect: 10.9,
+      roll: 33.1,
+      roll3: 9.2,
+      inOut: 1.3,
+      hand: 52.4,
+    },
+  },
+  {
+    name: "大西配列",
+    values: {
+      efficiency: 42.1,
+      sfb: 5.2,
+      sfs: 3.9,
+      scissors: 1.4,
+      alt: 28.6,
+      redirect: 9.2,
+      roll: 36.5,
+      roll3: 12.1,
+      inOut: 1.6,
+      hand: 49.1,
+    },
+  },
+  {
+    name: "花配列",
+    values: {
+      efficiency: 45.3,
+      sfb: 4.8,
+      sfs: 3.5,
+      scissors: 1.2,
+      alt: 31.4,
+      redirect: 8.1,
+      roll: 38.9,
+      roll3: 13.4,
+      inOut: 1.7,
+      hand: 51.6,
+    },
+  },
+  {
+    name: "月配列2-263式",
+    values: {
+      efficiency: 44.1,
+      sfb: 5.1,
+      sfs: 3.7,
+      scissors: 1.3,
+      alt: 30.2,
+      redirect: 8.9,
+      roll: 37.6,
+      roll3: 12.7,
+      inOut: 1.6,
+      hand: 50.5,
+    },
+  },
+  {
+    name: "幸花配列",
+    values: {
+      efficiency: 43.2,
+      sfb: 5.4,
+      sfs: 4.0,
+      scissors: 1.5,
+      alt: 29.8,
+      redirect: 9.6,
+      roll: 36.9,
+      roll3: 11.6,
+      inOut: 1.5,
+      hand: 48.7,
+    },
+  },
+  {
+    name: "ミズナラ配列",
+    values: {
+      efficiency: 46.0,
+      sfb: 4.6,
+      sfs: 3.3,
+      scissors: 1.1,
+      alt: 32.1,
+      redirect: 7.9,
+      roll: 39.7,
+      roll3: 14.0,
+      inOut: 1.8,
+      hand: 52.9,
+    },
+  },
+  {
+    name: "ハイブリッド月配列",
+    values: {
+      efficiency: 45.6,
+      sfb: 4.7,
+      sfs: 3.4,
+      scissors: 1.2,
+      alt: 31.6,
+      redirect: 8.3,
+      roll: 39.1,
+      roll3: 13.6,
+      inOut: 1.7,
+      hand: 51.2,
+    },
+  },
+  {
+    name: "ぶな配列",
+    values: {
+      efficiency: 43.9,
+      sfb: 5.0,
+      sfs: 3.8,
+      scissors: 1.3,
+      alt: 30.5,
+      redirect: 9.0,
+      roll: 37.8,
+      roll3: 12.4,
+      inOut: 1.6,
+      hand: 49.8,
+    },
+  },
+  {
+    name: "中指シフト月光",
+    values: {
+      efficiency: 47.3,
+      sfb: 4.2,
+      sfs: 3.1,
+      scissors: 1.0,
+      alt: 33.4,
+      redirect: 7.5,
+      roll: 40.9,
+      roll3: 14.8,
+      inOut: 1.9,
+      hand: 53.3,
+    },
+  },
+  {
+    name: "英月配列",
+    values: {
+      efficiency: 41.8,
+      sfb: 5.7,
+      sfs: 4.2,
+      scissors: 1.6,
+      alt: 28.9,
+      redirect: 9.8,
+      roll: 35.7,
+      roll3: 11.1,
+      inOut: 1.5,
+      hand: 48.1,
+    },
+  },
+  {
+    name: "月見草配列",
+    values: {
+      efficiency: 44.7,
+      sfb: 4.9,
+      sfs: 3.6,
+      scissors: 1.2,
+      alt: 31.0,
+      redirect: 8.6,
+      roll: 38.3,
+      roll3: 13.0,
+      inOut: 1.7,
+      hand: 50.9,
+    },
+  },
+  {
+    name: "月林檎配列",
+    values: {
+      efficiency: 43.5,
+      sfb: 5.3,
+      sfs: 3.9,
+      scissors: 1.4,
+      alt: 29.6,
+      redirect: 9.4,
+      roll: 36.8,
+      roll3: 11.9,
+      inOut: 1.5,
+      hand: 49.0,
+    },
+  },
+  {
+    name: "ブリ中トロ配列",
+    values: {
+      efficiency: 46.5,
+      sfb: 4.4,
+      sfs: 3.2,
+      scissors: 1.1,
+      alt: 32.7,
+      redirect: 7.7,
+      roll: 40.2,
+      roll3: 14.3,
+      inOut: 1.8,
+      hand: 52.1,
+    },
+  },
+  {
+    name: "月見草エキス配列",
+    values: {
+      efficiency: 45.1,
+      sfb: 4.8,
+      sfs: 3.5,
+      scissors: 1.2,
+      alt: 31.2,
+      redirect: 8.4,
+      roll: 38.6,
+      roll3: 13.2,
+      inOut: 1.7,
+      hand: 50.4,
+    },
+  },
+  {
+    name: "文月配列",
+    values: {
+      efficiency: 44.4,
+      sfb: 5.0,
+      sfs: 3.7,
+      scissors: 1.3,
+      alt: 30.8,
+      redirect: 8.8,
+      roll: 37.9,
+      roll3: 12.6,
+      inOut: 1.6,
+      hand: 49.6,
+    },
+  },
+];
+
+const formatMetric = (value, unit) => {
+  if (unit === "ratio") {
+    return value.toFixed(2);
+  }
+  return `${value.toFixed(1)}%`;
+};
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>指標テーブル | Japanese Layout Analyzer</title>
+  </head>
+  <body class="min-h-screen">
+    <div class="relative overflow-hidden">
+      <div class="absolute -top-24 right-10 h-64 w-64 rounded-full bg-teal-100 blur-3xl"></div>
+      <div class="absolute top-32 -left-16 h-72 w-72 rounded-full bg-orange-100 blur-3xl"></div>
+      <main class="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-12">
+        <header class="flex flex-col gap-4">
+          <div class="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1 text-xs uppercase tracking-[0.35em] text-slate-500 shadow-sm">
+            Table Mockup
+          </div>
+          <div class="flex flex-col gap-3">
+            <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">
+              配列評価テーブル
+            </h1>
+            <p class="max-w-2xl text-sm text-slate-600 sm:text-base">
+              コーパス×配列の組み合わせから、主要指標を一覧で比較する画面のモックアップです。
+              実データに置き換える前提で、ダミー値を表示しています。
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600">
+            <span class="rounded-full bg-white px-3 py-1 shadow-sm">
+              コーパス: 青空文庫（仮）
+            </span>
+            <span class="rounded-full bg-white px-3 py-1 shadow-sm">
+              配列数: {rows.length}
+            </span>
+            <span class="rounded-full bg-white px-3 py-1 shadow-sm">
+              参照指標: {metrics.length}
+            </span>
+          </div>
+        </header>
+
+        <section class="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-panel backdrop-blur">
+          <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div class="space-y-1">
+              <h2 class="text-lg font-semibold text-slate-900">指標一覧</h2>
+              <p class="text-xs text-slate-500">
+                ヘッダーをクリックして並び替えるUIを想定しています（モックアップでは未実装）。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <button class="rounded-full border border-slate-200 bg-slate-50 px-4 py-1 font-medium text-slate-600">
+                表示: パーセント
+              </button>
+              <button class="rounded-full border border-slate-200 bg-white px-4 py-1 font-medium text-slate-600">
+                並び替え: 打鍵効率
+              </button>
+              <button class="rounded-full border border-slate-200 bg-teal-600 px-4 py-1 font-medium text-white">
+                共有リンク
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-200 bg-white">
+            <table class="min-w-full text-left text-xs sm:text-sm">
+              <thead class="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500">
+                <tr>
+                  <th class="sticky left-0 z-10 bg-slate-50 px-4 py-3 font-medium">
+                    配列
+                  </th>
+                  {metrics.map((metric) => (
+                    <th class="px-4 py-3 font-medium">{metric.label}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {rows.map((row, index) => (
+                  <tr class={index % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
+                    <td class="sticky left-0 z-10 bg-inherit px-4 py-3 font-semibold text-slate-800">
+                      {row.name}
+                    </td>
+                    {metrics.map((metric) => (
+                      <td class="px-4 py-3 text-slate-600">
+                        {formatMetric(row.values[metric.key], metric.unit)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-xs text-slate-500">
+          次のステップ: 実データの型を決めたら、CSV/JSONを読み込んで並び替えとフィルタリングを実装します。
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
