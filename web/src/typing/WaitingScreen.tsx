@@ -21,7 +21,9 @@ export const WaitingScreen = ({ onStart }: WaitingScreenProps) => {
   return (
     <section className="border border-slate-200 bg-white/90 p-6 backdrop-blur">
       <div className="flex flex-col gap-3 text-slate-600">
-        <div className="uppercase tracking-wider text-slate-400">Ready</div>
+        <div className="text-xs uppercase tracking-wider text-slate-400">
+          Ready
+        </div>
         <div className="text-2xl font-semibold text-slate-900">
           スペースキーで開始
         </div>

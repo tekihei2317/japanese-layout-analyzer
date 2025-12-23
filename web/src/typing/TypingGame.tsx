@@ -116,7 +116,7 @@ export const TypingGame = () => {
   const layoutPanel = (
     <section className="border border-slate-200 bg-white/90 p-6 backdrop-blur">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-slate-900">
+        <h2 className="text-xl font-semibold text-slate-900">
           {selectedLayout?.label ?? "配列図"}
         </h2>
       </div>
