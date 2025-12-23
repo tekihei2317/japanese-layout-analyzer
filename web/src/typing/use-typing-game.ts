@@ -1,0 +1,168 @@
+import { useCallback, useMemo, useReducer } from "react";
+import { createStrokeProcessorForLayout } from "@japanese-layout-analyzer/core";
+import type { Word } from "./words";
+
+type GameState =
+  | { status: "waiting" }
+  | { status: "playing"; currentIndex: number; buffer: string; typed: string }
+  | { status: "finished"; typed: string };
+
+type Action =
+  | { type: "START" }
+  | { type: "INPUT"; output: string; newBuffer: string }
+  | { type: "FLUSH_BUFFER" }
+  | { type: "BACKSPACE" }
+  | { type: "RESET" };
+
+type UseTypingReturn = {
+  state: GameState;
+  startGame: () => void;
+  inputKey: (key: string) => void;
+  flushBuffer: () => void;
+  backspace: () => void;
+  resetGame: () => void;
+};
+
+type UseTypingGameArgs = {
+  words: Word[];
+  layoutId?: Parameters<typeof createStrokeProcessorForLayout>[0];
+};
+
+function createGameReducer(words: Word[]) {
+  return function gameReducer(state: GameState, action: Action): GameState {
+    if (action.type === "START") {
+      if (state.status === "waiting") {
+        if (words.length === 0) {
+          return { status: "finished", typed: "" };
+        }
+        return { status: "playing", currentIndex: 0, buffer: "", typed: "" };
+      }
+    } else if (action.type === "INPUT") {
+      if (state.status === "playing") {
+        const currentWord = words[state.currentIndex];
+        if (!currentWord) return state;
+        const nextTyped = state.typed + action.output;
+        if (nextTyped === currentWord.kana) {
+          const nextIndex = state.currentIndex + 1;
+          if (nextIndex >= words.length) {
+            return { status: "finished", typed: nextTyped };
+          }
+          return {
+            status: "playing",
+            currentIndex: nextIndex,
+            buffer: "",
+            typed: "",
+          };
+        }
+        return {
+          status: "playing",
+          currentIndex: state.currentIndex,
+          buffer: action.newBuffer,
+          typed: nextTyped,
+        };
+      }
+    } else if (action.type === "FLUSH_BUFFER") {
+      if (state.status === "playing") {
+        if (state.buffer.length === 0) return state;
+        const currentWord = words[state.currentIndex];
+        if (!currentWord) return state;
+        const nextTyped = state.typed + state.buffer;
+        if (nextTyped === currentWord.kana) {
+          const nextIndex = state.currentIndex + 1;
+          if (nextIndex >= words.length) {
+            return { status: "finished", typed: nextTyped };
+          }
+          return {
+            status: "playing",
+            currentIndex: nextIndex,
+            buffer: "",
+            typed: "",
+          };
+        }
+        return {
+          status: "playing",
+          currentIndex: state.currentIndex,
+          buffer: "",
+          typed: nextTyped,
+        };
+      }
+    } else if (action.type === "BACKSPACE") {
+      if (state.status === "playing") {
+        if (state.buffer.length > 0) {
+          return {
+            status: "playing",
+            currentIndex: state.currentIndex,
+            buffer: state.buffer.slice(0, -1),
+            typed: state.typed,
+          };
+        }
+        if (state.typed.length > 0) {
+          return {
+            status: "playing",
+            currentIndex: state.currentIndex,
+            buffer: "",
+            typed: state.typed.slice(0, -1),
+          };
+        }
+      }
+    } else if (action.type === "RESET") {
+      return { status: "waiting" };
+    }
+    return state;
+  };
+}
+
+export function useTypingGame({
+  words,
+  layoutId = "qwerty",
+}: UseTypingGameArgs): UseTypingReturn {
+  const reducer = useMemo(() => createGameReducer(words), [words]);
+  const [state, dispatch] = useReducer(reducer, { status: "waiting" });
+  const strokeProcessor = useMemo(
+    () => createStrokeProcessorForLayout(layoutId),
+    [layoutId]
+  );
+
+  const startGame = useCallback(() => {
+    dispatch({ type: "START" });
+  }, []);
+
+  const inputKey = useCallback(
+    (key: string) => {
+      if (state.status !== "playing") return;
+      const result = strokeProcessor({
+        buffer: state.buffer,
+        pressedKey: key,
+      });
+      dispatch({
+        type: "INPUT",
+        output: result.output,
+        newBuffer: result.newBuffer,
+      });
+    },
+    [state, strokeProcessor]
+  );
+
+  const backspace = useCallback(() => {
+    dispatch({ type: "BACKSPACE" });
+  }, []);
+
+  const flushBuffer = useCallback(() => {
+    dispatch({ type: "FLUSH_BUFFER" });
+  }, []);
+
+  const resetGame = useCallback(() => {
+    dispatch({ type: "RESET" });
+  }, []);
+
+  return {
+    state,
+    startGame,
+    inputKey,
+    flushBuffer,
+    backspace,
+    resetGame,
+  };
+}
+
+export type { GameState };
