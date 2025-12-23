@@ -96,12 +96,18 @@ const barHeight = (value, max) => `${Math.round((value / max) * 100)}%`;
             >
               テーブル画面へ
             </a>
+            <a
+              href="/typing"
+              class="rounded-full border border-slate-200 bg-white px-3 py-1 text-slate-600 shadow-sm"
+            >
+              タイピング画面へ
+            </a>
           </div>
         </header>
 
         <section class="grid gap-8">
           {layoutNames.map((name) => (
-            <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-panel backdrop-blur">
+            <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <h2 class="text-xl font-semibold text-slate-900">{name}</h2>
                 <div class="flex flex-wrap gap-2 text-xs text-slate-600">
