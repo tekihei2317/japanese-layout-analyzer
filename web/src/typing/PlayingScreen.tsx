@@ -68,8 +68,8 @@ export const PlayingScreen = ({
   return (
     <section className="border border-slate-200 bg-white/90 p-6 backdrop-blur">
       <div className="flex flex-col gap-4">
-        <div className="text-xs text-slate-500">ワード表示</div>
-        <div className="text-2xl font-semibold text-slate-900 sm:text-3xl">
+        <div className="text-sm text-slate-500">ワード表示</div>
+        <div className="text-3xl font-semibold text-slate-900 sm:text-4xl">
           {currentWord.display}
         </div>
         <div className="text-2xl text-slate-500">

@@ -77,15 +77,15 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
             Layout Overview
           </div>
           <div class="flex flex-col gap-3">
-            <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">
+            <h1 class="text-4xl font-semibold text-slate-900 sm:text-5xl">
               配列指標ダッシュボード
             </h1>
-            <p class="max-w-2xl text-sm text-slate-600 sm:text-base">
+            <p class="max-w-2xl text-base text-slate-600 sm:text-lg">
               各配列のキーボード配置、負担率、主要指標をまとめて確認するモックアップです。
               データは仮値で、静的表示のみを想定しています。
             </p>
           </div>
-          <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600">
+          <div class="flex flex-wrap items-center gap-3 text-sm text-slate-600">
             <span class="rounded-full bg-white px-3 py-1 shadow-sm">
               配列: 月見草配列（仮）
             </span>
@@ -99,8 +99,8 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
           {layoutNames.map((name) => (
             <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
               <div class="flex flex-wrap items-center justify-between gap-3">
-                <h2 class="text-xl font-semibold text-slate-900">{name}</h2>
-                <div class="flex flex-wrap gap-2 text-xs text-slate-600">
+                <h2 class="text-2xl font-semibold text-slate-900">{name}</h2>
+                <div class="flex flex-wrap gap-2 text-sm text-slate-600">
                   <span class="rounded-full border border-slate-200 bg-white px-3 py-1">
                     コーパス: 青空文庫（仮）
                   </span>
@@ -112,8 +112,8 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
 
               <div class="mt-6">
                 <div class="flex items-center justify-between">
-                  <h3 class="text-base font-semibold text-slate-900">配列図</h3>
-                  <span class="text-xs text-slate-500">3行 x 10列</span>
+                  <h3 class="text-xl font-semibold text-slate-900">配列図</h3>
+                  <span class="text-sm text-slate-500">3行 x 10列</span>
                 </div>
                 <div class="mt-4 grid gap-2">
                   {layoutRows.map((row) => (
@@ -130,17 +130,17 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
 
               <div class="mt-8">
                 <div class="flex items-center justify-between">
-                  <h3 class="text-base font-semibold text-slate-900">負担率</h3>
-                  <span class="text-xs text-slate-500">%</span>
+                  <h3 class="text-xl font-semibold text-slate-900">負担率</h3>
+                  <span class="text-sm text-slate-500">%</span>
                 </div>
-                <p class="mt-2 text-xs text-slate-500">
+                <p class="mt-2 text-sm text-slate-500">
                   行・列の負荷棒グラフと、キー別の負担率ヒートマップを分けて表示します。
                 </p>
 
                 <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
                   <div class="grid gap-6 lg:grid-cols-[1fr_2fr_1fr]">
                     <div class="space-y-2 text-[11px] text-slate-600">
-                      <div class="text-xs font-semibold text-slate-700">行負荷</div>
+                      <div class="text-sm font-semibold text-slate-700">行負荷</div>
                       {rowSums.map((value) => (
                         <div class="flex items-center gap-2">
                           <span class="w-10 text-right font-semibold text-slate-600">
@@ -157,7 +157,7 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
                     </div>
 
                     <div class="space-y-2">
-                      <div class="text-xs font-semibold text-slate-700">列負荷</div>
+                      <div class="text-sm font-semibold text-slate-700">列負荷</div>
                       <div class="grid grid-cols-10 gap-2 text-[11px] text-slate-600">
                         {colSums.map((value) => (
                           <div class="flex flex-col items-center gap-2">
@@ -176,7 +176,7 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
                     </div>
 
                     <div class="space-y-2 text-[11px] text-slate-600">
-                      <div class="text-xs font-semibold text-slate-700 text-right">行負荷</div>
+                      <div class="text-sm font-semibold text-slate-700 text-right">行負荷</div>
                       {rowSums.map((value) => (
                         <div class="flex items-center gap-2">
                           <div class="h-3 flex-1 rounded-full bg-rose-100">
@@ -193,7 +193,7 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
                     </div>
                   </div>
 
-                  <div class="mt-4 grid gap-3 text-xs text-slate-600 sm:grid-cols-2">
+                  <div class="mt-4 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
                     <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
                       左手合計: {leftSum.toFixed(1)}%
                     </span>
@@ -229,12 +229,12 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
               <div class="mt-6">
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <h3 class="text-base font-semibold text-slate-900">指標</h3>
-                    <p class="text-xs text-slate-500">
+                    <h3 class="text-xl font-semibold text-slate-900">指標</h3>
+                    <p class="text-sm text-slate-500">
                       シンプルな横並びテーブルで表示します。
                     </p>
                   </div>
-                  <div class="flex flex-wrap gap-2 text-xs">
+                  <div class="flex flex-wrap gap-2 text-sm">
                     <button class="rounded-full border border-slate-200 bg-slate-50 px-4 py-1 font-medium text-slate-600">
                       フィルタ: 全指標
                     </button>
@@ -244,7 +244,7 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
                   </div>
                 </div>
                 <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200">
-                  <table class="min-w-full text-left text-xs sm:text-sm">
+                  <table class="min-w-full text-left text-sm sm:text-base">
                     <thead class="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500">
                       <tr>
                         {metrics.map((metric) => (
@@ -266,7 +266,7 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
           ))}
         </section>
 
-        <section class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-xs text-slate-500">
+        <section class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-sm text-slate-500">
           次のステップ: 実データの型を決めたら、配列図や負担率をJSONから生成できるように置き換えます。
         </section>
       </main>

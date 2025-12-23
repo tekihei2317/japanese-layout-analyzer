@@ -272,12 +272,12 @@ const formatMetric = (value: number, unit: string) => {
             <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">
               配列評価テーブル
             </h1>
-            <p class="max-w-2xl text-sm text-slate-600 sm:text-base">
+            <p class="max-w-2xl text-base text-slate-600 sm:text-lg">
               コーパス×配列の組み合わせから、主要指標を一覧で比較する画面のモックアップです。
               実データに置き換える前提で、ダミー値を表示しています。
             </p>
           </div>
-          <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600">
+          <div class="flex flex-wrap items-center gap-3 text-sm text-slate-600">
             <span class="rounded-full bg-white px-3 py-1 shadow-sm">
               コーパス: 青空文庫（仮）
             </span>
@@ -293,12 +293,12 @@ const formatMetric = (value: number, unit: string) => {
         <section class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
           <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div class="space-y-1">
-              <h2 class="text-lg font-semibold text-slate-900">指標一覧</h2>
-              <p class="text-xs text-slate-500">
+              <h2 class="text-xl font-semibold text-slate-900">指標一覧</h2>
+              <p class="text-sm text-slate-500">
                 ヘッダーをクリックして並び替えるUIを想定しています（モックアップでは未実装）。
               </p>
             </div>
-            <div class="flex flex-wrap gap-2 text-xs">
+            <div class="flex flex-wrap gap-2 text-sm">
               <button class="rounded-full border border-slate-200 bg-slate-50 px-4 py-1 font-medium text-slate-600">
                 表示: パーセント
               </button>
@@ -312,7 +312,7 @@ const formatMetric = (value: number, unit: string) => {
           </div>
 
           <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-200 bg-white">
-            <table class="min-w-full text-left text-xs sm:text-sm">
+            <table class="min-w-full text-left text-sm sm:text-base">
               <thead class="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500">
                 <tr>
                   <th class="sticky left-0 z-10 bg-slate-50 px-4 py-3 font-medium">
@@ -341,7 +341,7 @@ const formatMetric = (value: number, unit: string) => {
           </div>
         </section>
 
-        <section class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-xs text-slate-500">
+        <section class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-sm text-slate-500">
           次のステップ: 実データの型を決めたら、CSV/JSONを読み込んで並び替えとフィルタリングを実装します。
         </section>
       </main>

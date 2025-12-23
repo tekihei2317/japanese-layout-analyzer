@@ -2,12 +2,6 @@
 import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import { TypingGame } from "../typing/TypingGame";
-
-const layoutRows = [
-  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-  ["A", "S", "D", "F", "G", "H", "J", "K", "L", "—"],
-  ["Z", "X", "C", "V", "B", "N", "M", "—", "—", "—"],
-];
 ---
 
 <html lang="ja">
@@ -31,23 +25,6 @@ const layoutRows = [
         </header>
 
         <TypingGame client:load />
-
-        <section class="border border-slate-200 bg-white/90 p-6 backdrop-blur">
-          <div class="flex items-center justify-between">
-            <h2 class="text-lg font-semibold text-slate-900">配列図</h2>
-          </div>
-          <div class="mt-4 grid gap-2">
-            {layoutRows.map((row) => (
-              <div class="grid grid-cols-10 gap-2">
-                {row.map((keyLabel) => (
-                  <div class="flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-700 shadow-sm">
-                    {keyLabel}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </section>
       </main>
     </div>
   </body>
