@@ -4,7 +4,9 @@
   "type": "module",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "cli",
+    "core",
+    "web"
   ],
   "scripts": {
     "layouts:build": "bun run scripts/convert-layouts.ts",

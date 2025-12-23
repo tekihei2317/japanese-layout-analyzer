@@ -10,16 +10,16 @@
         "typescript": "^5",
       },
     },
-    "packages/cli": {
+    "cli": {
       "name": "@japanese-layout-analyzer/cli",
       "dependencies": {
         "@japanese-layout-analyzer/core": "workspace:*",
       },
     },
-    "packages/core": {
+    "core": {
       "name": "@japanese-layout-analyzer/core",
     },
-    "packages/web": {
+    "web": {
       "name": "@japanese-layout-analyzer/web",
       "version": "0.0.1",
       "dependencies": {
@@ -200,11 +200,11 @@
 
     "@img/sharp-win32-x64": ["@img/sharp-win32-x64@0.34.5", "", { "os": "win32", "cpu": "x64" }, "sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw=="],
 
-    "@japanese-layout-analyzer/cli": ["@japanese-layout-analyzer/cli@workspace:packages/cli"],
+    "@japanese-layout-analyzer/cli": ["@japanese-layout-analyzer/cli@workspace:cli"],
 
-    "@japanese-layout-analyzer/core": ["@japanese-layout-analyzer/core@workspace:packages/core"],
+    "@japanese-layout-analyzer/core": ["@japanese-layout-analyzer/core@workspace:core"],
 
-    "@japanese-layout-analyzer/web": ["@japanese-layout-analyzer/web@workspace:packages/web"],
+    "@japanese-layout-analyzer/web": ["@japanese-layout-analyzer/web@workspace:web"],
 
     "@jridgewell/gen-mapping": ["@jridgewell/gen-mapping@0.3.13", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA=="],
 

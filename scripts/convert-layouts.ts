@@ -5,7 +5,7 @@ type LayoutEntry = { input: string; output: string; nextInput?: string };
 
 const rootDir = path.resolve(process.cwd());
 const layoutsDir = path.join(rootDir, "layouts");
-const outputDir = path.join(rootDir, "packages", "core", "layouts");
+const outputDir = path.join(rootDir, "core", "layouts");
 
 function parseTsv(contents: string, source: string): LayoutEntry[] {
   const entries: LayoutEntry[] = [];
