@@ -1,4 +1,4 @@
-type Word = {
+export type Word = {
   display: string;
   kana: string;
 };
@@ -89,3 +89,12 @@ const originalWords: Word[] = [
 export const words = {
   original: originalWords,
 };
+
+export function generateWords(
+  wordSetId: keyof typeof words,
+  count: number
+): Word[] {
+  const source = words[wordSetId] ?? [];
+  if (source.length === 0) return [];
+  return Array.from({ length: count }, (_, index) => source[index % source.length]);
+}

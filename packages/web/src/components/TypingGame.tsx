@@ -4,7 +4,7 @@ import { useTypingGame } from "../hooks/useTypingGame";
 import { FinishedScreen } from "./typing/FinishedScreen";
 import { PlayingScreen } from "./typing/PlayingScreen";
 import { WaitingScreen } from "./typing/WaitingScreen";
-import { words } from "./typing/words";
+import { generateWords, words } from "./typing/words";
 
 type Settings = {
   wordSetId: keyof typeof words;
@@ -19,17 +19,26 @@ export const TypingGame = () => {
     layoutId: "qwerty",
   });
 
-  const wordSet = words[settings.wordSetId] ?? [];
-  const currentWord = wordSet[0] ?? { display: "", kana: "" };
-  const prompt = useMemo(
-    () => ({ word: currentWord.display, kana: currentWord.kana }),
-    [currentWord.display, currentWord.kana]
+  const wordList = useMemo(
+    () => generateWords(settings.wordSetId, settings.count),
+    [settings.wordSetId, settings.count]
   );
 
-  const { state, startGame, inputKey, backspace, resetGame } = useTypingGame({
-    kana: prompt.kana,
+  const {
+    state,
+    startGame,
+    inputKey,
+    flushBuffer,
+    backspace,
+    resetGame,
+  } = useTypingGame({
+    words: wordList,
     layoutId: settings.layoutId,
   });
+
+  const currentIndex = state.status === "playing" ? state.currentIndex : 0;
+  const currentWord = wordList[currentIndex] ??
+    wordList[0] ?? { display: "", kana: "" };
 
   useEffect(() => {
     resetGame();
@@ -144,11 +153,13 @@ export const TypingGame = () => {
           </div>
         </section>
         <PlayingScreen
-          prompt={prompt}
+          currentWord={currentWord}
           typed={state.typed}
           buffer={state.buffer}
           onInputKey={inputKey}
           onBackspace={backspace}
+          onFlushBuffer={flushBuffer}
+          onReset={resetGame}
         />
       </div>
     );
