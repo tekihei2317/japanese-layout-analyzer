@@ -13,7 +13,7 @@ const QwertyLayout = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600">
+      <div className="flex flex-wrap items-center gap-3 text-lg text-slate-600">
         <a
           className="text-teal-700 underline underline-offset-4"
           href="https://ja.wikipedia.org/wiki/QWERTY%E9%85%8D%E5%88%97"

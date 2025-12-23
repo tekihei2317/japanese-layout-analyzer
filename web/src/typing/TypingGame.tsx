@@ -52,13 +52,11 @@ export const TypingGame = () => {
     layoutOptions[0];
   const settingsPanel = (
     <section className="border border-slate-200 bg-white/90 px-6 py-4 backdrop-blur">
-      <div className="grid gap-4 text-sm text-slate-700 sm:grid-cols-[1.2fr_1fr_1fr] sm:items-center">
+      <div className="grid gap-4 text-slate-700 sm:grid-cols-[1.2fr_1fr_1fr] sm:items-center">
         <label className="flex flex-col gap-2">
-          <span className="text-xs uppercase tracking-wider text-slate-400">
-            配列
-          </span>
+          <span className="uppercase tracking-wider text-slate-400">配列</span>
           <select
-            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
+            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-700"
             value={settings.layoutId}
             onChange={(event) =>
               setSettings((prev) => ({
@@ -75,11 +73,11 @@ export const TypingGame = () => {
           </select>
         </label>
         <label className="flex flex-col gap-2">
-          <span className="text-xs uppercase tracking-wider text-slate-400">
+          <span className="uppercase tracking-wider text-slate-400">
             ワード
           </span>
           <select
-            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
+            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-700"
             value={settings.wordSetId}
             onChange={(event) =>
               setSettings((prev) => ({
@@ -92,7 +90,7 @@ export const TypingGame = () => {
           </select>
         </label>
         <div className="flex flex-col gap-2">
-          <span className="text-xs uppercase tracking-wider text-slate-400">
+          <span className="uppercase tracking-wider text-slate-400">
             出題数
           </span>
           <div className="flex flex-wrap gap-2">
@@ -101,7 +99,7 @@ export const TypingGame = () => {
                 key={count}
                 type="button"
                 onClick={() => setSettings((prev) => ({ ...prev, count }))}
-                className={`rounded-full px-3 py-1 text-sm transition ${
+                className={`rounded-full px-3 py-1 transition ${
                   settings.count === count
                     ? "bg-slate-900 text-white"
                     : "border border-slate-200 bg-white text-slate-700"
@@ -118,7 +116,7 @@ export const TypingGame = () => {
   const layoutPanel = (
     <section className="border border-slate-200 bg-white/90 p-6 backdrop-blur">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-slate-900">
+        <h2 className="text-2xl font-semibold text-slate-900">
           {selectedLayout?.label ?? "配列図"}
         </h2>
       </div>
