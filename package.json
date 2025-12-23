@@ -1,0 +1,19 @@
+{
+  "name": "japanese-layout-analyzer",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "web:dev": "bun run --filter web dev",
+    "web:build": "bun run --filter web build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

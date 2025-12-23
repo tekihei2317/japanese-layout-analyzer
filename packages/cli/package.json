@@ -1,0 +1,7 @@
+{
+  "name": "@japanese-layout-analyzer/cli",
+  "private": true,
+  "dependencies": {
+    "@japanese-layout-analyzer/core": "workspace:*"
+  }
+}

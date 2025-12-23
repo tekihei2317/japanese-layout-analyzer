@@ -1,0 +1,19 @@
+---
+import { add } from "@japanese-layout-analyzer/core"
+
+const sum = add(1, 2)
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Japanese Layout Analyzer</title>
+	</head>
+	<body>
+		<h1>Japanese Layout Analyzer</h1>
+		<div>1 + 2 = {sum}</div>
+	</body>
+</html>
