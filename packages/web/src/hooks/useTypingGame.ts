@@ -1,4 +1,4 @@
-import { useMemo, useReducer } from "react";
+import { useCallback, useMemo, useReducer } from "react";
 import { createStrokeProcessorForLayout } from "@japanese-layout-analyzer/core";
 
 type GameState =
@@ -78,10 +78,12 @@ export function useTypingGame({
     [layoutId]
   );
 
-  return {
-    state,
-    startGame: () => dispatch({ type: "START" }),
-    inputKey: (key) => {
+  const startGame = useCallback(() => {
+    dispatch({ type: "START" });
+  }, []);
+
+  const inputKey = useCallback(
+    (key: string) => {
       if (state.status !== "playing") return;
       const result = strokeProcessor({
         buffer: state.buffer,
@@ -93,8 +95,23 @@ export function useTypingGame({
         newBuffer: result.newBuffer,
       });
     },
-    backspace: () => dispatch({ type: "BACKSPACE" }),
-    resetGame: () => dispatch({ type: "RESET" }),
+    [state, strokeProcessor]
+  );
+
+  const backspace = useCallback(() => {
+    dispatch({ type: "BACKSPACE" });
+  }, []);
+
+  const resetGame = useCallback(() => {
+    dispatch({ type: "RESET" });
+  }, []);
+
+  return {
+    state,
+    startGame,
+    inputKey,
+    backspace,
+    resetGame,
   };
 }
 

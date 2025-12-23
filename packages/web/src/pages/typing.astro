@@ -49,29 +49,6 @@ const layoutRows = [
           </div>
         </header>
 
-        <section class="border border-slate-200 bg-white/90 px-6 py-4 backdrop-blur">
-          <div class="flex flex-wrap items-center justify-between gap-3 text-sm">
-            <div class="flex flex-wrap items-center gap-3 text-slate-600">
-              <span class="text-xs uppercase tracking-wider text-slate-400">設定</span>
-              <span>ワード: オリジナル</span>
-              <span>出題数: {settings.count}</span>
-              <span>配列: {settings.layout}</span>
-              <span class="text-slate-400">コーパス: {settings.corpus}</span>
-            </div>
-            <div class="flex gap-2 text-xs text-slate-600">
-              <button class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                5
-              </button>
-              <button class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                10
-              </button>
-              <button class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                20
-              </button>
-            </div>
-          </div>
-        </section>
-
         <TypingGame client:load />
 
         <section class="border border-slate-200 bg-white/90 p-6 backdrop-blur">
