@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { type LayoutId } from "@japanese-layout-analyzer/core";
-import { useTypingGame } from "../hooks/useTypingGame";
-import { FinishedScreen } from "./typing/FinishedScreen";
-import { PlayingScreen } from "./typing/PlayingScreen";
-import { WaitingScreen } from "./typing/WaitingScreen";
-import { generateWords, words } from "./typing/words";
+import { useTypingGame } from "./use-typing-game";
+import { FinishedScreen } from "./FinishedScreen";
+import { PlayingScreen } from "./PlayingScreen";
+import { WaitingScreen } from "./WaitingScreen";
+import { generateWords, words } from "./words";
 
 type Settings = {
   wordSetId: keyof typeof words;
@@ -24,17 +24,11 @@ export const TypingGame = () => {
     [settings.wordSetId, settings.count]
   );
 
-  const {
-    state,
-    startGame,
-    inputKey,
-    flushBuffer,
-    backspace,
-    resetGame,
-  } = useTypingGame({
-    words: wordList,
-    layoutId: settings.layoutId,
-  });
+  const { state, startGame, inputKey, flushBuffer, backspace, resetGame } =
+    useTypingGame({
+      words: wordList,
+      layoutId: settings.layoutId,
+    });
 
   const currentIndex = state.status === "playing" ? state.currentIndex : 0;
   const currentWord = wordList[currentIndex] ??
@@ -58,6 +52,27 @@ export const TypingGame = () => {
       <div className="flex flex-col gap-6">
         <section className="border border-slate-200 bg-white/90 px-6 py-4 backdrop-blur">
           <div className="grid gap-4 text-sm text-slate-700 sm:grid-cols-[1.2fr_1fr_1fr] sm:items-center">
+            <label className="flex flex-col gap-2">
+              <span className="text-xs uppercase tracking-wider text-slate-400">
+                配列
+              </span>
+              <select
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
+                value={settings.layoutId}
+                onChange={(event) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    layoutId: event.target.value as LayoutId,
+                  }))
+                }
+              >
+                {layoutOptions.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
             <label className="flex flex-col gap-2">
               <span className="text-xs uppercase tracking-wider text-slate-400">
                 ワード
@@ -96,27 +111,6 @@ export const TypingGame = () => {
                 ))}
               </div>
             </div>
-            <label className="flex flex-col gap-2">
-              <span className="text-xs uppercase tracking-wider text-slate-400">
-                配列
-              </span>
-              <select
-                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
-                value={settings.layoutId}
-                onChange={(event) =>
-                  setSettings((prev) => ({
-                    ...prev,
-                    layoutId: event.target.value as LayoutId,
-                  }))
-                }
-              >
-                {layoutOptions.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </label>
           </div>
         </section>
         <WaitingScreen onStart={startGame} />

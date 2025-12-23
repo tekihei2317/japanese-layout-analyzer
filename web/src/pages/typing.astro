@@ -1,19 +1,7 @@
 ---
 import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
-import { TypingGame } from "../components/TypingGame";
-
-const settings = {
-  corpus: "青空文庫（仮）",
-  count: 5,
-  layout: "QWERTY",
-};
-
-const prompt = {
-  word: "日本で一番高い山は富士山だ",
-  kana: "にほんでいちばんたかいやまはふじさんだ",
-  typed: "にほんでいちばんt",
-};
+import { TypingGame } from "../typing/TypingGame";
 
 const layoutRows = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -35,17 +23,10 @@ const layoutRows = [
       <SiteHeader />
       <main class="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12">
         <header class="flex flex-col gap-4">
-          <div class="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1 text-xs uppercase tracking-[0.35em] text-slate-500 shadow-sm">
-            Typing Mockup
-          </div>
           <div class="flex flex-col gap-3">
             <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">
-              タイピング体験
+              配列を試す
             </h1>
-            <p class="max-w-2xl text-sm text-slate-600 sm:text-base">
-              配列とワード数を選び、ローマ字テーブルに基づいた入力判定を体験する画面です。
-              モックアップなので静的な表示のみ行っています。
-            </p>
           </div>
         </header>
 
@@ -54,7 +35,6 @@ const layoutRows = [
         <section class="border border-slate-200 bg-white/90 p-6 backdrop-blur">
           <div class="flex items-center justify-between">
             <h2 class="text-lg font-semibold text-slate-900">配列図</h2>
-            <span class="text-xs text-slate-500">3行 x 10列</span>
           </div>
           <div class="mt-4 grid gap-2">
             {layoutRows.map((row) => (

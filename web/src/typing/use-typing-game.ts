@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useReducer } from "react";
 import { createStrokeProcessorForLayout } from "@japanese-layout-analyzer/core";
-import type { Word } from "../components/typing/words";
+import type { Word } from "./words";
 
 type GameState =
   | { status: "waiting" }
@@ -45,7 +45,7 @@ function createGameReducer(words: Word[]) {
         if (nextTyped === currentWord.kana) {
           const nextIndex = state.currentIndex + 1;
           if (nextIndex >= words.length) {
-          return { status: "finished", typed: nextTyped };
+            return { status: "finished", typed: nextTyped };
           }
           return {
             status: "playing",
