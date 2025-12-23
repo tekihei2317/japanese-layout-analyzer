@@ -9,6 +9,7 @@ import mizunaraTable from "./layouts/mizunara.json";
 import hybridTsukiTable from "./layouts/hybrid-tsuki.json";
 import hidedukiTable from "./layouts/hideduki_v4.1.json";
 import oonisiTable from "./layouts/oonisi.json";
+import fumidukiTable from "./layouts/fumiduki.json";
 
 /**
  * ローマ字テーブルのエントリ
@@ -21,17 +22,18 @@ export type TableEntry = { input: string; output: string; nextInput?: string };
 export type RomanTable = TableEntry[];
 
 const layoutTables = {
-  buna: bunaTable as RomanTable,
-  "burichutoro-20221015": burichutoroTable as RomanTable,
-  hana: hanaTable as RomanTable,
   qwerty: qwertyTable as RomanTable,
+  oonisi: oonisiTable as RomanTable,
+  hana: hanaTable as RomanTable,
   "tsuki-2-263": tsukiTable as RomanTable,
-  tukiringo: tukiringoTable as RomanTable,
   yukika: yukikaTable as RomanTable,
   mizunara: mizunaraTable as RomanTable,
   hybridTsuki: hybridTsukiTable as RomanTable,
-  hideduki: hidedukiTable,
-  oonisi: oonisiTable,
+  buna: bunaTable as RomanTable,
+  hideduki: hidedukiTable as RomanTable,
+  "burichutoro-20221015": burichutoroTable as RomanTable,
+  tukiringo: tukiringoTable as RomanTable,
+  fumiduki: fumidukiTable as RomanTable,
 } as const;
 
 export type LayoutId = keyof typeof layoutTables;
