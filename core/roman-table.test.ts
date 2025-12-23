@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { createStrokeProcessor, RomanTable } from "./roman-table";
+import { createStrokeProcessor } from "./roman-table";
 import { getRomanTable } from "./roman-table";
 
 function makeProcessStrokes(
