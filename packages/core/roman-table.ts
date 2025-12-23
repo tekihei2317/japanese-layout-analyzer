@@ -60,20 +60,38 @@ export function createStrokeProcessor(table: RomanTable): Processer {
     const prefixes = findEntriesByPrefix(table, next);
 
     if (prefixes.length >= 2) {
+      // バッファに対する変換候補が複数ある場合は、変換を保留する
       return { newBuffer: next, output: "" };
     }
 
     if (exact) {
+      // 変換ルールが1つしかない場合は、それを使って変換する
       return {
         output: exact.output,
         newBuffer: exact.nextInput ?? "",
       };
     }
 
+    // 変換ルールが見つからなかった場合は、文字を|str|-1文字と1文字に分割してそれぞれ変換する
     const left = next.slice(0, -1);
     const right = next.slice(-1);
 
-    return { output: convertRoman(table, left), newBuffer: right };
+    const leftOutput = convertRoman(table, left);
+    const rightExact = findEntry(table, right);
+    const rightPrefixes = findEntriesByPrefix(table, right);
+
+    if (rightPrefixes.length >= 2) {
+      return { output: leftOutput, newBuffer: right };
+    }
+
+    if (rightExact) {
+      return {
+        output: leftOutput + rightExact.output,
+        newBuffer: rightExact.nextInput ?? "",
+      };
+    }
+
+    return { output: leftOutput, newBuffer: right };
   }
 
   return processStroke;
