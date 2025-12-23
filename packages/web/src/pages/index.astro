@@ -15,6 +15,22 @@ const loadMatrix = [
   [4.2, 3.1, 2.6, 1.4, 0.9, 0.7, 0.3, 0.0, 0.0, 0.0],
 ];
 
+const colSums = loadMatrix[0].map((_, colIndex) =>
+  loadMatrix.reduce((sum, row) => sum + row[colIndex], 0)
+);
+const rowSums = loadMatrix.map((row) => row.reduce((sum, value) => sum + value, 0));
+const leftSum = loadMatrix.reduce(
+  (sum, row) => sum + row.slice(0, 5).reduce((rowSum, value) => rowSum + value, 0),
+  0
+);
+const rightSum = loadMatrix.reduce(
+  (sum, row) => sum + row.slice(5).reduce((rowSum, value) => rowSum + value, 0),
+  0
+);
+const maxCell = Math.max(...loadMatrix.flat());
+const maxCol = Math.max(...colSums);
+const maxRow = Math.max(...rowSums);
+
 const metrics = [
   { label: "打鍵効率", value: "44.2%", note: "前回比 +1.3" },
   { label: "SFBs", value: "4.9%", note: "閾値 6%未満" },
@@ -29,13 +45,16 @@ const metrics = [
 ];
 
 const loadClass = (value) => {
-  if (value >= 10) return "bg-emerald-500/90 text-slate-900";
-  if (value >= 8) return "bg-emerald-400/90 text-slate-900";
-  if (value >= 6) return "bg-emerald-300/90 text-slate-900";
-  if (value >= 4) return "bg-emerald-200/90 text-slate-800";
-  if (value >= 2) return "bg-emerald-100/90 text-slate-800";
+  if (value >= 10) return "bg-rose-500/90 text-white";
+  if (value >= 8) return "bg-rose-400/90 text-white";
+  if (value >= 6) return "bg-rose-300/90 text-rose-900";
+  if (value >= 4) return "bg-rose-200/90 text-rose-900";
+  if (value >= 2) return "bg-rose-100/90 text-rose-900";
   return "bg-slate-100 text-slate-500";
 };
+
+const barWidth = (value, max) => `${Math.round((value / max) * 100)}%`;
+const barHeight = (value, max) => `${Math.round((value / max) * 100)}%`;
 ---
 
 <html lang="ja">
@@ -95,46 +114,118 @@ const loadClass = (value) => {
                 </div>
               </div>
 
-              <div class="mt-6 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
-                <div>
-                  <div class="flex items-center justify-between">
-                    <h3 class="text-base font-semibold text-slate-900">配列図</h3>
-                    <span class="text-xs text-slate-500">3行 x 10列</span>
+              <div class="mt-6">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-semibold text-slate-900">配列図</h3>
+                  <span class="text-xs text-slate-500">3行 x 10列</span>
+                </div>
+                <div class="mt-4 grid gap-2">
+                  {layoutRows.map((row) => (
+                    <div class="grid grid-cols-10 gap-2">
+                      {row.map((keyLabel) => (
+                        <div class="flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-700 shadow-sm">
+                          {keyLabel}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-semibold text-slate-900">負担率</h3>
+                  <span class="text-xs text-slate-500">%</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">
+                  行・列の負荷棒グラフと、キー別の負担率ヒートマップを分けて表示します。
+                </p>
+
+                <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+                  <div class="grid gap-6 lg:grid-cols-[1fr_2fr_1fr]">
+                    <div class="space-y-2 text-[11px] text-slate-600">
+                      <div class="text-xs font-semibold text-slate-700">行負荷</div>
+                      {rowSums.map((value) => (
+                        <div class="flex items-center gap-2">
+                          <span class="w-10 text-right font-semibold text-slate-600">
+                            {value.toFixed(1)}
+                          </span>
+                          <div class="h-3 flex-1 rounded-full bg-rose-100">
+                            <div
+                              class="ml-auto h-3 rounded-full bg-rose-500"
+                              style={`width: ${barWidth(value, maxRow)};`}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div class="space-y-2">
+                      <div class="text-xs font-semibold text-slate-700">列負荷</div>
+                      <div class="grid grid-cols-10 gap-2 text-[11px] text-slate-600">
+                        {colSums.map((value) => (
+                          <div class="flex flex-col items-center gap-2">
+                            <span class="font-semibold text-slate-600">
+                              {value.toFixed(1)}
+                            </span>
+                            <div class="flex h-20 w-full items-end justify-center rounded-lg bg-rose-100">
+                              <div
+                                class="w-full rounded-md bg-rose-500"
+                                style={`height: ${barHeight(value, maxCol)};`}
+                              ></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div class="space-y-2 text-[11px] text-slate-600">
+                      <div class="text-xs font-semibold text-slate-700 text-right">行負荷</div>
+                      {rowSums.map((value) => (
+                        <div class="flex items-center gap-2">
+                          <div class="h-3 flex-1 rounded-full bg-rose-100">
+                            <div
+                              class="h-3 rounded-full bg-rose-500"
+                              style={`width: ${barWidth(value, maxRow)};`}
+                            ></div>
+                          </div>
+                          <span class="w-10 text-left font-semibold text-slate-600">
+                            {value.toFixed(1)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div class="mt-4 grid gap-2">
-                    {layoutRows.map((row) => (
+
+                  <div class="mt-4 grid gap-3 text-xs text-slate-600 sm:grid-cols-2">
+                    <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
+                      左手合計: {leftSum.toFixed(1)}%
+                    </span>
+                    <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
+                      右手合計: {rightSum.toFixed(1)}%
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-3">
+                  <div class="min-w-[640px] space-y-2">
+                    {loadMatrix.map((row) => (
                       <div class="grid grid-cols-10 gap-2">
-                        {row.map((keyLabel) => (
-                          <div class="flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-700 shadow-sm">
-                            {keyLabel}
+                        {row.map((value) => (
+                          <div
+                            class={`group relative flex h-9 items-center justify-center rounded-lg text-[11px] font-semibold ${loadClass(
+                              value
+                            )}`}
+                            title={`${value.toFixed(1)}%`}
+                          >
+                            <span class="truncate px-1">{value.toFixed(1)}</span>
+                            <div class="pointer-events-none absolute -top-8 hidden rounded-full bg-slate-900 px-2 py-1 text-[10px] text-white shadow-lg group-hover:block">
+                              {value.toFixed(1)}%
+                            </div>
                           </div>
                         ))}
                       </div>
                     ))}
-                  </div>
-                </div>
-
-                <div>
-                  <div class="flex items-center justify-between">
-                    <h3 class="text-base font-semibold text-slate-900">負担率</h3>
-                    <span class="text-xs text-slate-500">%</span>
-                  </div>
-                  <p class="mt-2 text-xs text-slate-500">
-                    ここに負担率のグラフを配置します。詳細な仕様は後で反映します。
-                  </p>
-                  <div class="mt-4 flex h-44 items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-500">
-                    3行 x 10列の負担率グラフ（仮）
-                  </div>
-                  <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
-                    <span class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                      合計: 100%
-                    </span>
-                    <span class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                      左手: 48.9%
-                    </span>
-                    <span class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                      右手: 51.1%
-                    </span>
                   </div>
                 </div>
               </div>
