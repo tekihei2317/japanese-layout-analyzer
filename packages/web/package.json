@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@japanese-layout-analyzer/web",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.6"
+    "astro": "^5.16.6",
+    "@japanese-layout-analyzer/core": "workspace:*"
   }
 }

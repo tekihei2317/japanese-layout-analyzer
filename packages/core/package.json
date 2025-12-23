@@ -1,3 +1,4 @@
 {
-  "name": "core"
+  "name": "@japanese-layout-analyzer/core",
+  "private": true
 }
