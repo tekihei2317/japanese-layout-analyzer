@@ -42,21 +42,28 @@ export const TypingGame = () => {
   const counts = [5, 10, 15, 30];
   const layoutOptions: { id: LayoutId; label: string }[] = [
     { id: "qwerty", label: "QWERTY" },
-    { id: "tsuki-2-263", label: "月配列 2-263式" },
-    { id: "tukiringo", label: "月林檎配列" },
+    { id: "oonisi", label: "大西配列" },
+    { id: "hana", label: "花配列" },
+    { id: "tsuki-2-263", label: "月配列2-263式" },
+    { id: "yukika", label: "幸花配列" },
+    { id: "mizunara", label: "ミズナラ配列" },
+    { id: "hybridTsuki", label: "ハイブリッド月配列" },
     { id: "buna", label: "ぶな配列" },
-    { id: "burichutoro-20221015", label: "ブリ中トロ配列" },
+    { id: "hideduki", label: "英月配列" },
+    { id: "burichutoro-20221015", label: "ブリ中トロ配列 2022/10/15版" },
+    { id: "tukiringo", label: "月林檎配列" },
+    { id: "fumiduki", label: "文月配列" },
   ];
   const selectedLayout =
     layoutOptions.find((option) => option.id === settings.layoutId) ??
     layoutOptions[0];
   const settingsPanel = (
     <section className="border border-slate-200 bg-white/90 px-6 py-4 backdrop-blur">
-      <div className="grid gap-4 text-slate-700 sm:grid-cols-[1.2fr_1fr_1fr] sm:items-center">
+      <div className="grid gap-4 text-sm text-slate-700 sm:grid-cols-[1.2fr_1fr_1fr] sm:items-center">
         <label className="flex flex-col gap-2">
-          <span className="uppercase tracking-wider text-slate-400">配列</span>
+          <span className="text-xs uppercase tracking-wider text-slate-400">配列</span>
           <select
-            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-700"
+            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
             value={settings.layoutId}
             onChange={(event) =>
               setSettings((prev) => ({
@@ -73,11 +80,11 @@ export const TypingGame = () => {
           </select>
         </label>
         <label className="flex flex-col gap-2">
-          <span className="uppercase tracking-wider text-slate-400">
+          <span className="text-xs uppercase tracking-wider text-slate-400">
             ワード
           </span>
           <select
-            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-700"
+            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
             value={settings.wordSetId}
             onChange={(event) =>
               setSettings((prev) => ({
@@ -90,7 +97,7 @@ export const TypingGame = () => {
           </select>
         </label>
         <div className="flex flex-col gap-2">
-          <span className="uppercase tracking-wider text-slate-400">
+          <span className="text-xs uppercase tracking-wider text-slate-400">
             出題数
           </span>
           <div className="flex flex-wrap gap-2">
@@ -99,7 +106,7 @@ export const TypingGame = () => {
                 key={count}
                 type="button"
                 onClick={() => setSettings((prev) => ({ ...prev, count }))}
-                className={`rounded-full px-3 py-1 transition ${
+                className={`rounded-full px-3 py-1 text-sm transition ${
                   settings.count === count
                     ? "bg-slate-900 text-white"
                     : "border border-slate-200 bg-white text-slate-700"

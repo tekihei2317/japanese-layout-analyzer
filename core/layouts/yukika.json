@@ -1,0 +1,381 @@
+[
+  {
+    "input": "q",
+    "output": "",
+    "nextInput": "こ"
+  },
+  {
+    "input": "w",
+    "output": "な"
+  },
+  {
+    "input": "e",
+    "output": "",
+    "nextInput": "と"
+  },
+  {
+    "input": "r",
+    "output": "",
+    "nextInput": "け"
+  },
+  {
+    "input": "t",
+    "output": "ろ"
+  },
+  {
+    "input": "y",
+    "output": "む"
+  },
+  {
+    "input": "u",
+    "output": "る"
+  },
+  {
+    "input": "i",
+    "output": "い"
+  },
+  {
+    "input": "o",
+    "output": "の"
+  },
+  {
+    "input": "p",
+    "output": "れ"
+  },
+  {
+    "input": "@",
+    "output": "め"
+  },
+  {
+    "input": "a",
+    "output": "",
+    "nextInput": "た"
+  },
+  {
+    "input": "s",
+    "output": "",
+    "nextInput": "て"
+  },
+  {
+    "input": "d",
+    "output": "",
+    "nextInput": "☆"
+  },
+  {
+    "input": "f",
+    "output": "",
+    "nextInput": "か"
+  },
+  {
+    "input": "g",
+    "output": "",
+    "nextInput": "は"
+  },
+  {
+    "input": "h",
+    "output": "",
+    "nextInput": "つ"
+  },
+  {
+    "input": "j",
+    "output": "ん"
+  },
+  {
+    "input": "k",
+    "output": "",
+    "nextInput": "☆"
+  },
+  {
+    "input": "l",
+    "output": "゛"
+  },
+  {
+    "input": ";",
+    "output": "",
+    "nextInput": "し"
+  },
+  {
+    "input": ":",
+    "output": "ー"
+  },
+  {
+    "input": "z",
+    "output": "",
+    "nextInput": "す"
+  },
+  {
+    "input": "x",
+    "output": "ょ"
+  },
+  {
+    "input": "c",
+    "output": "",
+    "nextInput": "せ"
+  },
+  {
+    "input": "v",
+    "output": "",
+    "nextInput": "き"
+  },
+  {
+    "input": "b",
+    "output": "",
+    "nextInput": "さ"
+  },
+  {
+    "input": "n",
+    "output": "",
+    "nextInput": "く"
+  },
+  {
+    "input": "m",
+    "output": "",
+    "nextInput": "う"
+  },
+  {
+    "input": ",",
+    "output": "、"
+  },
+  {
+    "input": ".",
+    "output": "。"
+  },
+  {
+    "input": "/",
+    "output": "゜"
+  },
+  {
+    "input": "☆q",
+    "output": "ぁ"
+  },
+  {
+    "input": "☆w",
+    "output": "ね"
+  },
+  {
+    "input": "☆e",
+    "output": "や"
+  },
+  {
+    "input": "☆r",
+    "output": "",
+    "nextInput": "ほ"
+  },
+  {
+    "input": "☆t",
+    "output": "ゆ"
+  },
+  {
+    "input": "☆y",
+    "output": "ぬ"
+  },
+  {
+    "input": "☆u",
+    "output": "わ"
+  },
+  {
+    "input": "☆i",
+    "output": "あ"
+  },
+  {
+    "input": "☆o",
+    "output": "に"
+  },
+  {
+    "input": "☆p",
+    "output": "ぇ"
+  },
+  {
+    "input": "☆@",
+    "output": "「"
+  },
+  {
+    "input": "☆a",
+    "output": "ぃ"
+  },
+  {
+    "input": "☆s",
+    "output": "お"
+  },
+  {
+    "input": "☆d",
+    "output": "ら"
+  },
+  {
+    "input": "☆f",
+    "output": "も"
+  },
+  {
+    "input": "☆g",
+    "output": "",
+    "nextInput": "ふ"
+  },
+  {
+    "input": "☆h",
+    "output": "ゃ"
+  },
+  {
+    "input": "☆j",
+    "output": "つ"
+  },
+  {
+    "input": "☆k",
+    "output": "ま"
+  },
+  {
+    "input": "☆l",
+    "output": "",
+    "nextInput": "ち"
+  },
+  {
+    "input": "☆;",
+    "output": "え"
+  },
+  {
+    "input": "☆:",
+    "output": "」"
+  },
+  {
+    "input": "☆z",
+    "output": "ぅ"
+  },
+  {
+    "input": "☆x",
+    "output": "ゅ"
+  },
+  {
+    "input": "☆c",
+    "output": "",
+    "nextInput": "そ"
+  },
+  {
+    "input": "☆v",
+    "output": "よ"
+  },
+  {
+    "input": "☆b",
+    "output": "",
+    "nextInput": "へ"
+  },
+  {
+    "input": "☆n",
+    "output": "み"
+  },
+  {
+    "input": "☆m",
+    "output": "り"
+  },
+  {
+    "input": "☆,",
+    "output": "",
+    "nextInput": "ひ"
+  },
+  {
+    "input": "☆.",
+    "output": "を"
+  },
+  {
+    "input": "☆/",
+    "output": "ぉ"
+  },
+  {
+    "input": "かl",
+    "output": "が"
+  },
+  {
+    "input": "きl",
+    "output": "ぎ"
+  },
+  {
+    "input": "くl",
+    "output": "ぐ"
+  },
+  {
+    "input": "けl",
+    "output": "げ"
+  },
+  {
+    "input": "こl",
+    "output": "ご"
+  },
+  {
+    "input": "さl",
+    "output": "ざ"
+  },
+  {
+    "input": "しl",
+    "output": "じ"
+  },
+  {
+    "input": "すl",
+    "output": "ず"
+  },
+  {
+    "input": "せl",
+    "output": "ぜ"
+  },
+  {
+    "input": "そl",
+    "output": "ぞ"
+  },
+  {
+    "input": "たl",
+    "output": "だ"
+  },
+  {
+    "input": "ちl",
+    "output": "ぢ"
+  },
+  {
+    "input": "つl",
+    "output": "づ"
+  },
+  {
+    "input": "てl",
+    "output": "で"
+  },
+  {
+    "input": "とl",
+    "output": "ど"
+  },
+  {
+    "input": "はl",
+    "output": "ば"
+  },
+  {
+    "input": "ひl",
+    "output": "び"
+  },
+  {
+    "input": "ふl",
+    "output": "ぶ"
+  },
+  {
+    "input": "へl",
+    "output": "べ"
+  },
+  {
+    "input": "ほl",
+    "output": "ぼ"
+  },
+  {
+    "input": "は/",
+    "output": "ぱ"
+  },
+  {
+    "input": "ひ/",
+    "output": "ぴ"
+  },
+  {
+    "input": "ふ/",
+    "output": "ぷ"
+  },
+  {
+    "input": "へ/",
+    "output": "ぺ"
+  },
+  {
+    "input": "ほ/",
+    "output": "ぽ"
+  }
+]

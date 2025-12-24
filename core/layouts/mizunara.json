@@ -1,0 +1,338 @@
+[
+  {
+    "input": "q",
+    "output": "も"
+  },
+  {
+    "input": "w",
+    "output": "に"
+  },
+  {
+    "input": "e",
+    "output": "は"
+  },
+  {
+    "input": "r",
+    "output": "て"
+  },
+  {
+    "input": "t",
+    "output": "で"
+  },
+  {
+    "input": "y",
+    "output": "れ"
+  },
+  {
+    "input": "u",
+    "output": "っ"
+  },
+  {
+    "input": "i",
+    "output": "し"
+  },
+  {
+    "input": "o",
+    "output": "と"
+  },
+  {
+    "input": "p",
+    "output": "の"
+  },
+  {
+    "input": "a",
+    "output": "か"
+  },
+  {
+    "input": "f",
+    "output": "な"
+  },
+  {
+    "input": "g",
+    "output": "る"
+  },
+  {
+    "input": "h",
+    "output": "き"
+  },
+  {
+    "input": "j",
+    "output": "ん"
+  },
+  {
+    "input": ";",
+    "output": "い"
+  },
+  {
+    "input": "z",
+    "output": "こ"
+  },
+  {
+    "input": "x",
+    "output": "が"
+  },
+  {
+    "input": "c",
+    "output": "だ"
+  },
+  {
+    "input": "v",
+    "output": "た"
+  },
+  {
+    "input": "b",
+    "output": "ょ"
+  },
+  {
+    "input": "n",
+    "output": "く"
+  },
+  {
+    "input": "m",
+    "output": "う"
+  },
+  {
+    "input": ",",
+    "output": "、"
+  },
+  {
+    "input": ".",
+    "output": "。"
+  },
+  {
+    "input": "kq",
+    "output": "ご"
+  },
+  {
+    "input": "kw",
+    "output": "づ"
+  },
+  {
+    "input": "ke",
+    "output": "ぼ"
+  },
+  {
+    "input": "kr",
+    "output": "ほ"
+  },
+  {
+    "input": "kt",
+    "output": "へ"
+  },
+  {
+    "input": "ka",
+    "output": "あ"
+  },
+  {
+    "input": "ks",
+    "output": "け"
+  },
+  {
+    "input": "kd",
+    "output": "す"
+  },
+  {
+    "input": "kf",
+    "output": "お"
+  },
+  {
+    "input": "kg",
+    "output": "さ"
+  },
+  {
+    "input": "kz",
+    "output": "や"
+  },
+  {
+    "input": "kx",
+    "output": "ゆ"
+  },
+  {
+    "input": "kc",
+    "output": "ぜ"
+  },
+  {
+    "input": "kv",
+    "output": "ね"
+  },
+  {
+    "input": "kb",
+    "output": "よ"
+  },
+  {
+    "input": "dy",
+    "output": "ぉ"
+  },
+  {
+    "input": "du",
+    "output": "ぷ"
+  },
+  {
+    "input": "di",
+    "output": "ぶ"
+  },
+  {
+    "input": "do",
+    "output": "え"
+  },
+  {
+    "input": "dp",
+    "output": "ゃ"
+  },
+  {
+    "input": "dh",
+    "output": "ひ"
+  },
+  {
+    "input": "dj",
+    "output": "つ"
+  },
+  {
+    "input": "dk",
+    "output": "ち"
+  },
+  {
+    "input": "dl",
+    "output": "じ"
+  },
+  {
+    "input": "d;",
+    "output": "ま"
+  },
+  {
+    "input": "dn",
+    "output": "ぬ"
+  },
+  {
+    "input": "dm",
+    "output": "み"
+  },
+  {
+    "input": "d,",
+    "output": "ぺ"
+  },
+  {
+    "input": "d.",
+    "output": "ゅ"
+  },
+  {
+    "input": "d/",
+    "output": "ぴ"
+  },
+  {
+    "input": "lq",
+    "output": "べ"
+  },
+  {
+    "input": "lw",
+    "output": "ぃ"
+  },
+  {
+    "input": "le",
+    "output": "ぁ"
+  },
+  {
+    "input": "lr",
+    "output": "ど"
+  },
+  {
+    "input": "lt",
+    "output": "ぞ"
+  },
+  {
+    "input": "la",
+    "output": "ら"
+  },
+  {
+    "input": "ls",
+    "output": "せ"
+  },
+  {
+    "input": "ld",
+    "output": "わ"
+  },
+  {
+    "input": "lf",
+    "output": "ろ"
+  },
+  {
+    "input": "lg",
+    "output": "そ"
+  },
+  {
+    "input": "lz",
+    "output": "び"
+  },
+  {
+    "input": "lx",
+    "output": "ぇ"
+  },
+  {
+    "input": "lc",
+    "output": "げ"
+  },
+  {
+    "input": "lv",
+    "output": "ふ"
+  },
+  {
+    "input": "lb",
+    "output": "ざ"
+  },
+  {
+    "input": "su",
+    "output": "ぱ"
+  },
+  {
+    "input": "si",
+    "output": "ぽ"
+  },
+  {
+    "input": "so",
+    "output": "ば"
+  },
+  {
+    "input": "sp",
+    "output": "ず"
+  },
+  {
+    "input": "sh",
+    "output": "ぎ"
+  },
+  {
+    "input": "sj",
+    "output": "ー"
+  },
+  {
+    "input": "sk",
+    "output": "め"
+  },
+  {
+    "input": "sl",
+    "output": "り"
+  },
+  {
+    "input": "s;",
+    "output": "を"
+  },
+  {
+    "input": "sn",
+    "output": "ぐ"
+  },
+  {
+    "input": "sm",
+    "output": "む"
+  },
+  {
+    "input": "s,",
+    "output": "ヴ"
+  },
+  {
+    "input": "s.",
+    "output": "ぅ"
+  },
+  {
+    "input": "s/",
+    "output": "ぢ"
+  }
+]

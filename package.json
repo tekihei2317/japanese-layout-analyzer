@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "layouts:build": "bun run scripts/convert-layouts.ts",
+    "layouts:onishi": "bun run scripts/convert-onishi.ts",
     "web:dev": "bun run --filter web dev",
     "web:build": "bun run --filter web build"
   },
