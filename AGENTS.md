@@ -2,41 +2,35 @@
 
 ## Project Structure & Module Organization
 
-- `README.md` is minimal; project intent and current scope live in `docs/design.md`.
-- `docs/` contains design notes and references for the planned site and CLI.
-- `tasks/` holds numbered task plans (e.g., `tasks/003-typing-game.md`) that describe intended features.
-- There is no `src/` yet; code will land here once implementation starts.
+- `cli/`, `core/`, `web/` are Bun workspaces. `web/` is the Astro frontend, `core/` holds conversion logic and layout data, `cli/` is a thin consumer.
+- `web/src/typing/` contains the typing game UI and hooks; keep typing-related UI and state there.
+- `layouts/` stores TSV sources for roman tables. Generated JSON lives in `core/layouts/`.
+- `scripts/` contains Bun scripts that transform layout data (see commands below).
+- `typing-keyboard-layout-wiki/` and `docs/` are reference material; `tasks/` tracks numbered task specs.
 
 ## Build, Test, and Development Commands
 
-- No build or test tooling is configured yet.
-- If you add a build system (e.g., `npm`, `pnpm`, or `make`), document the exact commands in `README.md` and update this file.
-- Example pattern to follow once tooling exists:
-  - `npm run dev` — start the local dev server.
-  - `npm test` — run the test suite.
+- `bun run web:dev` - start the Astro dev server for `web/`.
+- `bun run web:build` - build the static site.
+- `bun run layouts:build` - convert all `layouts/*.tsv` into `core/layouts/*.json`.
+- `bun run layouts:onishi` - regenerate `layouts/oonisi.tsv` from the Qwerty table.
 
 ## Coding Style & Naming Conventions
 
-- Markdown files should use ATX headings (`#`, `##`) and fenced code blocks with language tags.
-- Keep filenames descriptive and lowercase; follow the existing numeric prefix for task files (e.g., `tasks/006-new-feature.md`).
-- When adding code, adopt the formatter and linting defaults of the chosen framework/language, then document them here.
+- TypeScript is `strict` (see `tsconfig.json`), with `ES2022` targets and `Bundler` module resolution.
+- Match existing formatting in the file you touch; prefer small, readable components and hooks.
+- Layout IDs should match JSON filenames (e.g., `oonisi`, `yukika`) and stay consistent across `core/` and `web/`.
+- Keep Markdown docs concise; use ATX headings and language-tagged fences.
 
 ## Testing Guidelines
 
-- No testing framework or coverage requirements are defined yet.
-- If you introduce tests, place them alongside the relevant module or in a dedicated `tests/` directory and state the convention.
-- Include a short “how to run tests” note in `README.md` and update this file.
+- No formal test runner is configured. If you add tests, document how to run them and the directory convention you chose.
 
 ## Commit & Pull Request Guidelines
 
-- Git history uses short, descriptive messages (often Japanese). Keep commits concise and outcome-focused.
-- Prefer one logical change per commit; avoid mixing refactors with feature work.
-- Pull requests should include:
-  - A brief summary of scope and rationale.
-  - Links to any related task file in `tasks/`.
-  - Screenshots or recordings for UI changes (static pages or mockups).
+- Commit messages are short and descriptive (often Japanese). Keep one logical change per commit.
+- PRs should include a brief scope summary, links to relevant `tasks/*.md`, and screenshots for UI changes.
 
 ## Security & Configuration Notes
 
-- This project is currently static and local-only; avoid introducing secrets into the repo.
-- If future work requires external corpora or layout data, document sources and licensing in `docs/`.
+- Do not commit secrets. If you add external datasets or layout sources, record provenance and licensing in `docs/`.
