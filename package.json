@@ -12,8 +12,8 @@
     "cli": "bun run cli/index.ts",
     "layouts:build": "bun run scripts/convert-layouts.ts",
     "layouts:onishi": "bun run scripts/convert-onishi.ts",
-    "web:dev": "bun run --filter web dev",
-    "web:build": "bun run --filter web build"
+    "web:dev": "bun run --filter @japanese-layout-analyzer/web dev",
+    "web:build": "bun run --filter @japanese-layout-analyzer/web build"
   },
   "devDependencies": {
     "@types/bun": "latest"

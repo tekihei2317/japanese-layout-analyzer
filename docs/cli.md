@@ -126,3 +126,12 @@ jla scissors <corpus> <layout> [--count <number>]
 ```
 
 指定した指標の上位リストを表示する。
+
+### export
+
+Web UIに指標を表示するためのデータをエクスポートします。
+
+TODO: Web側でJSONファイルをどう読み込むかを決めてから、フォーマットを確定させる
+
+```bash
+```
