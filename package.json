@@ -9,6 +9,7 @@
     "web"
   ],
   "scripts": {
+    "cli": "bun run cli/index.ts",
     "layouts:build": "bun run scripts/convert-layouts.ts",
     "layouts:onishi": "bun run scripts/convert-onishi.ts",
     "web:dev": "bun run --filter web dev",

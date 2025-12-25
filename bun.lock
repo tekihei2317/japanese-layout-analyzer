@@ -12,6 +12,9 @@
     },
     "cli": {
       "name": "@japanese-layout-analyzer/cli",
+      "bin": {
+        "jla": "index.ts",
+      },
       "dependencies": {
         "@japanese-layout-analyzer/core": "workspace:*",
       },
