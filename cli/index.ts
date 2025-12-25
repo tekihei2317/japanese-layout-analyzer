@@ -5,6 +5,7 @@ import { corpusCommand } from "./commands/corpus";
 import { listLayouts, showLayout } from "./commands/layout";
 import { scissorsCommand, sfbsCommand, sfssCommand } from "./commands/metrics";
 import type { Format } from "./types";
+import { strokeCommand } from "./commands/stroke";
 
 const program = new Command();
 
@@ -93,6 +94,15 @@ program
   .action((corpusId: string, layoutId: string, options: { count: string }) => {
     scissorsCommand(corpusId, layoutId, options).catch((error) => {
       console.error("Failed to run scissors.", error);
+      process.exitCode = 1;
+    });
+  });
+
+program
+  .command("stroke <file> <layout>")
+  .action((file: string, layoutId: string) => {
+    strokeCommand(file, layoutId).catch((error) => {
+      console.error("Failed to convert text to strokes.", error);
       process.exitCode = 1;
     });
   });

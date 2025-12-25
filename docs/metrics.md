@@ -49,3 +49,29 @@ TODO: シザーと判定する指ペア/キーの定義を決める。
 ### In:out roll
 
 内ロールと外ロールの比率です。比率が高いほど、内ロールが多いです。
+
+## 追記
+
+cminiのコードリーディングをして大体どの指標を用意すれば分かったので、まとめます。
+
+3-gramは分類して足して100%になります。メインカテゴリはSFB、ALT、ROLL、ONEHAND、REDIRECTの5つで、その中にサブカテゴリがあります。
+
+- 2-gram
+  - Same Finger Bigrams: 同じ指が連続する割合
+  - Scissors: 特定のペアが現れる割合
+- 3-gram
+  - SFB: 同じ指が連続している
+    - sfb: 2連続
+    - sft: 同じ指が3連続
+  - ALT: 交互打鍵
+    - alt: skipgramなし
+    - alt-sfs: 交互打鍵で、skipgramがある
+  - ROLL:
+    - roll-in: 内ロール
+    - roll-out: 外ロール
+  - ONEHAND: 片手同一方向の打鍵（横方向のみ考慮する）
+    - onehand-in: 内ロール
+    - onehand-out: 外ロール
+  - REDIRECT: 片手の折り返し打鍵
+    - redirect: 折り返し打鍵で、skipgramがない
+    - redirect-sfs: 折り返し打鍵で、skipgramがある
