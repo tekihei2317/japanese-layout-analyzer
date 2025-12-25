@@ -1,8 +1,10 @@
 #!/usr/bin/env bun
 import { Command } from "commander";
+import { analyzeCommand } from "./commands/analyze";
+import { corpusCommand } from "./commands/corpus";
 import { listLayouts, showLayout } from "./commands/layout";
-
-type Format = "text" | "json";
+import { scissorsCommand, sfbsCommand, sfssCommand } from "./commands/metrics";
+import type { Format } from "./types";
 
 const program = new Command();
 
@@ -14,14 +16,12 @@ program
 program
   .command("analyze <corpusOrFile> <layout>")
   .option("--format <text|json>", "output format", "text")
-  .action(
-    (corpusOrFile: string, layout: string, options: { format: Format }) => {
-      void corpusOrFile;
-      void layout;
-      void options;
-      console.log("Not implemented");
-    }
-  );
+  .action((corpusOrFile: string, layout: string, options: { format: Format }) => {
+    analyzeCommand(corpusOrFile, layout, options).catch((error) => {
+      console.error("Failed to analyze.", error);
+      process.exitCode = 1;
+    });
+  });
 
 program
   .command("layout <action> [layout]")
@@ -58,40 +58,43 @@ program
   .command("corpus <action> [corpus]")
   .option("--n <2|3>", "ngram size", "2")
   .option("--count <number>", "number of rows", "10")
-  .action((action: string, corpusId?: string) => {
-    void action;
-    void corpusId;
-    console.log("Not implemented");
-  });
+  .action(
+    (action: string, corpusId: string | undefined, options: { n: string; count: string }) => {
+      corpusCommand(action, corpusId, options).catch((error) => {
+        console.error("Failed to handle corpus command.", error);
+        process.exitCode = 1;
+      });
+    }
+  );
 
 program
   .command("sfbs <corpus> <layout>")
   .option("--count <number>", "number of rows", "10")
   .action((corpusId: string, layoutId: string, options: { count: string }) => {
-    void corpusId;
-    void layoutId;
-    void options;
-    console.log("Not implemented");
+    sfbsCommand(corpusId, layoutId, options).catch((error) => {
+      console.error("Failed to run sfbs.", error);
+      process.exitCode = 1;
+    });
   });
 
 program
   .command("sfss <corpus> <layout>")
   .option("--count <number>", "number of rows", "10")
   .action((corpusId: string, layoutId: string, options: { count: string }) => {
-    void corpusId;
-    void layoutId;
-    void options;
-    console.log("Not implemented");
+    sfssCommand(corpusId, layoutId, options).catch((error) => {
+      console.error("Failed to run sfss.", error);
+      process.exitCode = 1;
+    });
   });
 
 program
   .command("scissors <corpus> <layout>")
   .option("--count <number>", "number of rows", "10")
   .action((corpusId: string, layoutId: string, options: { count: string }) => {
-    void corpusId;
-    void layoutId;
-    void options;
-    console.log("Not implemented");
+    scissorsCommand(corpusId, layoutId, options).catch((error) => {
+      console.error("Failed to run scissors.", error);
+      process.exitCode = 1;
+    });
   });
 
 program.parse(process.argv);
