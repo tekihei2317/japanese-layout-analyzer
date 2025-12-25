@@ -10,6 +10,7 @@ import hybridTsukiTable from "./layouts/hybrid-tsuki.json";
 import hidedukiTable from "./layouts/hideduki_v4.1.json";
 import oonisiTable from "./layouts/oonisi.json";
 import fumidukiTable from "./layouts/fumiduki.json";
+import tsukimisouTable from "./layouts/tsukimisou.json";
 
 /**
  * ローマ字テーブルのエントリ
@@ -32,6 +33,7 @@ const layoutTables = {
   buna: bunaTable as RomanTable,
   hideduki: hidedukiTable as RomanTable,
   "burichutoro-20221015": burichutoroTable as RomanTable,
+  tsukimisou: tsukimisouTable as RomanTable,
   tukiringo: tukiringoTable as RomanTable,
   fumiduki: fumidukiTable as RomanTable,
 } as const;

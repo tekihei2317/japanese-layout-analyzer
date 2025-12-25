@@ -51,6 +51,7 @@ export const TypingGame = () => {
     { id: "buna", label: "ぶな配列" },
     { id: "hideduki", label: "英月配列" },
     { id: "burichutoro-20221015", label: "ブリ中トロ配列 2022/10/15版" },
+    { id: "tsukimisou", label: "月見草配列 v2" },
     { id: "tukiringo", label: "月林檎配列" },
     { id: "fumiduki", label: "文月配列" },
   ];
@@ -61,7 +62,9 @@ export const TypingGame = () => {
     <section className="border border-slate-200 bg-white/90 px-6 py-4 backdrop-blur">
       <div className="grid gap-4 text-sm text-slate-700 sm:grid-cols-[1.2fr_1fr_1fr] sm:items-center">
         <label className="flex flex-col gap-2">
-          <span className="text-xs uppercase tracking-wider text-slate-400">配列</span>
+          <span className="text-xs uppercase tracking-wider text-slate-400">
+            配列
+          </span>
           <select
             className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
             value={settings.layoutId}
