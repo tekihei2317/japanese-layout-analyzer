@@ -1,0 +1,5775 @@
+[
+  {
+    "input": "q",
+    "output": "",
+    "nextInput": "だ"
+  },
+  {
+    "input": "だe",
+    "output": "",
+    "nextInput": "ゑ"
+  },
+  {
+    "input": "ゑs",
+    "output": "",
+    "nextInput": "だへ"
+  },
+  {
+    "input": "だへe",
+    "output": "",
+    "nextInput": "ゑぷ"
+  },
+  {
+    "input": "ゑぷs",
+    "output": "だへへ"
+  },
+  {
+    "input": "ゑぷf",
+    "output": "だへぱ"
+  },
+  {
+    "input": "だへf",
+    "output": "",
+    "nextInput": "ゑぼ"
+  },
+  {
+    "input": "ゑぼe",
+    "output": "だへぶ"
+  },
+  {
+    "input": "ゑぼs",
+    "output": "だへぐ"
+  },
+  {
+    "input": "ゑf",
+    "output": "",
+    "nextInput": "だぱ"
+  },
+  {
+    "input": "だぱe",
+    "output": "",
+    "nextInput": "ゑぶ"
+  },
+  {
+    "input": "ゑぶs",
+    "output": "だぱへ"
+  },
+  {
+    "input": "ゑぶf",
+    "output": "だぱぱ"
+  },
+  {
+    "input": "だぱs",
+    "output": "",
+    "nextInput": "ゑぐ"
+  },
+  {
+    "input": "ゑぐe",
+    "output": "だぱぷ"
+  },
+  {
+    "input": "ゑぐf",
+    "output": "だぱぼ"
+  },
+  {
+    "input": "だs",
+    "output": "",
+    "nextInput": "ゐ"
+  },
+  {
+    "input": "ゐe",
+    "output": "",
+    "nextInput": "だぷ"
+  },
+  {
+    "input": "だぷs",
+    "output": "",
+    "nextInput": "ゐへ"
+  },
+  {
+    "input": "ゐへe",
+    "output": "だぷぷ"
+  },
+  {
+    "input": "ゐへf",
+    "output": "だぷぼ"
+  },
+  {
+    "input": "だぷf",
+    "output": "",
+    "nextInput": "ゐぱ"
+  },
+  {
+    "input": "ゐぱe",
+    "output": "だぷぶ"
+  },
+  {
+    "input": "ゐぱs",
+    "output": "だぷぐ"
+  },
+  {
+    "input": "ゐf",
+    "output": "",
+    "nextInput": "だぼ"
+  },
+  {
+    "input": "だぼe",
+    "output": "",
+    "nextInput": "ゐぶ"
+  },
+  {
+    "input": "ゐぶs",
+    "output": "だぼへ"
+  },
+  {
+    "input": "ゐぶf",
+    "output": "だぼぱ"
+  },
+  {
+    "input": "だぼs",
+    "output": "",
+    "nextInput": "ゐぐ"
+  },
+  {
+    "input": "ゐぐe",
+    "output": "だぼぷ"
+  },
+  {
+    "input": "ゐぐf",
+    "output": "だぼぼ"
+  },
+  {
+    "input": "だf",
+    "output": "",
+    "nextInput": "ゎ"
+  },
+  {
+    "input": "ゎe",
+    "output": "",
+    "nextInput": "だぶ"
+  },
+  {
+    "input": "だぶs",
+    "output": "",
+    "nextInput": "ゎへ"
+  },
+  {
+    "input": "ゎへe",
+    "output": "だぶぷ"
+  },
+  {
+    "input": "ゎへf",
+    "output": "だぶぼ"
+  },
+  {
+    "input": "だぶf",
+    "output": "",
+    "nextInput": "ゎぱ"
+  },
+  {
+    "input": "ゎぱe",
+    "output": "だぶぶ"
+  },
+  {
+    "input": "ゎぱs",
+    "output": "だぶぐ"
+  },
+  {
+    "input": "ゎs",
+    "output": "",
+    "nextInput": "だぐ"
+  },
+  {
+    "input": "だぐe",
+    "output": "",
+    "nextInput": "ゎぷ"
+  },
+  {
+    "input": "ゎぷs",
+    "output": "だぐへ"
+  },
+  {
+    "input": "ゎぷf",
+    "output": "だぐぱ"
+  },
+  {
+    "input": "だぐf",
+    "output": "",
+    "nextInput": "ゎぼ"
+  },
+  {
+    "input": "ゎぼe",
+    "output": "だぐぶ"
+  },
+  {
+    "input": "ゎぼs",
+    "output": "だぐぐ"
+  },
+  {
+    "input": "w",
+    "output": "",
+    "nextInput": "か"
+  },
+  {
+    "input": "かe",
+    "output": "",
+    "nextInput": "ふ"
+  },
+  {
+    "input": "ふs",
+    "output": "",
+    "nextInput": "かへ"
+  },
+  {
+    "input": "かへe",
+    "output": "",
+    "nextInput": "ふぷ"
+  },
+  {
+    "input": "ふぷs",
+    "output": "かへへ"
+  },
+  {
+    "input": "ふぷf",
+    "output": "かへぱ"
+  },
+  {
+    "input": "かへf",
+    "output": "",
+    "nextInput": "ふぼ"
+  },
+  {
+    "input": "ふぼe",
+    "output": "かへぶ"
+  },
+  {
+    "input": "ふぼs",
+    "output": "かへぐ"
+  },
+  {
+    "input": "ふf",
+    "output": "",
+    "nextInput": "かぱ"
+  },
+  {
+    "input": "かぱe",
+    "output": "",
+    "nextInput": "ふぶ"
+  },
+  {
+    "input": "ふぶs",
+    "output": "かぱへ"
+  },
+  {
+    "input": "ふぶf",
+    "output": "かぱぱ"
+  },
+  {
+    "input": "かぱs",
+    "output": "",
+    "nextInput": "ふぐ"
+  },
+  {
+    "input": "ふぐe",
+    "output": "かぱぷ"
+  },
+  {
+    "input": "ふぐf",
+    "output": "かぱぼ"
+  },
+  {
+    "input": "かf",
+    "output": "",
+    "nextInput": "ほ"
+  },
+  {
+    "input": "ほe",
+    "output": "",
+    "nextInput": "かぶ"
+  },
+  {
+    "input": "かぶs",
+    "output": "",
+    "nextInput": "ほへ"
+  },
+  {
+    "input": "ほへe",
+    "output": "かぶぷ"
+  },
+  {
+    "input": "ほへf",
+    "output": "かぶぼ"
+  },
+  {
+    "input": "かぶf",
+    "output": "",
+    "nextInput": "ほぱ"
+  },
+  {
+    "input": "ほぱe",
+    "output": "かぶぶ"
+  },
+  {
+    "input": "ほぱs",
+    "output": "かぶぐ"
+  },
+  {
+    "input": "ほs",
+    "output": "",
+    "nextInput": "かぐ"
+  },
+  {
+    "input": "かぐe",
+    "output": "",
+    "nextInput": "ほぷ"
+  },
+  {
+    "input": "ほぷs",
+    "output": "かぐへ"
+  },
+  {
+    "input": "ほぷf",
+    "output": "かぐぱ"
+  },
+  {
+    "input": "かぐf",
+    "output": "",
+    "nextInput": "ほぼ"
+  },
+  {
+    "input": "ほぼe",
+    "output": "かぐぶ"
+  },
+  {
+    "input": "ほぼs",
+    "output": "かぐぐ"
+  },
+  {
+    "input": "e",
+    "output": "",
+    "nextInput": "、"
+  },
+  {
+    "input": "、s",
+    "output": "",
+    "nextInput": "へ"
+  },
+  {
+    "input": "へe",
+    "output": "",
+    "nextInput": "、ぷ"
+  },
+  {
+    "input": "、ぷs",
+    "output": "",
+    "nextInput": "へへ"
+  },
+  {
+    "input": "へへe",
+    "output": "、ぷぷ"
+  },
+  {
+    "input": "へへf",
+    "output": "、ぷぼ"
+  },
+  {
+    "input": "、ぷf",
+    "output": "",
+    "nextInput": "へぱ"
+  },
+  {
+    "input": "へぱe",
+    "output": "、ぷぶ"
+  },
+  {
+    "input": "へぱs",
+    "output": "、ぷぐ"
+  },
+  {
+    "input": "へf",
+    "output": "",
+    "nextInput": "、ぼ"
+  },
+  {
+    "input": "、ぼe",
+    "output": "",
+    "nextInput": "へぶ"
+  },
+  {
+    "input": "へぶs",
+    "output": "、ぼへ"
+  },
+  {
+    "input": "へぶf",
+    "output": "、ぼぱ"
+  },
+  {
+    "input": "、ぼs",
+    "output": "",
+    "nextInput": "へぐ"
+  },
+  {
+    "input": "へぐe",
+    "output": "、ぼぷ"
+  },
+  {
+    "input": "へぐf",
+    "output": "、ぼぼ"
+  },
+  {
+    "input": "、f",
+    "output": "",
+    "nextInput": "ぱ"
+  },
+  {
+    "input": "ぱe",
+    "output": "",
+    "nextInput": "、ぶ"
+  },
+  {
+    "input": "、ぶs",
+    "output": "",
+    "nextInput": "ぱへ"
+  },
+  {
+    "input": "ぱへe",
+    "output": "、ぶぷ"
+  },
+  {
+    "input": "ぱへf",
+    "output": "、ぶぼ"
+  },
+  {
+    "input": "、ぶf",
+    "output": "",
+    "nextInput": "ぱぱ"
+  },
+  {
+    "input": "ぱぱe",
+    "output": "、ぶぶ"
+  },
+  {
+    "input": "ぱぱs",
+    "output": "、ぶぐ"
+  },
+  {
+    "input": "ぱs",
+    "output": "",
+    "nextInput": "、ぐ"
+  },
+  {
+    "input": "、ぐe",
+    "output": "",
+    "nextInput": "ぱぷ"
+  },
+  {
+    "input": "ぱぷs",
+    "output": "、ぐへ"
+  },
+  {
+    "input": "ぱぷf",
+    "output": "、ぐぱ"
+  },
+  {
+    "input": "、ぐf",
+    "output": "",
+    "nextInput": "ぱぼ"
+  },
+  {
+    "input": "ぱぼe",
+    "output": "、ぐぶ"
+  },
+  {
+    "input": "ぱぼs",
+    "output": "、ぐぐ"
+  },
+  {
+    "input": "r",
+    "output": "",
+    "nextInput": "が"
+  },
+  {
+    "input": "がe",
+    "output": "",
+    "nextInput": "ふぁ"
+  },
+  {
+    "input": "ふぁs",
+    "output": "",
+    "nextInput": "がへ"
+  },
+  {
+    "input": "がへe",
+    "output": "",
+    "nextInput": "ふぁぷ"
+  },
+  {
+    "input": "ふぁぷs",
+    "output": "がへへ"
+  },
+  {
+    "input": "ふぁぷf",
+    "output": "がへぱ"
+  },
+  {
+    "input": "がへf",
+    "output": "",
+    "nextInput": "ふぁぼ"
+  },
+  {
+    "input": "ふぁぼe",
+    "output": "がへぶ"
+  },
+  {
+    "input": "ふぁぼs",
+    "output": "がへぐ"
+  },
+  {
+    "input": "ふぁf",
+    "output": "",
+    "nextInput": "がぱ"
+  },
+  {
+    "input": "がぱe",
+    "output": "",
+    "nextInput": "ふぁぶ"
+  },
+  {
+    "input": "ふぁぶs",
+    "output": "がぱへ"
+  },
+  {
+    "input": "ふぁぶf",
+    "output": "がぱぱ"
+  },
+  {
+    "input": "がぱs",
+    "output": "",
+    "nextInput": "ふぁぐ"
+  },
+  {
+    "input": "ふぁぐe",
+    "output": "がぱぷ"
+  },
+  {
+    "input": "ふぁぐf",
+    "output": "がぱぼ"
+  },
+  {
+    "input": "がs",
+    "output": "",
+    "nextInput": "ふぉ"
+  },
+  {
+    "input": "ふぉe",
+    "output": "",
+    "nextInput": "がぷ"
+  },
+  {
+    "input": "がぷs",
+    "output": "",
+    "nextInput": "ふぉへ"
+  },
+  {
+    "input": "ふぉへe",
+    "output": "がぷぷ"
+  },
+  {
+    "input": "ふぉへf",
+    "output": "がぷぼ"
+  },
+  {
+    "input": "がぷf",
+    "output": "",
+    "nextInput": "ふぉぱ"
+  },
+  {
+    "input": "ふぉぱe",
+    "output": "がぷぶ"
+  },
+  {
+    "input": "ふぉぱs",
+    "output": "がぷぐ"
+  },
+  {
+    "input": "ふぉf",
+    "output": "",
+    "nextInput": "がぼ"
+  },
+  {
+    "input": "がぼe",
+    "output": "",
+    "nextInput": "ふぉぶ"
+  },
+  {
+    "input": "ふぉぶs",
+    "output": "がぼへ"
+  },
+  {
+    "input": "ふぉぶf",
+    "output": "がぼぱ"
+  },
+  {
+    "input": "がぼs",
+    "output": "",
+    "nextInput": "ふぉぐ"
+  },
+  {
+    "input": "ふぉぐe",
+    "output": "がぼぷ"
+  },
+  {
+    "input": "ふぉぐf",
+    "output": "がぼぼ"
+  },
+  {
+    "input": "がf",
+    "output": "",
+    "nextInput": "ふょ"
+  },
+  {
+    "input": "ふょe",
+    "output": "",
+    "nextInput": "がぶ"
+  },
+  {
+    "input": "がぶs",
+    "output": "",
+    "nextInput": "ふょへ"
+  },
+  {
+    "input": "ふょへe",
+    "output": "がぶぷ"
+  },
+  {
+    "input": "ふょへf",
+    "output": "がぶぼ"
+  },
+  {
+    "input": "がぶf",
+    "output": "",
+    "nextInput": "ふょぱ"
+  },
+  {
+    "input": "ふょぱe",
+    "output": "がぶぶ"
+  },
+  {
+    "input": "ふょぱs",
+    "output": "がぶぐ"
+  },
+  {
+    "input": "ふょs",
+    "output": "",
+    "nextInput": "がぐ"
+  },
+  {
+    "input": "がぐe",
+    "output": "",
+    "nextInput": "ふょぷ"
+  },
+  {
+    "input": "ふょぷs",
+    "output": "がぐへ"
+  },
+  {
+    "input": "ふょぷf",
+    "output": "がぐぱ"
+  },
+  {
+    "input": "がぐf",
+    "output": "",
+    "nextInput": "ふょぼ"
+  },
+  {
+    "input": "ふょぼe",
+    "output": "がぐぶ"
+  },
+  {
+    "input": "ふょぼs",
+    "output": "がぐぐ"
+  },
+  {
+    "input": "t",
+    "output": "",
+    "nextInput": "を"
+  },
+  {
+    "input": "をe",
+    "output": "",
+    "nextInput": "うぇ"
+  },
+  {
+    "input": "うぇs",
+    "output": "",
+    "nextInput": "をへ"
+  },
+  {
+    "input": "をへe",
+    "output": "",
+    "nextInput": "うぇぷ"
+  },
+  {
+    "input": "うぇぷs",
+    "output": "をへへ"
+  },
+  {
+    "input": "うぇぷf",
+    "output": "をへぱ"
+  },
+  {
+    "input": "をへf",
+    "output": "",
+    "nextInput": "うぇぼ"
+  },
+  {
+    "input": "うぇぼe",
+    "output": "をへぶ"
+  },
+  {
+    "input": "うぇぼs",
+    "output": "をへぐ"
+  },
+  {
+    "input": "うぇf",
+    "output": "",
+    "nextInput": "をぱ"
+  },
+  {
+    "input": "をぱe",
+    "output": "",
+    "nextInput": "うぇぶ"
+  },
+  {
+    "input": "うぇぶs",
+    "output": "をぱへ"
+  },
+  {
+    "input": "うぇぶf",
+    "output": "をぱぱ"
+  },
+  {
+    "input": "をぱs",
+    "output": "",
+    "nextInput": "うぇぐ"
+  },
+  {
+    "input": "うぇぐe",
+    "output": "をぱぷ"
+  },
+  {
+    "input": "うぇぐf",
+    "output": "をぱぼ"
+  },
+  {
+    "input": "をs",
+    "output": "",
+    "nextInput": "うぃ"
+  },
+  {
+    "input": "うぃe",
+    "output": "",
+    "nextInput": "をぷ"
+  },
+  {
+    "input": "をぷs",
+    "output": "",
+    "nextInput": "うぃへ"
+  },
+  {
+    "input": "うぃへe",
+    "output": "をぷぷ"
+  },
+  {
+    "input": "うぃへf",
+    "output": "をぷぼ"
+  },
+  {
+    "input": "をぷf",
+    "output": "",
+    "nextInput": "うぃぱ"
+  },
+  {
+    "input": "うぃぱe",
+    "output": "をぷぶ"
+  },
+  {
+    "input": "うぃぱs",
+    "output": "をぷぐ"
+  },
+  {
+    "input": "うぃf",
+    "output": "",
+    "nextInput": "をぼ"
+  },
+  {
+    "input": "をぼe",
+    "output": "",
+    "nextInput": "うぃぶ"
+  },
+  {
+    "input": "うぃぶs",
+    "output": "をぼへ"
+  },
+  {
+    "input": "うぃぶf",
+    "output": "をぼぱ"
+  },
+  {
+    "input": "をぼs",
+    "output": "",
+    "nextInput": "うぃぐ"
+  },
+  {
+    "input": "うぃぐe",
+    "output": "をぼぷ"
+  },
+  {
+    "input": "うぃぐf",
+    "output": "をぼぼ"
+  },
+  {
+    "input": "をf",
+    "output": "",
+    "nextInput": "うぉ"
+  },
+  {
+    "input": "うぉe",
+    "output": "",
+    "nextInput": "をぶ"
+  },
+  {
+    "input": "をぶs",
+    "output": "",
+    "nextInput": "うぉへ"
+  },
+  {
+    "input": "うぉへe",
+    "output": "をぶぷ"
+  },
+  {
+    "input": "うぉへf",
+    "output": "をぶぼ"
+  },
+  {
+    "input": "をぶf",
+    "output": "",
+    "nextInput": "うぉぱ"
+  },
+  {
+    "input": "うぉぱe",
+    "output": "をぶぶ"
+  },
+  {
+    "input": "うぉぱs",
+    "output": "をぶぐ"
+  },
+  {
+    "input": "うぉs",
+    "output": "",
+    "nextInput": "をぐ"
+  },
+  {
+    "input": "をぐe",
+    "output": "",
+    "nextInput": "うぉぷ"
+  },
+  {
+    "input": "うぉぷs",
+    "output": "をぐへ"
+  },
+  {
+    "input": "うぉぷf",
+    "output": "をぐぱ"
+  },
+  {
+    "input": "をぐf",
+    "output": "",
+    "nextInput": "うぉぼ"
+  },
+  {
+    "input": "うぉぼe",
+    "output": "をぐぶ"
+  },
+  {
+    "input": "うぉぼs",
+    "output": "をぐぐ"
+  },
+  {
+    "input": "u",
+    "output": "",
+    "nextInput": "き"
+  },
+  {
+    "input": "きe",
+    "output": "き",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "きs",
+    "output": "き",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "きf",
+    "output": "き",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "i",
+    "output": "",
+    "nextInput": "ん"
+  },
+  {
+    "input": "んe",
+    "output": "",
+    "nextInput": "む"
+  },
+  {
+    "input": "むs",
+    "output": "",
+    "nextInput": "んへ"
+  },
+  {
+    "input": "んへe",
+    "output": "",
+    "nextInput": "むぷ"
+  },
+  {
+    "input": "むぷs",
+    "output": "んへへ"
+  },
+  {
+    "input": "むぷf",
+    "output": "んへぱ"
+  },
+  {
+    "input": "んへf",
+    "output": "",
+    "nextInput": "むぼ"
+  },
+  {
+    "input": "むぼe",
+    "output": "んへぶ"
+  },
+  {
+    "input": "むぼs",
+    "output": "んへぐ"
+  },
+  {
+    "input": "むf",
+    "output": "",
+    "nextInput": "んぱ"
+  },
+  {
+    "input": "んぱe",
+    "output": "",
+    "nextInput": "むぶ"
+  },
+  {
+    "input": "むぶs",
+    "output": "んぱへ"
+  },
+  {
+    "input": "むぶf",
+    "output": "んぱぱ"
+  },
+  {
+    "input": "んぱs",
+    "output": "",
+    "nextInput": "むぐ"
+  },
+  {
+    "input": "むぐe",
+    "output": "んぱぷ"
+  },
+  {
+    "input": "むぐf",
+    "output": "んぱぼ"
+  },
+  {
+    "input": "んs",
+    "output": "",
+    "nextInput": "ろ"
+  },
+  {
+    "input": "ろe",
+    "output": "",
+    "nextInput": "んぷ"
+  },
+  {
+    "input": "んぷs",
+    "output": "",
+    "nextInput": "ろへ"
+  },
+  {
+    "input": "ろへe",
+    "output": "んぷぷ"
+  },
+  {
+    "input": "ろへf",
+    "output": "んぷぼ"
+  },
+  {
+    "input": "んぷf",
+    "output": "",
+    "nextInput": "ろぱ"
+  },
+  {
+    "input": "ろぱe",
+    "output": "んぷぶ"
+  },
+  {
+    "input": "ろぱs",
+    "output": "んぷぐ"
+  },
+  {
+    "input": "ろf",
+    "output": "",
+    "nextInput": "んぼ"
+  },
+  {
+    "input": "んぼe",
+    "output": "",
+    "nextInput": "ろぶ"
+  },
+  {
+    "input": "ろぶs",
+    "output": "んぼへ"
+  },
+  {
+    "input": "ろぶf",
+    "output": "んぼぱ"
+  },
+  {
+    "input": "んぼs",
+    "output": "",
+    "nextInput": "ろぐ"
+  },
+  {
+    "input": "ろぐe",
+    "output": "んぼぷ"
+  },
+  {
+    "input": "ろぐf",
+    "output": "んぼぼ"
+  },
+  {
+    "input": "んf",
+    "output": "",
+    "nextInput": "ゆ"
+  },
+  {
+    "input": "ゆe",
+    "output": "",
+    "nextInput": "んぶ"
+  },
+  {
+    "input": "んぶs",
+    "output": "",
+    "nextInput": "ゆへ"
+  },
+  {
+    "input": "ゆへe",
+    "output": "んぶぷ"
+  },
+  {
+    "input": "ゆへf",
+    "output": "んぶぼ"
+  },
+  {
+    "input": "んぶf",
+    "output": "",
+    "nextInput": "ゆぱ"
+  },
+  {
+    "input": "ゆぱe",
+    "output": "んぶぶ"
+  },
+  {
+    "input": "ゆぱs",
+    "output": "んぶぐ"
+  },
+  {
+    "input": "ゆs",
+    "output": "",
+    "nextInput": "んぐ"
+  },
+  {
+    "input": "んぐe",
+    "output": "",
+    "nextInput": "ゆぷ"
+  },
+  {
+    "input": "ゆぷs",
+    "output": "んぐへ"
+  },
+  {
+    "input": "ゆぷf",
+    "output": "んぐぱ"
+  },
+  {
+    "input": "んぐf",
+    "output": "",
+    "nextInput": "ゆぼ"
+  },
+  {
+    "input": "ゆぼe",
+    "output": "んぐぶ"
+  },
+  {
+    "input": "ゆぼs",
+    "output": "んぐぐ"
+  },
+  {
+    "input": "o",
+    "output": "",
+    "nextInput": "た"
+  },
+  {
+    "input": "たe",
+    "output": "",
+    "nextInput": "せ"
+  },
+  {
+    "input": "せs",
+    "output": "",
+    "nextInput": "たへ"
+  },
+  {
+    "input": "たへe",
+    "output": "",
+    "nextInput": "せぷ"
+  },
+  {
+    "input": "せぷs",
+    "output": "たへへ"
+  },
+  {
+    "input": "せぷf",
+    "output": "たへぱ"
+  },
+  {
+    "input": "たへf",
+    "output": "",
+    "nextInput": "せぼ"
+  },
+  {
+    "input": "せぼe",
+    "output": "たへぶ"
+  },
+  {
+    "input": "せぼs",
+    "output": "たへぐ"
+  },
+  {
+    "input": "せf",
+    "output": "",
+    "nextInput": "たぱ"
+  },
+  {
+    "input": "たぱe",
+    "output": "",
+    "nextInput": "せぶ"
+  },
+  {
+    "input": "せぶs",
+    "output": "たぱへ"
+  },
+  {
+    "input": "せぶf",
+    "output": "たぱぱ"
+  },
+  {
+    "input": "たぱs",
+    "output": "",
+    "nextInput": "せぐ"
+  },
+  {
+    "input": "せぐe",
+    "output": "たぱぷ"
+  },
+  {
+    "input": "せぐf",
+    "output": "たぱぼ"
+  },
+  {
+    "input": "たs",
+    "output": "",
+    "nextInput": "そ"
+  },
+  {
+    "input": "そe",
+    "output": "",
+    "nextInput": "たぷ"
+  },
+  {
+    "input": "たぷs",
+    "output": "",
+    "nextInput": "そへ"
+  },
+  {
+    "input": "そへe",
+    "output": "たぷぷ"
+  },
+  {
+    "input": "そへf",
+    "output": "たぷぼ"
+  },
+  {
+    "input": "たぷf",
+    "output": "",
+    "nextInput": "そぱ"
+  },
+  {
+    "input": "そぱe",
+    "output": "たぷぶ"
+  },
+  {
+    "input": "そぱs",
+    "output": "たぷぐ"
+  },
+  {
+    "input": "そf",
+    "output": "",
+    "nextInput": "たぼ"
+  },
+  {
+    "input": "たぼe",
+    "output": "",
+    "nextInput": "そぶ"
+  },
+  {
+    "input": "そぶs",
+    "output": "たぼへ"
+  },
+  {
+    "input": "そぶf",
+    "output": "たぼぱ"
+  },
+  {
+    "input": "たぼs",
+    "output": "",
+    "nextInput": "そぐ"
+  },
+  {
+    "input": "そぐe",
+    "output": "たぼぷ"
+  },
+  {
+    "input": "そぐf",
+    "output": "たぼぼ"
+  },
+  {
+    "input": "たf",
+    "output": "",
+    "nextInput": "さ"
+  },
+  {
+    "input": "さe",
+    "output": "",
+    "nextInput": "たぶ"
+  },
+  {
+    "input": "たぶs",
+    "output": "",
+    "nextInput": "さへ"
+  },
+  {
+    "input": "さへe",
+    "output": "たぶぷ"
+  },
+  {
+    "input": "さへf",
+    "output": "たぶぼ"
+  },
+  {
+    "input": "たぶf",
+    "output": "",
+    "nextInput": "さぱ"
+  },
+  {
+    "input": "さぱe",
+    "output": "たぶぶ"
+  },
+  {
+    "input": "さぱs",
+    "output": "たぶぐ"
+  },
+  {
+    "input": "さs",
+    "output": "",
+    "nextInput": "たぐ"
+  },
+  {
+    "input": "たぐe",
+    "output": "",
+    "nextInput": "さぷ"
+  },
+  {
+    "input": "さぷs",
+    "output": "たぐへ"
+  },
+  {
+    "input": "さぷf",
+    "output": "たぐぱ"
+  },
+  {
+    "input": "たぐf",
+    "output": "",
+    "nextInput": "さぼ"
+  },
+  {
+    "input": "さぼe",
+    "output": "たぐぶ"
+  },
+  {
+    "input": "さぼs",
+    "output": "たぐぐ"
+  },
+  {
+    "input": "p",
+    "output": "",
+    "nextInput": "つ"
+  },
+  {
+    "input": "つe",
+    "output": "",
+    "nextInput": "じゃ"
+  },
+  {
+    "input": "じゃs",
+    "output": "",
+    "nextInput": "つへ"
+  },
+  {
+    "input": "つへe",
+    "output": "",
+    "nextInput": "じゃぷ"
+  },
+  {
+    "input": "じゃぷs",
+    "output": "つへへ"
+  },
+  {
+    "input": "じゃぷf",
+    "output": "つへぱ"
+  },
+  {
+    "input": "つへf",
+    "output": "",
+    "nextInput": "じゃぼ"
+  },
+  {
+    "input": "じゃぼe",
+    "output": "つへぶ"
+  },
+  {
+    "input": "じゃぼs",
+    "output": "つへぐ"
+  },
+  {
+    "input": "じゃf",
+    "output": "",
+    "nextInput": "つぱ"
+  },
+  {
+    "input": "つぱe",
+    "output": "",
+    "nextInput": "じゃぶ"
+  },
+  {
+    "input": "じゃぶs",
+    "output": "つぱへ"
+  },
+  {
+    "input": "じゃぶf",
+    "output": "つぱぱ"
+  },
+  {
+    "input": "つぱs",
+    "output": "",
+    "nextInput": "じゃぐ"
+  },
+  {
+    "input": "じゃぐe",
+    "output": "つぱぷ"
+  },
+  {
+    "input": "じゃぐf",
+    "output": "つぱぼ"
+  },
+  {
+    "input": "つs",
+    "output": "",
+    "nextInput": "じょ"
+  },
+  {
+    "input": "じょe",
+    "output": "",
+    "nextInput": "つぷ"
+  },
+  {
+    "input": "つぷs",
+    "output": "",
+    "nextInput": "じょへ"
+  },
+  {
+    "input": "じょへe",
+    "output": "つぷぷ"
+  },
+  {
+    "input": "じょへf",
+    "output": "つぷぼ"
+  },
+  {
+    "input": "つぷf",
+    "output": "",
+    "nextInput": "じょぱ"
+  },
+  {
+    "input": "じょぱe",
+    "output": "つぷぶ"
+  },
+  {
+    "input": "じょぱs",
+    "output": "つぷぐ"
+  },
+  {
+    "input": "じょf",
+    "output": "",
+    "nextInput": "つぼ"
+  },
+  {
+    "input": "つぼe",
+    "output": "",
+    "nextInput": "じょぶ"
+  },
+  {
+    "input": "じょぶs",
+    "output": "つぼへ"
+  },
+  {
+    "input": "じょぶf",
+    "output": "つぼぱ"
+  },
+  {
+    "input": "つぼs",
+    "output": "",
+    "nextInput": "じょぐ"
+  },
+  {
+    "input": "じょぐe",
+    "output": "つぼぷ"
+  },
+  {
+    "input": "じょぐf",
+    "output": "つぼぼ"
+  },
+  {
+    "input": "つf",
+    "output": "",
+    "nextInput": "じゅ"
+  },
+  {
+    "input": "じゅe",
+    "output": "",
+    "nextInput": "つぶ"
+  },
+  {
+    "input": "つぶs",
+    "output": "",
+    "nextInput": "じゅへ"
+  },
+  {
+    "input": "じゅへe",
+    "output": "つぶぷ"
+  },
+  {
+    "input": "じゅへf",
+    "output": "つぶぼ"
+  },
+  {
+    "input": "つぶf",
+    "output": "",
+    "nextInput": "じゅぱ"
+  },
+  {
+    "input": "じゅぱe",
+    "output": "つぶぶ"
+  },
+  {
+    "input": "じゅぱs",
+    "output": "つぶぐ"
+  },
+  {
+    "input": "じゅs",
+    "output": "",
+    "nextInput": "つぐ"
+  },
+  {
+    "input": "つぐe",
+    "output": "",
+    "nextInput": "じゅぷ"
+  },
+  {
+    "input": "じゅぷs",
+    "output": "つぐへ"
+  },
+  {
+    "input": "じゅぷf",
+    "output": "つぐぱ"
+  },
+  {
+    "input": "つぐf",
+    "output": "",
+    "nextInput": "じゅぼ"
+  },
+  {
+    "input": "じゅぼe",
+    "output": "つぐぶ"
+  },
+  {
+    "input": "じゅぼs",
+    "output": "つぐぐ"
+  },
+  {
+    "input": "@",
+    "output": "",
+    "nextInput": "ち"
+  },
+  {
+    "input": "[",
+    "output": "",
+    "nextInput": "ち"
+  },
+  {
+    "input": "ちe",
+    "output": "ち",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "ちs",
+    "output": "ち",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "ちf",
+    "output": "ち",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "a",
+    "output": "",
+    "nextInput": "に"
+  },
+  {
+    "input": "にe",
+    "output": "に",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "にs",
+    "output": "に",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "にf",
+    "output": "に",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "s",
+    "output": "",
+    "nextInput": "・"
+  },
+  {
+    "input": "・e",
+    "output": "",
+    "nextInput": "ぷ"
+  },
+  {
+    "input": "ぷs",
+    "output": "",
+    "nextInput": "・へ"
+  },
+  {
+    "input": "・へe",
+    "output": "",
+    "nextInput": "ぷぷ"
+  },
+  {
+    "input": "ぷぷs",
+    "output": "・へへ"
+  },
+  {
+    "input": "ぷぷf",
+    "output": "・へぱ"
+  },
+  {
+    "input": "・へf",
+    "output": "",
+    "nextInput": "ぷぼ"
+  },
+  {
+    "input": "ぷぼe",
+    "output": "・へぶ"
+  },
+  {
+    "input": "ぷぼs",
+    "output": "・へぐ"
+  },
+  {
+    "input": "ぷf",
+    "output": "",
+    "nextInput": "・ぱ"
+  },
+  {
+    "input": "・ぱe",
+    "output": "",
+    "nextInput": "ぷぶ"
+  },
+  {
+    "input": "ぷぶs",
+    "output": "・ぱへ"
+  },
+  {
+    "input": "ぷぶf",
+    "output": "・ぱぱ"
+  },
+  {
+    "input": "・ぱs",
+    "output": "",
+    "nextInput": "ぷぐ"
+  },
+  {
+    "input": "ぷぐe",
+    "output": "・ぱぷ"
+  },
+  {
+    "input": "ぷぐf",
+    "output": "・ぱぼ"
+  },
+  {
+    "input": "・f",
+    "output": "",
+    "nextInput": "ぼ"
+  },
+  {
+    "input": "ぼe",
+    "output": "",
+    "nextInput": "・ぶ"
+  },
+  {
+    "input": "・ぶs",
+    "output": "",
+    "nextInput": "ぼへ"
+  },
+  {
+    "input": "ぼへe",
+    "output": "・ぶぷ"
+  },
+  {
+    "input": "ぼへf",
+    "output": "・ぶぼ"
+  },
+  {
+    "input": "・ぶf",
+    "output": "",
+    "nextInput": "ぼぱ"
+  },
+  {
+    "input": "ぼぱe",
+    "output": "・ぶぶ"
+  },
+  {
+    "input": "ぼぱs",
+    "output": "・ぶぐ"
+  },
+  {
+    "input": "ぼs",
+    "output": "",
+    "nextInput": "・ぐ"
+  },
+  {
+    "input": "・ぐe",
+    "output": "",
+    "nextInput": "ぼぷ"
+  },
+  {
+    "input": "ぼぷs",
+    "output": "・ぐへ"
+  },
+  {
+    "input": "ぼぷf",
+    "output": "・ぐぱ"
+  },
+  {
+    "input": "・ぐf",
+    "output": "",
+    "nextInput": "ぼぼ"
+  },
+  {
+    "input": "ぼぼe",
+    "output": "・ぐぶ"
+  },
+  {
+    "input": "ぼぼs",
+    "output": "・ぐぐ"
+  },
+  {
+    "input": "d",
+    "output": "",
+    "nextInput": "う"
+  },
+  {
+    "input": "うe",
+    "output": "",
+    "nextInput": "じぇ"
+  },
+  {
+    "input": "じぇs",
+    "output": "",
+    "nextInput": "うへ"
+  },
+  {
+    "input": "うへe",
+    "output": "",
+    "nextInput": "じぇぷ"
+  },
+  {
+    "input": "じぇぷs",
+    "output": "うへへ"
+  },
+  {
+    "input": "じぇぷf",
+    "output": "うへぱ"
+  },
+  {
+    "input": "うへf",
+    "output": "",
+    "nextInput": "じぇぼ"
+  },
+  {
+    "input": "じぇぼe",
+    "output": "うへぶ"
+  },
+  {
+    "input": "じぇぼs",
+    "output": "うへぐ"
+  },
+  {
+    "input": "じぇf",
+    "output": "",
+    "nextInput": "うぱ"
+  },
+  {
+    "input": "うぱe",
+    "output": "",
+    "nextInput": "じぇぶ"
+  },
+  {
+    "input": "じぇぶs",
+    "output": "うぱへ"
+  },
+  {
+    "input": "じぇぶf",
+    "output": "うぱぱ"
+  },
+  {
+    "input": "うぱs",
+    "output": "",
+    "nextInput": "じぇぐ"
+  },
+  {
+    "input": "じぇぐe",
+    "output": "うぱぷ"
+  },
+  {
+    "input": "じぇぐf",
+    "output": "うぱぼ"
+  },
+  {
+    "input": "うs",
+    "output": "",
+    "nextInput": "べ"
+  },
+  {
+    "input": "べe",
+    "output": "",
+    "nextInput": "うぷ"
+  },
+  {
+    "input": "うぷs",
+    "output": "",
+    "nextInput": "べへ"
+  },
+  {
+    "input": "べへe",
+    "output": "うぷぷ"
+  },
+  {
+    "input": "べへf",
+    "output": "うぷぼ"
+  },
+  {
+    "input": "うぷf",
+    "output": "",
+    "nextInput": "べぱ"
+  },
+  {
+    "input": "べぱe",
+    "output": "うぷぶ"
+  },
+  {
+    "input": "べぱs",
+    "output": "うぷぐ"
+  },
+  {
+    "input": "べf",
+    "output": "",
+    "nextInput": "うぼ"
+  },
+  {
+    "input": "うぼe",
+    "output": "",
+    "nextInput": "べぶ"
+  },
+  {
+    "input": "べぶs",
+    "output": "うぼへ"
+  },
+  {
+    "input": "べぶf",
+    "output": "うぼぱ"
+  },
+  {
+    "input": "うぼs",
+    "output": "",
+    "nextInput": "べぐ"
+  },
+  {
+    "input": "べぐe",
+    "output": "うぼぷ"
+  },
+  {
+    "input": "べぐf",
+    "output": "うぼぼ"
+  },
+  {
+    "input": "うf",
+    "output": "",
+    "nextInput": "ば"
+  },
+  {
+    "input": "ばe",
+    "output": "",
+    "nextInput": "うぶ"
+  },
+  {
+    "input": "うぶs",
+    "output": "",
+    "nextInput": "ばへ"
+  },
+  {
+    "input": "ばへe",
+    "output": "うぶぷ"
+  },
+  {
+    "input": "ばへf",
+    "output": "うぶぼ"
+  },
+  {
+    "input": "うぶf",
+    "output": "",
+    "nextInput": "ばぱ"
+  },
+  {
+    "input": "ばぱe",
+    "output": "うぶぶ"
+  },
+  {
+    "input": "ばぱs",
+    "output": "うぶぐ"
+  },
+  {
+    "input": "ばs",
+    "output": "",
+    "nextInput": "うぐ"
+  },
+  {
+    "input": "うぐe",
+    "output": "",
+    "nextInput": "ばぷ"
+  },
+  {
+    "input": "ばぷs",
+    "output": "うぐへ"
+  },
+  {
+    "input": "ばぷf",
+    "output": "うぐぱ"
+  },
+  {
+    "input": "うぐf",
+    "output": "",
+    "nextInput": "ばぼ"
+  },
+  {
+    "input": "ばぼe",
+    "output": "うぐぶ"
+  },
+  {
+    "input": "ばぼs",
+    "output": "うぐぐ"
+  },
+  {
+    "input": "f",
+    "output": "",
+    "nextInput": "。"
+  },
+  {
+    "input": "。e",
+    "output": "",
+    "nextInput": "ぶ"
+  },
+  {
+    "input": "ぶs",
+    "output": "",
+    "nextInput": "。へ"
+  },
+  {
+    "input": "。へe",
+    "output": "",
+    "nextInput": "ぶぷ"
+  },
+  {
+    "input": "ぶぷs",
+    "output": "。へへ"
+  },
+  {
+    "input": "ぶぷf",
+    "output": "。へぱ"
+  },
+  {
+    "input": "。へf",
+    "output": "",
+    "nextInput": "ぶぼ"
+  },
+  {
+    "input": "ぶぼe",
+    "output": "。へぶ"
+  },
+  {
+    "input": "ぶぼs",
+    "output": "。へぐ"
+  },
+  {
+    "input": "ぶf",
+    "output": "",
+    "nextInput": "。ぱ"
+  },
+  {
+    "input": "。ぱe",
+    "output": "",
+    "nextInput": "ぶぶ"
+  },
+  {
+    "input": "ぶぶs",
+    "output": "。ぱへ"
+  },
+  {
+    "input": "ぶぶf",
+    "output": "。ぱぱ"
+  },
+  {
+    "input": "。ぱs",
+    "output": "",
+    "nextInput": "ぶぐ"
+  },
+  {
+    "input": "ぶぐe",
+    "output": "。ぱぷ"
+  },
+  {
+    "input": "ぶぐf",
+    "output": "。ぱぼ"
+  },
+  {
+    "input": "。s",
+    "output": "",
+    "nextInput": "ぐ"
+  },
+  {
+    "input": "ぐe",
+    "output": "",
+    "nextInput": "。ぷ"
+  },
+  {
+    "input": "。ぷs",
+    "output": "",
+    "nextInput": "ぐへ"
+  },
+  {
+    "input": "ぐへe",
+    "output": "。ぷぷ"
+  },
+  {
+    "input": "ぐへf",
+    "output": "。ぷぼ"
+  },
+  {
+    "input": "。ぷf",
+    "output": "",
+    "nextInput": "ぐぱ"
+  },
+  {
+    "input": "ぐぱe",
+    "output": "。ぷぶ"
+  },
+  {
+    "input": "ぐぱs",
+    "output": "。ぷぐ"
+  },
+  {
+    "input": "ぐf",
+    "output": "",
+    "nextInput": "。ぼ"
+  },
+  {
+    "input": "。ぼe",
+    "output": "",
+    "nextInput": "ぐぶ"
+  },
+  {
+    "input": "ぐぶs",
+    "output": "。ぼへ"
+  },
+  {
+    "input": "ぐぶf",
+    "output": "。ぼぱ"
+  },
+  {
+    "input": "。ぼs",
+    "output": "",
+    "nextInput": "ぐぐ"
+  },
+  {
+    "input": "ぐぐe",
+    "output": "。ぼぷ"
+  },
+  {
+    "input": "ぐぐf",
+    "output": "。ぼぼ"
+  },
+  {
+    "input": "g",
+    "output": "",
+    "nextInput": "て"
+  },
+  {
+    "input": "てe",
+    "output": "",
+    "nextInput": "とぅ"
+  },
+  {
+    "input": "とぅs",
+    "output": "",
+    "nextInput": "てへ"
+  },
+  {
+    "input": "てへe",
+    "output": "",
+    "nextInput": "とぅぷ"
+  },
+  {
+    "input": "とぅぷs",
+    "output": "てへへ"
+  },
+  {
+    "input": "とぅぷf",
+    "output": "てへぱ"
+  },
+  {
+    "input": "てへf",
+    "output": "",
+    "nextInput": "とぅぼ"
+  },
+  {
+    "input": "とぅぼe",
+    "output": "てへぶ"
+  },
+  {
+    "input": "とぅぼs",
+    "output": "てへぐ"
+  },
+  {
+    "input": "とぅf",
+    "output": "",
+    "nextInput": "てぱ"
+  },
+  {
+    "input": "てぱe",
+    "output": "",
+    "nextInput": "とぅぶ"
+  },
+  {
+    "input": "とぅぶs",
+    "output": "てぱへ"
+  },
+  {
+    "input": "とぅぶf",
+    "output": "てぱぱ"
+  },
+  {
+    "input": "てぱs",
+    "output": "",
+    "nextInput": "とぅぐ"
+  },
+  {
+    "input": "とぅぐe",
+    "output": "てぱぷ"
+  },
+  {
+    "input": "とぅぐf",
+    "output": "てぱぼ"
+  },
+  {
+    "input": "てs",
+    "output": "",
+    "nextInput": "てぃ"
+  },
+  {
+    "input": "てぃe",
+    "output": "",
+    "nextInput": "てぷ"
+  },
+  {
+    "input": "てぷs",
+    "output": "",
+    "nextInput": "てぃへ"
+  },
+  {
+    "input": "てぃへe",
+    "output": "てぷぷ"
+  },
+  {
+    "input": "てぃへf",
+    "output": "てぷぼ"
+  },
+  {
+    "input": "てぷf",
+    "output": "",
+    "nextInput": "てぃぱ"
+  },
+  {
+    "input": "てぃぱe",
+    "output": "てぷぶ"
+  },
+  {
+    "input": "てぃぱs",
+    "output": "てぷぐ"
+  },
+  {
+    "input": "てぃf",
+    "output": "",
+    "nextInput": "てぼ"
+  },
+  {
+    "input": "てぼe",
+    "output": "",
+    "nextInput": "てぃぶ"
+  },
+  {
+    "input": "てぃぶs",
+    "output": "てぼへ"
+  },
+  {
+    "input": "てぃぶf",
+    "output": "てぼぱ"
+  },
+  {
+    "input": "てぼs",
+    "output": "",
+    "nextInput": "てぃぐ"
+  },
+  {
+    "input": "てぃぐe",
+    "output": "てぼぷ"
+  },
+  {
+    "input": "てぃぐf",
+    "output": "てぼぼ"
+  },
+  {
+    "input": "てf",
+    "output": "て",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "h",
+    "output": "",
+    "nextInput": "こ"
+  },
+  {
+    "input": "こe",
+    "output": "",
+    "nextInput": "ぜ"
+  },
+  {
+    "input": "ぜs",
+    "output": "",
+    "nextInput": "こへ"
+  },
+  {
+    "input": "こへe",
+    "output": "",
+    "nextInput": "ぜぷ"
+  },
+  {
+    "input": "ぜぷs",
+    "output": "こへへ"
+  },
+  {
+    "input": "ぜぷf",
+    "output": "こへぱ"
+  },
+  {
+    "input": "こへf",
+    "output": "",
+    "nextInput": "ぜぼ"
+  },
+  {
+    "input": "ぜぼe",
+    "output": "こへぶ"
+  },
+  {
+    "input": "ぜぼs",
+    "output": "こへぐ"
+  },
+  {
+    "input": "ぜf",
+    "output": "",
+    "nextInput": "こぱ"
+  },
+  {
+    "input": "こぱe",
+    "output": "",
+    "nextInput": "ぜぶ"
+  },
+  {
+    "input": "ぜぶs",
+    "output": "こぱへ"
+  },
+  {
+    "input": "ぜぶf",
+    "output": "こぱぱ"
+  },
+  {
+    "input": "こぱs",
+    "output": "",
+    "nextInput": "ぜぐ"
+  },
+  {
+    "input": "ぜぐe",
+    "output": "こぱぷ"
+  },
+  {
+    "input": "ぜぐf",
+    "output": "こぱぼ"
+  },
+  {
+    "input": "こs",
+    "output": "",
+    "nextInput": "ぞ"
+  },
+  {
+    "input": "ぞe",
+    "output": "",
+    "nextInput": "こぷ"
+  },
+  {
+    "input": "こぷs",
+    "output": "",
+    "nextInput": "ぞへ"
+  },
+  {
+    "input": "ぞへe",
+    "output": "こぷぷ"
+  },
+  {
+    "input": "ぞへf",
+    "output": "こぷぼ"
+  },
+  {
+    "input": "こぷf",
+    "output": "",
+    "nextInput": "ぞぱ"
+  },
+  {
+    "input": "ぞぱe",
+    "output": "こぷぶ"
+  },
+  {
+    "input": "ぞぱs",
+    "output": "こぷぐ"
+  },
+  {
+    "input": "ぞf",
+    "output": "",
+    "nextInput": "こぼ"
+  },
+  {
+    "input": "こぼe",
+    "output": "",
+    "nextInput": "ぞぶ"
+  },
+  {
+    "input": "ぞぶs",
+    "output": "こぼへ"
+  },
+  {
+    "input": "ぞぶf",
+    "output": "こぼぱ"
+  },
+  {
+    "input": "こぼs",
+    "output": "",
+    "nextInput": "ぞぐ"
+  },
+  {
+    "input": "ぞぐe",
+    "output": "こぼぷ"
+  },
+  {
+    "input": "ぞぐf",
+    "output": "こぼぼ"
+  },
+  {
+    "input": "こf",
+    "output": "",
+    "nextInput": "ざ"
+  },
+  {
+    "input": "ざe",
+    "output": "",
+    "nextInput": "こぶ"
+  },
+  {
+    "input": "こぶs",
+    "output": "",
+    "nextInput": "ざへ"
+  },
+  {
+    "input": "ざへe",
+    "output": "こぶぷ"
+  },
+  {
+    "input": "ざへf",
+    "output": "こぶぼ"
+  },
+  {
+    "input": "こぶf",
+    "output": "",
+    "nextInput": "ざぱ"
+  },
+  {
+    "input": "ざぱe",
+    "output": "こぶぶ"
+  },
+  {
+    "input": "ざぱs",
+    "output": "こぶぐ"
+  },
+  {
+    "input": "ざs",
+    "output": "",
+    "nextInput": "こぐ"
+  },
+  {
+    "input": "こぐe",
+    "output": "",
+    "nextInput": "ざぷ"
+  },
+  {
+    "input": "ざぷs",
+    "output": "こぐへ"
+  },
+  {
+    "input": "ざぷf",
+    "output": "こぐぱ"
+  },
+  {
+    "input": "こぐf",
+    "output": "",
+    "nextInput": "ざぼ"
+  },
+  {
+    "input": "ざぼe",
+    "output": "こぐぶ"
+  },
+  {
+    "input": "ざぼs",
+    "output": "こぐぐ"
+  },
+  {
+    "input": "k",
+    "output": "",
+    "nextInput": "い"
+  },
+  {
+    "input": "いe",
+    "output": "",
+    "nextInput": "め"
+  },
+  {
+    "input": "めs",
+    "output": "",
+    "nextInput": "いへ"
+  },
+  {
+    "input": "いへe",
+    "output": "",
+    "nextInput": "めぷ"
+  },
+  {
+    "input": "めぷs",
+    "output": "いへへ"
+  },
+  {
+    "input": "めぷf",
+    "output": "いへぱ"
+  },
+  {
+    "input": "いへf",
+    "output": "",
+    "nextInput": "めぼ"
+  },
+  {
+    "input": "めぼe",
+    "output": "いへぶ"
+  },
+  {
+    "input": "めぼs",
+    "output": "いへぐ"
+  },
+  {
+    "input": "めf",
+    "output": "",
+    "nextInput": "いぱ"
+  },
+  {
+    "input": "いぱe",
+    "output": "",
+    "nextInput": "めぶ"
+  },
+  {
+    "input": "めぶs",
+    "output": "いぱへ"
+  },
+  {
+    "input": "めぶf",
+    "output": "いぱぱ"
+  },
+  {
+    "input": "いぱs",
+    "output": "",
+    "nextInput": "めぐ"
+  },
+  {
+    "input": "めぐe",
+    "output": "いぱぷ"
+  },
+  {
+    "input": "めぐf",
+    "output": "いぱぼ"
+  },
+  {
+    "input": "いs",
+    "output": "",
+    "nextInput": "ら"
+  },
+  {
+    "input": "らe",
+    "output": "",
+    "nextInput": "いぷ"
+  },
+  {
+    "input": "いぷs",
+    "output": "",
+    "nextInput": "らへ"
+  },
+  {
+    "input": "らへe",
+    "output": "いぷぷ"
+  },
+  {
+    "input": "らへf",
+    "output": "いぷぼ"
+  },
+  {
+    "input": "いぷf",
+    "output": "",
+    "nextInput": "らぱ"
+  },
+  {
+    "input": "らぱe",
+    "output": "いぷぶ"
+  },
+  {
+    "input": "らぱs",
+    "output": "いぷぐ"
+  },
+  {
+    "input": "らf",
+    "output": "",
+    "nextInput": "いぼ"
+  },
+  {
+    "input": "いぼe",
+    "output": "",
+    "nextInput": "らぶ"
+  },
+  {
+    "input": "らぶs",
+    "output": "いぼへ"
+  },
+  {
+    "input": "らぶf",
+    "output": "いぼぱ"
+  },
+  {
+    "input": "いぼs",
+    "output": "",
+    "nextInput": "らぐ"
+  },
+  {
+    "input": "らぐe",
+    "output": "いぼぷ"
+  },
+  {
+    "input": "らぐf",
+    "output": "いぼぼ"
+  },
+  {
+    "input": "いf",
+    "output": "",
+    "nextInput": "お"
+  },
+  {
+    "input": "おe",
+    "output": "",
+    "nextInput": "いぶ"
+  },
+  {
+    "input": "いぶs",
+    "output": "",
+    "nextInput": "おへ"
+  },
+  {
+    "input": "おへe",
+    "output": "いぶぷ"
+  },
+  {
+    "input": "おへf",
+    "output": "いぶぼ"
+  },
+  {
+    "input": "いぶf",
+    "output": "",
+    "nextInput": "おぱ"
+  },
+  {
+    "input": "おぱe",
+    "output": "いぶぶ"
+  },
+  {
+    "input": "おぱs",
+    "output": "いぶぐ"
+  },
+  {
+    "input": "おs",
+    "output": "",
+    "nextInput": "いぐ"
+  },
+  {
+    "input": "いぐe",
+    "output": "",
+    "nextInput": "おぷ"
+  },
+  {
+    "input": "おぷs",
+    "output": "いぐへ"
+  },
+  {
+    "input": "おぷf",
+    "output": "いぐぱ"
+  },
+  {
+    "input": "いぐf",
+    "output": "",
+    "nextInput": "おぼ"
+  },
+  {
+    "input": "おぼe",
+    "output": "いぐぶ"
+  },
+  {
+    "input": "おぼs",
+    "output": "いぐぐ"
+  },
+  {
+    "input": "l",
+    "output": "",
+    "nextInput": "と"
+  },
+  {
+    "input": "とe",
+    "output": "",
+    "nextInput": "け"
+  },
+  {
+    "input": "けs",
+    "output": "",
+    "nextInput": "とへ"
+  },
+  {
+    "input": "とへe",
+    "output": "",
+    "nextInput": "けぷ"
+  },
+  {
+    "input": "けぷs",
+    "output": "とへへ"
+  },
+  {
+    "input": "けぷf",
+    "output": "とへぱ"
+  },
+  {
+    "input": "とへf",
+    "output": "",
+    "nextInput": "けぼ"
+  },
+  {
+    "input": "けぼe",
+    "output": "とへぶ"
+  },
+  {
+    "input": "けぼs",
+    "output": "とへぐ"
+  },
+  {
+    "input": "けf",
+    "output": "",
+    "nextInput": "とぱ"
+  },
+  {
+    "input": "とぱe",
+    "output": "",
+    "nextInput": "けぶ"
+  },
+  {
+    "input": "けぶs",
+    "output": "とぱへ"
+  },
+  {
+    "input": "けぶf",
+    "output": "とぱぱ"
+  },
+  {
+    "input": "とぱs",
+    "output": "",
+    "nextInput": "けぐ"
+  },
+  {
+    "input": "けぐe",
+    "output": "とぱぷ"
+  },
+  {
+    "input": "けぐf",
+    "output": "とぱぼ"
+  },
+  {
+    "input": "とs",
+    "output": "",
+    "nextInput": "え"
+  },
+  {
+    "input": "えe",
+    "output": "",
+    "nextInput": "とぷ"
+  },
+  {
+    "input": "とぷs",
+    "output": "",
+    "nextInput": "えへ"
+  },
+  {
+    "input": "えへe",
+    "output": "とぷぷ"
+  },
+  {
+    "input": "えへf",
+    "output": "とぷぼ"
+  },
+  {
+    "input": "とぷf",
+    "output": "",
+    "nextInput": "えぱ"
+  },
+  {
+    "input": "えぱe",
+    "output": "とぷぶ"
+  },
+  {
+    "input": "えぱs",
+    "output": "とぷぐ"
+  },
+  {
+    "input": "えf",
+    "output": "",
+    "nextInput": "とぼ"
+  },
+  {
+    "input": "とぼe",
+    "output": "",
+    "nextInput": "えぶ"
+  },
+  {
+    "input": "えぶs",
+    "output": "とぼへ"
+  },
+  {
+    "input": "えぶf",
+    "output": "とぼぱ"
+  },
+  {
+    "input": "とぼs",
+    "output": "",
+    "nextInput": "えぐ"
+  },
+  {
+    "input": "えぐe",
+    "output": "とぼぷ"
+  },
+  {
+    "input": "えぐf",
+    "output": "とぼぼ"
+  },
+  {
+    "input": "とf",
+    "output": "",
+    "nextInput": "ど"
+  },
+  {
+    "input": "どe",
+    "output": "",
+    "nextInput": "とぶ"
+  },
+  {
+    "input": "とぶs",
+    "output": "",
+    "nextInput": "どへ"
+  },
+  {
+    "input": "どへe",
+    "output": "とぶぷ"
+  },
+  {
+    "input": "どへf",
+    "output": "とぶぼ"
+  },
+  {
+    "input": "とぶf",
+    "output": "",
+    "nextInput": "どぱ"
+  },
+  {
+    "input": "どぱe",
+    "output": "とぶぶ"
+  },
+  {
+    "input": "どぱs",
+    "output": "とぶぐ"
+  },
+  {
+    "input": "どs",
+    "output": "",
+    "nextInput": "とぐ"
+  },
+  {
+    "input": "とぐe",
+    "output": "",
+    "nextInput": "どぷ"
+  },
+  {
+    "input": "どぷs",
+    "output": "とぐへ"
+  },
+  {
+    "input": "どぷf",
+    "output": "とぐぱ"
+  },
+  {
+    "input": "とぐf",
+    "output": "",
+    "nextInput": "どぼ"
+  },
+  {
+    "input": "どぼe",
+    "output": "とぐぶ"
+  },
+  {
+    "input": "どぼs",
+    "output": "とぐぐ"
+  },
+  {
+    "input": ";",
+    "output": "",
+    "nextInput": "く"
+  },
+  {
+    "input": "くe",
+    "output": "",
+    "nextInput": "げ"
+  },
+  {
+    "input": "げs",
+    "output": "",
+    "nextInput": "くへ"
+  },
+  {
+    "input": "くへe",
+    "output": "",
+    "nextInput": "げぷ"
+  },
+  {
+    "input": "げぷs",
+    "output": "くへへ"
+  },
+  {
+    "input": "げぷf",
+    "output": "くへぱ"
+  },
+  {
+    "input": "くへf",
+    "output": "",
+    "nextInput": "げぼ"
+  },
+  {
+    "input": "げぼe",
+    "output": "くへぶ"
+  },
+  {
+    "input": "げぼs",
+    "output": "くへぐ"
+  },
+  {
+    "input": "げf",
+    "output": "",
+    "nextInput": "くぱ"
+  },
+  {
+    "input": "くぱe",
+    "output": "",
+    "nextInput": "げぶ"
+  },
+  {
+    "input": "げぶs",
+    "output": "くぱへ"
+  },
+  {
+    "input": "げぶf",
+    "output": "くぱぱ"
+  },
+  {
+    "input": "くぱs",
+    "output": "",
+    "nextInput": "げぐ"
+  },
+  {
+    "input": "げぐe",
+    "output": "くぱぷ"
+  },
+  {
+    "input": "げぐf",
+    "output": "くぱぼ"
+  },
+  {
+    "input": "くs",
+    "output": "",
+    "nextInput": "ご"
+  },
+  {
+    "input": "ごe",
+    "output": "",
+    "nextInput": "くぷ"
+  },
+  {
+    "input": "くぷs",
+    "output": "",
+    "nextInput": "ごへ"
+  },
+  {
+    "input": "ごへe",
+    "output": "くぷぷ"
+  },
+  {
+    "input": "ごへf",
+    "output": "くぷぼ"
+  },
+  {
+    "input": "くぷf",
+    "output": "",
+    "nextInput": "ごぱ"
+  },
+  {
+    "input": "ごぱe",
+    "output": "くぷぶ"
+  },
+  {
+    "input": "ごぱs",
+    "output": "くぷぐ"
+  },
+  {
+    "input": "ごf",
+    "output": "",
+    "nextInput": "くぼ"
+  },
+  {
+    "input": "くぼe",
+    "output": "",
+    "nextInput": "ごぶ"
+  },
+  {
+    "input": "ごぶs",
+    "output": "くぼへ"
+  },
+  {
+    "input": "ごぶf",
+    "output": "くぼぱ"
+  },
+  {
+    "input": "くぼs",
+    "output": "",
+    "nextInput": "ごぐ"
+  },
+  {
+    "input": "ごぐe",
+    "output": "くぼぷ"
+  },
+  {
+    "input": "ごぐf",
+    "output": "くぼぼ"
+  },
+  {
+    "input": "くf",
+    "output": "",
+    "nextInput": "ず"
+  },
+  {
+    "input": "ずe",
+    "output": "",
+    "nextInput": "くぶ"
+  },
+  {
+    "input": "くぶs",
+    "output": "",
+    "nextInput": "ずへ"
+  },
+  {
+    "input": "ずへe",
+    "output": "くぶぷ"
+  },
+  {
+    "input": "ずへf",
+    "output": "くぶぼ"
+  },
+  {
+    "input": "くぶf",
+    "output": "",
+    "nextInput": "ずぱ"
+  },
+  {
+    "input": "ずぱe",
+    "output": "くぶぶ"
+  },
+  {
+    "input": "ずぱs",
+    "output": "くぶぐ"
+  },
+  {
+    "input": "ずs",
+    "output": "",
+    "nextInput": "くぐ"
+  },
+  {
+    "input": "くぐe",
+    "output": "",
+    "nextInput": "ずぷ"
+  },
+  {
+    "input": "ずぷs",
+    "output": "くぐへ"
+  },
+  {
+    "input": "ずぷf",
+    "output": "くぐぱ"
+  },
+  {
+    "input": "くぐf",
+    "output": "",
+    "nextInput": "ずぼ"
+  },
+  {
+    "input": "ずぼe",
+    "output": "くぐぶ"
+  },
+  {
+    "input": "ずぼs",
+    "output": "くぐぐ"
+  },
+  {
+    "input": ":",
+    "output": "",
+    "nextInput": "り"
+  },
+  {
+    "input": "'",
+    "output": "",
+    "nextInput": "り"
+  },
+  {
+    "input": "りe",
+    "output": "り",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "りs",
+    "output": "り",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "りf",
+    "output": "り",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "z",
+    "output": "",
+    "nextInput": "で"
+  },
+  {
+    "input": "でe",
+    "output": "",
+    "nextInput": "どぅ"
+  },
+  {
+    "input": "どぅs",
+    "output": "",
+    "nextInput": "でへ"
+  },
+  {
+    "input": "でへe",
+    "output": "",
+    "nextInput": "どぅぷ"
+  },
+  {
+    "input": "どぅぷs",
+    "output": "でへへ"
+  },
+  {
+    "input": "どぅぷf",
+    "output": "でへぱ"
+  },
+  {
+    "input": "でへf",
+    "output": "",
+    "nextInput": "どぅぼ"
+  },
+  {
+    "input": "どぅぼe",
+    "output": "でへぶ"
+  },
+  {
+    "input": "どぅぼs",
+    "output": "でへぐ"
+  },
+  {
+    "input": "どぅf",
+    "output": "",
+    "nextInput": "でぱ"
+  },
+  {
+    "input": "でぱe",
+    "output": "",
+    "nextInput": "どぅぶ"
+  },
+  {
+    "input": "どぅぶs",
+    "output": "でぱへ"
+  },
+  {
+    "input": "どぅぶf",
+    "output": "でぱぱ"
+  },
+  {
+    "input": "でぱs",
+    "output": "",
+    "nextInput": "どぅぐ"
+  },
+  {
+    "input": "どぅぐe",
+    "output": "でぱぷ"
+  },
+  {
+    "input": "どぅぐf",
+    "output": "でぱぼ"
+  },
+  {
+    "input": "でs",
+    "output": "",
+    "nextInput": "でぃ"
+  },
+  {
+    "input": "でぃe",
+    "output": "",
+    "nextInput": "でぷ"
+  },
+  {
+    "input": "でぷs",
+    "output": "",
+    "nextInput": "でぃへ"
+  },
+  {
+    "input": "でぃへe",
+    "output": "でぷぷ"
+  },
+  {
+    "input": "でぃへf",
+    "output": "でぷぼ"
+  },
+  {
+    "input": "でぷf",
+    "output": "",
+    "nextInput": "でぃぱ"
+  },
+  {
+    "input": "でぃぱe",
+    "output": "でぷぶ"
+  },
+  {
+    "input": "でぃぱs",
+    "output": "でぷぐ"
+  },
+  {
+    "input": "でぃf",
+    "output": "",
+    "nextInput": "でぼ"
+  },
+  {
+    "input": "でぼe",
+    "output": "",
+    "nextInput": "でぃぶ"
+  },
+  {
+    "input": "でぃぶs",
+    "output": "でぼへ"
+  },
+  {
+    "input": "でぃぶf",
+    "output": "でぼぱ"
+  },
+  {
+    "input": "でぼs",
+    "output": "",
+    "nextInput": "でぃぐ"
+  },
+  {
+    "input": "でぃぐe",
+    "output": "でぼぷ"
+  },
+  {
+    "input": "でぃぐf",
+    "output": "でぼぼ"
+  },
+  {
+    "input": "でf",
+    "output": "で",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "x",
+    "output": "",
+    "nextInput": "も"
+  },
+  {
+    "input": "もe",
+    "output": "",
+    "nextInput": "ちぇ"
+  },
+  {
+    "input": "ちぇs",
+    "output": "",
+    "nextInput": "もへ"
+  },
+  {
+    "input": "もへe",
+    "output": "",
+    "nextInput": "ちぇぷ"
+  },
+  {
+    "input": "ちぇぷs",
+    "output": "もへへ"
+  },
+  {
+    "input": "ちぇぷf",
+    "output": "もへぱ"
+  },
+  {
+    "input": "もへf",
+    "output": "",
+    "nextInput": "ちぇぼ"
+  },
+  {
+    "input": "ちぇぼe",
+    "output": "もへぶ"
+  },
+  {
+    "input": "ちぇぼs",
+    "output": "もへぐ"
+  },
+  {
+    "input": "ちぇf",
+    "output": "",
+    "nextInput": "もぱ"
+  },
+  {
+    "input": "もぱe",
+    "output": "",
+    "nextInput": "ちぇぶ"
+  },
+  {
+    "input": "ちぇぶs",
+    "output": "もぱへ"
+  },
+  {
+    "input": "ちぇぶf",
+    "output": "もぱぱ"
+  },
+  {
+    "input": "もぱs",
+    "output": "",
+    "nextInput": "ちぇぐ"
+  },
+  {
+    "input": "ちぇぐe",
+    "output": "もぱぷ"
+  },
+  {
+    "input": "ちぇぐf",
+    "output": "もぱぼ"
+  },
+  {
+    "input": "もf",
+    "output": "",
+    "nextInput": "ぽ"
+  },
+  {
+    "input": "ぽe",
+    "output": "",
+    "nextInput": "もぶ"
+  },
+  {
+    "input": "もぶs",
+    "output": "",
+    "nextInput": "ぽへ"
+  },
+  {
+    "input": "ぽへe",
+    "output": "もぶぷ"
+  },
+  {
+    "input": "ぽへf",
+    "output": "もぶぼ"
+  },
+  {
+    "input": "もぶf",
+    "output": "",
+    "nextInput": "ぽぱ"
+  },
+  {
+    "input": "ぽぱe",
+    "output": "もぶぶ"
+  },
+  {
+    "input": "ぽぱs",
+    "output": "もぶぐ"
+  },
+  {
+    "input": "ぽs",
+    "output": "",
+    "nextInput": "もぐ"
+  },
+  {
+    "input": "もぐe",
+    "output": "",
+    "nextInput": "ぽぷ"
+  },
+  {
+    "input": "ぽぷs",
+    "output": "もぐへ"
+  },
+  {
+    "input": "ぽぷf",
+    "output": "もぐぱ"
+  },
+  {
+    "input": "もぐf",
+    "output": "",
+    "nextInput": "ぽぼ"
+  },
+  {
+    "input": "ぽぼe",
+    "output": "もぐぶ"
+  },
+  {
+    "input": "ぽぼs",
+    "output": "もぐぐ"
+  },
+  {
+    "input": "c",
+    "output": "",
+    "nextInput": "ま"
+  },
+  {
+    "input": "まe",
+    "output": "",
+    "nextInput": "しぇ"
+  },
+  {
+    "input": "しぇs",
+    "output": "",
+    "nextInput": "まへ"
+  },
+  {
+    "input": "まへe",
+    "output": "",
+    "nextInput": "しぇぷ"
+  },
+  {
+    "input": "しぇぷs",
+    "output": "まへへ"
+  },
+  {
+    "input": "しぇぷf",
+    "output": "まへぱ"
+  },
+  {
+    "input": "まへf",
+    "output": "",
+    "nextInput": "しぇぼ"
+  },
+  {
+    "input": "しぇぼe",
+    "output": "まへぶ"
+  },
+  {
+    "input": "しぇぼs",
+    "output": "まへぐ"
+  },
+  {
+    "input": "しぇf",
+    "output": "",
+    "nextInput": "まぱ"
+  },
+  {
+    "input": "まぱe",
+    "output": "",
+    "nextInput": "しぇぶ"
+  },
+  {
+    "input": "しぇぶs",
+    "output": "まぱへ"
+  },
+  {
+    "input": "しぇぶf",
+    "output": "まぱぱ"
+  },
+  {
+    "input": "まぱs",
+    "output": "",
+    "nextInput": "しぇぐ"
+  },
+  {
+    "input": "しぇぐe",
+    "output": "まぱぷ"
+  },
+  {
+    "input": "しぇぐf",
+    "output": "まぱぼ"
+  },
+  {
+    "input": "まs",
+    "output": "",
+    "nextInput": "ぺ"
+  },
+  {
+    "input": "ぺe",
+    "output": "",
+    "nextInput": "まぷ"
+  },
+  {
+    "input": "まぷs",
+    "output": "",
+    "nextInput": "ぺへ"
+  },
+  {
+    "input": "ぺへe",
+    "output": "まぷぷ"
+  },
+  {
+    "input": "ぺへf",
+    "output": "まぷぼ"
+  },
+  {
+    "input": "まぷf",
+    "output": "",
+    "nextInput": "ぺぱ"
+  },
+  {
+    "input": "ぺぱe",
+    "output": "まぷぶ"
+  },
+  {
+    "input": "ぺぱs",
+    "output": "まぷぐ"
+  },
+  {
+    "input": "ぺf",
+    "output": "",
+    "nextInput": "まぼ"
+  },
+  {
+    "input": "まぼe",
+    "output": "",
+    "nextInput": "ぺぶ"
+  },
+  {
+    "input": "ぺぶs",
+    "output": "まぼへ"
+  },
+  {
+    "input": "ぺぶf",
+    "output": "まぼぱ"
+  },
+  {
+    "input": "まぼs",
+    "output": "",
+    "nextInput": "ぺぐ"
+  },
+  {
+    "input": "ぺぐe",
+    "output": "まぼぷ"
+  },
+  {
+    "input": "ぺぐf",
+    "output": "まぼぼ"
+  },
+  {
+    "input": "v",
+    "output": "",
+    "nextInput": "の"
+  },
+  {
+    "input": "のe",
+    "output": "",
+    "nextInput": "ぎゃ"
+  },
+  {
+    "input": "ぎゃs",
+    "output": "",
+    "nextInput": "のへ"
+  },
+  {
+    "input": "のへe",
+    "output": "",
+    "nextInput": "ぎゃぷ"
+  },
+  {
+    "input": "ぎゃぷs",
+    "output": "のへへ"
+  },
+  {
+    "input": "ぎゃぷf",
+    "output": "のへぱ"
+  },
+  {
+    "input": "のへf",
+    "output": "",
+    "nextInput": "ぎゃぼ"
+  },
+  {
+    "input": "ぎゃぼe",
+    "output": "のへぶ"
+  },
+  {
+    "input": "ぎゃぼs",
+    "output": "のへぐ"
+  },
+  {
+    "input": "ぎゃf",
+    "output": "",
+    "nextInput": "のぱ"
+  },
+  {
+    "input": "のぱe",
+    "output": "",
+    "nextInput": "ぎゃぶ"
+  },
+  {
+    "input": "ぎゃぶs",
+    "output": "のぱへ"
+  },
+  {
+    "input": "ぎゃぶf",
+    "output": "のぱぱ"
+  },
+  {
+    "input": "のぱs",
+    "output": "",
+    "nextInput": "ぎゃぐ"
+  },
+  {
+    "input": "ぎゃぐe",
+    "output": "のぱぷ"
+  },
+  {
+    "input": "ぎゃぐf",
+    "output": "のぱぼ"
+  },
+  {
+    "input": "のs",
+    "output": "",
+    "nextInput": "ぎょ"
+  },
+  {
+    "input": "ぎょe",
+    "output": "",
+    "nextInput": "のぷ"
+  },
+  {
+    "input": "のぷs",
+    "output": "",
+    "nextInput": "ぎょへ"
+  },
+  {
+    "input": "ぎょへe",
+    "output": "のぷぷ"
+  },
+  {
+    "input": "ぎょへf",
+    "output": "のぷぼ"
+  },
+  {
+    "input": "のぷf",
+    "output": "",
+    "nextInput": "ぎょぱ"
+  },
+  {
+    "input": "ぎょぱe",
+    "output": "のぷぶ"
+  },
+  {
+    "input": "ぎょぱs",
+    "output": "のぷぐ"
+  },
+  {
+    "input": "ぎょf",
+    "output": "",
+    "nextInput": "のぼ"
+  },
+  {
+    "input": "のぼe",
+    "output": "",
+    "nextInput": "ぎょぶ"
+  },
+  {
+    "input": "ぎょぶs",
+    "output": "のぼへ"
+  },
+  {
+    "input": "ぎょぶf",
+    "output": "のぼぱ"
+  },
+  {
+    "input": "のぼs",
+    "output": "",
+    "nextInput": "ぎょぐ"
+  },
+  {
+    "input": "ぎょぐe",
+    "output": "のぼぷ"
+  },
+  {
+    "input": "ぎょぐf",
+    "output": "のぼぼ"
+  },
+  {
+    "input": "のf",
+    "output": "",
+    "nextInput": "ぎゅ"
+  },
+  {
+    "input": "ぎゅe",
+    "output": "",
+    "nextInput": "のぶ"
+  },
+  {
+    "input": "のぶs",
+    "output": "",
+    "nextInput": "ぎゅへ"
+  },
+  {
+    "input": "ぎゅへe",
+    "output": "のぶぷ"
+  },
+  {
+    "input": "ぎゅへf",
+    "output": "のぶぼ"
+  },
+  {
+    "input": "のぶf",
+    "output": "",
+    "nextInput": "ぎゅぱ"
+  },
+  {
+    "input": "ぎゅぱe",
+    "output": "のぶぶ"
+  },
+  {
+    "input": "ぎゅぱs",
+    "output": "のぶぐ"
+  },
+  {
+    "input": "ぎゅs",
+    "output": "",
+    "nextInput": "のぐ"
+  },
+  {
+    "input": "のぐe",
+    "output": "",
+    "nextInput": "ぎゅぷ"
+  },
+  {
+    "input": "ぎゅぷs",
+    "output": "のぐへ"
+  },
+  {
+    "input": "ぎゅぷf",
+    "output": "のぐぱ"
+  },
+  {
+    "input": "のぐf",
+    "output": "",
+    "nextInput": "ぎゅぼ"
+  },
+  {
+    "input": "ぎゅぼe",
+    "output": "のぐぶ"
+  },
+  {
+    "input": "ぎゅぼs",
+    "output": "のぐぐ"
+  },
+  {
+    "input": "b",
+    "output": "",
+    "nextInput": "は"
+  },
+  {
+    "input": "はe",
+    "output": "",
+    "nextInput": "ふぇ"
+  },
+  {
+    "input": "ふぇs",
+    "output": "",
+    "nextInput": "はへ"
+  },
+  {
+    "input": "はへe",
+    "output": "",
+    "nextInput": "ふぇぷ"
+  },
+  {
+    "input": "ふぇぷs",
+    "output": "はへへ"
+  },
+  {
+    "input": "ふぇぷf",
+    "output": "はへぱ"
+  },
+  {
+    "input": "はへf",
+    "output": "",
+    "nextInput": "ふぇぼ"
+  },
+  {
+    "input": "ふぇぼe",
+    "output": "はへぶ"
+  },
+  {
+    "input": "ふぇぼs",
+    "output": "はへぐ"
+  },
+  {
+    "input": "ふぇf",
+    "output": "",
+    "nextInput": "はぱ"
+  },
+  {
+    "input": "はぱe",
+    "output": "",
+    "nextInput": "ふぇぶ"
+  },
+  {
+    "input": "ふぇぶs",
+    "output": "はぱへ"
+  },
+  {
+    "input": "ふぇぶf",
+    "output": "はぱぱ"
+  },
+  {
+    "input": "はぱs",
+    "output": "",
+    "nextInput": "ふぇぐ"
+  },
+  {
+    "input": "ふぇぐe",
+    "output": "はぱぷ"
+  },
+  {
+    "input": "ふぇぐf",
+    "output": "はぱぼ"
+  },
+  {
+    "input": "はs",
+    "output": "",
+    "nextInput": "ふぃ"
+  },
+  {
+    "input": "ふぃe",
+    "output": "",
+    "nextInput": "はぷ"
+  },
+  {
+    "input": "はぷs",
+    "output": "",
+    "nextInput": "ふぃへ"
+  },
+  {
+    "input": "ふぃへe",
+    "output": "はぷぷ"
+  },
+  {
+    "input": "ふぃへf",
+    "output": "はぷぼ"
+  },
+  {
+    "input": "はぷf",
+    "output": "",
+    "nextInput": "ふぃぱ"
+  },
+  {
+    "input": "ふぃぱe",
+    "output": "はぷぶ"
+  },
+  {
+    "input": "ふぃぱs",
+    "output": "はぷぐ"
+  },
+  {
+    "input": "ふぃf",
+    "output": "",
+    "nextInput": "はぼ"
+  },
+  {
+    "input": "はぼe",
+    "output": "",
+    "nextInput": "ふぃぶ"
+  },
+  {
+    "input": "ふぃぶs",
+    "output": "はぼへ"
+  },
+  {
+    "input": "ふぃぶf",
+    "output": "はぼぱ"
+  },
+  {
+    "input": "はぼs",
+    "output": "",
+    "nextInput": "ふぃぐ"
+  },
+  {
+    "input": "ふぃぐe",
+    "output": "はぼぷ"
+  },
+  {
+    "input": "ふぃぐf",
+    "output": "はぼぼ"
+  },
+  {
+    "input": "はf",
+    "output": "",
+    "nextInput": "ふゅ"
+  },
+  {
+    "input": "ふゅe",
+    "output": "",
+    "nextInput": "はぶ"
+  },
+  {
+    "input": "はぶs",
+    "output": "",
+    "nextInput": "ふゅへ"
+  },
+  {
+    "input": "ふゅへe",
+    "output": "はぶぷ"
+  },
+  {
+    "input": "ふゅへf",
+    "output": "はぶぼ"
+  },
+  {
+    "input": "はぶf",
+    "output": "",
+    "nextInput": "ふゅぱ"
+  },
+  {
+    "input": "ふゅぱe",
+    "output": "はぶぶ"
+  },
+  {
+    "input": "ふゅぱs",
+    "output": "はぶぐ"
+  },
+  {
+    "input": "ふゅs",
+    "output": "",
+    "nextInput": "はぐ"
+  },
+  {
+    "input": "はぐe",
+    "output": "",
+    "nextInput": "ふゅぷ"
+  },
+  {
+    "input": "ふゅぷs",
+    "output": "はぐへ"
+  },
+  {
+    "input": "ふゅぷf",
+    "output": "はぐぱ"
+  },
+  {
+    "input": "はぐf",
+    "output": "",
+    "nextInput": "ふゅぼ"
+  },
+  {
+    "input": "ふゅぼe",
+    "output": "はぐぶ"
+  },
+  {
+    "input": "ふゅぼs",
+    "output": "はぐぐ"
+  },
+  {
+    "input": "n",
+    "output": "",
+    "nextInput": "し"
+  },
+  {
+    "input": "しe",
+    "output": "し",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "しs",
+    "output": "し",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "しf",
+    "output": "し",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "m",
+    "output": "",
+    "nextInput": "な"
+  },
+  {
+    "input": "なe",
+    "output": "",
+    "nextInput": "ね"
+  },
+  {
+    "input": "ねs",
+    "output": "",
+    "nextInput": "なへ"
+  },
+  {
+    "input": "なへe",
+    "output": "",
+    "nextInput": "ねぷ"
+  },
+  {
+    "input": "ねぷs",
+    "output": "なへへ"
+  },
+  {
+    "input": "ねぷf",
+    "output": "なへぱ"
+  },
+  {
+    "input": "なへf",
+    "output": "",
+    "nextInput": "ねぼ"
+  },
+  {
+    "input": "ねぼe",
+    "output": "なへぶ"
+  },
+  {
+    "input": "ねぼs",
+    "output": "なへぐ"
+  },
+  {
+    "input": "ねf",
+    "output": "",
+    "nextInput": "なぱ"
+  },
+  {
+    "input": "なぱe",
+    "output": "",
+    "nextInput": "ねぶ"
+  },
+  {
+    "input": "ねぶs",
+    "output": "なぱへ"
+  },
+  {
+    "input": "ねぶf",
+    "output": "なぱぱ"
+  },
+  {
+    "input": "なぱs",
+    "output": "",
+    "nextInput": "ねぐ"
+  },
+  {
+    "input": "ねぐe",
+    "output": "なぱぷ"
+  },
+  {
+    "input": "ねぐf",
+    "output": "なぱぼ"
+  },
+  {
+    "input": "なs",
+    "output": "",
+    "nextInput": "ー"
+  },
+  {
+    "input": "ーe",
+    "output": "",
+    "nextInput": "なぷ"
+  },
+  {
+    "input": "なぷs",
+    "output": "",
+    "nextInput": "ーへ"
+  },
+  {
+    "input": "ーへe",
+    "output": "なぷぷ"
+  },
+  {
+    "input": "ーへf",
+    "output": "なぷぼ"
+  },
+  {
+    "input": "なぷf",
+    "output": "",
+    "nextInput": "ーぱ"
+  },
+  {
+    "input": "ーぱe",
+    "output": "なぷぶ"
+  },
+  {
+    "input": "ーぱs",
+    "output": "なぷぐ"
+  },
+  {
+    "input": "ーf",
+    "output": "",
+    "nextInput": "なぼ"
+  },
+  {
+    "input": "なぼe",
+    "output": "",
+    "nextInput": "ーぶ"
+  },
+  {
+    "input": "ーぶs",
+    "output": "なぼへ"
+  },
+  {
+    "input": "ーぶf",
+    "output": "なぼぱ"
+  },
+  {
+    "input": "なぼs",
+    "output": "",
+    "nextInput": "ーぐ"
+  },
+  {
+    "input": "ーぐe",
+    "output": "なぼぷ"
+  },
+  {
+    "input": "ーぐf",
+    "output": "なぼぼ"
+  },
+  {
+    "input": "なf",
+    "output": "",
+    "nextInput": "よ"
+  },
+  {
+    "input": "よe",
+    "output": "",
+    "nextInput": "なぶ"
+  },
+  {
+    "input": "なぶs",
+    "output": "",
+    "nextInput": "よへ"
+  },
+  {
+    "input": "よへe",
+    "output": "なぶぷ"
+  },
+  {
+    "input": "よへf",
+    "output": "なぶぼ"
+  },
+  {
+    "input": "なぶf",
+    "output": "",
+    "nextInput": "よぱ"
+  },
+  {
+    "input": "よぱe",
+    "output": "なぶぶ"
+  },
+  {
+    "input": "よぱs",
+    "output": "なぶぐ"
+  },
+  {
+    "input": "よs",
+    "output": "",
+    "nextInput": "なぐ"
+  },
+  {
+    "input": "なぐe",
+    "output": "",
+    "nextInput": "よぷ"
+  },
+  {
+    "input": "よぷs",
+    "output": "なぐへ"
+  },
+  {
+    "input": "よぷf",
+    "output": "なぐぱ"
+  },
+  {
+    "input": "なぐf",
+    "output": "",
+    "nextInput": "よぼ"
+  },
+  {
+    "input": "よぼe",
+    "output": "なぐぶ"
+  },
+  {
+    "input": "よぼs",
+    "output": "なぐぐ"
+  },
+  {
+    "input": ",",
+    "output": "",
+    "nextInput": "る"
+  },
+  {
+    "input": "るe",
+    "output": "",
+    "nextInput": "ぅ"
+  },
+  {
+    "input": "ぅs",
+    "output": "",
+    "nextInput": "るへ"
+  },
+  {
+    "input": "るへe",
+    "output": "",
+    "nextInput": "ぅぷ"
+  },
+  {
+    "input": "ぅぷs",
+    "output": "るへへ"
+  },
+  {
+    "input": "ぅぷf",
+    "output": "るへぱ"
+  },
+  {
+    "input": "るへf",
+    "output": "",
+    "nextInput": "ぅぼ"
+  },
+  {
+    "input": "ぅぼe",
+    "output": "るへぶ"
+  },
+  {
+    "input": "ぅぼs",
+    "output": "るへぐ"
+  },
+  {
+    "input": "ぅf",
+    "output": "",
+    "nextInput": "るぱ"
+  },
+  {
+    "input": "るぱe",
+    "output": "",
+    "nextInput": "ぅぶ"
+  },
+  {
+    "input": "ぅぶs",
+    "output": "るぱへ"
+  },
+  {
+    "input": "ぅぶf",
+    "output": "るぱぱ"
+  },
+  {
+    "input": "るぱs",
+    "output": "",
+    "nextInput": "ぅぐ"
+  },
+  {
+    "input": "ぅぐe",
+    "output": "るぱぷ"
+  },
+  {
+    "input": "ぅぐf",
+    "output": "るぱぼ"
+  },
+  {
+    "input": "るs",
+    "output": "",
+    "nextInput": "ぉ"
+  },
+  {
+    "input": "ぉe",
+    "output": "",
+    "nextInput": "るぷ"
+  },
+  {
+    "input": "るぷs",
+    "output": "",
+    "nextInput": "ぉへ"
+  },
+  {
+    "input": "ぉへe",
+    "output": "るぷぷ"
+  },
+  {
+    "input": "ぉへf",
+    "output": "るぷぼ"
+  },
+  {
+    "input": "るぷf",
+    "output": "",
+    "nextInput": "ぉぱ"
+  },
+  {
+    "input": "ぉぱe",
+    "output": "るぷぶ"
+  },
+  {
+    "input": "ぉぱs",
+    "output": "るぷぐ"
+  },
+  {
+    "input": "ぉf",
+    "output": "",
+    "nextInput": "るぼ"
+  },
+  {
+    "input": "るぼe",
+    "output": "",
+    "nextInput": "ぉぶ"
+  },
+  {
+    "input": "ぉぶs",
+    "output": "るぼへ"
+  },
+  {
+    "input": "ぉぶf",
+    "output": "るぼぱ"
+  },
+  {
+    "input": "るぼs",
+    "output": "",
+    "nextInput": "ぉぐ"
+  },
+  {
+    "input": "ぉぐe",
+    "output": "るぼぷ"
+  },
+  {
+    "input": "ぉぐf",
+    "output": "るぼぼ"
+  },
+  {
+    "input": "るf",
+    "output": "",
+    "nextInput": "ヴぉ"
+  },
+  {
+    "input": "ヴぉe",
+    "output": "",
+    "nextInput": "るぶ"
+  },
+  {
+    "input": "るぶs",
+    "output": "",
+    "nextInput": "ヴぉへ"
+  },
+  {
+    "input": "ヴぉへe",
+    "output": "るぶぷ"
+  },
+  {
+    "input": "ヴぉへf",
+    "output": "るぶぼ"
+  },
+  {
+    "input": "るぶf",
+    "output": "",
+    "nextInput": "ヴぉぱ"
+  },
+  {
+    "input": "ヴぉぱe",
+    "output": "るぶぶ"
+  },
+  {
+    "input": "ヴぉぱs",
+    "output": "るぶぐ"
+  },
+  {
+    "input": "ヴぉs",
+    "output": "",
+    "nextInput": "るぐ"
+  },
+  {
+    "input": "るぐe",
+    "output": "",
+    "nextInput": "ヴぉぷ"
+  },
+  {
+    "input": "ヴぉぷs",
+    "output": "るぐへ"
+  },
+  {
+    "input": "ヴぉぷf",
+    "output": "るぐぱ"
+  },
+  {
+    "input": "るぐf",
+    "output": "",
+    "nextInput": "ヴぉぼ"
+  },
+  {
+    "input": "ヴぉぼe",
+    "output": "るぐぶ"
+  },
+  {
+    "input": "ヴぉぼs",
+    "output": "るぐぐ"
+  },
+  {
+    "input": ".",
+    "output": "",
+    "nextInput": "す"
+  },
+  {
+    "input": "すe",
+    "output": "",
+    "nextInput": "ヴぇ"
+  },
+  {
+    "input": "ヴぇs",
+    "output": "",
+    "nextInput": "すへ"
+  },
+  {
+    "input": "すへe",
+    "output": "",
+    "nextInput": "ヴぇぷ"
+  },
+  {
+    "input": "ヴぇぷs",
+    "output": "すへへ"
+  },
+  {
+    "input": "ヴぇぷf",
+    "output": "すへぱ"
+  },
+  {
+    "input": "すへf",
+    "output": "",
+    "nextInput": "ヴぇぼ"
+  },
+  {
+    "input": "ヴぇぼe",
+    "output": "すへぶ"
+  },
+  {
+    "input": "ヴぇぼs",
+    "output": "すへぐ"
+  },
+  {
+    "input": "ヴぇf",
+    "output": "",
+    "nextInput": "すぱ"
+  },
+  {
+    "input": "すぱe",
+    "output": "",
+    "nextInput": "ヴぇぶ"
+  },
+  {
+    "input": "ヴぇぶs",
+    "output": "すぱへ"
+  },
+  {
+    "input": "ヴぇぶf",
+    "output": "すぱぱ"
+  },
+  {
+    "input": "すぱs",
+    "output": "",
+    "nextInput": "ヴぇぐ"
+  },
+  {
+    "input": "ヴぇぐe",
+    "output": "すぱぷ"
+  },
+  {
+    "input": "ヴぇぐf",
+    "output": "すぱぼ"
+  },
+  {
+    "input": "すs",
+    "output": "",
+    "nextInput": "ヴぃ"
+  },
+  {
+    "input": "ヴぃe",
+    "output": "",
+    "nextInput": "すぷ"
+  },
+  {
+    "input": "すぷs",
+    "output": "",
+    "nextInput": "ヴぃへ"
+  },
+  {
+    "input": "ヴぃへe",
+    "output": "すぷぷ"
+  },
+  {
+    "input": "ヴぃへf",
+    "output": "すぷぼ"
+  },
+  {
+    "input": "すぷf",
+    "output": "",
+    "nextInput": "ヴぃぱ"
+  },
+  {
+    "input": "ヴぃぱe",
+    "output": "すぷぶ"
+  },
+  {
+    "input": "ヴぃぱs",
+    "output": "すぷぐ"
+  },
+  {
+    "input": "ヴぃf",
+    "output": "",
+    "nextInput": "すぼ"
+  },
+  {
+    "input": "すぼe",
+    "output": "",
+    "nextInput": "ヴぃぶ"
+  },
+  {
+    "input": "ヴぃぶs",
+    "output": "すぼへ"
+  },
+  {
+    "input": "ヴぃぶf",
+    "output": "すぼぱ"
+  },
+  {
+    "input": "すぼs",
+    "output": "",
+    "nextInput": "ヴぃぐ"
+  },
+  {
+    "input": "ヴぃぐe",
+    "output": "すぼぷ"
+  },
+  {
+    "input": "ヴぃぐf",
+    "output": "すぼぼ"
+  },
+  {
+    "input": "すf",
+    "output": "",
+    "nextInput": "ヴぁ"
+  },
+  {
+    "input": "ヴぁe",
+    "output": "",
+    "nextInput": "すぶ"
+  },
+  {
+    "input": "すぶs",
+    "output": "",
+    "nextInput": "ヴぁへ"
+  },
+  {
+    "input": "ヴぁへe",
+    "output": "すぶぷ"
+  },
+  {
+    "input": "ヴぁへf",
+    "output": "すぶぼ"
+  },
+  {
+    "input": "すぶf",
+    "output": "",
+    "nextInput": "ヴぁぱ"
+  },
+  {
+    "input": "ヴぁぱe",
+    "output": "すぶぶ"
+  },
+  {
+    "input": "ヴぁぱs",
+    "output": "すぶぐ"
+  },
+  {
+    "input": "ヴぁs",
+    "output": "",
+    "nextInput": "すぐ"
+  },
+  {
+    "input": "すぐe",
+    "output": "",
+    "nextInput": "ヴぁぷ"
+  },
+  {
+    "input": "ヴぁぷs",
+    "output": "すぐへ"
+  },
+  {
+    "input": "ヴぁぷf",
+    "output": "すぐぱ"
+  },
+  {
+    "input": "すぐf",
+    "output": "",
+    "nextInput": "ヴぁぼ"
+  },
+  {
+    "input": "ヴぁぼe",
+    "output": "すぐぶ"
+  },
+  {
+    "input": "ヴぁぼs",
+    "output": "すぐぐ"
+  },
+  {
+    "input": "/",
+    "output": "",
+    "nextInput": "れ"
+  },
+  {
+    "input": "れe",
+    "output": "",
+    "nextInput": "ぇ"
+  },
+  {
+    "input": "ぇs",
+    "output": "",
+    "nextInput": "れへ"
+  },
+  {
+    "input": "れへe",
+    "output": "",
+    "nextInput": "ぇぷ"
+  },
+  {
+    "input": "ぇぷs",
+    "output": "れへへ"
+  },
+  {
+    "input": "ぇぷf",
+    "output": "れへぱ"
+  },
+  {
+    "input": "れへf",
+    "output": "",
+    "nextInput": "ぇぼ"
+  },
+  {
+    "input": "ぇぼe",
+    "output": "れへぶ"
+  },
+  {
+    "input": "ぇぼs",
+    "output": "れへぐ"
+  },
+  {
+    "input": "ぇf",
+    "output": "",
+    "nextInput": "れぱ"
+  },
+  {
+    "input": "れぱe",
+    "output": "",
+    "nextInput": "ぇぶ"
+  },
+  {
+    "input": "ぇぶs",
+    "output": "れぱへ"
+  },
+  {
+    "input": "ぇぶf",
+    "output": "れぱぱ"
+  },
+  {
+    "input": "れぱs",
+    "output": "",
+    "nextInput": "ぇぐ"
+  },
+  {
+    "input": "ぇぐe",
+    "output": "れぱぷ"
+  },
+  {
+    "input": "ぇぐf",
+    "output": "れぱぼ"
+  },
+  {
+    "input": "れs",
+    "output": "",
+    "nextInput": "ぃ"
+  },
+  {
+    "input": "ぃe",
+    "output": "",
+    "nextInput": "れぷ"
+  },
+  {
+    "input": "れぷs",
+    "output": "",
+    "nextInput": "ぃへ"
+  },
+  {
+    "input": "ぃへe",
+    "output": "れぷぷ"
+  },
+  {
+    "input": "ぃへf",
+    "output": "れぷぼ"
+  },
+  {
+    "input": "れぷf",
+    "output": "",
+    "nextInput": "ぃぱ"
+  },
+  {
+    "input": "ぃぱe",
+    "output": "れぷぶ"
+  },
+  {
+    "input": "ぃぱs",
+    "output": "れぷぐ"
+  },
+  {
+    "input": "ぃf",
+    "output": "",
+    "nextInput": "れぼ"
+  },
+  {
+    "input": "れぼe",
+    "output": "",
+    "nextInput": "ぃぶ"
+  },
+  {
+    "input": "ぃぶs",
+    "output": "れぼへ"
+  },
+  {
+    "input": "ぃぶf",
+    "output": "れぼぱ"
+  },
+  {
+    "input": "れぼs",
+    "output": "",
+    "nextInput": "ぃぐ"
+  },
+  {
+    "input": "ぃぐe",
+    "output": "れぼぷ"
+  },
+  {
+    "input": "ぃぐf",
+    "output": "れぼぼ"
+  },
+  {
+    "input": "れf",
+    "output": "",
+    "nextInput": "ぁ"
+  },
+  {
+    "input": "ぁe",
+    "output": "",
+    "nextInput": "れぶ"
+  },
+  {
+    "input": "れぶs",
+    "output": "",
+    "nextInput": "ぁへ"
+  },
+  {
+    "input": "ぁへe",
+    "output": "れぶぷ"
+  },
+  {
+    "input": "ぁへf",
+    "output": "れぶぼ"
+  },
+  {
+    "input": "れぶf",
+    "output": "",
+    "nextInput": "ぁぱ"
+  },
+  {
+    "input": "ぁぱe",
+    "output": "れぶぶ"
+  },
+  {
+    "input": "ぁぱs",
+    "output": "れぶぐ"
+  },
+  {
+    "input": "ぁs",
+    "output": "",
+    "nextInput": "れぐ"
+  },
+  {
+    "input": "れぐe",
+    "output": "",
+    "nextInput": "ぁぷ"
+  },
+  {
+    "input": "ぁぷs",
+    "output": "れぐへ"
+  },
+  {
+    "input": "ぁぷf",
+    "output": "れぐぱ"
+  },
+  {
+    "input": "れぐf",
+    "output": "",
+    "nextInput": "ぁぼ"
+  },
+  {
+    "input": "ぁぼe",
+    "output": "れぐぶ"
+  },
+  {
+    "input": "ぁぼs",
+    "output": "れぐぐ"
+  },
+  {
+    "input": "j",
+    "output": "",
+    "nextInput": "っ"
+  },
+  {
+    "input": "っe",
+    "output": "",
+    "nextInput": "わ"
+  },
+  {
+    "input": "わs",
+    "output": "",
+    "nextInput": "っへ"
+  },
+  {
+    "input": "っへe",
+    "output": "",
+    "nextInput": "わぷ"
+  },
+  {
+    "input": "わぷs",
+    "output": "",
+    "nextInput": "っへへ"
+  },
+  {
+    "input": "っへへe",
+    "output": "わぷぷ"
+  },
+  {
+    "input": "っへへf",
+    "output": "わぷぼ"
+  },
+  {
+    "input": "わぷf",
+    "output": "",
+    "nextInput": "っへぱ"
+  },
+  {
+    "input": "っへぱe",
+    "output": "わぷぶ"
+  },
+  {
+    "input": "っへぱs",
+    "output": "わぷぐ"
+  },
+  {
+    "input": "っへf",
+    "output": "",
+    "nextInput": "わぼ"
+  },
+  {
+    "input": "わぼe",
+    "output": "",
+    "nextInput": "っへぶ"
+  },
+  {
+    "input": "っへぶs",
+    "output": "わぼへ"
+  },
+  {
+    "input": "っへぶf",
+    "output": "わぼぱ"
+  },
+  {
+    "input": "わぼs",
+    "output": "",
+    "nextInput": "っへぐ"
+  },
+  {
+    "input": "っへぐe",
+    "output": "わぼぷ"
+  },
+  {
+    "input": "っへぐf",
+    "output": "わぼぼ"
+  },
+  {
+    "input": "わf",
+    "output": "",
+    "nextInput": "っぱ"
+  },
+  {
+    "input": "っぱe",
+    "output": "",
+    "nextInput": "わぶ"
+  },
+  {
+    "input": "わぶs",
+    "output": "",
+    "nextInput": "っぱへ"
+  },
+  {
+    "input": "っぱへe",
+    "output": "わぶぷ"
+  },
+  {
+    "input": "っぱへf",
+    "output": "わぶぼ"
+  },
+  {
+    "input": "わぶf",
+    "output": "",
+    "nextInput": "っぱぱ"
+  },
+  {
+    "input": "っぱぱe",
+    "output": "わぶぶ"
+  },
+  {
+    "input": "っぱぱs",
+    "output": "わぶぐ"
+  },
+  {
+    "input": "っぱs",
+    "output": "",
+    "nextInput": "わぐ"
+  },
+  {
+    "input": "わぐe",
+    "output": "",
+    "nextInput": "っぱぷ"
+  },
+  {
+    "input": "っぱぷs",
+    "output": "わぐへ"
+  },
+  {
+    "input": "っぱぷf",
+    "output": "わぐぱ"
+  },
+  {
+    "input": "わぐf",
+    "output": "",
+    "nextInput": "っぱぼ"
+  },
+  {
+    "input": "っぱぼe",
+    "output": "わぐぶ"
+  },
+  {
+    "input": "っぱぼs",
+    "output": "わぐぐ"
+  },
+  {
+    "input": "っt",
+    "output": "つぉ"
+  },
+  {
+    "input": "っi",
+    "output": "",
+    "nextInput": "び"
+  },
+  {
+    "input": "びe",
+    "output": "び",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "びs",
+    "output": "び",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "びf",
+    "output": "び",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "っa",
+    "output": "",
+    "nextInput": "じ"
+  },
+  {
+    "input": "じe",
+    "output": "じ",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "じs",
+    "output": "じ",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "じf",
+    "output": "じ",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "っs",
+    "output": "",
+    "nextInput": "あ"
+  },
+  {
+    "input": "あe",
+    "output": "",
+    "nextInput": "っぷ"
+  },
+  {
+    "input": "っぷs",
+    "output": "",
+    "nextInput": "あへ"
+  },
+  {
+    "input": "あへe",
+    "output": "",
+    "nextInput": "っぷぷ"
+  },
+  {
+    "input": "っぷぷs",
+    "output": "あへへ"
+  },
+  {
+    "input": "っぷぷf",
+    "output": "あへぱ"
+  },
+  {
+    "input": "あへf",
+    "output": "",
+    "nextInput": "っぷぼ"
+  },
+  {
+    "input": "っぷぼe",
+    "output": "あへぶ"
+  },
+  {
+    "input": "っぷぼs",
+    "output": "あへぐ"
+  },
+  {
+    "input": "っぷf",
+    "output": "",
+    "nextInput": "あぱ"
+  },
+  {
+    "input": "あぱe",
+    "output": "",
+    "nextInput": "っぷぶ"
+  },
+  {
+    "input": "っぷぶs",
+    "output": "あぱへ"
+  },
+  {
+    "input": "っぷぶf",
+    "output": "あぱぱ"
+  },
+  {
+    "input": "あぱs",
+    "output": "",
+    "nextInput": "っぷぐ"
+  },
+  {
+    "input": "っぷぐe",
+    "output": "あぱぷ"
+  },
+  {
+    "input": "っぷぐf",
+    "output": "あぱぼ"
+  },
+  {
+    "input": "あf",
+    "output": "",
+    "nextInput": "っぼ"
+  },
+  {
+    "input": "っぼe",
+    "output": "",
+    "nextInput": "あぶ"
+  },
+  {
+    "input": "あぶs",
+    "output": "",
+    "nextInput": "っぼへ"
+  },
+  {
+    "input": "っぼへe",
+    "output": "あぶぷ"
+  },
+  {
+    "input": "っぼへf",
+    "output": "あぶぼ"
+  },
+  {
+    "input": "あぶf",
+    "output": "",
+    "nextInput": "っぼぱ"
+  },
+  {
+    "input": "っぼぱe",
+    "output": "あぶぶ"
+  },
+  {
+    "input": "っぼぱs",
+    "output": "あぶぐ"
+  },
+  {
+    "input": "っぼs",
+    "output": "",
+    "nextInput": "あぐ"
+  },
+  {
+    "input": "あぐe",
+    "output": "",
+    "nextInput": "っぼぷ"
+  },
+  {
+    "input": "っぼぷs",
+    "output": "あぐへ"
+  },
+  {
+    "input": "っぼぷf",
+    "output": "あぐぱ"
+  },
+  {
+    "input": "あぐf",
+    "output": "",
+    "nextInput": "っぼぼ"
+  },
+  {
+    "input": "っぼぼe",
+    "output": "あぐぶ"
+  },
+  {
+    "input": "っぼぼs",
+    "output": "あぐぐ"
+  },
+  {
+    "input": "っd",
+    "output": "",
+    "nextInput": "み"
+  },
+  {
+    "input": "みe",
+    "output": "み",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "みs",
+    "output": "み",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "みf",
+    "output": "み",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "っf",
+    "output": "",
+    "nextInput": "や"
+  },
+  {
+    "input": "やe",
+    "output": "",
+    "nextInput": "っぶ"
+  },
+  {
+    "input": "っぶs",
+    "output": "",
+    "nextInput": "やへ"
+  },
+  {
+    "input": "やへe",
+    "output": "",
+    "nextInput": "っぶぷ"
+  },
+  {
+    "input": "っぶぷs",
+    "output": "やへへ"
+  },
+  {
+    "input": "っぶぷf",
+    "output": "やへぱ"
+  },
+  {
+    "input": "やへf",
+    "output": "",
+    "nextInput": "っぶぼ"
+  },
+  {
+    "input": "っぶぼe",
+    "output": "やへぶ"
+  },
+  {
+    "input": "っぶぼs",
+    "output": "やへぐ"
+  },
+  {
+    "input": "っぶf",
+    "output": "",
+    "nextInput": "やぱ"
+  },
+  {
+    "input": "やぱe",
+    "output": "",
+    "nextInput": "っぶぶ"
+  },
+  {
+    "input": "っぶぶs",
+    "output": "やぱへ"
+  },
+  {
+    "input": "っぶぶf",
+    "output": "やぱぱ"
+  },
+  {
+    "input": "やぱs",
+    "output": "",
+    "nextInput": "っぶぐ"
+  },
+  {
+    "input": "っぶぐe",
+    "output": "やぱぷ"
+  },
+  {
+    "input": "っぶぐf",
+    "output": "やぱぼ"
+  },
+  {
+    "input": "やs",
+    "output": "",
+    "nextInput": "っぐ"
+  },
+  {
+    "input": "っぐe",
+    "output": "",
+    "nextInput": "やぷ"
+  },
+  {
+    "input": "やぷs",
+    "output": "",
+    "nextInput": "っぐへ"
+  },
+  {
+    "input": "っぐへe",
+    "output": "やぷぷ"
+  },
+  {
+    "input": "っぐへf",
+    "output": "やぷぼ"
+  },
+  {
+    "input": "やぷf",
+    "output": "",
+    "nextInput": "っぐぱ"
+  },
+  {
+    "input": "っぐぱe",
+    "output": "やぷぶ"
+  },
+  {
+    "input": "っぐぱs",
+    "output": "やぷぐ"
+  },
+  {
+    "input": "っぐf",
+    "output": "",
+    "nextInput": "やぼ"
+  },
+  {
+    "input": "やぼe",
+    "output": "",
+    "nextInput": "っぐぶ"
+  },
+  {
+    "input": "っぐぶs",
+    "output": "やぼへ"
+  },
+  {
+    "input": "っぐぶf",
+    "output": "やぼぱ"
+  },
+  {
+    "input": "やぼs",
+    "output": "",
+    "nextInput": "っぐぐ"
+  },
+  {
+    "input": "っぐぐe",
+    "output": "やぼぷ"
+  },
+  {
+    "input": "っぐぐf",
+    "output": "やぼぼ"
+  },
+  {
+    "input": "っk",
+    "output": "",
+    "nextInput": "ひ"
+  },
+  {
+    "input": "ひe",
+    "output": "ひ",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "ひs",
+    "output": "ひ",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "ひf",
+    "output": "ひ",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "っ:",
+    "output": "",
+    "nextInput": "ぴ"
+  },
+  {
+    "input": "っ'",
+    "output": "",
+    "nextInput": "ぴ"
+  },
+  {
+    "input": "ぴe",
+    "output": "ぴ",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "ぴs",
+    "output": "ぴ",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "ぴf",
+    "output": "ぴ",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "っx",
+    "output": "",
+    "nextInput": "ぬ"
+  },
+  {
+    "input": "ぬe",
+    "output": "",
+    "nextInput": "っちぇ"
+  },
+  {
+    "input": "っちぇe",
+    "output": "",
+    "nextInput": "ぬぷ"
+  },
+  {
+    "input": "ぬぷs",
+    "output": "",
+    "nextInput": "っちぇへ"
+  },
+  {
+    "input": "っちぇへe",
+    "output": "ぬぷぷ"
+  },
+  {
+    "input": "っちぇへf",
+    "output": "ぬぷぼ"
+  },
+  {
+    "input": "ぬぷf",
+    "output": "",
+    "nextInput": "っちぇぱ"
+  },
+  {
+    "input": "っちぇぱe",
+    "output": "ぬぷぶ"
+  },
+  {
+    "input": "っちぇぱs",
+    "output": "ぬぷぐ"
+  },
+  {
+    "input": "っちぇf",
+    "output": "",
+    "nextInput": "ぬぼ"
+  },
+  {
+    "input": "ぬぼe",
+    "output": "",
+    "nextInput": "っちぇぶ"
+  },
+  {
+    "input": "っちぇぶs",
+    "output": "ぬぼへ"
+  },
+  {
+    "input": "っちぇぶf",
+    "output": "ぬぼぱ"
+  },
+  {
+    "input": "ぬぼs",
+    "output": "",
+    "nextInput": "っちぇぐ"
+  },
+  {
+    "input": "っちぇぐe",
+    "output": "ぬぼぷ"
+  },
+  {
+    "input": "っちぇぐf",
+    "output": "ぬぼぼ"
+  },
+  {
+    "input": "ぬf",
+    "output": "",
+    "nextInput": "っぽ"
+  },
+  {
+    "input": "っぽe",
+    "output": "",
+    "nextInput": "ぬぶ"
+  },
+  {
+    "input": "ぬぶs",
+    "output": "",
+    "nextInput": "っぽへ"
+  },
+  {
+    "input": "っぽへe",
+    "output": "ぬぶぷ"
+  },
+  {
+    "input": "っぽへf",
+    "output": "ぬぶぼ"
+  },
+  {
+    "input": "ぬぶf",
+    "output": "",
+    "nextInput": "っぽぱ"
+  },
+  {
+    "input": "っぽぱe",
+    "output": "ぬぶぶ"
+  },
+  {
+    "input": "っぽぱs",
+    "output": "ぬぶぐ"
+  },
+  {
+    "input": "っぽs",
+    "output": "",
+    "nextInput": "ぬぐ"
+  },
+  {
+    "input": "ぬぐe",
+    "output": "",
+    "nextInput": "っぽぷ"
+  },
+  {
+    "input": "っぽぷs",
+    "output": "ぬぐへ"
+  },
+  {
+    "input": "っぽぷf",
+    "output": "ぬぐぱ"
+  },
+  {
+    "input": "ぬぐf",
+    "output": "",
+    "nextInput": "っぽぼ"
+  },
+  {
+    "input": "っぽぼe",
+    "output": "ぬぐぶ"
+  },
+  {
+    "input": "っぽぼs",
+    "output": "ぬぐぐ"
+  },
+  {
+    "input": "っc",
+    "output": "",
+    "nextInput": "づ"
+  },
+  {
+    "input": "づe",
+    "output": "",
+    "nextInput": "っしぇ"
+  },
+  {
+    "input": "っしぇe",
+    "output": "",
+    "nextInput": "づぷ"
+  },
+  {
+    "input": "づぷs",
+    "output": "",
+    "nextInput": "っしぇへ"
+  },
+  {
+    "input": "っしぇへe",
+    "output": "づぷぷ"
+  },
+  {
+    "input": "っしぇへf",
+    "output": "づぷぼ"
+  },
+  {
+    "input": "づぷf",
+    "output": "",
+    "nextInput": "っしぇぱ"
+  },
+  {
+    "input": "っしぇぱe",
+    "output": "づぷぶ"
+  },
+  {
+    "input": "っしぇぱs",
+    "output": "づぷぐ"
+  },
+  {
+    "input": "っしぇf",
+    "output": "",
+    "nextInput": "づぼ"
+  },
+  {
+    "input": "づぼe",
+    "output": "",
+    "nextInput": "っしぇぶ"
+  },
+  {
+    "input": "っしぇぶs",
+    "output": "づぼへ"
+  },
+  {
+    "input": "っしぇぶf",
+    "output": "づぼぱ"
+  },
+  {
+    "input": "づぼs",
+    "output": "",
+    "nextInput": "っしぇぐ"
+  },
+  {
+    "input": "っしぇぐe",
+    "output": "づぼぷ"
+  },
+  {
+    "input": "っしぇぐf",
+    "output": "づぼぼ"
+  },
+  {
+    "input": "づs",
+    "output": "",
+    "nextInput": "っぺ"
+  },
+  {
+    "input": "っぺe",
+    "output": "",
+    "nextInput": "づぶ"
+  },
+  {
+    "input": "づぶs",
+    "output": "",
+    "nextInput": "っぺへ"
+  },
+  {
+    "input": "っぺへe",
+    "output": "づぶぷ"
+  },
+  {
+    "input": "っぺへf",
+    "output": "づぶぼ"
+  },
+  {
+    "input": "づぶf",
+    "output": "",
+    "nextInput": "っぺぱ"
+  },
+  {
+    "input": "っぺぱe",
+    "output": "づぶぶ"
+  },
+  {
+    "input": "っぺぱs",
+    "output": "づぶぐ"
+  },
+  {
+    "input": "っぺs",
+    "output": "",
+    "nextInput": "づぐ"
+  },
+  {
+    "input": "づぐe",
+    "output": "",
+    "nextInput": "っぺぷ"
+  },
+  {
+    "input": "っぺぷs",
+    "output": "づぐへ"
+  },
+  {
+    "input": "っぺぷf",
+    "output": "づぐぱ"
+  },
+  {
+    "input": "づぐf",
+    "output": "",
+    "nextInput": "っぺぼ"
+  },
+  {
+    "input": "っぺぼe",
+    "output": "づぐぶ"
+  },
+  {
+    "input": "っぺぼs",
+    "output": "づぐぐ"
+  },
+  {
+    "input": "っv",
+    "output": "",
+    "nextInput": "ぎ"
+  },
+  {
+    "input": "ぎe",
+    "output": "ぎ",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "ぎs",
+    "output": "ぎ",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "ぎf",
+    "output": "ぎ",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "っm",
+    "output": "",
+    "nextInput": "ぢ"
+  },
+  {
+    "input": "ぢe",
+    "output": "ぢ",
+    "nextInput": "ゃ"
+  },
+  {
+    "input": "ぢs",
+    "output": "ぢ",
+    "nextInput": "ょ"
+  },
+  {
+    "input": "ぢf",
+    "output": "ぢ",
+    "nextInput": "ゅ"
+  },
+  {
+    "input": "っ,",
+    "output": "ヴ"
+  },
+  {
+    "input": "ゃs",
+    "output": "",
+    "nextInput": "へ"
+  },
+  {
+    "input": "へe",
+    "output": "",
+    "nextInput": "ゃぷ"
+  },
+  {
+    "input": "ゃぷs",
+    "output": "へへ"
+  },
+  {
+    "input": "ゃぷf",
+    "output": "へぱ"
+  },
+  {
+    "input": "へf",
+    "output": "",
+    "nextInput": "ゃぼ"
+  },
+  {
+    "input": "ゃぼe",
+    "output": "へぶ"
+  },
+  {
+    "input": "ゃぼs",
+    "output": "へぐ"
+  },
+  {
+    "input": "ゃf",
+    "output": "",
+    "nextInput": "ぱ"
+  },
+  {
+    "input": "ぱe",
+    "output": "",
+    "nextInput": "ゃぶ"
+  },
+  {
+    "input": "ゃぶs",
+    "output": "ぱへ"
+  },
+  {
+    "input": "ゃぶf",
+    "output": "ぱぱ"
+  },
+  {
+    "input": "ぱs",
+    "output": "",
+    "nextInput": "ゃぐ"
+  },
+  {
+    "input": "ゃぐe",
+    "output": "ぱぷ"
+  },
+  {
+    "input": "ゃぐf",
+    "output": "ぱぼ"
+  },
+  {
+    "input": "ょe",
+    "output": "",
+    "nextInput": "ぷ"
+  },
+  {
+    "input": "ぷs",
+    "output": "",
+    "nextInput": "ょへ"
+  },
+  {
+    "input": "ょへe",
+    "output": "ぷぷ"
+  },
+  {
+    "input": "ょへf",
+    "output": "ぷぼ"
+  },
+  {
+    "input": "ぷf",
+    "output": "",
+    "nextInput": "ょぱ"
+  },
+  {
+    "input": "ょぱe",
+    "output": "ぷぶ"
+  },
+  {
+    "input": "ょぱs",
+    "output": "ぷぐ"
+  },
+  {
+    "input": "ょf",
+    "output": "",
+    "nextInput": "ぼ"
+  },
+  {
+    "input": "ぼe",
+    "output": "",
+    "nextInput": "ょぶ"
+  },
+  {
+    "input": "ょぶs",
+    "output": "ぼへ"
+  },
+  {
+    "input": "ょぶf",
+    "output": "ぼぱ"
+  },
+  {
+    "input": "ぼs",
+    "output": "",
+    "nextInput": "ょぐ"
+  },
+  {
+    "input": "ょぐe",
+    "output": "ぼぷ"
+  },
+  {
+    "input": "ょぐf",
+    "output": "ぼぼ"
+  },
+  {
+    "input": "ゅe",
+    "output": "",
+    "nextInput": "ぶ"
+  },
+  {
+    "input": "ぶs",
+    "output": "",
+    "nextInput": "ゅへ"
+  },
+  {
+    "input": "ゅへe",
+    "output": "ぶぷ"
+  },
+  {
+    "input": "ゅへf",
+    "output": "ぶぼ"
+  },
+  {
+    "input": "ぶf",
+    "output": "",
+    "nextInput": "ゅぱ"
+  },
+  {
+    "input": "ゅぱe",
+    "output": "ぶぶ"
+  },
+  {
+    "input": "ゅぱs",
+    "output": "ぶぐ"
+  },
+  {
+    "input": "ゅs",
+    "output": "",
+    "nextInput": "ぐ"
+  },
+  {
+    "input": "ぐe",
+    "output": "",
+    "nextInput": "ゅぷ"
+  },
+  {
+    "input": "ゅぷs",
+    "output": "ぐへ"
+  },
+  {
+    "input": "ゅぷf",
+    "output": "ぐぱ"
+  },
+  {
+    "input": "ぐf",
+    "output": "",
+    "nextInput": "ゅぼ"
+  },
+  {
+    "input": "ゅぼe",
+    "output": "ぐぶ"
+  },
+  {
+    "input": "ゅぼs",
+    "output": "ぐぐ"
+  }
+]
