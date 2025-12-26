@@ -131,7 +131,19 @@ jla scissors <corpus> <layout> [--count <number>]
 
 Web UIに指標を表示するためのデータをエクスポートします。
 
-TODO: Web側でJSONファイルをどう読み込むかを決めてから、フォーマットを確定させる
+```bash
+jla export --corpus <id|file|all> --layout <id|all> [--out-dir <dir>]
+```
+
+例:
 
 ```bash
+# コーパスを指定して全配列を出力
+jla export --corpus aozora
+
+# 配列を指定して全コーパスを出力
+jla export --layout qwerty
+
+# 特定の組み合わせを出力
+jla export --corpus data/texts/aozora.txt --layout qwerty
 ```

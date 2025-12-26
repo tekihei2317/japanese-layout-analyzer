@@ -16,7 +16,9 @@
     "web:build": "bun run --filter @japanese-layout-analyzer/web build"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/kuromoji": "^0.1.3",
+    "kuromoji": "^0.1.2"
   },
   "peerDependencies": {
     "typescript": "^5"

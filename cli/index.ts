@@ -2,6 +2,7 @@
 import { Command } from "commander";
 import { analyzeCommand } from "./commands/analyze";
 import { corpusCommand } from "./commands/corpus";
+import { exportCommand } from "./commands/export";
 import { listLayouts, showLayout } from "./commands/layout";
 import { scissorsCommand, sfbsCommand, sfssCommand } from "./commands/metrics";
 import type { Format } from "./types";
@@ -103,6 +104,20 @@ program
   .action((file: string, layoutId: string) => {
     strokeCommand(file, layoutId).catch((error) => {
       console.error("Failed to convert text to strokes.", error);
+      process.exitCode = 1;
+    });
+  });
+
+program
+  .command("export")
+  .option("--corpus <id|file|all>", "corpus id or file path")
+  .option("--layout <id|all>", "layout id")
+  .option("--out-dir <dir>", "output directory", "web/public/metrics")
+  .option("--corpus-id <id>", "override corpus id (single corpus only)")
+  .option("--corpus-name <name>", "override corpus name (single corpus only)")
+  .action((options: { corpus?: string; layout?: string; outDir?: string; corpusId?: string; corpusName?: string }) => {
+    exportCommand(options).catch((error) => {
+      console.error("Failed to export metrics.", error);
       process.exitCode = 1;
     });
   });
