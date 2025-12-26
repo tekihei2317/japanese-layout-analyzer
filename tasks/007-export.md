@@ -37,9 +37,9 @@
 - [x] mizunara
 - [x] yukika
 - [x] fumiduki
-- [ ] hideduki_v4.1
+- [x] hideduki_v4.1
 - [ ] hybrid-tsuki
-- tukiringo
+- [ ] tukiringo
 - tsukimisou
 - burichutoro-20221015
 
