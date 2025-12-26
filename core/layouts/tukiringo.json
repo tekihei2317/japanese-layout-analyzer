@@ -1,9 +1,5 @@
 [
   {
-    "input": "-",
-    "output": "ー"
-  },
-  {
     "input": "~",
     "output": "〜"
   },
@@ -363,16 +359,16 @@
     "nextInput": "ゅ"
   },
   {
-    "input": "ゅi",
-    "output": "",
-    "nextInput": "び"
-  },
-  {
     "input": "ゅe",
-    "output": "ひ"
+    "output": "",
+    "nextInput": "ひ"
   },
   {
-    "input": "ひe",
+    "input": "ゅi",
+    "output": "び"
+  },
+  {
+    "input": "ひi",
     "output": "び"
   },
   {
@@ -423,6 +419,10 @@
   {
     "input": "めe",
     "output": "ゆ"
+  },
+  {
+    "input": "めi",
+    "output": "ぺ"
   },
   {
     "input": "/",
@@ -526,14 +526,6 @@
   {
     "input": "0.",
     "output": "0."
-  },
-  {
-    "input": "めi",
-    "output": "ぺ"
-  },
-  {
-    "input": "ゃe",
-    "output": "ぉ"
   },
   {
     "input": "_",

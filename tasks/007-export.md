@@ -38,8 +38,8 @@
 - [x] yukika
 - [x] fumiduki
 - [x] hideduki_v4.1
-- [ ] hybrid-tsuki
-- [ ] tukiringo
+- [x] hybrid-tsuki
+- [x] tukiringo
 - tsukimisou
 - burichutoro-20221015
 

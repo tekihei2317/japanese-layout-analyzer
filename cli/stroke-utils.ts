@@ -54,15 +54,15 @@ export const makeFastStepper = (rules: Rule[]) => {
   };
 };
 
-const jisKeyboardKeys = new Set(
-  "1234567890-^¥qwertyuiop@[asdfghjkl;:]zxcvbnm,./_".split("")
-);
+const jisKeyboardKeys = "1234567890-^¥qwertyuiop@[asdfghjkl;:]zxcvbnm,./_";
+const tsukiringoException = "\\";
+const validKeys = new Set((jisKeyboardKeys + tsukiringoException).split(""));
 
 export const collectKeys = (rules: Rule[]) => {
   const keys = new Set<string>();
   rules.forEach((rule) => {
     for (const ch of rule.input) {
-      if (jisKeyboardKeys.has(ch)) {
+      if (validKeys.has(ch)) {
         keys.add(ch);
       }
     }

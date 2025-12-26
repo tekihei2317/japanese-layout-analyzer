@@ -15,6 +15,11 @@ describe(collectKeys, () => {
     ];
     expect(collectKeys(rules)).toEqual(["j", "@"]);
   });
+
+  test("バックスラッシュ（）を除外しないこと", () => {
+    const rules: RomanTable = [{ input: "\\", output: "き" }];
+    expect(collectKeys(rules)).toEqual(["\\"]);
+  });
 });
 
 type Cases = [string, string][];
@@ -698,6 +703,97 @@ const hybridTsukiCases: Cases = [
   ["ん", "m"],
 ];
 
+const tukiringoCases: Cases = [
+  ["、", "he"],
+  ["。", "ge"],
+  ["「", "["],
+  ["」", "]"],
+  ["゛", "i"],
+  ["ー", "@"],
+  ["ぁ", "qe"],
+  ["あ", "je"],
+  ["ぃ", "we"],
+  ["い", "k"],
+  ["ぅ", "@e"],
+  ["う", "l"],
+  ["ゔ", "li"],
+  ["ぇ", "/e"],
+  ["え", "le"],
+  ["ぉ", "pe"],
+  ["お", ","],
+  ["か", "j"],
+  ["が", "ji"],
+  ["き", "\\"],
+  ["ぎ", "\\i"],
+  ["く", "g"],
+  ["ぐ", "gi"],
+  ["け", "re"],
+  ["げ", "ri"],
+  ["こ", "w"],
+  ["ご", "wi"],
+  ["さ", "t"],
+  ["ざ", "ti"],
+  ["し", "s"],
+  ["じ", "si"],
+  ["す", "u"],
+  ["ず", "ui"],
+  ["せ", "q"],
+  ["ぜ", "qi"],
+  ["そ", "ne"],
+  ["ぞ", "ni"],
+  ["た", "m"],
+  ["だ", "mi"],
+  ["ち", "z"],
+  ["ぢ", "zi"],
+  ["っ", ":"],
+  ["つ", "/"],
+  ["づ", "/i"],
+  ["て", "d"],
+  ["で", "di"],
+  ["と", "f"],
+  ["ど", "fi"],
+  ["な", "n"],
+  ["に", "c"],
+  ["ぬ", "de"],
+  ["ね", "ue"],
+  ["の", "v"],
+  ["は", "h"],
+  ["ば", "hi"],
+  ["ぱ", "ki"],
+  ["ひ", "be"],
+  ["び", "bi"],
+  ["ぴ", "oi"],
+  ["ふ", "ae"],
+  ["ぶ", "ai"],
+  ["ぷ", ":i"],
+  ["へ", ";e"],
+  ["べ", ";i"],
+  ["ぺ", ".i"],
+  ["ほ", "ye"],
+  ["ぼ", "yi"],
+  ["ぽ", "vi"],
+  ["ま", "ke"],
+  ["み", "oe"],
+  ["む", ":e"],
+  ["め", "."],
+  ["も", "ve"],
+  ["ゃ", "p"],
+  ["や", "y"],
+  ["ゅ", "b"],
+  ["ゆ", ".e"],
+  ["ょ", "e"],
+  ["よ", "x"],
+  ["ら", "r"],
+  ["り", "fe"],
+  ["る", ";"],
+  ["れ", "a"],
+  ["ろ", "te"],
+  ["ゎ", "xe"],
+  ["わ", ",e"],
+  ["を", "me"],
+  ["ん", "o"],
+];
+
 const cases = {
   "tsuki-2-263": tsukiCases,
   hana: hanaCases,
@@ -707,6 +803,7 @@ const cases = {
   fumiduki: fumidukiCases,
   hideduki: hidedukiCases,
   hybridTsuki: hybridTsukiCases,
+  tukiringo: tukiringoCases,
 } satisfies Partial<Record<LayoutId, Cases>>;
 
 describe(findShortestKeystrokes, () => {
@@ -762,6 +859,13 @@ describe(findShortestKeystrokes, () => {
   describe("ハイブリッド月配列", () => {
     const table = getRomanTable("hybridTsuki");
     test.each(cases.hybridTsuki)("%p -> %p", (kana, expected) => {
+      expect(findShortestKeystrokes(table, kana)).toBe(expected);
+    });
+  });
+
+  describe("月林檎配列", () => {
+    const table = getRomanTable("tukiringo");
+    test.each(cases.tukiringo)("%p -> %p", (kana, expected) => {
       expect(findShortestKeystrokes(table, kana)).toBe(expected);
     });
   });
