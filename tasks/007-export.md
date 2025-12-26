@@ -31,17 +31,17 @@
 
 - [x] qwerty
 - [x] oonisi
-- [ ] tsuki-2-263
+- [x] tsuki-2-263
+- [ ] hana
 - [ ] buna
-- burichutoro-20221015
-- fumiduki
-- hana
-- hideduki_v4.1
-- hybrid-tsuki
-- mizunara
-- tsukimisou
+- [ ] mizunara
+- [ ] yukika
+- [ ] fumiduki
+- [ ] hideduki_v4.1
+- [ ] hybrid-tsuki
 - tukiringo
-- yukika
+- tsukimisou
+- burichutoro-20221015
 
 
 ```bash
