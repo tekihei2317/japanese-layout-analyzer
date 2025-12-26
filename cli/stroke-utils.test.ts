@@ -237,10 +237,98 @@ const bunaCases: Cases = [
   ["ん", "j"],
 ];
 
+const mizunaraCases: Cases = [
+  ["、", ","],
+  ["。", "."],
+  ["ー", "sj"],
+  ["ぁ", "le"],
+  ["あ", "ka"],
+  ["ぃ", "lw"],
+  ["い", ";"],
+  ["ぅ", "s."],
+  ["う", "m"],
+  ["ヴ", "s,"],
+  ["ぇ", "lx"],
+  ["え", "do"],
+  ["ぉ", "dy"],
+  ["お", "kf"],
+  ["か", "a"],
+  ["が", "x"],
+  ["き", "h"],
+  ["ぎ", "sh"],
+  ["く", "n"],
+  ["ぐ", "sn"],
+  ["け", "ks"],
+  ["げ", "lc"],
+  ["こ", "z"],
+  ["ご", "kq"],
+  ["さ", "kg"],
+  ["ざ", "lb"],
+  ["し", "i"],
+  ["じ", "dl"],
+  ["す", "kd"],
+  ["ず", "sp"],
+  ["せ", "ls"],
+  ["ぜ", "kc"],
+  ["そ", "lg"],
+  ["ぞ", "lt"],
+  ["た", "v"],
+  ["だ", "c"],
+  ["ち", "dk"],
+  ["ぢ", "s/"],
+  ["っ", "u"],
+  ["つ", "dj"],
+  ["づ", "kw"],
+  ["て", "r"],
+  ["で", "t"],
+  ["と", "o"],
+  ["ど", "lr"],
+  ["な", "f"],
+  ["に", "w"],
+  ["ぬ", "dn"],
+  ["ね", "kv"],
+  ["の", "p"],
+  ["は", "e"],
+  ["ば", "so"],
+  ["ぱ", "su"],
+  ["ひ", "dh"],
+  ["び", "lz"],
+  ["ぴ", "d/"],
+  ["ふ", "lv"],
+  ["ぶ", "di"],
+  ["ぷ", "du"],
+  ["へ", "kt"],
+  ["べ", "lq"],
+  ["ぺ", "d,"],
+  ["ほ", "kr"],
+  ["ぼ", "ke"],
+  ["ぽ", "si"],
+  ["ま", "d;"],
+  ["み", "dm"],
+  ["む", "sm"],
+  ["め", "sk"],
+  ["も", "q"],
+  ["ゃ", "dp"],
+  ["や", "kz"],
+  ["ゅ", "d."],
+  ["ゆ", "kx"],
+  ["ょ", "b"],
+  ["よ", "kb"],
+  ["ら", "la"],
+  ["り", "sl"],
+  ["る", "g"],
+  ["れ", "y"],
+  ["ろ", "lf"],
+  ["わ", "ld"],
+  ["を", "s;"],
+  ["ん", "j"],
+];
+
 const cases = {
   "tsuki-2-263": tsukiCases,
   hana: hanaCases,
   buna: bunaCases,
+  mizunara: mizunaraCases,
 } satisfies Partial<Record<LayoutId, Cases>>;
 
 describe(findShortestKeystrokes, () => {
@@ -261,6 +349,13 @@ describe(findShortestKeystrokes, () => {
   describe("ぶな配列", () => {
     const table = getRomanTable("buna");
     test.each(cases.buna)("%p -> %p", (kana, expected) => {
+      expect(findShortestKeystrokes(table, kana)).toBe(expected);
+    });
+  });
+
+  describe("ミズナラ配列", () => {
+    const table = getRomanTable("mizunara");
+    test.each(cases.mizunara)("%p -> %p", (kana, expected) => {
       expect(findShortestKeystrokes(table, kana)).toBe(expected);
     });
   });

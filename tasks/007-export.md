@@ -34,7 +34,7 @@
 - [x] tsuki-2-263
 - [x] hana
 - [x] buna
-- [ ] mizunara
+- [x] mizunara
 - [ ] yukika
 - [ ] fumiduki
 - [ ] hideduki_v4.1
