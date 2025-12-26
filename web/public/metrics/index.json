@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "corpora": [
+    {
+      "id": "aozora",
+      "name": "青空文庫",
+      "file": "/metrics/aozora.json"
+    },
+    {
+      "id": "news",
+      "name": "ニュース",
+      "file": "/metrics/news.json"
+    }
+  ]
+}
