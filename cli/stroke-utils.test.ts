@@ -324,11 +324,77 @@ const mizunaraCases: Cases = [
   ["ん", "j"],
 ];
 
+const yukikaCases: Cases = [
+  ["、", ","],
+  ["。", "."],
+  ["「", "d@"],
+  ["」", "d:"],
+  ["゛", "l"],
+  ["゜", "/"],
+  ["ー", ":"],
+  ["ぁ", "kq"],
+  ["あ", "di"],
+  ["ぃ", "ka"],
+  ["い", "i"],
+  ["ぅ", "kz"],
+  ["う", "m"],
+  ["ぇ", "dp"],
+  ["え", "d;"],
+  ["ぉ", "d/"],
+  ["お", "ks"],
+  ["か", "f"],
+  ["き", "v"],
+  ["く", "n"],
+  ["け", "r"],
+  ["こ", "q"],
+  ["さ", "b"],
+  ["し", ";"],
+  ["す", "z"],
+  ["せ", "c"],
+  ["そ", "kc"],
+  ["た", "a"],
+  ["ち", "dl"],
+  ["っ", "h"],
+  ["つ", "dj"],
+  ["て", "s"],
+  ["と", "e"],
+  ["な", "w"],
+  ["に", "do"],
+  ["ぬ", "dy"],
+  ["ね", "kw"],
+  ["の", "o"],
+  ["は", "g"],
+  ["ひ", "d,"],
+  ["ふ", "kg"],
+  ["へ", "kb"],
+  ["ほ", "kr"],
+  ["ま", "dk"],
+  ["み", "dn"],
+  ["む", "y"],
+  ["め", "@"],
+  ["も", "kf"],
+  ["ゃ", "dh"],
+  ["や", "ke"],
+  ["ゅ", "kx"],
+  ["ゆ", "kt"],
+  ["ょ", "x"],
+  ["よ", "kv"],
+  ["ら", "kd"],
+  ["り", "dm"],
+  ["る", "u"],
+  ["れ", "p"],
+  ["ろ", "t"],
+  ["わ", "du"],
+  ["を", "d."],
+  ["ん", "j"],
+];
+
 const cases = {
   "tsuki-2-263": tsukiCases,
   hana: hanaCases,
   buna: bunaCases,
   mizunara: mizunaraCases,
+  yukika: yukikaCases,
 } satisfies Partial<Record<LayoutId, Cases>>;
 
 describe(findShortestKeystrokes, () => {
@@ -356,6 +422,13 @@ describe(findShortestKeystrokes, () => {
   describe("ミズナラ配列", () => {
     const table = getRomanTable("mizunara");
     test.each(cases.mizunara)("%p -> %p", (kana, expected) => {
+      expect(findShortestKeystrokes(table, kana)).toBe(expected);
+    });
+  });
+
+  describe("幸花配列", () => {
+    const table = getRomanTable("yukika");
+    test.each(cases.yukika)("%p -> %p", (kana, expected) => {
       expect(findShortestKeystrokes(table, kana)).toBe(expected);
     });
   });
