@@ -142,7 +142,6 @@ describe(findShortestKeystrokes, () => {
       ["ゆ", "kb"],
       ["ょ", "q"],
       ["よ", "ks"],
-      ["よ", "dh"],
       ["ら", "p"],
       ["り", ":"],
       ["る", "o"],
