@@ -35,8 +35,8 @@
 - [x] hana
 - [x] buna
 - [x] mizunara
-- [ ] yukika
-- [ ] fumiduki
+- [x] yukika
+- [x] fumiduki
 - [ ] hideduki_v4.1
 - [ ] hybrid-tsuki
 - tukiringo

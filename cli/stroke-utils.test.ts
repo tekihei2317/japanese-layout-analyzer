@@ -389,12 +389,98 @@ const yukikaCases: Cases = [
   ["ん", "j"],
 ];
 
+const fumidukiCases: Cases = [
+  ["、", ","],
+  ["。", "."],
+  ["ー", "/"],
+  ["ぁ", "df"],
+  ["あ", "kf"],
+  ["ぃ", "ki"],
+  ["い", "i"],
+  ["ぅ", "kj"],
+  ["う", "j"],
+  ["ゔ", "sj"],
+  ["ぇ", "k;"],
+  ["え", "d;"],
+  ["ぉ", "dg"],
+  ["お", "kg"],
+  ["か", "w"],
+  ["が", ";"],
+  ["き", "kd"],
+  ["ぎ", "ld"],
+  ["く", "h"],
+  ["ぐ", "sh"],
+  ["け", "kw"],
+  ["げ", "lw"],
+  ["こ", "dk"],
+  ["ご", "sk"],
+  ["さ", "ks"],
+  ["ざ", "ls"],
+  ["し", "e"],
+  ["じ", "le"],
+  ["す", "c"],
+  ["ず", "lc"],
+  ["せ", "x"],
+  ["ぜ", "lx"],
+  ["そ", "kr"],
+  ["ぞ", "lr"],
+  ["た", "f"],
+  ["だ", "lf"],
+  ["ち", "dm"],
+  ["ぢ", "sm"],
+  ["っ", "n"],
+  ["つ", "y"],
+  ["づ", "sy"],
+  ["て", "r"],
+  ["で", "b"],
+  ["と", "g"],
+  ["ど", "lg"],
+  ["な", "v"],
+  ["に", ":"],
+  ["ぬ", "kx"],
+  ["ね", "kc"],
+  ["の", "o"],
+  ["は", "a"],
+  ["ば", "la"],
+  ["ぱ", "sa"],
+  ["ひ", "d,"],
+  ["び", "s,"],
+  ["ぴ", "l,"],
+  ["ふ", "di"],
+  ["ぶ", "si"],
+  ["ぷ", "li"],
+  ["へ", "dp"],
+  ["べ", "sp"],
+  ["ぺ", "lp"],
+  ["ほ", "kv"],
+  ["ぼ", "lv"],
+  ["ぽ", "sv"],
+  ["ま", "p"],
+  ["み", "du"],
+  ["む", "dn"],
+  ["め", "ka"],
+  ["も", "q"],
+  ["や", "do"],
+  ["ゆ", "dl"],
+  ["ょ", "t"],
+  ["よ", "z"],
+  ["ら", "dj"],
+  ["り", "dh"],
+  ["る", "m"],
+  ["れ", "ke"],
+  ["ろ", "kt"],
+  ["わ", "d."],
+  ["を", "@"],
+  ["ん", "u"],
+];
+
 const cases = {
   "tsuki-2-263": tsukiCases,
   hana: hanaCases,
   buna: bunaCases,
   mizunara: mizunaraCases,
   yukika: yukikaCases,
+  fumiduki: fumidukiCases,
 } satisfies Partial<Record<LayoutId, Cases>>;
 
 describe(findShortestKeystrokes, () => {
@@ -429,6 +515,13 @@ describe(findShortestKeystrokes, () => {
   describe("幸花配列", () => {
     const table = getRomanTable("yukika");
     test.each(cases.yukika)("%p -> %p", (kana, expected) => {
+      expect(findShortestKeystrokes(table, kana)).toBe(expected);
+    });
+  });
+
+  describe("文月配列", () => {
+    const table = getRomanTable("fumiduki");
+    test.each(cases.fumiduki)("%p -> %p", (kana, expected) => {
       expect(findShortestKeystrokes(table, kana)).toBe(expected);
     });
   });
