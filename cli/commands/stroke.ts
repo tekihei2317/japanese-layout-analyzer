@@ -1,8 +1,14 @@
 import { promises as fs } from "node:fs";
-import type { LayoutId, RomanTable } from "@japanese-layout-analyzer/core";
-import { getRomanTable } from "@japanese-layout-analyzer/core";
-import type { Rule } from "../stroke-types";
-import { findShortestKeystrokes, normalizeText } from "../stroke-utils";
+import type {
+  LayoutId,
+  RomanTable,
+  Rule,
+} from "@japanese-layout-analyzer/core";
+import {
+  getRomanTable,
+  findShortestKeystrokes,
+  normalizeText,
+} from "@japanese-layout-analyzer/core";
 
 export const strokeCommand = async (file: string, layoutId: string) => {
   const table = getRomanTable(layoutId as LayoutId);

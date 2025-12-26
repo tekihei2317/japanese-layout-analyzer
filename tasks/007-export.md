@@ -40,9 +40,8 @@
 - [x] hideduki_v4.1
 - [x] hybrid-tsuki
 - [x] tukiringo
-- tsukimisou
-- burichutoro-20221015
-
+- [ ] tsukimisou
+- [ ] burichutoro-20221015
 
 ```bash
 bun run cli stroke data/texts/mekurabudou.txt qwerty
