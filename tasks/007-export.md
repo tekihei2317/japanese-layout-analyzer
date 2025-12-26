@@ -32,8 +32,8 @@
 - [x] qwerty
 - [x] oonisi
 - [x] tsuki-2-263
-- [ ] hana
-- [ ] buna
+- [x] hana
+- [x] buna
 - [ ] mizunara
 - [ ] yukika
 - [ ] fumiduki
