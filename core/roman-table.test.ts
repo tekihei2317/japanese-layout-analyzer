@@ -1,26 +1,26 @@
 import { describe, expect, test } from "bun:test";
-import { createStrokeProcessor } from "./roman-table";
+import { createStrokeStepper, ImeState } from "./roman-table";
 import { getRomanTable } from "./roman-table";
 
 function makeProcessStrokes(
-  processStroke: ReturnType<typeof createStrokeProcessor>
+  processStroke: ReturnType<typeof createStrokeStepper>
 ) {
   return (strokes: string) => {
-    let buffer = "";
+    let imeState: ImeState = { buffer: "", matchedIndex: null };
     let output = "";
     for (const ch of strokes) {
-      const result = processStroke({ buffer, pressedKey: ch });
-      buffer = result.newBuffer;
+      const result = processStroke({ state: imeState, key: ch });
       output += result.output;
+      imeState = result.state;
     }
-    return { output, buffer };
+    return { output, buffer: imeState.buffer };
   };
 }
 
-describe(createStrokeProcessor, () => {
+describe(createStrokeStepper, () => {
   describe("Qwerty", () => {
     const qwertyRomanTable = getRomanTable("qwerty");
-    const processStroke = createStrokeProcessor(qwertyRomanTable);
+    const processStroke = createStrokeStepper(qwertyRomanTable);
     const processStrokes = makeProcessStrokes(processStroke);
 
     test("a を あ に変換すること", () => {
@@ -51,7 +51,7 @@ describe(createStrokeProcessor, () => {
   describe("月配列2-263式", () => {
     const tsukiRomanTable = getRomanTable("tsuki-2-263");
     const processStrokes = makeProcessStrokes(
-      createStrokeProcessor(tsukiRomanTable)
+      createStrokeStepper(tsukiRomanTable)
     );
 
     test("siを かい に変換すること", () => {
@@ -78,7 +78,7 @@ describe(createStrokeProcessor, () => {
   describe("花配列", () => {
     const hanaRomanTable = getRomanTable("hana");
     const processStrokes = makeProcessStrokes(
-      createStrokeProcessor(hanaRomanTable)
+      createStrokeStepper(hanaRomanTable)
     );
 
     test("tkgを ぱ に変換すること", () => {

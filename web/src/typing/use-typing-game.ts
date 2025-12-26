@@ -4,7 +4,13 @@ import type { Word } from "./words";
 
 type GameState =
   | { status: "waiting" }
-  | { status: "playing"; currentIndex: number; buffer: string; typed: string }
+  | {
+      status: "playing";
+      currentIndex: number;
+      buffer: string;
+      typed: string;
+      matchedIndex: number | null;
+    }
   | { status: "finished"; typed: string };
 
 type Action =
@@ -35,7 +41,13 @@ function createGameReducer(words: Word[]) {
         if (words.length === 0) {
           return { status: "finished", typed: "" };
         }
-        return { status: "playing", currentIndex: 0, buffer: "", typed: "" };
+        return {
+          status: "playing",
+          currentIndex: 0,
+          buffer: "",
+          typed: "",
+          matchedIndex: null,
+        };
       }
     } else if (action.type === "INPUT") {
       if (state.status === "playing") {
@@ -52,6 +64,7 @@ function createGameReducer(words: Word[]) {
             currentIndex: nextIndex,
             buffer: "",
             typed: "",
+            matchedIndex: null,
           };
         }
         return {
@@ -59,6 +72,7 @@ function createGameReducer(words: Word[]) {
           currentIndex: state.currentIndex,
           buffer: action.newBuffer,
           typed: nextTyped,
+          matchedIndex: null,
         };
       }
     } else if (action.type === "FLUSH_BUFFER") {
@@ -77,6 +91,7 @@ function createGameReducer(words: Word[]) {
             currentIndex: nextIndex,
             buffer: "",
             typed: "",
+            matchedIndex: null,
           };
         }
         return {
@@ -84,6 +99,7 @@ function createGameReducer(words: Word[]) {
           currentIndex: state.currentIndex,
           buffer: "",
           typed: nextTyped,
+          matchedIndex: null,
         };
       }
     } else if (action.type === "BACKSPACE") {
@@ -94,6 +110,7 @@ function createGameReducer(words: Word[]) {
             currentIndex: state.currentIndex,
             buffer: state.buffer.slice(0, -1),
             typed: state.typed,
+            matchedIndex: state.matchedIndex,
           };
         }
         if (state.typed.length > 0) {
@@ -102,6 +119,7 @@ function createGameReducer(words: Word[]) {
             currentIndex: state.currentIndex,
             buffer: "",
             typed: state.typed.slice(0, -1),
+            matchedIndex: null,
           };
         }
       }
@@ -131,13 +149,13 @@ export function useTypingGame({
     (key: string) => {
       if (state.status !== "playing") return;
       const result = strokeProcessor({
-        buffer: state.buffer,
-        pressedKey: key,
+        state: { buffer: state.buffer, matchedIndex: state.matchedIndex },
+        key,
       });
       dispatch({
         type: "INPUT",
         output: result.output,
-        newBuffer: result.newBuffer,
+        newBuffer: result.state.buffer,
       });
     },
     [state, strokeProcessor]

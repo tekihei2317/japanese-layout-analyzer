@@ -44,79 +44,86 @@ export function getRomanTable(layoutId: LayoutId): RomanTable {
   return layoutTables[layoutId];
 }
 
-function findEntry(table: RomanTable, text: string): TableEntry | undefined {
-  return table.find((entry) => entry.input === text);
-}
+type PrefixInfo = { exactIndex: number | null; canGrow: boolean };
 
-function findEntriesByPrefix(table: RomanTable, prefix: string): TableEntry[] {
-  return table.filter((entry) => entry.input.startsWith(prefix));
-}
+export type ImeState = { buffer: string; matchedIndex: number | null };
 
-function convertRoman(table: RomanTable, text: string): string {
-  const rule = findEntry(table, text);
-  return rule ? rule.output : text;
-}
+type StepperInput = {
+  state: ImeState;
+  key: string;
+};
 
-type ProcessStrokeInput = { buffer: string; pressedKey: string };
-type ProcessStrokeOutput = { output: string; newBuffer: string };
-type Processor = (input: ProcessStrokeInput) => ProcessStrokeOutput;
+type StepperOutput = {
+  state: ImeState;
+  output: string;
+};
+
+type StrokeStepper = (input: StepperInput) => StepperOutput;
 
 // 参考: https://github.com/tomoemon/google_input
-export function createStrokeProcessor(table: RomanTable): Processor {
-  let inputBuffer = "";
-  let tmpFixed: TableEntry | null = null;
-  let nextCandidates: TableEntry[] = [];
+export function createStrokeStepper(rules: RomanTable): StrokeStepper {
+  const prefixMap = new Map<string, PrefixInfo>();
+  const prefixCounts = new Map<string, number>();
+  const exactMap = new Map<string, number>();
 
-  return function processStroke({
-    buffer,
-    pressedKey,
-  }: ProcessStrokeInput): ProcessStrokeOutput {
-    if (buffer !== inputBuffer) {
-      inputBuffer = buffer;
-      tmpFixed = null;
-      nextCandidates = [];
+  rules.forEach((rule, index) => {
+    exactMap.set(rule.input, index);
+    for (let i = 1; i <= rule.input.length; i += 1) {
+      const prefix = rule.input.slice(0, i);
+      prefixCounts.set(prefix, (prefixCounts.get(prefix) ?? 0) + 1);
+      const info = prefixMap.get(prefix) ?? {
+        exactIndex: null,
+        canGrow: false,
+      };
+      if (i === rule.input.length && info.exactIndex === null) {
+        info.exactIndex = index;
+      }
+      if (i < rule.input.length) {
+        info.canGrow = true;
+      }
+      prefixMap.set(prefix, info);
+    }
+  });
+
+  const convertInput = (text: string) => {
+    const index = exactMap.get(text);
+    return index !== undefined ? rules[index].output : text;
+  };
+
+  const step = ({ state, key }: StepperInput): StepperOutput => {
+    const input = state.buffer + key;
+    const info = prefixMap.get(input);
+    const tmpFixed = info?.exactIndex ?? state.matchedIndex;
+
+    if (info?.canGrow) {
+      // 候補が複数ある場合は確定を保留する
+      return { state: { buffer: input, matchedIndex: tmpFixed }, output: "" };
     }
 
-    const candidates = nextCandidates.length ? nextCandidates : table;
-    const input = inputBuffer + pressedKey;
-    let localTmpFixed = tmpFixed;
-    const localNextCandidates: TableEntry[] = [];
-
-    for (const rule of candidates) {
-      if (rule.input.startsWith(input)) {
-        if (rule.input === input) {
-          localTmpFixed = rule;
-        } else {
-          localNextCandidates.push(rule);
-        }
-      }
+    if (tmpFixed !== null) {
+      // 確定する
+      const rule = rules[tmpFixed];
+      const isExact = input.length === rule.input.length;
+      const nextBuffer = isExact
+        ? rule.nextInput ?? ""
+        : (rule.nextInput ?? "") + key;
+      return {
+        output: rule.output,
+        state: { buffer: nextBuffer, matchedIndex: null },
+      };
     }
 
-    if (localNextCandidates.length === 0) {
-      if (localTmpFixed) {
-        if (localTmpFixed.input.length === input.length) {
-          inputBuffer = localTmpFixed.nextInput ?? "";
-        } else {
-          inputBuffer = (localTmpFixed.nextInput ?? "") + pressedKey;
-        }
-        tmpFixed = null;
-        nextCandidates = [];
-        return { output: localTmpFixed.output, newBuffer: inputBuffer };
-      }
+    if (state.buffer !== "") {
+      const left = state.buffer;
+      const right = key;
+      const rightIndex = exactMap.get(right);
+      const rightRule = rightIndex !== undefined ? rules[rightIndex] : null;
 
-      const left = input.slice(0, -1);
-      const right = input.slice(-1);
-      const rightExact = findEntry(table, right);
-      const rightPrefixes = findEntriesByPrefix(table, right);
-
-      if (rightExact?.nextInput) {
-        const combined = left + rightExact.nextInput;
-        const combinedPrefixes = findEntriesByPrefix(table, combined);
-        if (combinedPrefixes.length > 0) {
-          inputBuffer = combined;
-          tmpFixed = null;
-          nextCandidates = combinedPrefixes;
-          return { output: "", newBuffer: inputBuffer };
+      if (rightRule?.nextInput) {
+        const combined = left + rightRule.nextInput;
+        const combinedPrefixes = prefixCounts.get(combined) ?? 0;
+        if (combinedPrefixes > 0) {
+          return { output: "", state: { buffer: combined, matchedIndex: null } };
         }
       }
 
@@ -124,62 +131,59 @@ export function createStrokeProcessor(table: RomanTable): Processor {
         const leftPrefix = left.slice(0, -i);
         const leftSuffix = left.slice(-i);
         const combined = leftSuffix + right;
-        const combinedPrefixes = findEntriesByPrefix(table, combined);
-        if (combinedPrefixes.length >= 2) {
-          inputBuffer = combined;
-          tmpFixed = null;
-          nextCandidates = combinedPrefixes;
+        const combinedPrefixes = prefixCounts.get(combined) ?? 0;
+        if (combinedPrefixes >= 2) {
           return {
-            output: convertRoman(table, leftPrefix),
-            newBuffer: inputBuffer,
+            output: convertInput(leftPrefix),
+            state: { buffer: combined, matchedIndex: null },
           };
         }
-        const combinedExact = findEntry(table, combined);
-        if (combinedExact) {
-          inputBuffer = combinedExact.nextInput ?? "";
-          tmpFixed = null;
-          nextCandidates = [];
+        const combinedIndex = exactMap.get(combined);
+        if (combinedIndex !== undefined) {
+          const combinedRule = rules[combinedIndex];
           return {
-            output: convertRoman(table, leftPrefix) + combinedExact.output,
-            newBuffer: inputBuffer,
+            output: convertInput(leftPrefix) + combinedRule.output,
+            state: {
+              buffer: combinedRule.nextInput ?? "",
+              matchedIndex: null,
+            },
           };
         }
       }
 
-      const leftOutput = convertRoman(table, left);
-
-      if (rightPrefixes.length >= 2) {
-        inputBuffer = right;
-        tmpFixed = null;
-        nextCandidates = rightPrefixes;
-        return { output: leftOutput, newBuffer: inputBuffer };
-      }
-
-      if (rightExact) {
-        inputBuffer = rightExact.nextInput ?? "";
-        tmpFixed = null;
-        nextCandidates = [];
+      const leftOutput = convertInput(left);
+      const rightPrefixes = prefixCounts.get(right) ?? 0;
+      if (rightPrefixes >= 2) {
         return {
-          output: leftOutput + rightExact.output,
-          newBuffer: inputBuffer,
+          output: leftOutput,
+          state: { buffer: right, matchedIndex: null },
         };
       }
 
-      inputBuffer = right;
-      tmpFixed = null;
-      nextCandidates = [];
-      return { output: leftOutput, newBuffer: inputBuffer };
+      if (rightRule) {
+        return {
+          output: leftOutput + rightRule.output,
+          state: {
+            buffer: rightRule.nextInput ?? "",
+            matchedIndex: null,
+          },
+        };
+      }
+
+      return {
+        output: leftOutput,
+        state: { buffer: right, matchedIndex: null },
+      };
     }
 
-    inputBuffer = input;
-    tmpFixed = localTmpFixed ?? null;
-    nextCandidates = localNextCandidates;
-    return { output: "", newBuffer: inputBuffer };
+    return { output: "", state: { buffer: "", matchedIndex: null } };
   };
+
+  return step;
 }
 
-export function createStrokeProcessorForLayout(layoutId: LayoutId): Processor {
-  return createStrokeProcessor(getRomanTable(layoutId));
+export function createStrokeStepperForLayout(
+  layoutId: LayoutId
+): StrokeStepper {
+  return createStrokeStepper(getRomanTable(layoutId));
 }
-
-export const processStroke = createStrokeProcessorForLayout("qwerty");
