@@ -45,8 +45,16 @@ export function getRomanTable(layoutId: LayoutId): RomanTable {
 }
 
 const jisKeyboardKeys = "1234567890-^¥qwertyuiop@[asdfghjkl;:]zxcvbnm,./_";
+// 月林檎はCapsLock/Control位置をバッククウォートにして使う
 const tsukiringoException = "\\";
-const validKeys = new Set((jisKeyboardKeys + tsukiringoException).split(""));
+// 句読点とシフトを共有している配列では、句読点の前後にスペースを入れて確定することにする
+// 詳細はdocs/shift-sharing-layout.mdを参照
+const shiftSharingLayoutException = " ";
+const validKeys = new Set(
+  (jisKeyboardKeys + tsukiringoException + shiftSharingLayoutException).split(
+    ""
+  )
+);
 
 /**
  * ローマ字テーブルから入力に使うキーを集める

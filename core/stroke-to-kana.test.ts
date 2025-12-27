@@ -93,4 +93,20 @@ describe(createStrokeStepper, () => {
       expect(processStrokes("tkr")).toEqual({ output: "は", buffer: "ほ" });
     });
   });
+
+  describe.only("シフト兼用配列", () => {
+    describe("ハイブリッド月配列", () => {
+      const processStrokes = makeProcessStrokes(
+        createStrokeStepper(getRomanTable("hybrid-tsuki"))
+      );
+
+      test("読点+スペースで、読点を確定できること", () => {
+        expect(processStrokes("d f")).toEqual({ output: "、し", buffer: "" });
+      });
+
+      test("句点+スペースで、句点を確定できること", () => {
+        expect(processStrokes("k f")).toEqual({ output: "。し", buffer: "" });
+      });
+    });
+  });
 });

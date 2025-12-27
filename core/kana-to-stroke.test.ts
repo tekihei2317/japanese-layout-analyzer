@@ -73,6 +73,20 @@ describe(findShortestKeystrokes, () => {
   });
 });
 
+describe("シフトキー共有配列の変換", () => {
+  describe("ハイブリッド月配列", () => {
+    const table = getRomanTable("hybrid-tsuki");
+
+    test("文中に読点がある場合に変換できること", () => {
+      expect(findShortestKeystrokes(table, "、し")).toBe("d f");
+    });
+
+    test("文中に句点がある場合に変換できること", () => {
+      expect(findShortestKeystrokes(table, "。し")).toBe("k f");
+    });
+  });
+});
+
 describe("日本国憲法前文", () => {
   let normalized = "";
 

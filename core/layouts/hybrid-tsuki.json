@@ -536,5 +536,13 @@
   {
     "input": "が:",
     "output": "ぉ"
+  },
+  {
+    "input": "、 ",
+    "output": "、"
+  },
+  {
+    "input": "。 ",
+    "output": "。"
   }
 ]

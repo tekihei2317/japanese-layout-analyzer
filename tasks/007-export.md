@@ -61,7 +61,7 @@ yukikaの「づ」が打ててなさそうなので、テストする。ロー�
 - [x] yukika
 - [x] fumiduki
 - [x] hideduki_v4.1
-- [ ] hybrid-tsuki
+- [x] hybrid-tsuki
 - [x] tukiringo
 - [ ] tsukimisou
 - [ ] burichutoro-20221015
