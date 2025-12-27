@@ -25,8 +25,8 @@ describe("computeStrokeMetrics (bigram)", () => {
 
   // 対象外キーが含まれる場合はエラーになる
   test("対象外キーが含まれると例外を投げる", () => {
-    expect(() => computeStrokeMetrics("1")).toThrow(
-      "Unsupported stroke key: 1"
+    expect(() => computeStrokeMetrics("!")).toThrow(
+      "Unsupported stroke key: !"
     );
   });
 });

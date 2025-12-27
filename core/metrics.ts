@@ -1,77 +1,5 @@
 import assert from "node:assert";
-
-type Finger = "LP" | "LR" | "LM" | "LI" | "RI" | "RM" | "RR" | "RP";
-
-const fingerMap: Record<string, Finger> = {
-  q: "LP",
-  a: "LP",
-  z: "LP",
-  w: "LR",
-  s: "LR",
-  x: "LR",
-  e: "LM",
-  d: "LM",
-  c: "LM",
-  r: "LI",
-  f: "LI",
-  v: "LI",
-  t: "LI",
-  g: "LI",
-  b: "LI",
-  y: "RI",
-  h: "RI",
-  n: "RI",
-  u: "RI",
-  j: "RI",
-  m: "RI",
-  i: "RM",
-  k: "RM",
-  ",": "RM",
-  o: "RR",
-  l: "RR",
-  ".": "RR",
-  p: "RP",
-  ";": "RP",
-  "/": "RP",
-  "-": "RP",
-  "[": "RP",
-  "]": "RP",
-  "'": "RP",
-  "\\": "RP",
-};
-
-const rowColMap: Record<string, { row: number; col: number }> = {
-  q: { row: 0, col: 0 },
-  w: { row: 0, col: 1 },
-  e: { row: 0, col: 2 },
-  r: { row: 0, col: 3 },
-  t: { row: 0, col: 4 },
-  y: { row: 0, col: 5 },
-  u: { row: 0, col: 6 },
-  i: { row: 0, col: 7 },
-  o: { row: 0, col: 8 },
-  p: { row: 0, col: 9 },
-  a: { row: 1, col: 0 },
-  s: { row: 1, col: 1 },
-  d: { row: 1, col: 2 },
-  f: { row: 1, col: 3 },
-  g: { row: 1, col: 4 },
-  h: { row: 1, col: 5 },
-  j: { row: 1, col: 6 },
-  k: { row: 1, col: 7 },
-  l: { row: 1, col: 8 },
-  ";": { row: 1, col: 9 },
-  z: { row: 2, col: 0 },
-  x: { row: 2, col: 1 },
-  c: { row: 2, col: 2 },
-  v: { row: 2, col: 3 },
-  b: { row: 2, col: 4 },
-  n: { row: 2, col: 5 },
-  m: { row: 2, col: 6 },
-  ",": { row: 2, col: 7 },
-  ".": { row: 2, col: 8 },
-  "/": { row: 2, col: 9 },
-};
+import { Keystroke, toKeystrokes, Finger } from "./keystroke";
 
 const scissorPairs = new Set<string>([
   "cq",
@@ -93,10 +21,6 @@ const scissorPairs = new Set<string>([
   ".i",
   "/o",
 ]);
-
-const allowedStrokeKeys = new Set(
-  Object.keys(rowColMap).filter((key) => key in fingerMap)
-);
 
 const isScissor = (a: string, b: string) => {
   const key = `${a}${b}`;
@@ -125,14 +49,6 @@ export type StrokeMetrics = {
 
 export type HandLoad = { left: number; right: number };
 
-function assertValidStrokeKeys(keys: string[]) {
-  for (const key of keys) {
-    if (!allowedStrokeKeys.has(key)) {
-      throw new Error(`Unsupported stroke key: ${key}`);
-    }
-  }
-}
-
 function createEmptyStrokeMetrics(): StrokeMetrics {
   return {
     bigram: {
@@ -154,40 +70,25 @@ function createEmptyStrokeMetrics(): StrokeMetrics {
   };
 }
 
-function validBigram(a: string, b: string) {
-  return a !== b && fingerMap[a] && fingerMap[b];
-}
-
-function handOf(key: string): "L" | "R" | null {
-  const finger = fingerMap[key];
-  if (!finger) return null;
-  return finger.startsWith("L") ? "L" : "R";
-}
-
-function colOf(key: string): number | null {
-  const pos = rowColMap[key];
-  return pos ? pos.col : null;
-}
-
-function directionOf(hand: "L" | "R", from: number, to: number) {
-  if (from === to) return null;
+function directionOf(hand: "L" | "R", from: Finger, to: Finger): "in" | "out" {
+  assert.ok(from !== to);
   if (hand === "L") return to > from ? "in" : "out";
   return to < from ? "in" : "out";
 }
 
-function computeStrokeBigramMetrics(keys: string[]): StrokeMetrics["bigram"] {
+function computeStrokeBigramMetrics(
+  keystrokes: Keystroke[]
+): StrokeMetrics["bigram"] {
   let bigramTotal = 0;
   let sfbCount = 0;
   let scissorCount = 0;
 
-  for (let i = 0; i < keys.length - 1; i += 1) {
-    const a = keys[i];
-    const b = keys[i + 1];
-    if (validBigram(a, b)) {
-      bigramTotal += 1;
-      if (fingerMap[a] === fingerMap[b]) sfbCount += 1;
-      if (isScissor(a, b)) scissorCount += 1;
-    }
+  for (let i = 0; i < keystrokes.length - 1; i += 1) {
+    const a = keystrokes[i];
+    const b = keystrokes[i + 1];
+    bigramTotal += 1;
+    if (a.finger === b.finger) sfbCount += 1;
+    if (isScissor(a.key, b.key)) scissorCount += 1;
   }
 
   if (!bigramTotal) {
@@ -200,7 +101,9 @@ function computeStrokeBigramMetrics(keys: string[]): StrokeMetrics["bigram"] {
   };
 }
 
-function computeStrokeTrigramMetrics(keys: string[]): StrokeMetrics["trigram"] {
+function computeStrokeTrigramMetrics(
+  keystrokes: Keystroke[]
+): StrokeMetrics["trigram"] {
   let trigramTotal = 0;
   let trigramSfbCount = 0;
   let trigramSftCount = 0;
@@ -213,54 +116,33 @@ function computeStrokeTrigramMetrics(keys: string[]): StrokeMetrics["trigram"] {
   let redirectCount = 0;
   let redirectSfsCount = 0;
 
-  for (let i = 0; i < keys.length - 2; i += 1) {
-    const a = keys[i];
-    const b = keys[i + 1];
-    const c = keys[i + 2];
-
-    const first = {
-      finger: fingerMap[a],
-      hand: handOf(a),
-      col: colOf(a),
-    };
-    const second = {
-      finger: fingerMap[b],
-      hand: handOf(b),
-      col: colOf(b),
-    };
-    const third = {
-      finger: fingerMap[c],
-      hand: handOf(c),
-      col: colOf(c),
-    };
-
-    // TODO:
-    if (!first.hand || !second.hand || !third.hand) continue;
-    if (first.col === null || second.col === null || third.col === null)
-      continue;
+  for (let i = 0; i < keystrokes.length - 2; i += 1) {
+    const a = keystrokes[i];
+    const b = keystrokes[i + 1];
+    const c = keystrokes[i + 2];
 
     trigramTotal++;
 
-    if (first.finger === second.finger || second.finger === third.finger) {
+    if (a.finger === b.finger || b.finger === c.finger) {
       // 1. 同指連続がある
-      if (first.finger === second.finger && second.finger === third.finger) {
+      if (a.finger === b.finger && b.finger === c.finger) {
         trigramSftCount++;
       } else {
         trigramSfbCount++;
       }
-    } else if (first.hand !== second.hand && second.hand !== third.hand) {
+    } else if (a.hand !== b.hand && b.hand !== c.hand) {
       // 2. 交互打鍵
-      if (first.finger === third.finger) {
+      if (a.finger === c.finger) {
         altSfsCount++;
       } else {
         altCount++;
       }
-    } else if (first.hand !== second.hand || second.hand !== third.hand) {
+    } else if (a.hand !== b.hand || b.hand !== c.hand) {
       // 3. ロール打鍵（1+2打鍵または2+1打鍵）
       const direction =
-        first.hand === second.hand
-          ? directionOf(first.hand, first.col, second.col)
-          : directionOf(second.hand, second.col, third.col);
+        a.hand === b.hand
+          ? directionOf(a.hand, a.finger, b.finger)
+          : directionOf(b.hand, b.finger, c.finger);
       if (direction) {
         if (direction === "in") {
           rollInCount++;
@@ -269,8 +151,8 @@ function computeStrokeTrigramMetrics(keys: string[]): StrokeMetrics["trigram"] {
         }
       }
     } else {
-      const direction1 = directionOf(first.hand, first.col, second.col);
-      const direction2 = directionOf(first.hand, second.col, third.col);
+      const direction1 = directionOf(a.hand, a.finger, b.finger);
+      const direction2 = directionOf(a.hand, b.finger, c.finger);
       assert.ok(direction1);
       assert.ok(direction2);
       if (direction1 === direction2) {
@@ -282,7 +164,7 @@ function computeStrokeTrigramMetrics(keys: string[]): StrokeMetrics["trigram"] {
         }
       } else {
         // 5. 折り返し打鍵
-        if (first.finger === third.finger) {
+        if (a.finger === c.finger) {
           redirectSfsCount++;
         } else {
           redirectCount++;
@@ -310,21 +192,21 @@ function computeStrokeTrigramMetrics(keys: string[]): StrokeMetrics["trigram"] {
 
 export function computeStrokeMetrics(strokes: string): StrokeMetrics {
   const keys = Array.from(strokes);
-  assertValidStrokeKeys(keys);
+  const keystrokes = toKeystrokes(keys);
+
   return {
-    bigram: computeStrokeBigramMetrics(keys),
-    trigram: computeStrokeTrigramMetrics(keys),
+    bigram: computeStrokeBigramMetrics(keystrokes),
+    trigram: computeStrokeTrigramMetrics(keystrokes),
   };
 }
 
 export function computeHandLoad(strokes: string): HandLoad {
   const keys = Array.from(strokes);
-  assertValidStrokeKeys(keys);
+  const keystrokes = toKeystrokes(keys);
   let leftCount = 0;
   let rightCount = 0;
-  for (const key of keys) {
-    const hand = handOf(key);
-    if (hand === "L") {
+  for (const stroke of keystrokes) {
+    if (stroke.hand === "L") {
       leftCount += 1;
     } else {
       rightCount += 1;
