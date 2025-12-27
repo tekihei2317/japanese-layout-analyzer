@@ -44,9 +44,9 @@ bun run cli stroke data/texts/kenpou.txt qwerty
 - [x] qwerty
 - [x] oonisi
 - [x] tsuki-2-263
-- [ ] hana
-- [ ] buna
-- [ ] mizunara
+- [x] hana
+- [x] buna
+- [x] mizunara
 - [ ] yukika
 - [ ] fumiduki
 - [ ] hideduki_v4.1
@@ -54,9 +54,12 @@ bun run cli stroke data/texts/kenpou.txt qwerty
 - [ ] tukiringo
 - [ ] tsukimisou
 - [ ] burichutoro-20221015
+
 ### ストロークへの変換
 
 ストロークへの変換で詰まるところがあると思うので、一つずつテストを書いていきます。
+
+yukikaの「づ」が打ててなさそうなので、テストする。
 
 - [x] qwerty
 - [x] oonisi

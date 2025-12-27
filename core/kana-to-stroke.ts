@@ -55,7 +55,6 @@ export const findShortestKeystrokesDetailed = (
   rules: RomanTable,
   target: string
 ): KeystrokeResult => {
-  // const fastStep = makeFastStepper(rules);
   const fastStep = createStrokeStepper(rules);
   const keys = collectKeys(rules);
   const start: Node = { pos: 0, state: initialState };
