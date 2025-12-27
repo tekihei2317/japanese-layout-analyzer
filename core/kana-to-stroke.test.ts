@@ -159,23 +159,23 @@ describe("日本国憲法前文", () => {
     });
   });
 
-  // describe("ブリ中トロ配列", () => {
-  //   test("変換できること", () => {
-  //     assertConvertible("burichutoro-20221015");
-  //   });
-  // });
+  describe("ブリ中トロ配列", () => {
+    test("変換できること", () => {
+      assertConvertible("burichutoro-20221015");
+    });
+  });
 
-  // describe("月見草配列", () => {
-  //   test("変換できること", () => {
-  //     assertConvertible("tsukimisou");
-  //   });
-  // });
+  describe("月見草配列", () => {
+    test("変換できること", () => {
+      assertConvertible("tsukimisou");
+    });
+  });
 
-  // describe("月林檎配列", () => {
-  //   test("変換できること", () => {
-  //     assertConvertible("tukiringo");
-  //   });
-  // });
+  describe("月林檎配列", () => {
+    test("変換できること", () => {
+      assertConvertible("tukiringo");
+    });
+  });
 
   describe("文月配列", () => {
     test("変換できること", () => {
