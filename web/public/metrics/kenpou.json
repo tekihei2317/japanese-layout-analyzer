@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "corpus": {
+    "id": "kenpou",
+    "name": "kenpou",
+    "source": "kenpou.txt"
+  },
+  "metrics": [
+    {
+      "key": "efficiency",
+      "label": "打鍵効率",
+      "unit": "ratio",
+      "format": "ratio",
+      "group": "1-gram"
+    },
+    {
+      "key": "sfb",
+      "label": "SFBs",
+      "unit": "%",
+      "format": "percent",
+      "group": "2-gram"
+    },
+    {
+      "key": "sfs",
+      "label": "SFSs",
+      "unit": "%",
+      "format": "percent",
+      "group": "2-gram"
+    },
+    {
+      "key": "scissors",
+      "label": "Scissors",
+      "unit": "%",
+      "format": "percent",
+      "group": "2-gram"
+    },
+    {
+      "key": "hand",
+      "label": "Hand use (L)",
+      "unit": "%",
+      "format": "percent",
+      "group": "load"
+    }
+  ],
+  "layouts": [
+    {
+      "id": "qwerty",
+      "name": "qwerty",
+      "values": {
+        "efficiency": 1.7087155963302751,
+        "sfb": 0.07128169979437972,
+        "sfs": 0.09603658536585366,
+        "scissors": 0.010966415352981495,
+        "hand": 0.36577181208053694
+      }
+    }
+  ]
+}

@@ -10,6 +10,11 @@
       "id": "news",
       "name": "ニュース",
       "file": "/metrics/news.json"
+    },
+    {
+      "id": "kenpou",
+      "name": "kenpou",
+      "file": "/metrics/kenpou.json"
     }
   ]
 }
