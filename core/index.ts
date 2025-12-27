@@ -1,13 +1,14 @@
+export { getRomanTable, type LayoutId, type RomanTable } from "./roman-table";
+
 export {
   createStrokeStepper as createStrokeProcessor,
   createStrokeStepperForLayout as createStrokeProcessorForLayout,
-  getRomanTable,
-  type LayoutId,
-  type RomanTable,
-} from "./roman-table";
+} from "./stroke-to-kana";
 
-export { normalizeText, findShortestKeystrokes } from "./kana-to-stroke";
-
-export type { Rule, StepState, StepResult } from "./stroke-types";
+export {
+  normalizeText,
+  findShortestKeystrokes,
+  findShortestKeystrokesDetailed,
+} from "./kana-to-stroke";
 
 export { computeMetrics } from "./metrics";

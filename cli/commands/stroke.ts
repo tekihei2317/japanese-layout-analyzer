@@ -1,27 +1,29 @@
 import { promises as fs } from "node:fs";
-import type {
-  LayoutId,
-  RomanTable,
-  Rule,
-} from "@japanese-layout-analyzer/core";
+import type { LayoutId } from "@japanese-layout-analyzer/core";
 import {
   getRomanTable,
-  findShortestKeystrokes,
+  findShortestKeystrokesDetailed,
   normalizeText,
 } from "@japanese-layout-analyzer/core";
 
 export const strokeCommand = async (file: string, layoutId: string) => {
   const table = getRomanTable(layoutId as LayoutId);
-  const rules = table as RomanTable as Rule[];
   const inputText = await fs.readFile(file, "utf8");
   const normalized = normalizeText(inputText);
-  const keystrokes = findShortestKeystrokes(rules, normalized);
+  const result = findShortestKeystrokesDetailed(table, normalized);
 
-  if (!keystrokes) {
+  if (!result.ok) {
     console.error("Failed to convert text to keystrokes.");
+    console.error(
+      `Stopped at ${result.farthestPos}/${
+        normalized.length
+      }: ${normalized.slice(0, result.farthestPos)}`
+    );
+    console.error(`Pending buffer: ${result.state.buffer || "(empty)"}`);
+    console.error(`Partial keystrokes: ${result.partialStrokes}`);
     process.exitCode = 1;
     return;
   }
 
-  console.log(keystrokes);
+  console.log(result.strokes);
 };

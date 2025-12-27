@@ -25,9 +25,38 @@
 
 ## 配列ごとのチェック
 
-ストロークの変換で詰まるところがあると思うので、一つずつ実行してみます。
+### テキストでチェック
 
-間違った配列のIDを指定したときにクラッシュするので直さないと。引数のバリデーションとかやってないのかな。
+間違った配列のIDを指定したときにクラッシュするのであとで直す。
+
+まずは一番短い憲法でチェックする。除外する文字も決めないといけない。
+
+記号は`、。`は入れると思うけど、かっこと中黒は除外することになると思う（理由は、文字を分析したい、定義されていない配列がある、キー範囲が増える等）。
+
+ストロークに変換したあと、かなに逆変換して正しいことを確認しよう。
+
+```bash
+bun run cli stroke data/texts/kenpou.txt qwerty
+```
+
+まずは、とりあえず変換できることを確認する。
+
+- [x] qwerty
+- [x] oonisi
+- [x] tsuki-2-263
+- [ ] hana
+- [ ] buna
+- [ ] mizunara
+- [ ] yukika
+- [ ] fumiduki
+- [ ] hideduki_v4.1
+- [ ] hybrid-tsuki
+- [ ] tukiringo
+- [ ] tsukimisou
+- [ ] burichutoro-20221015
+### ストロークへの変換
+
+ストロークへの変換で詰まるところがあると思うので、一つずつテストを書いていきます。
 
 - [x] qwerty
 - [x] oonisi
@@ -42,11 +71,6 @@
 - [x] tukiringo
 - [ ] tsukimisou
 - [ ] burichutoro-20221015
-
-```bash
-bun run cli stroke data/texts/mekurabudou.txt qwerty
-bun run cli stroke data/texts/mekurabudou.txt oonisi
-```
 
 ```bash
 bun run cli export --corpus mekurabudou --layout qwerty

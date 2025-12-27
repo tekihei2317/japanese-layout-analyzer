@@ -1,10 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import type {
-  LayoutId,
-  RomanTable,
-  Rule,
-} from "@japanese-layout-analyzer/core";
+import type { LayoutId } from "@japanese-layout-analyzer/core";
 import {
   getRomanTable,
   normalizeText,
@@ -24,10 +20,9 @@ export const analyzeCommand = async (
   }
 
   const table = getRomanTable(layout as LayoutId);
-  const rules = table as RomanTable as Rule[];
   const inputText = await fs.readFile(corpusOrFile, "utf8");
   const normalized = normalizeText(inputText);
-  const keystrokes = findShortestKeystrokes(rules, normalized);
+  const keystrokes = findShortestKeystrokes(table, normalized);
 
   if (!keystrokes) {
     console.error("Failed to convert text to keystrokes.");

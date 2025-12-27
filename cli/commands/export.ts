@@ -1,10 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import type {
-  LayoutId,
-  RomanTable,
-  Rule,
-} from "@japanese-layout-analyzer/core";
+import type { LayoutId } from "@japanese-layout-analyzer/core";
 import {
   getRomanTable,
   findShortestKeystrokes,
@@ -161,9 +157,8 @@ const ensureMetrics = (metrics: MetricDefinition[]) => {
 
 const computeLayoutMetrics = (text: string, layoutId: string) => {
   const table = getRomanTable(layoutId as LayoutId);
-  const rules = table as RomanTable as Rule[];
   const normalized = normalizeText(text);
-  const keystrokes = findShortestKeystrokes(rules, normalized);
+  const keystrokes = findShortestKeystrokes(table, normalized);
 
   if (!keystrokes) {
     throw new Error(
