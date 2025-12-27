@@ -44,8 +44,6 @@ export function getRomanTable(layoutId: LayoutId): RomanTable {
   return layoutTables[layoutId];
 }
 
-type PrefixInfo = { exactIndex: number | null; canGrow: boolean };
-
 export type ImeState = { buffer: string; matchedIndex: number | null };
 
 type StepperInput = {
@@ -62,7 +60,6 @@ type StrokeStepper = (input: StepperInput) => StepperOutput;
 
 // 参考: https://github.com/tomoemon/google_input
 export function createStrokeStepper(rules: RomanTable): StrokeStepper {
-  const prefixMap = new Map<string, PrefixInfo>();
   const prefixCounts = new Map<string, number>();
   const exactMap = new Map<string, number>();
 
@@ -71,112 +68,58 @@ export function createStrokeStepper(rules: RomanTable): StrokeStepper {
     for (let i = 1; i <= rule.input.length; i += 1) {
       const prefix = rule.input.slice(0, i);
       prefixCounts.set(prefix, (prefixCounts.get(prefix) ?? 0) + 1);
-      const info = prefixMap.get(prefix) ?? {
-        exactIndex: null,
-        canGrow: false,
-      };
-      if (i === rule.input.length && info.exactIndex === null) {
-        info.exactIndex = index;
-      }
-      if (i < rule.input.length) {
-        info.canGrow = true;
-      }
-      prefixMap.set(prefix, info);
     }
   });
 
-  const convertInput = (text: string) => {
-    const index = exactMap.get(text);
-    return index !== undefined ? rules[index].output : text;
+  const lookUpPrefix = (text: string) => {
+    for (let i = text.length; i > 0; i -= 1) {
+      const prefix = text.slice(0, i);
+      const index = exactMap.get(prefix);
+      if (index !== undefined) {
+        const fixed = (prefixCounts.get(prefix) ?? 0) === 1;
+        return { rule: rules[index], keyLength: i, fixed };
+      }
+    }
+    return { rule: null, keyLength: 0, fixed: false };
   };
 
   const step = ({ state, key }: StepperInput): StepperOutput => {
-    const input = state.buffer + key;
-    const info = prefixMap.get(input);
-    const tmpFixed = info?.exactIndex ?? state.matchedIndex;
+    let input = state.buffer + key;
+    let output = "";
 
-    if (info?.canGrow) {
-      // 候補が複数ある場合は確定を保留する
-      return { state: { buffer: input, matchedIndex: tmpFixed }, output: "" };
-    }
+    while (input.length > 0) {
+      const lookup = lookUpPrefix(input);
+      if (lookup.rule) {
+        const remaining = input.slice(lookup.keyLength);
+        if (!lookup.fixed && remaining.length === 0) {
+          return { output, state: { buffer: input, matchedIndex: null } };
+        }
+        output += lookup.rule.output;
+        input = (lookup.rule.nextInput ?? "") + remaining;
+        continue;
+      }
 
-    if (tmpFixed !== null) {
-      // 確定する
-      const rule = rules[tmpFixed];
-      const isExact = input.length === rule.input.length;
-      const nextBuffer = isExact
-        ? rule.nextInput ?? ""
-        : (rule.nextInput ?? "") + key;
-      return {
-        output: rule.output,
-        state: { buffer: nextBuffer, matchedIndex: null },
-      };
-    }
+      const prefixCount = prefixCounts.get(input) ?? 0;
+      if (prefixCount > 0) {
+        return { output, state: { buffer: input, matchedIndex: null } };
+      }
 
-    if (state.buffer !== "") {
-      const left = state.buffer;
-      const right = key;
+      const left = input.slice(0, -1);
+      const right = input.slice(-1);
       const rightIndex = exactMap.get(right);
       const rightRule = rightIndex !== undefined ? rules[rightIndex] : null;
-
-      if (rightRule?.nextInput) {
+      if (rightRule?.nextInput && left) {
         const combined = left + rightRule.nextInput;
-        const combinedPrefixes = prefixCounts.get(combined) ?? 0;
-        if (combinedPrefixes > 0) {
-          return { output: "", state: { buffer: combined, matchedIndex: null } };
+        if ((prefixCounts.get(combined) ?? 0) > 0) {
+          return { output, state: { buffer: combined, matchedIndex: null } };
         }
       }
 
-      for (let i = 1; i < left.length; i += 1) {
-        const leftPrefix = left.slice(0, -i);
-        const leftSuffix = left.slice(-i);
-        const combined = leftSuffix + right;
-        const combinedPrefixes = prefixCounts.get(combined) ?? 0;
-        if (combinedPrefixes >= 2) {
-          return {
-            output: convertInput(leftPrefix),
-            state: { buffer: combined, matchedIndex: null },
-          };
-        }
-        const combinedIndex = exactMap.get(combined);
-        if (combinedIndex !== undefined) {
-          const combinedRule = rules[combinedIndex];
-          return {
-            output: convertInput(leftPrefix) + combinedRule.output,
-            state: {
-              buffer: combinedRule.nextInput ?? "",
-              matchedIndex: null,
-            },
-          };
-        }
-      }
-
-      const leftOutput = convertInput(left);
-      const rightPrefixes = prefixCounts.get(right) ?? 0;
-      if (rightPrefixes >= 2) {
-        return {
-          output: leftOutput,
-          state: { buffer: right, matchedIndex: null },
-        };
-      }
-
-      if (rightRule) {
-        return {
-          output: leftOutput + rightRule.output,
-          state: {
-            buffer: rightRule.nextInput ?? "",
-            matchedIndex: null,
-          },
-        };
-      }
-
-      return {
-        output: leftOutput,
-        state: { buffer: right, matchedIndex: null },
-      };
+      output += input[0];
+      input = input.slice(1);
     }
 
-    return { output: "", state: { buffer: "", matchedIndex: null } };
+    return { output, state: { buffer: "", matchedIndex: null } };
   };
 
   return step;
