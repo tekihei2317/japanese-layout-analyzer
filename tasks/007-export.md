@@ -18,36 +18,73 @@
   - [x] 羅生門
   - [x] 緋のエチュード
 - [x] `jla export`コマンドを実装する
-- [ ] 配列ごとに、正しく変換できることを確認する
+- [x] 配列ごとに、正しく変換できることを確認する
   - ローマ字は多分できると思うけど、それ以外は色々詰まると思う
 - [ ] トップページに繋ぎ込む
   - 必要なデータを整理して、CLIを修正する
 
 ## 配列ごとのチェック
 
-ストロークの変換で詰まるところがあると思うので、一つずつ実行してみます。
+### めくらぶどうでチェック
 
-間違った配列のIDを指定したときにクラッシュするので直さないと。引数のバリデーションとかやってないのかな。
+TODO: とりあえず日本国憲法は全部できたので、Webの方全部作ってから対応コーパスを増やしていく。
+
+### 日本国憲法でチェック
+
+間違った配列のIDを指定したときにクラッシュするのであとで直す。
+
+まずは一番短い憲法でチェックする。除外する文字も決めないといけない。
+
+記号は`、。`は入れると思うけど、かっこと中黒は除外することになると思う（理由は、文字を分析したい、定義されていない配列がある、キー範囲が増える等）。
+
+ストロークに変換したあと、かなに逆変換して正しいことを確認しよう。←これは自明なのでいいか
+
+```bash
+ID=qwerty
+bun run cli stroke data/texts/kenpou.txt $ID > debug/kenpou-$ID-strokes.txt
+```
+
+まずは、とりあえず変換できることを確認する。
+
+yukikaの「づ」が打ててなさそうなので、テストする。ローマ字テーブルの定義ミスだった。
+
+月林檎の数字でループしていたので、数字は削除。何用だったんだろう？
+
+ハイブリッド月配列で、確定させないと句読点が打てない問題があるので、対策を考える。これは月見草やブリ中トロも同じ問題がある。
+
+どのようにカウントするかと、ストロークにどう反映させるかを決める必要がある。
 
 - [x] qwerty
 - [x] oonisi
-- [ ] tsuki-2-263
-- [ ] buna
-- burichutoro-20221015
-- fumiduki
-- hana
-- hideduki_v4.1
-- hybrid-tsuki
-- mizunara
-- tsukimisou
-- tukiringo
-- yukika
+- [x] tsuki-2-263
+- [x] hana
+- [x] buna
+- [x] mizunara
+- [x] yukika
+- [x] fumiduki
+- [x] hideduki_v4.1
+- [x] hybrid-tsuki
+- [x] tukiringo
+- [x] tsukimisou
+- [x] burichutoro-20221015
 
+### ストロークへの変換
 
-```bash
-bun run cli stroke data/texts/mekurabudou.txt qwerty
-bun run cli stroke data/texts/mekurabudou.txt oonisi
-```
+ストロークへの変換で詰まるところがあると思うので、一つずつテストを書いていきます。
+
+- [x] qwerty
+- [x] oonisi
+- [x] tsuki-2-263
+- [x] hana
+- [x] buna
+- [x] mizunara
+- [x] yukika
+- [x] fumiduki
+- [x] hideduki_v4.1
+- [x] hybrid-tsuki
+- [x] tukiringo
+- [ ] tsukimisou
+- [ ] burichutoro-20221015
 
 ```bash
 bun run cli export --corpus mekurabudou --layout qwerty

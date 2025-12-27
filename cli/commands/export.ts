@@ -1,10 +1,12 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import type { LayoutId, RomanTable } from "@japanese-layout-analyzer/core";
-import { getRomanTable } from "@japanese-layout-analyzer/core";
-import { computeMetrics } from "../analysis-utils";
-import type { Rule } from "../stroke-types";
-import { findShortestKeystrokes, normalizeText } from "../stroke-utils";
+import type { LayoutId } from "@japanese-layout-analyzer/core";
+import {
+  getRomanTable,
+  findShortestKeystrokes,
+  normalizeText,
+  computeMetrics,
+} from "@japanese-layout-analyzer/core";
 import { listLayouts } from "./layout";
 
 type MetricDefinition = {
@@ -36,11 +38,29 @@ type ExportOptions = {
 };
 
 const defaultMetrics: MetricDefinition[] = [
-  { key: "efficiency", label: "打鍵効率", unit: "ratio", format: "ratio", group: "1-gram" },
+  {
+    key: "efficiency",
+    label: "打鍵効率",
+    unit: "ratio",
+    format: "ratio",
+    group: "1-gram",
+  },
   { key: "sfb", label: "SFBs", unit: "%", format: "percent", group: "2-gram" },
   { key: "sfs", label: "SFSs", unit: "%", format: "percent", group: "2-gram" },
-  { key: "scissors", label: "Scissors", unit: "%", format: "percent", group: "2-gram" },
-  { key: "hand", label: "Hand use (L)", unit: "%", format: "percent", group: "load" },
+  {
+    key: "scissors",
+    label: "Scissors",
+    unit: "%",
+    format: "percent",
+    group: "2-gram",
+  },
+  {
+    key: "hand",
+    label: "Hand use (L)",
+    unit: "%",
+    format: "percent",
+    group: "load",
+  },
 ];
 
 const ensureDir = async (dir: string) => {
@@ -52,7 +72,11 @@ const readJson = async <T>(filePath: string): Promise<T | null> => {
     const contents = await fs.readFile(filePath, "utf8");
     return JSON.parse(contents) as T;
   } catch (error) {
-    if (error instanceof Error && "code" in error && (error as NodeJS.ErrnoException).code === "ENOENT") {
+    if (
+      error instanceof Error &&
+      "code" in error &&
+      (error as NodeJS.ErrnoException).code === "ENOENT"
+    ) {
       return null;
     }
     throw error;
@@ -80,7 +104,9 @@ const resolveCorpusTargets = async (
   if (!option || option === "all") {
     const textsDir = path.join(process.cwd(), "data", "texts");
     const entries = await fs.readdir(textsDir, { withFileTypes: true });
-    const files = entries.filter((entry) => entry.isFile() && entry.name.endsWith(".txt"));
+    const files = entries.filter(
+      (entry) => entry.isFile() && entry.name.endsWith(".txt")
+    );
     for (const entry of files) {
       const id = entry.name.replace(/\.txt$/, "");
       const filePath = path.join(textsDir, entry.name);
@@ -131,16 +157,19 @@ const ensureMetrics = (metrics: MetricDefinition[]) => {
 
 const computeLayoutMetrics = (text: string, layoutId: string) => {
   const table = getRomanTable(layoutId as LayoutId);
-  const rules = table as RomanTable as Rule[];
   const normalized = normalizeText(text);
-  const keystrokes = findShortestKeystrokes(rules, normalized);
+  const keystrokes = findShortestKeystrokes(table, normalized);
 
   if (!keystrokes) {
-    throw new Error(`Failed to convert text to keystrokes for layout: ${layoutId}`);
+    throw new Error(
+      `Failed to convert text to keystrokes for layout: ${layoutId}`
+    );
   }
 
   const metrics = computeMetrics(keystrokes);
-  const efficiency = normalized.length ? keystrokes.length / normalized.length : 0;
+  const efficiency = normalized.length
+    ? keystrokes.length / normalized.length
+    : 0;
 
   return {
     efficiency,
@@ -169,19 +198,24 @@ export const exportCommand = async (options: ExportOptions) => {
   const layoutTargets = await resolveLayouts(options.layout);
 
   const indexPath = path.join(outDir, "index.json");
-  const corpusIndex =
-    (await readJson<CorpusIndex>(indexPath)) ?? { schemaVersion: 1, corpora: [] };
+  const corpusIndex = (await readJson<CorpusIndex>(indexPath)) ?? {
+    schemaVersion: 1,
+    corpora: [],
+  };
 
   for (const corpus of corpusTargets) {
     const corpusFileName = `${corpus.id}.json`;
     const corpusFilePath = path.join(outDir, corpusFileName);
-    const corpusData =
-      (await readJson<CorpusMetrics>(corpusFilePath)) ?? {
-        schemaVersion: 1,
-        corpus: { id: corpus.id, name: corpus.name, source: path.basename(corpus.filePath) },
-        metrics: [...defaultMetrics],
-        layouts: [],
-      };
+    const corpusData = (await readJson<CorpusMetrics>(corpusFilePath)) ?? {
+      schemaVersion: 1,
+      corpus: {
+        id: corpus.id,
+        name: corpus.name,
+        source: path.basename(corpus.filePath),
+      },
+      metrics: [...defaultMetrics],
+      layouts: [],
+    };
 
     corpusData.corpus = {
       ...corpusData.corpus,
@@ -195,7 +229,9 @@ export const exportCommand = async (options: ExportOptions) => {
 
     for (const layoutId of layoutTargets) {
       const values = computeLayoutMetrics(text, layoutId);
-      const existing = corpusData.layouts.find((entry) => entry.id === layoutId);
+      const existing = corpusData.layouts.find(
+        (entry) => entry.id === layoutId
+      );
       if (existing) {
         existing.values = { ...existing.values, ...values };
       } else {
@@ -205,13 +241,19 @@ export const exportCommand = async (options: ExportOptions) => {
 
     await writeJson(corpusFilePath, corpusData);
 
-    const indexEntry = corpusIndex.corpora.find((entry) => entry.id === corpus.id);
+    const indexEntry = corpusIndex.corpora.find(
+      (entry) => entry.id === corpus.id
+    );
     const fileRef = `/metrics/${corpusFileName}`;
     if (indexEntry) {
       indexEntry.name = corpus.name;
       indexEntry.file = fileRef;
     } else {
-      corpusIndex.corpora.push({ id: corpus.id, name: corpus.name, file: fileRef });
+      corpusIndex.corpora.push({
+        id: corpus.id,
+        name: corpus.name,
+        file: fileRef,
+      });
     }
   }
 

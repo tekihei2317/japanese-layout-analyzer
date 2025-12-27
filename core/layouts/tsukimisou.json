@@ -5771,5 +5771,13 @@
   {
     "input": "ゅぼs",
     "output": "ぐぐ"
+  },
+  {
+    "input": " e",
+    "output": "、"
+  },
+  {
+    "input": " f",
+    "output": "。"
   }
 ]

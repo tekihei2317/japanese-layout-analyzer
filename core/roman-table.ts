@@ -29,7 +29,7 @@ const layoutTables = {
   "tsuki-2-263": tsukiTable as RomanTable,
   yukika: yukikaTable as RomanTable,
   mizunara: mizunaraTable as RomanTable,
-  hybridTsuki: hybridTsukiTable as RomanTable,
+  "hybrid-tsuki": hybridTsukiTable as RomanTable,
   buna: bunaTable as RomanTable,
   hideduki: hidedukiTable as RomanTable,
   "burichutoro-20221015": burichutoroTable as RomanTable,
@@ -44,142 +44,29 @@ export function getRomanTable(layoutId: LayoutId): RomanTable {
   return layoutTables[layoutId];
 }
 
-function findEntry(table: RomanTable, text: string): TableEntry | undefined {
-  return table.find((entry) => entry.input === text);
-}
+const jisKeyboardKeys = "1234567890-^¥qwertyuiop@[asdfghjkl;:]zxcvbnm,./_";
+// 月林檎はCapsLock/Control位置をバッククウォートにして使う
+const tsukiringoException = "\\";
+// 句読点とシフトを共有している配列では、句読点の前後にスペースを入れて確定することにする
+// 詳細はdocs/shift-sharing-layout.mdを参照
+const shiftSharingLayoutException = " ";
+const validKeys = new Set(
+  (jisKeyboardKeys + tsukiringoException + shiftSharingLayoutException).split(
+    ""
+  )
+);
 
-function findEntriesByPrefix(table: RomanTable, prefix: string): TableEntry[] {
-  return table.filter((entry) => entry.input.startsWith(prefix));
-}
-
-function convertRoman(table: RomanTable, text: string): string {
-  const rule = findEntry(table, text);
-  return rule ? rule.output : text;
-}
-
-type ProcessStrokeInput = { buffer: string; pressedKey: string };
-type ProcessStrokeOutput = { output: string; newBuffer: string };
-type Processor = (input: ProcessStrokeInput) => ProcessStrokeOutput;
-
-// 参考: https://github.com/tomoemon/google_input
-export function createStrokeProcessor(table: RomanTable): Processor {
-  let inputBuffer = "";
-  let tmpFixed: TableEntry | null = null;
-  let nextCandidates: TableEntry[] = [];
-
-  return function processStroke({
-    buffer,
-    pressedKey,
-  }: ProcessStrokeInput): ProcessStrokeOutput {
-    if (buffer !== inputBuffer) {
-      inputBuffer = buffer;
-      tmpFixed = null;
-      nextCandidates = [];
-    }
-
-    const candidates = nextCandidates.length ? nextCandidates : table;
-    const input = inputBuffer + pressedKey;
-    let localTmpFixed = tmpFixed;
-    const localNextCandidates: TableEntry[] = [];
-
-    for (const rule of candidates) {
-      if (rule.input.startsWith(input)) {
-        if (rule.input === input) {
-          localTmpFixed = rule;
-        } else {
-          localNextCandidates.push(rule);
-        }
+/**
+ * ローマ字テーブルから入力に使うキーを集める
+ */
+export function collectKeys(rules: RomanTable) {
+  const keys = new Set<string>();
+  rules.forEach((rule) => {
+    for (const ch of rule.input) {
+      if (validKeys.has(ch)) {
+        keys.add(ch);
       }
     }
-
-    if (localNextCandidates.length === 0) {
-      if (localTmpFixed) {
-        if (localTmpFixed.input.length === input.length) {
-          inputBuffer = localTmpFixed.nextInput ?? "";
-        } else {
-          inputBuffer = (localTmpFixed.nextInput ?? "") + pressedKey;
-        }
-        tmpFixed = null;
-        nextCandidates = [];
-        return { output: localTmpFixed.output, newBuffer: inputBuffer };
-      }
-
-      const left = input.slice(0, -1);
-      const right = input.slice(-1);
-      const rightExact = findEntry(table, right);
-      const rightPrefixes = findEntriesByPrefix(table, right);
-
-      if (rightExact?.nextInput) {
-        const combined = left + rightExact.nextInput;
-        const combinedPrefixes = findEntriesByPrefix(table, combined);
-        if (combinedPrefixes.length > 0) {
-          inputBuffer = combined;
-          tmpFixed = null;
-          nextCandidates = combinedPrefixes;
-          return { output: "", newBuffer: inputBuffer };
-        }
-      }
-
-      for (let i = 1; i < left.length; i += 1) {
-        const leftPrefix = left.slice(0, -i);
-        const leftSuffix = left.slice(-i);
-        const combined = leftSuffix + right;
-        const combinedPrefixes = findEntriesByPrefix(table, combined);
-        if (combinedPrefixes.length >= 2) {
-          inputBuffer = combined;
-          tmpFixed = null;
-          nextCandidates = combinedPrefixes;
-          return {
-            output: convertRoman(table, leftPrefix),
-            newBuffer: inputBuffer,
-          };
-        }
-        const combinedExact = findEntry(table, combined);
-        if (combinedExact) {
-          inputBuffer = combinedExact.nextInput ?? "";
-          tmpFixed = null;
-          nextCandidates = [];
-          return {
-            output: convertRoman(table, leftPrefix) + combinedExact.output,
-            newBuffer: inputBuffer,
-          };
-        }
-      }
-
-      const leftOutput = convertRoman(table, left);
-
-      if (rightPrefixes.length >= 2) {
-        inputBuffer = right;
-        tmpFixed = null;
-        nextCandidates = rightPrefixes;
-        return { output: leftOutput, newBuffer: inputBuffer };
-      }
-
-      if (rightExact) {
-        inputBuffer = rightExact.nextInput ?? "";
-        tmpFixed = null;
-        nextCandidates = [];
-        return {
-          output: leftOutput + rightExact.output,
-          newBuffer: inputBuffer,
-        };
-      }
-
-      inputBuffer = right;
-      tmpFixed = null;
-      nextCandidates = [];
-      return { output: leftOutput, newBuffer: inputBuffer };
-    }
-
-    inputBuffer = input;
-    tmpFixed = localTmpFixed ?? null;
-    nextCandidates = localNextCandidates;
-    return { output: "", newBuffer: inputBuffer };
-  };
+  });
+  return Array.from(keys);
 }
-
-export function createStrokeProcessorForLayout(layoutId: LayoutId): Processor {
-  return createStrokeProcessor(getRomanTable(layoutId));
-}
-
-export const processStroke = createStrokeProcessorForLayout("qwerty");

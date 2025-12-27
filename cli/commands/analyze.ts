@@ -1,11 +1,13 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import type { LayoutId, RomanTable } from "@japanese-layout-analyzer/core";
-import { getRomanTable } from "@japanese-layout-analyzer/core";
+import type { LayoutId } from "@japanese-layout-analyzer/core";
+import {
+  getRomanTable,
+  normalizeText,
+  findShortestKeystrokes,
+  computeMetrics,
+} from "@japanese-layout-analyzer/core";
 import type { Format } from "../types";
-import type { Rule } from "../stroke-types";
-import { computeMetrics } from "../analysis-utils";
-import { findShortestKeystrokes, normalizeText } from "../stroke-utils";
 
 export const analyzeCommand = async (
   corpusOrFile: string,
@@ -18,10 +20,9 @@ export const analyzeCommand = async (
   }
 
   const table = getRomanTable(layout as LayoutId);
-  const rules = table as RomanTable as Rule[];
   const inputText = await fs.readFile(corpusOrFile, "utf8");
   const normalized = normalizeText(inputText);
-  const keystrokes = findShortestKeystrokes(rules, normalized);
+  const keystrokes = findShortestKeystrokes(table, normalized);
 
   if (!keystrokes) {
     console.error("Failed to convert text to keystrokes.");
@@ -59,7 +60,9 @@ export const analyzeCommand = async (
   console.log(`  Sci: ${(metrics.scissors * 100).toFixed(2)}%`);
   console.log("");
   console.log(
-    `  LH/RH: ${(metrics.handLoad.left * 100).toFixed(2)}% | ${(metrics.handLoad.right * 100).toFixed(2)}%`
+    `  LH/RH: ${(metrics.handLoad.left * 100).toFixed(2)}% | ${(
+      metrics.handLoad.right * 100
+    ).toFixed(2)}%`
   );
   console.log(
     `  Row: ${metrics.rowLoad

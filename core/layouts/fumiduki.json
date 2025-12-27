@@ -20,7 +20,7 @@
   },
   {
     "input": "t",
-    "output": "よ"
+    "output": "ょ"
   },
   {
     "input": "y",
@@ -55,11 +55,6 @@
     "nextInput": "は"
   },
   {
-    "input": "s",
-    "output": "",
-    "nextInput": "゛"
-  },
-  {
     "input": "d",
     "output": "",
     "nextInput": "★"
@@ -88,11 +83,6 @@
     "input": "k",
     "output": "",
     "nextInput": "☆"
-  },
-  {
-    "input": "l",
-    "output": "",
-    "nextInput": "゛"
   },
   {
     "input": ";",
@@ -248,99 +238,99 @@
     "output": "わ"
   },
   {
-    "input": "かl",
+    "input": "lw",
     "output": "げ"
   },
   {
-    "input": "しl",
+    "input": "le",
     "output": "じ"
   },
   {
-    "input": "てl",
+    "input": "lr",
     "output": "ぞ"
   },
   {
-    "input": "つs",
+    "input": "sy",
     "output": "づ"
   },
   {
-    "input": "いs",
+    "input": "si",
     "output": "ぶ"
   },
   {
-    "input": "まs",
+    "input": "sp",
     "output": "べ"
   },
   {
-    "input": "はl",
+    "input": "la",
     "output": "ば"
   },
   {
-    "input": "゛l",
+    "input": "ls",
     "output": "ざ"
   },
   {
-    "input": "★l",
+    "input": "ld",
     "output": "ぎ"
   },
   {
-    "input": "たl",
+    "input": "lf",
     "output": "だ"
   },
   {
-    "input": "とl",
+    "input": "lg",
     "output": "ど"
   },
   {
-    "input": "くs",
+    "input": "sh",
     "output": "ぐ"
   },
   {
-    "input": "うs",
+    "input": "sj",
     "output": "ゔ"
   },
   {
-    "input": "☆s",
+    "input": "sk",
     "output": "ご"
   },
   {
-    "input": "せl",
+    "input": "lx",
     "output": "ぜ"
   },
   {
-    "input": "すl",
+    "input": "lc",
     "output": "ず"
   },
   {
-    "input": "なl",
+    "input": "lv",
     "output": "ぼ"
   },
   {
-    "input": "るs",
+    "input": "sm",
     "output": "ぢ"
   },
   {
-    "input": "、s",
+    "input": "s,",
     "output": "び"
   },
   {
-    "input": "いl",
+    "input": "li",
     "output": "ぷ"
   },
   {
-    "input": "まl",
+    "input": "lp",
     "output": "ぺ"
   },
   {
-    "input": "はs",
+    "input": "sa",
     "output": "ぱ"
   },
   {
-    "input": "なs",
+    "input": "sv",
     "output": "ぽ"
   },
   {
-    "input": "、l",
+    "input": "l,",
     "output": "ぴ"
   },
   {
@@ -362,5 +352,13 @@
   {
     "input": "☆;",
     "output": "ぇ"
+  },
+  {
+    "input": "☆o",
+    "output": "ゃ"
+  },
+  {
+    "input": "☆l",
+    "output": "ゅ"
   }
 ]

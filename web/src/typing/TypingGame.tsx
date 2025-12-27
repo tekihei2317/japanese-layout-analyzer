@@ -47,7 +47,7 @@ export const TypingGame = () => {
     { id: "tsuki-2-263", label: "月配列2-263式" },
     { id: "yukika", label: "幸花配列" },
     { id: "mizunara", label: "ミズナラ配列" },
-    { id: "hybridTsuki", label: "ハイブリッド月配列" },
+    { id: "hybrid-tsuki", label: "ハイブリッド月配列" },
     { id: "buna", label: "ぶな配列" },
     { id: "hideduki", label: "英月配列" },
     { id: "burichutoro-20221015", label: "ブリ中トロ配列 2022/10/15版" },
