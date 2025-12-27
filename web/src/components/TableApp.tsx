@@ -13,7 +13,28 @@ type MetricDefinition = {
 type LayoutRow = {
   id: string;
   name: string;
-  values: Record<string, number>;
+  metrics: {
+    efficiency: number;
+    hand: number;
+    strokeMetrics: {
+      bigram: {
+        sfb: number;
+        scissors: number;
+      };
+      trigram: {
+        sfb: number;
+        sft: number;
+        alt: number;
+        altSfs: number;
+        rollIn: number;
+        rollOut: number;
+        oneHandIn: number;
+        oneHandOut: number;
+        redirect: number;
+        redirectSfs: number;
+      };
+    };
+  };
 };
 
 type CorpusPayload = {
@@ -23,8 +44,8 @@ type CorpusPayload = {
     name: string;
     source?: string;
   };
-  metrics: MetricDefinition[];
-  layouts: LayoutRow[];
+  metrics?: MetricDefinition[];
+  layouts: Record<string, { name: string; metrics: LayoutRow["metrics"] }>;
 };
 
 type CorpusIndex = {
@@ -45,6 +66,116 @@ const formatMetric = (value: number | undefined, metric: MetricDefinition) => {
     return value.toFixed(2);
   }
   return value.toLocaleString("en-US");
+};
+
+const displayMetrics: MetricDefinition[] = [
+  {
+    key: "efficiency",
+    label: "打鍵効率",
+    unit: "ratio",
+    format: "ratio",
+    group: "1-gram",
+  },
+  {
+    key: "sfb2",
+    label: "SFB (2-gram)",
+    unit: "%",
+    format: "percent",
+    group: "2-gram",
+  },
+  {
+    key: "scissors",
+    label: "Scissors",
+    unit: "%",
+    format: "percent",
+    group: "2-gram",
+  },
+  {
+    key: "sfb3",
+    label: "SFB (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "sfs3",
+    label: "SFS (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "alt3",
+    label: "ALT (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "roll3",
+    label: "ROLL (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "onehand3",
+    label: "ONEHAND (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "redirect3",
+    label: "REDIRECT (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "hand",
+    label: "Hand use (L)",
+    unit: "%",
+    format: "percent",
+    group: "load",
+  },
+  {
+    key: "inOut",
+    label: "In:out roll",
+    unit: "ratio",
+    format: "ratio",
+    group: "3-gram",
+  },
+];
+
+const metricValue = (row: LayoutRow, key: string) => {
+  const { strokeMetrics } = row.metrics;
+  if (key === "efficiency") return row.metrics.efficiency;
+  if (key === "hand") return row.metrics.hand;
+  if (key === "sfb2") return strokeMetrics.bigram.sfb;
+  if (key === "scissors") return strokeMetrics.bigram.scissors;
+  if (key === "sfb3") return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
+  if (key === "sfs3")
+    return strokeMetrics.trigram.altSfs + strokeMetrics.trigram.redirectSfs;
+  if (key === "alt3") return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
+  if (key === "roll3")
+    return strokeMetrics.trigram.rollIn + strokeMetrics.trigram.rollOut;
+  if (key === "onehand3")
+    return (
+      strokeMetrics.trigram.oneHandIn + strokeMetrics.trigram.oneHandOut
+    );
+  if (key === "redirect3")
+    return (
+      strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs
+    );
+  if (key === "inOut") {
+    const inCount =
+      strokeMetrics.trigram.rollIn + strokeMetrics.trigram.oneHandIn;
+    const outCount =
+      strokeMetrics.trigram.rollOut + strokeMetrics.trigram.oneHandOut;
+    return outCount ? inCount / outCount : 0;
+  }
+  return undefined;
 };
 
 export default function TableApp() {
@@ -95,8 +226,15 @@ export default function TableApp() {
     void loadCorpus();
   }, [index, selectedId]);
 
-  const metrics = data?.metrics ?? [];
-  const rows = data?.layouts ?? [];
+  const metrics = displayMetrics;
+  const rows = useMemo<LayoutRow[]>(() => {
+    if (!data?.layouts) return [];
+    return Object.entries(data.layouts).map(([id, entry]) => ({
+      id,
+      name: entry.name ?? id,
+      metrics: entry.metrics,
+    }));
+  }, [data]);
 
   const corpusLabel = useMemo(() => {
     if (!index || !selectedId) return "-";
@@ -107,8 +245,8 @@ export default function TableApp() {
     if (!sortKey) return rows;
     const direction = sortDirection === "asc" ? 1 : -1;
     return [...rows].sort((a, b) => {
-      const aValue = a.values[sortKey];
-      const bValue = b.values[sortKey];
+      const aValue = metricValue(a, sortKey);
+      const bValue = metricValue(b, sortKey);
       if (aValue === undefined && bValue === undefined) return 0;
       if (aValue === undefined) return 1;
       if (bValue === undefined) return -1;
@@ -216,7 +354,7 @@ export default function TableApp() {
                   </td>
                   {metrics.map((metric) => (
                     <td key={metric.key} className="px-4 py-3 text-slate-600">
-                      {formatMetric(row.values[metric.key], metric)}
+                      {formatMetric(metricValue(row, metric.key), metric)}
                     </td>
                   ))}
                 </tr>

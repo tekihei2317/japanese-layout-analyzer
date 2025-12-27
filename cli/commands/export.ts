@@ -5,7 +5,8 @@ import {
   getRomanTable,
   findShortestKeystrokes,
   normalizeText,
-  computeMetrics,
+  computeStrokeMetrics,
+  computeHandLoad,
 } from "@japanese-layout-analyzer/core";
 import { listLayouts } from "./layout";
 
@@ -26,7 +27,17 @@ type CorpusMetrics = {
   schemaVersion: number;
   corpus: { id: string; name: string; source?: string };
   metrics: MetricDefinition[];
-  layouts: Array<{ id: string; name: string; values: Record<string, number> }>;
+  layouts: Record<
+    string,
+    {
+      name: string;
+      metrics: {
+        efficiency: number;
+        hand: number;
+        strokeMetrics: ReturnType<typeof computeStrokeMetrics>;
+      };
+    }
+  >;
 };
 
 type ExportOptions = {
@@ -45,8 +56,13 @@ const defaultMetrics: MetricDefinition[] = [
     format: "ratio",
     group: "1-gram",
   },
-  { key: "sfb", label: "SFBs", unit: "%", format: "percent", group: "2-gram" },
-  { key: "sfs", label: "SFSs", unit: "%", format: "percent", group: "2-gram" },
+  {
+    key: "sfb2",
+    label: "SFB (2-gram)",
+    unit: "%",
+    format: "percent",
+    group: "2-gram",
+  },
   {
     key: "scissors",
     label: "Scissors",
@@ -55,11 +71,60 @@ const defaultMetrics: MetricDefinition[] = [
     group: "2-gram",
   },
   {
+    key: "sfb3",
+    label: "SFB (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "sfs3",
+    label: "SFS (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "alt3",
+    label: "ALT (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "roll3",
+    label: "ROLL (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "onehand3",
+    label: "ONEHAND (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "redirect3",
+    label: "REDIRECT (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
     key: "hand",
     label: "Hand use (L)",
     unit: "%",
     format: "percent",
     group: "load",
+  },
+  {
+    key: "inOut",
+    label: "In:out roll",
+    unit: "ratio",
+    format: "ratio",
+    group: "3-gram",
   },
 ];
 
@@ -148,13 +213,6 @@ const resolveLayouts = async (option: string | undefined) => {
   return [option];
 };
 
-const ensureMetrics = (metrics: MetricDefinition[]) => {
-  const existing = new Set(metrics.map((metric) => metric.key));
-  defaultMetrics.forEach((metric) => {
-    if (!existing.has(metric.key)) metrics.push(metric);
-  });
-};
-
 const computeLayoutMetrics = (text: string, layoutId: string) => {
   const table = getRomanTable(layoutId as LayoutId);
   const normalized = normalizeText(text);
@@ -166,17 +224,16 @@ const computeLayoutMetrics = (text: string, layoutId: string) => {
     );
   }
 
-  const metrics = computeMetrics(keystrokes);
+  const strokeMetrics = computeStrokeMetrics(keystrokes);
+  const handLoad = computeHandLoad(keystrokes);
   const efficiency = normalized.length
     ? keystrokes.length / normalized.length
     : 0;
 
   return {
     efficiency,
-    sfb: metrics.sfb,
-    sfs: metrics.sfs,
-    scissors: metrics.scissors,
-    hand: metrics.handLoad.left,
+    hand: handLoad.left,
+    strokeMetrics,
   };
 };
 
@@ -214,7 +271,7 @@ export const exportCommand = async (options: ExportOptions) => {
         source: path.basename(corpus.filePath),
       },
       metrics: [...defaultMetrics],
-      layouts: [],
+      layouts: {},
     };
 
     corpusData.corpus = {
@@ -223,20 +280,18 @@ export const exportCommand = async (options: ExportOptions) => {
       name: corpus.name,
       source: corpusData.corpus.source ?? path.basename(corpus.filePath),
     };
-    ensureMetrics(corpusData.metrics);
+    corpusData.metrics = [...defaultMetrics];
+    if (!corpusData.layouts || Array.isArray(corpusData.layouts)) {
+      corpusData.layouts = {};
+    }
 
     const text = await fs.readFile(corpus.filePath, "utf8");
 
     for (const layoutId of layoutTargets) {
-      const values = computeLayoutMetrics(text, layoutId);
-      const existing = corpusData.layouts.find(
-        (entry) => entry.id === layoutId
-      );
-      if (existing) {
-        existing.values = { ...existing.values, ...values };
-      } else {
-        corpusData.layouts.push({ id: layoutId, name: layoutId, values });
-      }
+      const metrics = computeLayoutMetrics(text, layoutId);
+      const existing = corpusData.layouts[layoutId];
+      const name = existing?.name ?? layoutId;
+      corpusData.layouts[layoutId] = { name, metrics };
     }
 
     await writeJson(corpusFilePath, corpusData);

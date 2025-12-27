@@ -5,7 +5,7 @@ import {
   getRomanTable,
   normalizeText,
   findShortestKeystrokes,
-  computeMetrics,
+  computeStrokeMetrics,
 } from "@japanese-layout-analyzer/core";
 import type { Format } from "../types";
 
@@ -30,7 +30,8 @@ export const analyzeCommand = async (
     return;
   }
 
-  const metrics = computeMetrics(keystrokes);
+  const strokeMetrics = computeStrokeMetrics(keystrokes);
+  const sfs3 = strokeMetrics.trigram.altSfs + strokeMetrics.trigram.redirectSfs;
 
   if (options.format === "json") {
     const payload = {
@@ -38,15 +39,9 @@ export const analyzeCommand = async (
       corpusId: path.basename(corpusOrFile),
       unit: "ratio",
       metrics: {
-        sfbs: metrics.sfb,
-        sfss: metrics.sfs,
-        scissors: metrics.scissors,
-      },
-      distribution: {
-        handLoad: metrics.handLoad,
-        rowLoad: metrics.rowLoad,
-        columnLoad: metrics.columnLoad,
-        keyLoad: metrics.keyLoad,
+        sfbs: strokeMetrics.bigram.sfb,
+        sfss: sfs3,
+        scissors: strokeMetrics.bigram.scissors,
       },
     };
     console.log(JSON.stringify(payload, null, 2));
@@ -55,31 +50,7 @@ export const analyzeCommand = async (
 
   console.log(`layout: ${layout}`);
   console.log(`${path.basename(corpusOrFile)}:`);
-  console.log(`  SFB: ${(metrics.sfb * 100).toFixed(2)}%`);
-  console.log(`  SFS: ${(metrics.sfs * 100).toFixed(2)}%`);
-  console.log(`  Sci: ${(metrics.scissors * 100).toFixed(2)}%`);
-  console.log("");
-  console.log(
-    `  LH/RH: ${(metrics.handLoad.left * 100).toFixed(2)}% | ${(
-      metrics.handLoad.right * 100
-    ).toFixed(2)}%`
-  );
-  console.log(
-    `  Row: ${metrics.rowLoad
-      .map((value) => (value * 100).toFixed(1))
-      .join(" / ")}`
-  );
-  console.log(
-    `  Col: ${metrics.columnLoad.left
-      .map((value) => (value * 100).toFixed(1))
-      .join(" ")} | ${metrics.columnLoad.right
-      .map((value) => (value * 100).toFixed(1))
-      .join(" ")}`
-  );
-  console.log("  Key:");
-  metrics.keyLoad.forEach((row) => {
-    const left = row.slice(0, 5).map((value) => (value * 100).toFixed(1));
-    const right = row.slice(5).map((value) => (value * 100).toFixed(1));
-    console.log(`    ${left.join(" ")} | ${right.join(" ")}`);
-  });
+  console.log(`  SFB: ${(strokeMetrics.bigram.sfb * 100).toFixed(2)}%`);
+  console.log(`  SFS: ${(sfs3 * 100).toFixed(2)}%`);
+  console.log(`  Sci: ${(strokeMetrics.bigram.scissors * 100).toFixed(2)}%`);
 };

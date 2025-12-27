@@ -11,4 +11,4 @@ export {
   findShortestKeystrokesDetailed,
 } from "./kana-to-stroke";
 
-export { computeMetrics, computeStrokeMetrics } from "./metrics";
+export { computeStrokeMetrics, computeHandLoad } from "./metrics";

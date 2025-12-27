@@ -123,6 +123,8 @@ export type StrokeMetrics = {
   };
 };
 
+export type HandLoad = { left: number; right: number };
+
 function assertValidStrokeKeys(keys: string[]) {
   for (const key of keys) {
     if (!allowedStrokeKeys.has(key)) {
@@ -312,5 +314,25 @@ export function computeStrokeMetrics(strokes: string): StrokeMetrics {
   return {
     bigram: computeStrokeBigramMetrics(keys),
     trigram: computeStrokeTrigramMetrics(keys),
+  };
+}
+
+export function computeHandLoad(strokes: string): HandLoad {
+  const keys = Array.from(strokes);
+  assertValidStrokeKeys(keys);
+  let leftCount = 0;
+  let rightCount = 0;
+  for (const key of keys) {
+    const hand = handOf(key);
+    if (hand === "L") {
+      leftCount += 1;
+    } else {
+      rightCount += 1;
+    }
+  }
+  const denom = keys.length || 1;
+  return {
+    left: leftCount / denom,
+    right: rightCount / denom,
   };
 }
