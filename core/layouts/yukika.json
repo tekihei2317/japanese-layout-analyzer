@@ -216,7 +216,8 @@
   },
   {
     "input": "★j",
-    "output": "つ"
+    "output": "",
+    "nextInput": "つ"
   },
   {
     "input": "★k",

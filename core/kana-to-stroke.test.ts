@@ -59,18 +59,18 @@ describe(findShortestKeystrokes, () => {
   });
 
   describe("ハイブリッド月配列", () => {
-    const table = getRomanTable("hybridTsuki");
-    test.each(cases.hybridTsuki)("%p -> %p", (kana, expected) => {
+    const table = getRomanTable("hybrid-tsuki");
+    test.each(cases["hybrid-tsuki"])("%p -> %p", (kana, expected) => {
       expect(findShortestKeystrokes(table, kana)).toBe(expected);
     });
   });
 
-  // describe("月林檎配列", () => {
-  //   const table = getRomanTable("tukiringo");
-  //   test.each(cases.tukiringo)("%p -> %p", (kana, expected) => {
-  //     expect(findShortestKeystrokes(table, kana)).toBe(expected);
-  //   });
-  // });
+  describe("月林檎配列", () => {
+    const table = getRomanTable("tukiringo");
+    test.each(cases.tukiringo)("%p -> %p", (kana, expected) => {
+      expect(findShortestKeystrokes(table, kana)).toBe(expected);
+    });
+  });
 });
 
 describe("日本国憲法前文", () => {
@@ -129,7 +129,7 @@ describe("日本国憲法前文", () => {
 
   describe("ハイブリッド月配列", () => {
     test("変換できること", () => {
-      assertConvertible("hybridTsuki");
+      assertConvertible("hybrid-tsuki");
     });
   });
 

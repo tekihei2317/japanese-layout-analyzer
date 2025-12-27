@@ -781,6 +781,6 @@ export const cases = {
   yukika: yukikaCases,
   fumiduki: fumidukiCases,
   hideduki: hidedukiCases,
-  hybridTsuki: hybridTsukiCases,
+  "hybrid-tsuki": hybridTsukiCases,
   tukiringo: tukiringoCases,
 } satisfies Partial<Record<LayoutId, Cases>>;

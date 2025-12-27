@@ -25,7 +25,9 @@
 
 ## 配列ごとのチェック
 
-### テキストでチェック
+### めくらぶどうでチェック
+
+### 日本国憲法でチェック
 
 間違った配列のIDを指定したときにクラッシュするのであとで直す。
 
@@ -36,10 +38,17 @@
 ストロークに変換したあと、かなに逆変換して正しいことを確認しよう。
 
 ```bash
-bun run cli stroke data/texts/kenpou.txt qwerty
+ID=qwerty
+bun run cli stroke data/texts/kenpou.txt $ID > debug/kenpou-$ID-strokes.txt
 ```
 
 まずは、とりあえず変換できることを確認する。
+
+yukikaの「づ」が打ててなさそうなので、テストする。ローマ字テーブルの定義ミスだった。
+
+月林檎の数字でループしていたので、数字は削除。何用だったんだろう？
+
+ハイブリッド月配列で、確定させないと句読点が打てない問題があるので、対策を考える。これは月見草やブリ中トロも同じ問題がある。
 
 - [x] qwerty
 - [x] oonisi
@@ -47,19 +56,17 @@ bun run cli stroke data/texts/kenpou.txt qwerty
 - [x] hana
 - [x] buna
 - [x] mizunara
-- [ ] yukika
-- [ ] fumiduki
-- [ ] hideduki_v4.1
+- [x] yukika
+- [x] fumiduki
+- [x] hideduki_v4.1
 - [ ] hybrid-tsuki
-- [ ] tukiringo
+- [x] tukiringo
 - [ ] tsukimisou
 - [ ] burichutoro-20221015
 
 ### ストロークへの変換
 
 ストロークへの変換で詰まるところがあると思うので、一つずつテストを書いていきます。
-
-yukikaの「づ」が打ててなさそうなので、テストする。
 
 - [x] qwerty
 - [x] oonisi

@@ -29,7 +29,7 @@ const layoutTables = {
   "tsuki-2-263": tsukiTable as RomanTable,
   yukika: yukikaTable as RomanTable,
   mizunara: mizunaraTable as RomanTable,
-  hybridTsuki: hybridTsukiTable as RomanTable,
+  "hybrid-tsuki": hybridTsukiTable as RomanTable,
   buna: bunaTable as RomanTable,
   hideduki: hidedukiTable as RomanTable,
   "burichutoro-20221015": burichutoroTable as RomanTable,

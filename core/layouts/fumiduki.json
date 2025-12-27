@@ -352,5 +352,13 @@
   {
     "input": "☆;",
     "output": "ぇ"
+  },
+  {
+    "input": "☆o",
+    "output": "ゃ"
+  },
+  {
+    "input": "☆l",
+    "output": "ゅ"
   }
 ]

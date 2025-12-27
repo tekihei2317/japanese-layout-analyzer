@@ -48,7 +48,6 @@
 
 [ミズナラ配列v1.0](http://keybor.web.fc2.com/mizunara-v1.0.html)
 
-
 ### ハイブリッド月配列
 
 [ハイブリッド月配列 - 【アンチパテント】](https://takahata-shin.hatenadiary.org/entry/20150505/1430818677)
