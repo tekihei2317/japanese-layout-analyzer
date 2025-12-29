@@ -15,56 +15,56 @@
     },
     {
       "key": "sfb2",
-      "label": "SFB (2-gram)",
+      "label": "同指連続",
       "unit": "%",
       "format": "percent",
       "group": "2-gram"
     },
     {
       "key": "scissors",
-      "label": "Scissors",
+      "label": "シザー",
       "unit": "%",
       "format": "percent",
       "group": "2-gram"
     },
     {
       "key": "sfb3",
-      "label": "SFB (3-gram)",
+      "label": "同指連続",
       "unit": "%",
       "format": "percent",
       "group": "3-gram"
     },
     {
       "key": "sfs3",
-      "label": "SFS (3-gram)",
+      "label": "同指スキップ連続",
       "unit": "%",
       "format": "percent",
       "group": "3-gram"
     },
     {
       "key": "alt3",
-      "label": "ALT (3-gram)",
+      "label": "交互",
       "unit": "%",
       "format": "percent",
       "group": "3-gram"
     },
     {
       "key": "roll3",
-      "label": "ROLL (3-gram)",
+      "label": "ロール",
       "unit": "%",
       "format": "percent",
       "group": "3-gram"
     },
     {
       "key": "onehand3",
-      "label": "ONEHAND (3-gram)",
+      "label": "片手",
       "unit": "%",
       "format": "percent",
       "group": "3-gram"
     },
     {
       "key": "redirect3",
-      "label": "REDIRECT (3-gram)",
+      "label": "折り返し",
       "unit": "%",
       "format": "percent",
       "group": "3-gram"

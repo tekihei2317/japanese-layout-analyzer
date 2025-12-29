@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
-import type { CorpusPayload, MetricDefinition } from "../lib/metrics-data";
-import LayoutPanel from "./LayoutPanel";
+import type { CorpusPayload } from "../lib/metrics-data";
 import { layoutDiagrams } from "../lib/layout-diagram";
+import LayoutPanel from "./LayoutPanel";
 import LoadSection from "./LoadSection";
-import MetricsSection from "./MetricsSection";
+import MetricsSection, { type MetricsSummary } from "./MetricsSection";
 
 type TopPageAppProps = {
   index: {
@@ -16,146 +16,69 @@ type LayoutView = {
   layoutId: string;
   name: string;
   loadMetrics: CorpusPayload["layouts"][string]["metrics"]["loadMetrics"];
-  metrics: Array<{ label: string; value: string }>;
+  metrics: MetricsSummary;
 };
 
-const defaultMetrics: MetricDefinition[] = [
-  {
-    key: "efficiency",
-    label: "打鍵効率",
-    unit: "ratio",
-    format: "ratio",
-    group: "1-gram",
-  },
-  {
-    key: "sfb2",
-    label: "SFB (2-gram)",
-    unit: "%",
-    format: "percent",
-    group: "2-gram",
-  },
-  {
-    key: "scissors",
-    label: "Scissors",
-    unit: "%",
-    format: "percent",
-    group: "2-gram",
-  },
-  {
-    key: "sfb3",
-    label: "SFB (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "sfs3",
-    label: "SFS (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "alt3",
-    label: "ALT (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "roll3",
-    label: "ROLL (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "onehand3",
-    label: "ONEHAND (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "redirect3",
-    label: "REDIRECT (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "hand",
-    label: "Hand use (L)",
-    unit: "%",
-    format: "percent",
-    group: "load",
-  },
-  {
-    key: "inOut",
-    label: "In:out roll",
-    unit: "ratio",
-    format: "ratio",
-    group: "3-gram",
-  },
-];
-
-function formatMetric(value: number | undefined, metric: MetricDefinition) {
+function formatPercent(value: number | undefined) {
   if (value === undefined || Number.isNaN(value)) return "-";
-  if (metric.format === "percent") {
-    return `${(value * 100).toFixed(1)}%`;
-  }
-  if (metric.format === "ratio") {
-    return value.toFixed(2);
-  }
-  return value.toLocaleString("en-US");
+  return `${(value * 100).toFixed(1)}%`;
 }
 
-function metricValue(
-  metrics: CorpusPayload["layouts"][string]["metrics"],
-  key: string
-) {
+function formatRatio(value: number | undefined) {
+  if (value === undefined || Number.isNaN(value)) return "-";
+  return value.toFixed(2);
+}
+
+function toPercentValue(value: number | undefined) {
+  if (value === undefined || Number.isNaN(value)) return 0;
+  return value * 100;
+}
+
+function buildMetricsSummary(
+  metrics: CorpusPayload["layouts"][string]["metrics"]
+): MetricsSummary {
   const { strokeMetrics } = metrics;
-  if (key === "efficiency") return metrics.efficiency;
-  if (key === "hand") return metrics.hand;
-  if (key === "sfb2") return strokeMetrics.bigram.sfb;
-  if (key === "scissors") return strokeMetrics.bigram.scissors;
-  if (key === "sfb3")
-    return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
-  if (key === "sfs3")
-    return strokeMetrics.trigram.altSfs + strokeMetrics.trigram.redirectSfs;
-  if (key === "alt3")
-    return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
-  if (key === "roll3")
-    return strokeMetrics.trigram.rollIn + strokeMetrics.trigram.rollOut;
-  if (key === "onehand3")
-    return strokeMetrics.trigram.oneHandIn + strokeMetrics.trigram.oneHandOut;
-  if (key === "redirect3")
-    return strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs;
-  if (key === "inOut") {
-    const inCount =
-      strokeMetrics.trigram.rollIn + strokeMetrics.trigram.oneHandIn;
-    const outCount =
-      strokeMetrics.trigram.rollOut + strokeMetrics.trigram.oneHandOut;
-    return outCount ? inCount / outCount : 0;
-  }
-  return undefined;
+  const sfb3 = strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
+  const sfs3 = strokeMetrics.trigram.altSfs + strokeMetrics.trigram.redirectSfs;
+  const alt3 = strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
+  const roll3 = strokeMetrics.trigram.rollIn + strokeMetrics.trigram.rollOut;
+  const onehand3 =
+    strokeMetrics.trigram.oneHandIn + strokeMetrics.trigram.oneHandOut;
+  const redirect3 =
+    strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs;
+  const inCount =
+    strokeMetrics.trigram.rollIn + strokeMetrics.trigram.oneHandIn;
+  const outCount =
+    strokeMetrics.trigram.rollOut + strokeMetrics.trigram.oneHandOut;
+  const inOut = outCount ? inCount / outCount : 0;
+
+  return {
+    table: {
+      efficiency: formatRatio(metrics.efficiency),
+      sfb2: formatPercent(strokeMetrics.bigram.sfb),
+      scissors: formatPercent(strokeMetrics.bigram.scissors),
+      sfs3: formatPercent(sfs3),
+      hand: formatPercent(metrics.hand),
+      inOut: formatRatio(inOut),
+    },
+    bars: {
+      sfb3: toPercentValue(sfb3),
+      alt3: toPercentValue(alt3),
+      roll3: toPercentValue(roll3),
+      onehand3: toPercentValue(onehand3),
+      redirect3: toPercentValue(redirect3),
+    },
+  };
 }
 
-function buildLayoutViews(
-  payload: CorpusPayload | undefined,
-  metrics: MetricDefinition[]
-): LayoutView[] {
+function buildLayoutViews(payload: CorpusPayload | undefined): LayoutView[] {
   if (!payload) return [];
   return Object.entries(payload.layouts ?? {}).map(([layoutId, entry]) => {
-    const formatted = metrics.map((metric) => ({
-      label: metric.label,
-      value: formatMetric(metricValue(entry.metrics, metric.key), metric),
-    }));
     return {
       layoutId,
       name: entry.name ?? layoutId,
       loadMetrics: entry.metrics.loadMetrics,
-      metrics: formatted,
+      metrics: buildMetricsSummary(entry.metrics),
     };
   });
 }
@@ -168,11 +91,9 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
   );
 
   const currentPayload = corpusDataById[selectedCorpusId];
-  const metricDefinitions = currentPayload?.metrics ?? defaultMetrics;
-
   const layoutViews = useMemo(
-    () => buildLayoutViews(currentPayload, metricDefinitions),
-    [currentPayload, metricDefinitions]
+    () => buildLayoutViews(currentPayload),
+    [currentPayload]
   );
 
   const corpusLabel =
