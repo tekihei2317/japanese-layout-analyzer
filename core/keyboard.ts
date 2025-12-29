@@ -153,7 +153,7 @@ export const rowStaggeredLayout: KeyboardLayout = {
     { code: "IntlRo", unit: 1 },
     { code: "ShiftRight", unit: 1.75 },
   ],
-  SpaceRow: [{ code: "Space", unit: 3, offset: 5.25 }],
+  SpaceRow: [{ code: "Space", unit: 4, offset: 5.25 }],
 };
 
 export const ortholinearLayout: KeyboardLayout = {
@@ -222,14 +222,14 @@ export const ortholinearLayout: KeyboardLayout = {
     { code: "Hankaku", unit: 1 },
     { code: "ShiftRight", unit: 1 },
   ],
-  SpaceRow: [{ code: "Space", unit: 2, offset: 6 }],
+  SpaceRow: [{ code: "Space", unit: 4, offset: 5 }],
 };
 
 function createKeyCodeToRow() {
   const map = {} as Record<KeyCode, KeyboardRow>;
-  (Object.entries(rowStaggeredLayout) as Array<
-    [KeyboardRow, LayoutKeyInfo[]]
-  >).forEach(([row, keys]) => {
+  (
+    Object.entries(rowStaggeredLayout) as Array<[KeyboardRow, LayoutKeyInfo[]]>
+  ).forEach(([row, keys]) => {
     keys.forEach((key) => {
       map[key.code] = row;
     });

@@ -1,82 +1,10 @@
 ---
 import "../styles/global.css";
-import { promises as fs } from "node:fs";
 import SiteHeader from "../components/SiteHeader.astro";
 import TableApp from "../components/TableApp";
+import { loadMetricsData } from "../lib/metrics-data";
 
-type CorpusIndex = {
-  schemaVersion: number;
-  corpora: Array<{
-    id: string;
-    name: string;
-    file: string;
-  }>;
-};
-
-type MetricFormat = "percent" | "ratio" | "count";
-
-type MetricDefinition = {
-  key: string;
-  label: string;
-  unit: string;
-  format: MetricFormat;
-  group?: string;
-};
-
-type LayoutMetrics = {
-  efficiency: number;
-  hand: number;
-  strokeMetrics: {
-    bigram: {
-      sfb: number;
-      scissors: number;
-    };
-    trigram: {
-      sfb: number;
-      sft: number;
-      alt: number;
-      altSfs: number;
-      rollIn: number;
-      rollOut: number;
-      oneHandIn: number;
-      oneHandOut: number;
-      redirect: number;
-      redirectSfs: number;
-    };
-  };
-};
-
-type CorpusPayload = {
-  schemaVersion: number;
-  corpus: {
-    id: string;
-    name: string;
-    source?: string;
-  };
-  metrics?: MetricDefinition[];
-  layouts: Record<string, { name: string; metrics: LayoutMetrics }>;
-};
-
-async function loadCorpusIndex() {
-  const indexPath = new URL("../../public/metrics/index.json", import.meta.url);
-  const indexRaw = await fs.readFile(indexPath, "utf8");
-  return JSON.parse(indexRaw) as CorpusIndex;
-}
-
-async function loadCorpusData(file: string) {
-  const corpusPath = new URL(`../../public${file}`, import.meta.url);
-  const corpusRaw = await fs.readFile(corpusPath, "utf8");
-  return JSON.parse(corpusRaw) as CorpusPayload;
-}
-
-const index = await loadCorpusIndex();
-const corpusEntries = await Promise.all(
-  index.corpora.map(async (corpus) => {
-    const payload = await loadCorpusData(corpus.file);
-    return [corpus.id, payload] as const;
-  })
-);
-const corpusDataById = Object.fromEntries(corpusEntries);
+const { index, corpusDataById } = await loadMetricsData();
 ---
 
 <html lang="ja">

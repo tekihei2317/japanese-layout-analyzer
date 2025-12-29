@@ -1,60 +1,15 @@
 import { useMemo, useState } from "react";
 
-type MetricFormat = "percent" | "ratio" | "count";
-
-type MetricDefinition = {
-  key: string;
-  label: string;
-  unit: string;
-  format: MetricFormat;
-  group?: string;
-};
+import type {
+  CorpusIndex,
+  CorpusPayload,
+  MetricDefinition,
+} from "../lib/metrics-data";
 
 type LayoutRow = {
   id: string;
   name: string;
-  metrics: {
-    efficiency: number;
-    hand: number;
-    strokeMetrics: {
-      bigram: {
-        sfb: number;
-        scissors: number;
-      };
-      trigram: {
-        sfb: number;
-        sft: number;
-        alt: number;
-        altSfs: number;
-        rollIn: number;
-        rollOut: number;
-        oneHandIn: number;
-        oneHandOut: number;
-        redirect: number;
-        redirectSfs: number;
-      };
-    };
-  };
-};
-
-type CorpusPayload = {
-  schemaVersion: number;
-  corpus: {
-    id: string;
-    name: string;
-    source?: string;
-  };
-  metrics?: MetricDefinition[];
-  layouts: Record<string, { name: string; metrics: LayoutRow["metrics"] }>;
-};
-
-type CorpusIndex = {
-  schemaVersion: number;
-  corpora: Array<{
-    id: string;
-    name: string;
-    file: string;
-  }>;
+  metrics: CorpusPayload["layouts"][string]["metrics"];
 };
 
 function formatMetric(value: number | undefined, metric: MetricDefinition) {
