@@ -1,3 +1,5 @@
+import { KeyCode } from "./keyboard";
+
 // JIS配列
 const StrokeKeys = [
   "1",
@@ -146,3 +148,54 @@ export function toKeystrokes(keys: string[]): Keystroke[] {
     };
   });
 }
+
+export const strokeKeyToCode: Record<StrokeKey, KeyCode> = {
+  "1": "1",
+  "2": "2",
+  "3": "3",
+  "4": "4",
+  "5": "5",
+  "6": "6",
+  "7": "7",
+  "8": "8",
+  "9": "9",
+  "0": "0",
+  "-": "Minus",
+  q: "q",
+  w: "w",
+  e: "e",
+  r: "r",
+  t: "t",
+  y: "y",
+  u: "u",
+  i: "i",
+  o: "o",
+  p: "p",
+  "@": "BracketLeft",
+  "[": "BracketRight",
+  a: "a",
+  s: "s",
+  d: "d",
+  f: "f",
+  g: "g",
+  h: "h",
+  j: "j",
+  k: "k",
+  l: "l",
+  ";": "Semicolon",
+  ":": "Quote",
+  "]": "Backslash",
+  z: "z",
+  x: "x",
+  c: "c",
+  v: "v",
+  b: "b",
+  n: "n",
+  m: "m",
+  ",": "Comma",
+  ".": "Period",
+  "/": "Slash",
+  _: "IntlRo",
+  "\\": "ControlLeft",
+  " ": "Space",
+};

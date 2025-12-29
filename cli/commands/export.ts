@@ -7,6 +7,7 @@ import {
   normalizeText,
   computeStrokeMetrics,
   computeHandLoad,
+  computeLoadMetrics,
 } from "@japanese-layout-analyzer/core";
 import { listLayouts } from "./layout";
 import { config } from "../config";
@@ -36,6 +37,7 @@ type CorpusMetrics = {
         efficiency: number;
         hand: number;
         strokeMetrics: ReturnType<typeof computeStrokeMetrics>;
+        loadMetrics: ReturnType<typeof computeLoadMetrics>;
       };
     }
   >;
@@ -253,6 +255,7 @@ const computeLayoutMetrics = (text: string, layoutId: string) => {
     efficiency,
     hand: handLoad.left,
     strokeMetrics,
+    loadMetrics: computeLoadMetrics(keystrokes),
   };
 };
 
