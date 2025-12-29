@@ -16,6 +16,7 @@
 - `bun run layouts:build` - convert all `layouts/*.tsv` into `core/layouts/*.json`.
 - `bun run layouts:onishi` - regenerate `layouts/oonisi.tsv` from the Qwerty table.
 - `bun run cli -- --help` - run the CLI entrypoint (or use the `jla` bin if linked).
+- `bun test core/metrics.test.ts` - run stroke metrics tests.
 
 ## Coding Style & Naming Conventions
 
@@ -27,7 +28,7 @@
 
 ## Testing Guidelines
 
-- No formal test runner is configured. If you add tests, document how to run them and the directory convention you chose.
+- Tests use Bun (`bun test`). If you add tests, document how to run them and the directory convention you chose.
 
 ## Commit & Pull Request Guidelines
 

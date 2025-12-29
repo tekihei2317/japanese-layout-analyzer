@@ -86,7 +86,7 @@
   ],
   "layouts": {
     "qwerty": {
-      "name": "qwerty",
+      "name": "Qwerty配列",
       "metrics": {
         "efficiency": 1.7087155963302751,
         "hand": 0.36577181208053694,
@@ -111,7 +111,7 @@
       }
     },
     "oonisi": {
-      "name": "oonisi",
+      "name": "大西配列",
       "metrics": {
         "efficiency": 1.7087155963302751,
         "hand": 0.540268456375839,
@@ -136,7 +136,7 @@
       }
     },
     "buna": {
-      "name": "buna",
+      "name": "ぶな配列",
       "metrics": {
         "efficiency": 1.2626146788990826,
         "hand": 0.3941871026339691,
@@ -161,7 +161,7 @@
       }
     },
     "fumiduki": {
-      "name": "fumiduki",
+      "name": "文月配列",
       "metrics": {
         "efficiency": 1.313073394495413,
         "hand": 0.4262008733624454,
@@ -186,7 +186,7 @@
       }
     },
     "hana": {
-      "name": "hana",
+      "name": "花配列",
       "metrics": {
         "efficiency": 1.305045871559633,
         "hand": 0.4806678383128295,
@@ -211,7 +211,7 @@
       }
     },
     "mizunara": {
-      "name": "mizunara",
+      "name": "ミズナラ配列",
       "metrics": {
         "efficiency": 1.3096330275229358,
         "hand": 0.4316987740805604,
@@ -236,7 +236,7 @@
       }
     },
     "tsuki-2-263": {
-      "name": "tsuki-2-263",
+      "name": "月配列2-263式",
       "metrics": {
         "efficiency": 1.2729357798165137,
         "hand": 0.4594594594594595,
@@ -261,7 +261,7 @@
       }
     },
     "tukiringo": {
-      "name": "tukiringo",
+      "name": "月林檎配列",
       "metrics": {
         "efficiency": 1.290137614678899,
         "hand": 0.5493333333333333,
@@ -286,7 +286,7 @@
       }
     },
     "yukika": {
-      "name": "yukika",
+      "name": "幸花配列",
       "metrics": {
         "efficiency": 1.3142201834862386,
         "hand": 0.4232111692844677,
@@ -311,7 +311,7 @@
       }
     },
     "hybrid-tsuki": {
-      "name": "hybrid-tsuki",
+      "name": "ハイブリッド月配列",
       "metrics": {
         "efficiency": 1.2786697247706422,
         "hand": 0.5076233183856502,
@@ -336,7 +336,7 @@
       }
     },
     "burichutoro-20221015": {
-      "name": "burichutoro-20221015",
+      "name": "ブリ中トロ配列",
       "metrics": {
         "efficiency": 1.2970183486238531,
         "hand": 0.5057471264367817,
@@ -361,7 +361,7 @@
       }
     },
     "tsukimisou": {
-      "name": "tsukimisou",
+      "name": "月見草配列v2",
       "metrics": {
         "efficiency": 1.2729357798165137,
         "hand": 0.4945945945945946,
@@ -381,6 +381,31 @@
             "oneHandOut": 0.015342960288808664,
             "redirect": 0.06768953068592058,
             "redirectSfs": 0.04783393501805054
+          }
+        }
+      }
+    },
+    "hideduki": {
+      "name": "英月配列",
+      "metrics": {
+        "efficiency": 1.3107798165137614,
+        "hand": 0.4348206474190726,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.0989492119089317,
+            "scissors": 0.010507880910683012
+          },
+          "trigram": {
+            "sfb": 0.18755477651183172,
+            "sft": 0.0052585451358457495,
+            "alt": 0.2927256792287467,
+            "altSfs": 0.13409290096406662,
+            "rollIn": 0.1375985977212971,
+            "rollOut": 0.1971954425942156,
+            "oneHandIn": 0.0052585451358457495,
+            "oneHandOut": 0.0052585451358457495,
+            "redirect": 0.026292725679228746,
+            "redirectSfs": 0.008764241893076249
           }
         }
       }

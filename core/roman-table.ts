@@ -7,7 +7,7 @@ import tukiringoTable from "./layouts/tukiringo.json";
 import yukikaTable from "./layouts/yukika.json";
 import mizunaraTable from "./layouts/mizunara.json";
 import hybridTsukiTable from "./layouts/hybrid-tsuki.json";
-import hidedukiTable from "./layouts/hideduki_v4.1.json";
+import hidedukiTable from "./layouts/hideduki.json";
 import oonisiTable from "./layouts/oonisi.json";
 import fumidukiTable from "./layouts/fumiduki.json";
 import tsukimisouTable from "./layouts/tsukimisou.json";
@@ -22,6 +22,7 @@ export type TableEntry = { input: string; output: string; nextInput?: string };
  */
 export type RomanTable = TableEntry[];
 
+// ファイル名と同じ名前をキーに指定する
 const layoutTables = {
   qwerty: qwertyTable as RomanTable,
   oonisi: oonisiTable as RomanTable,
@@ -48,7 +49,7 @@ const jisKeyboardKeys = "1234567890-^¥qwertyuiop@[asdfghjkl;:]zxcvbnm,./_";
 // 月林檎はCapsLock/Control位置をバッククウォートにして使う
 const tsukiringoException = "\\";
 // 句読点とシフトを共有している配列では、句読点の前後にスペースを入れて確定することにする
-// 詳細はdocs/shift-sharing-layout.mdを参照
+// 詳細は docs/shift-sharing-layout.md を参照
 const shiftSharingLayoutException = " ";
 const validKeys = new Set(
   (jisKeyboardKeys + tsukiringoException + shiftSharingLayoutException).split(

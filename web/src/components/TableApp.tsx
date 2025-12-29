@@ -154,20 +154,18 @@ const metricValue = (row: LayoutRow, key: string) => {
   if (key === "hand") return row.metrics.hand;
   if (key === "sfb2") return strokeMetrics.bigram.sfb;
   if (key === "scissors") return strokeMetrics.bigram.scissors;
-  if (key === "sfb3") return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
+  if (key === "sfb3")
+    return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
   if (key === "sfs3")
     return strokeMetrics.trigram.altSfs + strokeMetrics.trigram.redirectSfs;
-  if (key === "alt3") return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
+  if (key === "alt3")
+    return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
   if (key === "roll3")
     return strokeMetrics.trigram.rollIn + strokeMetrics.trigram.rollOut;
   if (key === "onehand3")
-    return (
-      strokeMetrics.trigram.oneHandIn + strokeMetrics.trigram.oneHandOut
-    );
+    return strokeMetrics.trigram.oneHandIn + strokeMetrics.trigram.oneHandOut;
   if (key === "redirect3")
-    return (
-      strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs
-    );
+    return strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs;
   if (key === "inOut") {
     const inCount =
       strokeMetrics.trigram.rollIn + strokeMetrics.trigram.oneHandIn;
@@ -348,8 +346,11 @@ export default function TableApp() {
               </tr>
             ) : (
               sortedRows.map((row, index) => (
-                <tr key={row.id} className={index % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
-                  <td className="sticky left-0 z-10 bg-inherit px-4 py-3 font-semibold text-slate-800">
+                <tr
+                  key={row.id}
+                  className={index % 2 === 0 ? "bg-white" : "bg-slate-50/50"}
+                >
+                  <td className="whitespace-nowrap sticky left-0 z-10 bg-inherit px-4 py-3 font-semibold text-slate-800">
                     {row.name}
                   </td>
                   {metrics.map((metric) => (

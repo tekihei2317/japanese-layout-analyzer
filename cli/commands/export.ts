@@ -9,6 +9,7 @@ import {
   computeHandLoad,
 } from "@japanese-layout-analyzer/core";
 import { listLayouts } from "./layout";
+import { config } from "../config";
 
 type MetricDefinition = {
   key: string;
@@ -208,13 +209,31 @@ const deriveCorpusId = (value: string, filePath: string) => {
 
 const resolveLayouts = async (option: string | undefined) => {
   if (!option || option === "all") {
-    return listLayouts();
+    const layouts = await listLayouts();
+    const validLayouts = layouts.filter((layoutId) =>
+      Boolean(getRomanTable(layoutId as LayoutId))
+    );
+    const invalidLayouts = layouts.filter(
+      (layoutId) => !getRomanTable(layoutId as LayoutId)
+    );
+    if (invalidLayouts.length > 0) {
+      console.warn(
+        `Skipped layouts without roman table: ${invalidLayouts.join(", ")}`
+      );
+    }
+    return validLayouts;
+  }
+  if (!getRomanTable(option as LayoutId)) {
+    throw new Error(`Unknown layout: ${option}`);
   }
   return [option];
 };
 
 const computeLayoutMetrics = (text: string, layoutId: string) => {
   const table = getRomanTable(layoutId as LayoutId);
+  if (!table) {
+    throw new Error(`Unknown layout: ${layoutId}`);
+  }
   const normalized = normalizeText(text);
   const keystrokes = findShortestKeystrokes(table, normalized);
 
@@ -290,7 +309,10 @@ export const exportCommand = async (options: ExportOptions) => {
     for (const layoutId of layoutTargets) {
       const metrics = computeLayoutMetrics(text, layoutId);
       const existing = corpusData.layouts[layoutId];
-      const name = existing?.name ?? layoutId;
+      const name =
+        config.layout.names[layoutId as LayoutId] ??
+        existing?.name ??
+        layoutId;
       corpusData.layouts[layoutId] = { name, metrics };
     }
 
