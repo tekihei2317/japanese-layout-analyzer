@@ -70,7 +70,7 @@ const KeyCodes = [
   "Space",
 ] as const;
 
-type KeyCode = (typeof KeyCodes)[number];
+export type KeyCode = (typeof KeyCodes)[number];
 
 type LayoutKeyInfo = {
   code: KeyCode;
@@ -79,7 +79,7 @@ type LayoutKeyInfo = {
   offset?: number;
 };
 
-type KeyboardRow =
+export type KeyboardRow =
   | "NumberRow"
   | "TopRow"
   | "MiddleRow"
@@ -88,7 +88,7 @@ type KeyboardRow =
 
 type KeyboardLayout = Record<KeyboardRow, LayoutKeyInfo[]>;
 
-const RowStaggeredLayout: KeyboardLayout = {
+const rowStaggeredLayout: KeyboardLayout = {
   NumberRow: [
     { code: "Hankaku", unit: 1 },
     { code: "1", unit: 1 },
@@ -157,7 +157,7 @@ const RowStaggeredLayout: KeyboardLayout = {
   SpaceRow: [{ code: "Space", unit: 3, offset: 5.25 }],
 };
 
-const OrtholinierLayout: KeyboardLayout = {
+const ortholinierLayout: KeyboardLayout = {
   NumberRow: [
     { code: "Escape", unit: 1 },
     { code: "1", unit: 1 },
