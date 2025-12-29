@@ -40,7 +40,7 @@
     "output": "き"
   },
   {
-    "input": "[",
+    "input": "@",
     "output": "れ"
   },
   {
@@ -86,7 +86,7 @@
     "output": "と"
   },
   {
-    "input": "'",
+    "input": ":",
     "output": "ら"
   },
   {
@@ -162,7 +162,7 @@
     "output": "ゃ"
   },
   {
-    "input": "☆[",
+    "input": "☆@",
     "output": "「"
   },
   {
@@ -207,7 +207,7 @@
     "output": "ぶ"
   },
   {
-    "input": "☆'",
+    "input": "☆:",
     "output": "」"
   },
   {
@@ -220,7 +220,7 @@
   },
   {
     "input": "☆v",
-    "output": "ゅ"
+    "output": "ゆ"
   },
   {
     "input": "☆b",

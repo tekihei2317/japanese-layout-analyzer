@@ -1,6 +1,9 @@
 {
   "name": "@japanese-layout-analyzer/cli",
   "private": true,
+  "bin": {
+    "jla": "index.ts"
+  },
   "dependencies": {
     "@japanese-layout-analyzer/core": "workspace:*"
   }

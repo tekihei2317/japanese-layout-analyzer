@@ -1,0 +1,414 @@
+{
+  "schemaVersion": 1,
+  "corpus": {
+    "id": "kenpou",
+    "name": "kenpou",
+    "source": "kenpou.txt"
+  },
+  "metrics": [
+    {
+      "key": "efficiency",
+      "label": "打鍵効率",
+      "unit": "ratio",
+      "format": "ratio",
+      "group": "1-gram"
+    },
+    {
+      "key": "sfb2",
+      "label": "SFB (2-gram)",
+      "unit": "%",
+      "format": "percent",
+      "group": "2-gram"
+    },
+    {
+      "key": "scissors",
+      "label": "Scissors",
+      "unit": "%",
+      "format": "percent",
+      "group": "2-gram"
+    },
+    {
+      "key": "sfb3",
+      "label": "SFB (3-gram)",
+      "unit": "%",
+      "format": "percent",
+      "group": "3-gram"
+    },
+    {
+      "key": "sfs3",
+      "label": "SFS (3-gram)",
+      "unit": "%",
+      "format": "percent",
+      "group": "3-gram"
+    },
+    {
+      "key": "alt3",
+      "label": "ALT (3-gram)",
+      "unit": "%",
+      "format": "percent",
+      "group": "3-gram"
+    },
+    {
+      "key": "roll3",
+      "label": "ROLL (3-gram)",
+      "unit": "%",
+      "format": "percent",
+      "group": "3-gram"
+    },
+    {
+      "key": "onehand3",
+      "label": "ONEHAND (3-gram)",
+      "unit": "%",
+      "format": "percent",
+      "group": "3-gram"
+    },
+    {
+      "key": "redirect3",
+      "label": "REDIRECT (3-gram)",
+      "unit": "%",
+      "format": "percent",
+      "group": "3-gram"
+    },
+    {
+      "key": "hand",
+      "label": "Hand use (L)",
+      "unit": "%",
+      "format": "percent",
+      "group": "load"
+    },
+    {
+      "key": "inOut",
+      "label": "In:out roll",
+      "unit": "ratio",
+      "format": "ratio",
+      "group": "3-gram"
+    }
+  ],
+  "layouts": {
+    "qwerty": {
+      "name": "Qwerty配列",
+      "metrics": {
+        "efficiency": 1.7087155963302751,
+        "hand": 0.36577181208053694,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.08999328408327736,
+            "scissors": 0.010745466756212223
+          },
+          "trigram": {
+            "sfb": 0.15994623655913978,
+            "sft": 0.010080645161290322,
+            "alt": 0.17069892473118278,
+            "altSfs": 0.07728494623655914,
+            "rollIn": 0.17405913978494625,
+            "rollOut": 0.176747311827957,
+            "oneHandIn": 0.02217741935483871,
+            "oneHandOut": 0.012096774193548387,
+            "redirect": 0.08131720430107527,
+            "redirectSfs": 0.11559139784946236
+          }
+        }
+      }
+    },
+    "oonisi": {
+      "name": "大西配列",
+      "metrics": {
+        "efficiency": 1.7087155963302751,
+        "hand": 0.540268456375839,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.03492276695768973,
+            "scissors": 0
+          },
+          "trigram": {
+            "sfb": 0.06854838709677419,
+            "sft": 0.0006720430107526882,
+            "alt": 0.42876344086021506,
+            "altSfs": 0.20631720430107528,
+            "rollIn": 0.13776881720430106,
+            "rollOut": 0.13306451612903225,
+            "oneHandIn": 0.0006720430107526882,
+            "oneHandOut": 0.004032258064516129,
+            "redirect": 0.010080645161290322,
+            "redirectSfs": 0.010080645161290322
+          }
+        }
+      }
+    },
+    "buna": {
+      "name": "ぶな配列",
+      "metrics": {
+        "efficiency": 1.2626146788990826,
+        "hand": 0.3941871026339691,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.07454545454545454,
+            "scissors": 0.004545454545454545
+          },
+          "trigram": {
+            "sfb": 0.1364877161055505,
+            "sft": 0.006369426751592357,
+            "alt": 0.3257506824385805,
+            "altSfs": 0.10555050045495905,
+            "rollIn": 0.1410373066424022,
+            "rollOut": 0.20746132848043677,
+            "oneHandIn": 0.011828935395814377,
+            "oneHandOut": 0.0009099181073703367,
+            "redirect": 0.03366696997270246,
+            "redirectSfs": 0.030937215650591446
+          }
+        }
+      }
+    },
+    "fumiduki": {
+      "name": "文月配列",
+      "metrics": {
+        "efficiency": 1.313073394495413,
+        "hand": 0.4262008733624454,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.045454545454545456,
+            "scissors": 0.0008741258741258741
+          },
+          "trigram": {
+            "sfb": 0.09098862642169729,
+            "sft": 0,
+            "alt": 0.3079615048118985,
+            "altSfs": 0.12598425196850394,
+            "rollIn": 0.17060367454068243,
+            "rollOut": 0.23709536307961504,
+            "oneHandIn": 0,
+            "oneHandOut": 0.006124234470691163,
+            "redirect": 0.03762029746281715,
+            "redirectSfs": 0.023622047244094488
+          }
+        }
+      }
+    },
+    "hana": {
+      "name": "花配列",
+      "metrics": {
+        "efficiency": 1.305045871559633,
+        "hand": 0.4806678383128295,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.0773966578715919,
+            "scissors": 0.01759014951627089
+          },
+          "trigram": {
+            "sfb": 0.1487676056338028,
+            "sft": 0.002640845070422535,
+            "alt": 0.36883802816901406,
+            "altSfs": 0.1426056338028169,
+            "rollIn": 0.1522887323943662,
+            "rollOut": 0.14964788732394366,
+            "oneHandIn": 0,
+            "oneHandOut": 0,
+            "redirect": 0.018485915492957746,
+            "redirectSfs": 0.016725352112676055
+          }
+        }
+      }
+    },
+    "mizunara": {
+      "name": "ミズナラ配列",
+      "metrics": {
+        "efficiency": 1.3096330275229358,
+        "hand": 0.4316987740805604,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.056091148115687994,
+            "scissors": 0.0035056967572304996
+          },
+          "trigram": {
+            "sfb": 0.10877192982456141,
+            "sft": 0.0017543859649122807,
+            "alt": 0.36666666666666664,
+            "altSfs": 0.09473684210526316,
+            "rollIn": 0.18333333333333332,
+            "rollOut": 0.20087719298245615,
+            "oneHandIn": 0.007017543859649123,
+            "oneHandOut": 0.0017543859649122807,
+            "redirect": 0.02631578947368421,
+            "redirectSfs": 0.008771929824561403
+          }
+        }
+      }
+    },
+    "tsuki-2-263": {
+      "name": "月配列2-263式",
+      "metrics": {
+        "efficiency": 1.2729357798165137,
+        "hand": 0.4594594594594595,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.056807935076645624,
+            "scissors": 0.0063119927862939585
+          },
+          "trigram": {
+            "sfb": 0.11191335740072202,
+            "sft": 0.0009025270758122744,
+            "alt": 0.33844765342960287,
+            "altSfs": 0.13628158844765342,
+            "rollIn": 0.17870036101083034,
+            "rollOut": 0.194043321299639,
+            "oneHandIn": 0,
+            "oneHandOut": 0.0009025270758122744,
+            "redirect": 0.033393501805054154,
+            "redirectSfs": 0.005415162454873646
+          }
+        }
+      }
+    },
+    "tukiringo": {
+      "name": "月林檎配列",
+      "metrics": {
+        "efficiency": 1.290137614678899,
+        "hand": 0.5493333333333333,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.0693950177935943,
+            "scissors": 0.005338078291814947
+          },
+          "trigram": {
+            "sfb": 0.13535173642030277,
+            "sft": 0.0017809439002671415,
+            "alt": 0.22707034728406056,
+            "altSfs": 0.10774710596616206,
+            "rollIn": 0.18165627782724844,
+            "rollOut": 0.23686553873552982,
+            "oneHandIn": 0.005342831700801425,
+            "oneHandOut": 0.013357079252003561,
+            "redirect": 0.05253784505788068,
+            "redirectSfs": 0.03829029385574354
+          }
+        }
+      }
+    },
+    "yukika": {
+      "name": "幸花配列",
+      "metrics": {
+        "efficiency": 1.3142201834862386,
+        "hand": 0.4232111692844677,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.048034934497816595,
+            "scissors": 0.013100436681222707
+          },
+          "trigram": {
+            "sfb": 0.0944055944055944,
+            "sft": 0.0008741258741258741,
+            "alt": 0.35664335664335667,
+            "altSfs": 0.12674825174825174,
+            "rollIn": 0.18444055944055945,
+            "rollOut": 0.16695804195804195,
+            "oneHandIn": 0.004370629370629371,
+            "oneHandOut": 0.0034965034965034965,
+            "redirect": 0.043706293706293704,
+            "redirectSfs": 0.018356643356643356
+          }
+        }
+      }
+    },
+    "hybrid-tsuki": {
+      "name": "ハイブリッド月配列",
+      "metrics": {
+        "efficiency": 1.2786697247706422,
+        "hand": 0.5076233183856502,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.06552962298025135,
+            "scissors": 0.005385996409335727
+          },
+          "trigram": {
+            "sfb": 0.12219227313566937,
+            "sft": 0.004492362982929021,
+            "alt": 0.2210242587601078,
+            "altSfs": 0.08984725965858041,
+            "rollIn": 0.23450134770889489,
+            "rollOut": 0.16711590296495957,
+            "oneHandIn": 0.02336028751123091,
+            "oneHandOut": 0.01078167115902965,
+            "redirect": 0.07008086253369272,
+            "redirectSfs": 0.05660377358490566
+          }
+        }
+      }
+    },
+    "burichutoro-20221015": {
+      "name": "ブリ中トロ配列",
+      "metrics": {
+        "efficiency": 1.2970183486238531,
+        "hand": 0.5057471264367817,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.05309734513274336,
+            "scissors": 0.0035398230088495575
+          },
+          "trigram": {
+            "sfb": 0.09920283436669619,
+            "sft": 0.00354295837023915,
+            "alt": 0.29849424269264835,
+            "altSfs": 0.07263064658990256,
+            "rollIn": 0.20549158547387067,
+            "rollOut": 0.21523472099202834,
+            "oneHandIn": 0.011514614703277236,
+            "oneHandOut": 0.010628875110717449,
+            "redirect": 0.0637732506643047,
+            "redirectSfs": 0.01948627103631532
+          }
+        }
+      }
+    },
+    "tsukimisou": {
+      "name": "月見草配列v2",
+      "metrics": {
+        "efficiency": 1.2729357798165137,
+        "hand": 0.4945945945945946,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.03606853020739405,
+            "scissors": 0.0063119927862939585
+          },
+          "trigram": {
+            "sfb": 0.0703971119133574,
+            "sft": 0.0009025270758122744,
+            "alt": 0.27617328519855594,
+            "altSfs": 0.06768953068592058,
+            "rollIn": 0.20577617328519857,
+            "rollOut": 0.22563176895306858,
+            "oneHandIn": 0.02256317689530686,
+            "oneHandOut": 0.015342960288808664,
+            "redirect": 0.06768953068592058,
+            "redirectSfs": 0.04783393501805054
+          }
+        }
+      }
+    },
+    "hideduki": {
+      "name": "英月配列",
+      "metrics": {
+        "efficiency": 1.3107798165137614,
+        "hand": 0.4348206474190726,
+        "strokeMetrics": {
+          "bigram": {
+            "sfb": 0.0989492119089317,
+            "scissors": 0.010507880910683012
+          },
+          "trigram": {
+            "sfb": 0.18755477651183172,
+            "sft": 0.0052585451358457495,
+            "alt": 0.2927256792287467,
+            "altSfs": 0.13409290096406662,
+            "rollIn": 0.1375985977212971,
+            "rollOut": 0.1971954425942156,
+            "oneHandIn": 0.0052585451358457495,
+            "oneHandOut": 0.0052585451358457495,
+            "redirect": 0.026292725679228746,
+            "redirectSfs": 0.008764241893076249
+          }
+        }
+      }
+    }
+  }
+}

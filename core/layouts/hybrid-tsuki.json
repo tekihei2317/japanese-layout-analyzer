@@ -46,7 +46,7 @@
     "output": "ゅ"
   },
   {
-    "input": "[",
+    "input": "@",
     "output": "",
     "nextInput": "ぱ"
   },
@@ -82,8 +82,8 @@
     "output": "か"
   },
   {
-    "input": "'",
-    "output": "よ"
+    "input": ":",
+    "output": "ょ"
   },
   {
     "input": "z",
@@ -286,7 +286,7 @@
     "output": "きゅ"
   },
   {
-    "input": "こ'",
+    "input": "こ:",
     "output": "きょ"
   },
   {
@@ -298,7 +298,7 @@
     "output": "ちゅ"
   },
   {
-    "input": "う'",
+    "input": "う:",
     "output": "ちょ"
   },
   {
@@ -310,7 +310,7 @@
     "output": "ひゅ"
   },
   {
-    "input": "な'",
+    "input": "な:",
     "output": "ひょ"
   },
   {
@@ -322,7 +322,7 @@
     "output": "みゅ"
   },
   {
-    "input": "の'",
+    "input": "の:",
     "output": "みょ"
   },
   {
@@ -334,7 +334,7 @@
     "output": "りゅ"
   },
   {
-    "input": "い'",
+    "input": "い:",
     "output": "りょ"
   },
   {
@@ -346,7 +346,7 @@
     "output": "ぎゅ"
   },
   {
-    "input": "ま'",
+    "input": "ま:",
     "output": "ぎょ"
   },
   {
@@ -358,7 +358,7 @@
     "output": "ぢゅ"
   },
   {
-    "input": "8'",
+    "input": "8:",
     "output": "ぢょ"
   },
   {
@@ -390,7 +390,7 @@
     "output": "じゅ"
   },
   {
-    "input": "？'",
+    "input": "？:",
     "output": "じょ"
   },
   {
@@ -422,7 +422,7 @@
     "output": "びゅ"
   },
   {
-    "input": "。'",
+    "input": "。:",
     "output": "びょ"
   },
   {
@@ -454,7 +454,7 @@
     "output": "ぴゅ"
   },
   {
-    "input": "ぱ'",
+    "input": "ぱ:",
     "output": "ぴょ"
   },
   {
@@ -474,7 +474,7 @@
     "output": "ふぇ"
   },
   {
-    "input": "た'",
+    "input": "た:",
     "output": "ふぉ"
   },
   {
@@ -494,7 +494,7 @@
     "output": "ゔぇ"
   },
   {
-    "input": "っ'",
+    "input": "っ:",
     "output": "ゔぉ"
   },
   {
@@ -514,7 +514,7 @@
     "output": "うぇ"
   },
   {
-    "input": "を'",
+    "input": "を:",
     "output": "を"
   },
   {
@@ -534,7 +534,15 @@
     "output": "ぇ"
   },
   {
-    "input": "が'",
+    "input": "が:",
     "output": "ぉ"
+  },
+  {
+    "input": "、 ",
+    "output": "、"
+  },
+  {
+    "input": "。 ",
+    "output": "。"
   }
 ]

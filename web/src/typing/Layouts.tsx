@@ -653,7 +653,7 @@ export const Layouts = ({ layoutId }: LayoutProps) => {
   if (layoutId === "burichutoro-20221015") {
     return <BurichutoroLayout />;
   }
-  if (layoutId === "hybridTsuki") {
+  if (layoutId === "hybrid-tsuki") {
     return <HybridTsukiLayout />;
   }
   if (layoutId === "hideduki") {

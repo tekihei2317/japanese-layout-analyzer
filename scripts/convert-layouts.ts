@@ -11,7 +11,7 @@ function parseTsv(contents: string, source: string): LayoutEntry[] {
   const entries: LayoutEntry[] = [];
   const lines = contents.split(/\r?\n/);
   lines.forEach((line, index) => {
-    const trimmed = line.trim();
+    const trimmed = line.trimEnd();
     if (!trimmed) return;
     const parts = trimmed.split("\t");
     if (parts.length === 1) {

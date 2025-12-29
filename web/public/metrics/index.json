@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "corpora": [
+    {
+      "id": "kenpou",
+      "name": "kenpou",
+      "file": "/metrics/kenpou.json"
+    }
+  ]
+}

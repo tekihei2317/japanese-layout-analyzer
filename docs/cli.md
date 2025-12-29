@@ -126,3 +126,24 @@ jla scissors <corpus> <layout> [--count <number>]
 ```
 
 指定した指標の上位リストを表示する。
+
+### export
+
+Web UIに指標を表示するためのデータをエクスポートします。
+
+```bash
+jla export --corpus <id|file|all> --layout <id|all> [--out-dir <dir>]
+```
+
+例:
+
+```bash
+# コーパスを指定して全配列を出力
+jla export --corpus aozora
+
+# 配列を指定して全コーパスを出力
+jla export --layout qwerty
+
+# 特定の組み合わせを出力
+jla export --corpus data/texts/aozora.txt --layout qwerty
+```
