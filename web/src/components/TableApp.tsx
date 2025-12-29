@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 type MetricFormat = "percent" | "ratio" | "count";
 
@@ -57,7 +57,7 @@ type CorpusIndex = {
   }>;
 };
 
-const formatMetric = (value: number | undefined, metric: MetricDefinition) => {
+function formatMetric(value: number | undefined, metric: MetricDefinition) {
   if (value === undefined || Number.isNaN(value)) return "-";
   if (metric.format === "percent") {
     return `${(value * 100).toFixed(1)}%`;
@@ -66,7 +66,7 @@ const formatMetric = (value: number | undefined, metric: MetricDefinition) => {
     return value.toFixed(2);
   }
   return value.toLocaleString("en-US");
-};
+}
 
 const displayMetrics: MetricDefinition[] = [
   {
@@ -148,7 +148,7 @@ const displayMetrics: MetricDefinition[] = [
   },
 ];
 
-const metricValue = (row: LayoutRow, key: string) => {
+function metricValue(row: LayoutRow, key: string) {
   const { strokeMetrics } = row.metrics;
   if (key === "efficiency") return row.metrics.efficiency;
   if (key === "hand") return row.metrics.hand;
@@ -174,55 +174,23 @@ const metricValue = (row: LayoutRow, key: string) => {
     return outCount ? inCount / outCount : 0;
   }
   return undefined;
+}
+
+type TableAppProps = {
+  index: CorpusIndex;
+  corpusDataById: Record<string, CorpusPayload>;
 };
 
-export default function TableApp() {
-  const [index, setIndex] = useState<CorpusIndex | null>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [data, setData] = useState<CorpusPayload | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export default function TableApp({ index, corpusDataById }: TableAppProps) {
+  const [selectedId, setSelectedId] = useState<string>(
+    index.corpora[0]?.id ?? ""
+  );
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
-  useEffect(() => {
-    const loadIndex = async () => {
-      try {
-        const response = await fetch("/metrics/index.json");
-        if (!response.ok) throw new Error("Failed to load corpus list.");
-        const payload = (await response.json()) as CorpusIndex;
-        setIndex(payload);
-        setSelectedId(payload.corpora[0]?.id ?? null);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load.");
-      }
-    };
-    void loadIndex();
-  }, []);
-
-  useEffect(() => {
-    if (!index || !selectedId) return;
-    const corpus = index.corpora.find((item) => item.id === selectedId);
-    if (!corpus) return;
-
-    const loadCorpus = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(corpus.file);
-        if (!response.ok) throw new Error("Failed to load corpus data.");
-        const payload = (await response.json()) as CorpusPayload;
-        setData(payload);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load.");
-        setData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    void loadCorpus();
-  }, [index, selectedId]);
+  const data = selectedId ? corpusDataById[selectedId] ?? null : null;
+  const error =
+    selectedId && !data ? "選択したコーパスのデータが見つかりません。" : null;
 
   const metrics = displayMetrics;
   const rows = useMemo<LayoutRow[]>(() => {
@@ -235,7 +203,7 @@ export default function TableApp() {
   }, [data]);
 
   const corpusLabel = useMemo(() => {
-    if (!index || !selectedId) return "-";
+    if (!selectedId) return "-";
     return index.corpora.find((item) => item.id === selectedId)?.name ?? "-";
   }, [index, selectedId]);
 
@@ -326,16 +294,7 @@ export default function TableApp() {
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
-            {loading ? (
-              <tr>
-                <td
-                  className="px-4 py-6 text-slate-500"
-                  colSpan={metrics.length + 1}
-                >
-                  {corpusLabel} のデータを読み込み中...
-                </td>
-              </tr>
-            ) : rows.length === 0 ? (
+            {rows.length === 0 ? (
               <tr>
                 <td
                   className="px-4 py-6 text-slate-500"
