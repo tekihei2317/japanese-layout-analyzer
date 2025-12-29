@@ -1,14 +1,20 @@
+import type { LayoutDiagram } from "../lib/layout-diagram";
+
 type LayoutPanelProps = {
   title?: string;
+  diagram: LayoutDiagram;
 };
 
 const layoutRows = [
-  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-  ["A", "S", "D", "F", "G", "H", "J", "K", "L", "—"],
-  ["Z", "X", "C", "V", "B", "N", "M", "—", "—", "—"],
-];
+  ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+  ["a", "s", "d", "f", "g", "h", "j", "k", "l", "Semicolon"],
+  ["z", "x", "c", "v", "b", "n", "m", "Comma", "Period", "Slash"],
+] as const;
 
-export default function LayoutPanel({ title = "配列図" }: LayoutPanelProps) {
+export default function LayoutPanel({
+  title = "配列図",
+  diagram,
+}: LayoutPanelProps) {
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -18,12 +24,12 @@ export default function LayoutPanel({ title = "配列図" }: LayoutPanelProps) {
       <div className="mt-4 grid gap-2">
         {layoutRows.map((row, rowIndex) => (
           <div key={rowIndex} className="grid grid-cols-10 gap-2">
-            {row.map((keyLabel, colIndex) => (
+            {row.map((keyCode, colIndex) => (
               <div
                 key={`${rowIndex}-${colIndex}`}
                 className="flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-700 shadow-sm"
               >
-                {keyLabel}
+                {diagram[keyCode] ?? "—"}
               </div>
             ))}
           </div>

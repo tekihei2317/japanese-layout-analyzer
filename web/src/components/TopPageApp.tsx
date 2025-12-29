@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { CorpusPayload, MetricDefinition } from "../lib/metrics-data";
 import LayoutPanel from "./LayoutPanel";
+import { layoutDiagrams } from "../lib/layout-diagram";
 import LoadSection from "./LoadSection";
 import MetricsSection from "./MetricsSection";
 
@@ -255,9 +256,15 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
                 </h2>
               </div>
 
-              <div className="mt-6">
-                <LayoutPanel />
-              </div>
+            <div className="mt-6">
+              <LayoutPanel
+                diagram={
+                  layoutDiagrams[
+                    view.layoutId as keyof typeof layoutDiagrams
+                  ] ?? {}
+                }
+              />
+            </div>
 
               <LoadSection
                 loadMetrics={view.loadMetrics}

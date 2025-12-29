@@ -3,7 +3,7 @@
   "corpora": [
     {
       "id": "kenpou",
-      "name": "kenpou",
+      "name": "日本国憲法前文",
       "file": "/metrics/kenpou.json"
     }
   ]
