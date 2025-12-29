@@ -47,7 +47,10 @@ function toPercent(value: number | undefined) {
   return typeof value === "number" ? value * 100 : 0;
 }
 
-function buildKeyRows(layout: KeyboardLayout, metrics: LoadMetricsPayload | undefined) {
+function buildKeyRows(
+  layout: KeyboardLayout,
+  metrics: LoadMetricsPayload | undefined
+) {
   return rowOrder.map((row) =>
     layout[row].map((key) => ({
       unit: key.unit,
@@ -74,9 +77,16 @@ function barHeight(value: number, max: number) {
   return `${Math.round((value / max) * 100)}%`;
 }
 
-export default function LoadSection({ loadMetrics, layoutMode }: LoadSectionProps) {
-  const rowSumsLeft = rowOrder.map((row) => toPercent(loadMetrics?.row[row]?.L));
-  const rowSumsRight = rowOrder.map((row) => toPercent(loadMetrics?.row[row]?.R));
+export default function LoadSection({
+  loadMetrics,
+  layoutMode,
+}: LoadSectionProps) {
+  const rowSumsLeft = rowOrder.map((row) =>
+    toPercent(loadMetrics?.row[row]?.L)
+  );
+  const rowSumsRight = rowOrder.map((row) =>
+    toPercent(loadMetrics?.row[row]?.R)
+  );
   const fingerLoads = fingerOrder.map((finger) => ({
     label: finger.label,
     value: toPercent(loadMetrics?.finger[finger.key]),
@@ -86,7 +96,8 @@ export default function LoadSection({ loadMetrics, layoutMode }: LoadSectionProp
   const maxFinger = Math.max(1, ...fingerLoads.map((entry) => entry.value));
   const maxRow = Math.max(1, ...rowSumsLeft, ...rowSumsRight);
 
-  const layout = layoutMode === "ortholinear" ? ortholinearLayout : rowStaggeredLayout;
+  const layout =
+    layoutMode === "ortholinear" ? ortholinearLayout : rowStaggeredLayout;
   const keyRows = buildKeyRows(layout, loadMetrics);
 
   return (
@@ -99,12 +110,15 @@ export default function LoadSection({ loadMetrics, layoutMode }: LoadSectionProp
         行・指の負荷棒グラフと、キー別の負担率ヒートマップを分けて表示します。
       </p>
 
-      <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+      <div className="mt-8">
         <div className="grid gap-6 lg:grid-cols-[1fr_2fr_1fr]">
           <div className="space-y-2 text-[11px] text-slate-600">
             <div className="text-sm font-semibold text-slate-700">行負荷</div>
             {rowSumsLeft.map((value, index) => (
-              <div key={`row-left-${index}`} className="flex items-center gap-2">
+              <div
+                key={`row-left-${index}`}
+                className="flex items-center gap-2"
+              >
                 <span className="w-10 text-right font-semibold text-slate-600">
                   {value.toFixed(1)}
                 </span>
@@ -127,7 +141,10 @@ export default function LoadSection({ loadMetrics, layoutMode }: LoadSectionProp
               }}
             >
               {fingerLoads.map((entry) => (
-                <div key={entry.label} className="flex flex-col items-center gap-2">
+                <div
+                  key={entry.label}
+                  className="flex flex-col items-center gap-2"
+                >
                   <span className="font-semibold text-slate-600">
                     {entry.value.toFixed(1)}
                   </span>
@@ -137,16 +154,23 @@ export default function LoadSection({ loadMetrics, layoutMode }: LoadSectionProp
                       style={{ height: barHeight(entry.value, maxFinger) }}
                     />
                   </div>
-                  <span className="text-[10px] text-slate-500">{entry.label}</span>
+                  <span className="text-[10px] text-slate-500">
+                    {entry.label}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="space-y-2 text-[11px] text-slate-600">
-            <div className="text-sm font-semibold text-slate-700 text-right">行負荷</div>
+            <div className="text-sm font-semibold text-slate-700 text-right">
+              行負荷
+            </div>
             {rowSumsRight.map((value, index) => (
-              <div key={`row-right-${index}`} className="flex items-center gap-2">
+              <div
+                key={`row-right-${index}`}
+                className="flex items-center gap-2"
+              >
                 <div className="h-3 flex-1 rounded-full bg-rose-100">
                   <div
                     className="h-3 rounded-full bg-rose-500"
@@ -162,37 +186,51 @@ export default function LoadSection({ loadMetrics, layoutMode }: LoadSectionProp
         </div>
 
         <div className="mt-4 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
-          <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
+          <span className="px-3 py-1 text-center">
             左手合計: {leftSum.toFixed(1)}%
           </span>
-          <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
+          <span className="px-3 py-1 text-center">
             右手合計: {rightSum.toFixed(1)}%
           </span>
         </div>
       </div>
 
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-4">
-        <div className="space-y-0" style={{ minWidth: "640px" }}>
-          {keyRows.map((row, rowIndex) => (
-            <div key={`key-row-${rowIndex}`} className="flex flex-nowrap gap-0">
-              {row.map((cell: KeyCell, colIndex) => (
-                <div
-                  key={`key-${rowIndex}-${colIndex}`}
-                  className={`flex items-center justify-center text-sm font-semibold ${loadClass(
-                    cell.value
-                  )}`}
-                  style={{
-                    width: `calc(var(--unit-size, 3rem) * ${cell.unit})`,
-                    height: "var(--unit-size, 3rem)",
-                    marginLeft: `calc(var(--unit-size, 3rem) * ${cell.offset ?? 0})`,
-                  }}
-                  title={`${cell.value.toFixed(1)}%`}
-                >
-                  <span className="truncate px-1">{cell.value.toFixed(1)}</span>
-                </div>
-              ))}
-            </div>
-          ))}
+      <div className="mt-8 overflow-x-auto">
+        <div
+          className="space-y-0 flex justify-center"
+          style={{ minWidth: "640px" }}
+        >
+          <div>
+            {keyRows.map((row, rowIndex) => (
+              <div
+                key={`key-row-${rowIndex}`}
+                className="flex flex-nowrap gap-0"
+              >
+                {row.map((cell: KeyCell, colIndex) => (
+                  <div
+                    key={`key-${rowIndex}-${colIndex}`}
+                    className={`flex items-center justify-center border-b-2 border-r-2 border-white border text-sm font-semibold ${
+                      rowIndex === 0 ? "border-t-2" : ""
+                    } ${colIndex === 0 ? "border-l-2" : ""} ${loadClass(
+                      cell.value
+                    )}`}
+                    style={{
+                      width: `calc(var(--unit-size, 3rem) * ${cell.unit})`,
+                      height: "var(--unit-size, 3rem)",
+                      marginLeft: `calc(var(--unit-size, 3rem) * ${
+                        cell.offset ?? 0
+                      })`,
+                    }}
+                    title={`${cell.value.toFixed(1)}%`}
+                  >
+                    <span className="truncate px-1">
+                      {cell.value.toFixed(1)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

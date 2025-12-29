@@ -15,16 +15,8 @@ const { index, corpusDataById } = await loadMetricsData();
     <meta name="generator" content={Astro.generator} />
     <title>Japanese Layout Analyzer</title>
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen bg-white">
     <div class="relative overflow-hidden">
-      <div
-        class="absolute -top-24 right-10 h-64 w-64 rounded-full bg-teal-100 blur-3xl"
-      >
-      </div>
-      <div
-        class="absolute top-24 -left-20 h-72 w-72 rounded-full bg-orange-100 blur-3xl"
-      >
-      </div>
       <SiteHeader />
       <main
         class="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12"

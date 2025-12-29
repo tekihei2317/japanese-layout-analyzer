@@ -9,24 +9,13 @@ type MetricsSectionProps = {
 
 export default function MetricsSection({ metrics }: MetricsSectionProps) {
   return (
-    <div className="mt-6">
+    <div className="mt-8">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-xl font-semibold text-slate-900">指標</h3>
-          <p className="text-sm text-slate-500">
-            シンプルな横並びテーブルで表示します。
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-2 text-sm">
-          <button className="rounded-full border border-slate-200 bg-slate-50 px-4 py-1 font-medium text-slate-600">
-            フィルタ: 全指標
-          </button>
-          <button className="rounded-full border border-slate-200 bg-white px-4 py-1 font-medium text-slate-600">
-            比較: QWERTY
-          </button>
         </div>
       </div>
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-slate-200">
+      <div className="mt-4 overflow-x-auto border border-slate-200 bg-white">
         <table className="min-w-full text-left text-sm sm:text-base">
           <thead className="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500">
             <tr>

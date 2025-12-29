@@ -179,61 +179,51 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
 
   return (
     <div className="flex flex-col gap-10">
-      <header className="flex flex-col gap-4">
+      <header className="flex flex-col gap-4 pb-6">
         <div className="flex flex-col gap-3">
           <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
             配列指標ダッシュボード
           </h1>
         </div>
-        {/* <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600"> */}
-        <div className="flex gap-4">
-          <div>
-            <label className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 font-medium text-slate-600 shadow-sm">
-              <span>コーパス</span>
-              <select
-                className="cursor-pointer bg-transparent text-lg text-slate-700"
-                value={selectedCorpusId}
-                onChange={(event) => setSelectedCorpusId(event.target.value)}
-              >
-                {index.corpora.map((corpus) => (
-                  <option key={corpus.id} value={corpus.id}>
-                    {corpus.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div>
-            <label className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 font-medium text-slate-600 shadow-sm">
-              <span>配列表示</span>
-              <select
-                className="cursor-pointer bg-transparent text-lg text-slate-700"
-                value={layoutMode}
-                onChange={(event) =>
-                  setLayoutMode(
-                    event.target.value as "staggered" | "ortholinear"
-                  )
-                }
-              >
-                <option value="staggered">ロースタッガード</option>
-                <option value="ortholinear">オーソリニア</option>
-              </select>
-            </label>
-          </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <label className="inline-flex items-center gap-2 border border-slate-200 bg-white px-4 py-2 font-medium text-slate-600">
+            <span>コーパス</span>
+            <select
+              className="cursor-pointer bg-transparent text-lg text-slate-700"
+              value={selectedCorpusId}
+              onChange={(event) => setSelectedCorpusId(event.target.value)}
+            >
+              {index.corpora.map((corpus) => (
+                <option key={corpus.id} value={corpus.id}>
+                  {corpus.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="inline-flex items-center gap-2 border border-slate-200 bg-white px-4 py-2 font-medium text-slate-600">
+            <span>配列表示</span>
+            <select
+              className="cursor-pointer bg-transparent text-lg text-slate-700"
+              value={layoutMode}
+              onChange={(event) =>
+                setLayoutMode(event.target.value as "staggered" | "ortholinear")
+              }
+            >
+              <option value="staggered">ロースタッガード</option>
+              <option value="ortholinear">オーソリニア</option>
+            </select>
+          </label>
         </div>
       </header>
 
-      <section className="grid gap-8">
+      <section className="grid gap-10 bg-white">
         {layoutViews.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-slate-200 bg-white/90 p-6 text-slate-600">
+          <div className="px-2 py-8 text-slate-600">
             {corpusLabel} のメトリクスが見つかりませんでした。
           </div>
         ) : null}
         {layoutViews.map((view) => (
-          <div
-            key={view.layoutId}
-            className="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur"
-          >
+          <div key={view.layoutId} className="py-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="text-2xl font-semibold text-slate-900">
                 {view.name}
