@@ -16,13 +16,9 @@ const { index, corpusDataById } = await loadMetricsData();
     <title>Japanese Layout Analyzer</title>
   </head>
   <body class="min-h-screen bg-white">
-    <div class="relative overflow-hidden">
+    <div>
       <SiteHeader />
-      <main
-        class="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12"
-      >
-        <TopPageApp client:load index={index} corpusDataById={corpusDataById} />
-      </main>
+      <TopPageApp client:load index={index} corpusDataById={corpusDataById} />
     </div>
   </body>
 </html>
