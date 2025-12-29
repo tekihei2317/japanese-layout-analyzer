@@ -66,7 +66,7 @@ export const PlayingScreen = ({
   const restStart = wrongChar ? mismatchIndex + 1 : correctLength;
 
   return (
-    <section className="border border-slate-200 bg-white/90 p-6 backdrop-blur">
+    <section className="p-6">
       <div className="flex flex-col gap-4">
         <div className="text-xs text-slate-500">ワード表示</div>
         <div className="text-2xl font-semibold text-slate-900 sm:text-3xl">
@@ -81,7 +81,7 @@ export const PlayingScreen = ({
           ) : null}
           <span>{currentWord.kana.slice(restStart)}</span>
         </div>
-        <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-2xl text-slate-700">
+        <div className="mt-4 rounded-2xl bg-slate-50 px-4 py-3 text-2xl text-slate-700">
           <span>{typed}</span>
           <span className="underline decoration-teal-500 decoration-2 underline-offset-4">
             {buffer}

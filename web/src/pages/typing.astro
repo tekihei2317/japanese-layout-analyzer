@@ -1,42 +1,19 @@
 ---
-import "../styles/global.css";
-import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { TypingGame } from "../typing/TypingGame";
 ---
 
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>タイピング | Japanese Layout Analyzer</title>
-  </head>
-  <body class="min-h-screen">
-    <div class="relative overflow-hidden">
-      <div
-        class="absolute -top-24 right-10 h-64 w-64 rounded-full bg-teal-100 blur-3xl"
-      >
-      </div>
-      <div
-        class="absolute top-28 -left-20 h-72 w-72 rounded-full bg-orange-100 blur-3xl"
-      >
-      </div>
-      <SiteHeader />
-      <main
-        class="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12"
-      >
-        <header class="flex flex-col gap-4">
-          <div class="flex flex-col gap-3">
-            <h1 class="text-2xl font-semibold text-slate-900 sm:text-3xl">
-              配列を試す
-            </h1>
-            <p class="max-w-2xl text-base text-slate-600 sm:text-lg">
-              色々な配列を体験できます。
-            </p>
-          </div>
-        </header>
-
-        <TypingGame client:load />
-      </main>
+<BaseLayout title="タイピング | Japanese Layout Analyzer">
+  <header class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+      <h1 class="text-2xl font-semibold text-slate-900 sm:text-3xl">
+        配列を試す
+      </h1>
+      <p class="max-w-2xl text-base text-slate-600 sm:text-lg">
+        色々な配列を体験できます。
+      </p>
     </div>
-  </body>
-</html>
+  </header>
+
+  <TypingGame client:load />
+</BaseLayout>

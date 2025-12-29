@@ -59,7 +59,7 @@ export const TypingGame = () => {
     layoutOptions.find((option) => option.id === settings.layoutId) ??
     layoutOptions[0];
   const settingsPanel = (
-    <section className="border border-slate-200 bg-white/90 px-6 py-4 backdrop-blur">
+    <section className="px-6 py-4">
       <div className="grid gap-4 text-sm text-slate-700 sm:grid-cols-[1.2fr_1fr_1fr] sm:items-center">
         <label className="flex flex-col gap-2">
           <span className="text-xs uppercase tracking-wider text-slate-400">
@@ -124,7 +124,7 @@ export const TypingGame = () => {
     </section>
   );
   const layoutPanel = (
-    <section className="border border-slate-200 bg-white/90 p-6 backdrop-blur">
+    <section className="p-6">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold text-slate-900">
           {selectedLayout?.label ?? "配列図"}

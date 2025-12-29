@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+
+type Props = {
+  title?: string;
+  mainClass?: string;
+};
+
+const {
+  title = "Japanese Layout Analyzer",
+  mainClass = "mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12",
+} = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-white">
+    <div class="relative overflow-hidden">
+      <div
+        class="pointer-events-none absolute -top-24 right-10 h-64 w-64 rounded-full bg-sky-100/70 blur-3xl"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute top-28 -left-20 h-72 w-72 rounded-full bg-amber-100/70 blur-3xl"
+      >
+      </div>
+      <SiteHeader />
+      <main class={mainClass}>
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

@@ -19,7 +19,7 @@ export const WaitingScreen = ({ onStart }: WaitingScreenProps) => {
   }, [onStart]);
 
   return (
-    <section className="border border-slate-200 bg-white/90 p-6 backdrop-blur">
+    <section className="p-6">
       <div className="flex flex-col gap-3 text-slate-600">
         <div className="text-xs uppercase tracking-wider text-slate-400">
           Ready

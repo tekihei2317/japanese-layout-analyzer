@@ -100,7 +100,7 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
     index.corpora.find((corpus) => corpus.id === selectedCorpusId)?.name ?? "-";
 
   return (
-    <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12">
+    <div className="relative flex flex-col gap-10">
       <aside className="absolute right-full h-full hidden xl:block">
         <nav className="sticky top-16 w-48">
           <div className="space-y-2">
@@ -197,6 +197,6 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
           ))}
         </section>
       </div>
-    </main>
+    </div>
   );
 }
