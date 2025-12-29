@@ -1,6 +1,12 @@
 ---
 import "../styles/global.css";
+import { promises as fs } from "node:fs";
 import SiteHeader from "../components/SiteHeader.astro";
+import {
+  rowStaggeredLayout,
+  type KeyboardRow,
+  type LoadMetrics,
+} from "@japanese-layout-analyzer/core";
 
 const layoutRows = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -8,54 +14,253 @@ const layoutRows = [
   ["Z", "X", "C", "V", "B", "N", "M", "—", "—", "—"],
 ];
 
-const layoutNames = ["QWERTY", "大西配列", "花配列", "月見草配列"];
+type MetricFormat = "percent" | "ratio" | "count";
 
-const loadMatrix = [
-  [0.6, 3.8, 6.4, 8.1, 11.7, 9.2, 7.5, 6.1, 3.2, 1.1],
-  [12.3, 9.6, 5.4, 2.9, 1.8, 2.4, 5.8, 7.6, 9.1, 0.4],
-  [4.2, 3.1, 2.6, 1.4, 0.9, 0.7, 0.3, 0.0, 0.0, 0.0],
-];
-
-const colSums = loadMatrix[0].map((_, colIndex) =>
-  loadMatrix.reduce((sum, row) => sum + row[colIndex], 0)
-);
-const rowSums = loadMatrix.map((row) => row.reduce((sum, value) => sum + value, 0));
-const leftSum = loadMatrix.reduce(
-  (sum, row) => sum + row.slice(0, 5).reduce((rowSum, value) => rowSum + value, 0),
-  0
-);
-const rightSum = loadMatrix.reduce(
-  (sum, row) => sum + row.slice(5).reduce((rowSum, value) => rowSum + value, 0),
-  0
-);
-const maxCell = Math.max(...loadMatrix.flat());
-const maxCol = Math.max(...colSums);
-const maxRow = Math.max(...rowSums);
-
-const metrics = [
-  { label: "打鍵効率", value: "44.2%", note: "前回比 +1.3" },
-  { label: "SFBs", value: "4.9%", note: "閾値 6%未満" },
-  { label: "SFSs", value: "3.6%", note: "安定ゾーン" },
-  { label: "Scissors", value: "1.2%", note: "要注意" },
-  { label: "Trigram alt", value: "31.0%", note: "改善傾向" },
-  { label: "Trigram redirect", value: "8.6%", note: "基準内" },
-  { label: "Trigram roll", value: "38.3%", note: "高め" },
-  { label: "Trigram 3roll", value: "13.0%", note: "基準内" },
-  { label: "In:out roll", value: "1.70", note: "バランス良好" },
-  { label: "Hand use", value: "50.9%", note: "左右均等" },
-];
-
-const loadClass = (value: number) => {
-  if (value >= 10) return "bg-rose-500/90 text-white";
-  if (value >= 8) return "bg-rose-400/90 text-white";
-  if (value >= 6) return "bg-rose-300/90 text-rose-900";
-  if (value >= 4) return "bg-rose-200/90 text-rose-900";
-  if (value >= 2) return "bg-rose-100/90 text-rose-900";
-  return "bg-slate-100 text-slate-500";
+type MetricDefinition = {
+  key: string;
+  label: string;
+  unit: string;
+  format: MetricFormat;
+  group?: string;
 };
 
-const barWidth = (value: number, max: number) => `${Math.round((value / max) * 100)}%`;
-const barHeight = (value: number, max: number) => `${Math.round((value / max) * 100)}%`;
+type LayoutMetrics = {
+  efficiency: number;
+  hand: number;
+  strokeMetrics: {
+    bigram: {
+      sfb: number;
+      scissors: number;
+    };
+    trigram: {
+      sfb: number;
+      sft: number;
+      alt: number;
+      altSfs: number;
+      rollIn: number;
+      rollOut: number;
+      oneHandIn: number;
+      oneHandOut: number;
+      redirect: number;
+      redirectSfs: number;
+    };
+  };
+  loadMetrics?: LoadMetrics;
+};
+
+type CorpusPayload = {
+  schemaVersion: number;
+  corpus: {
+    id: string;
+    name: string;
+    source?: string;
+  };
+  metrics?: MetricDefinition[];
+  layouts: Record<string, { name: string; metrics: LayoutMetrics }>;
+};
+
+type CorpusIndex = {
+  schemaVersion: number;
+  corpora: Array<{
+    id: string;
+    name: string;
+    file: string;
+  }>;
+};
+
+const defaultMetrics: MetricDefinition[] = [
+  {
+    key: "efficiency",
+    label: "打鍵効率",
+    unit: "ratio",
+    format: "ratio",
+    group: "1-gram",
+  },
+  {
+    key: "sfb2",
+    label: "SFB (2-gram)",
+    unit: "%",
+    format: "percent",
+    group: "2-gram",
+  },
+  {
+    key: "scissors",
+    label: "Scissors",
+    unit: "%",
+    format: "percent",
+    group: "2-gram",
+  },
+  {
+    key: "sfb3",
+    label: "SFB (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "sfs3",
+    label: "SFS (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "alt3",
+    label: "ALT (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "roll3",
+    label: "ROLL (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "onehand3",
+    label: "ONEHAND (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "redirect3",
+    label: "REDIRECT (3-gram)",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "hand",
+    label: "Hand use (L)",
+    unit: "%",
+    format: "percent",
+    group: "load",
+  },
+  {
+    key: "inOut",
+    label: "In:out roll",
+    unit: "ratio",
+    format: "ratio",
+    group: "3-gram",
+  },
+];
+
+const rowOrder: KeyboardRow[] = [
+  "NumberRow",
+  "TopRow",
+  "MiddleRow",
+  "BottomRow",
+  "SpaceRow",
+];
+const keyboardRows = rowOrder.map((row) =>
+  rowStaggeredLayout[row].map((key) => key.code)
+);
+
+function formatMetric(value: number | undefined, metric: MetricDefinition) {
+  if (value === undefined || Number.isNaN(value)) return "-";
+  if (metric.format === "percent") {
+    return `${(value * 100).toFixed(1)}%`;
+  }
+  if (metric.format === "ratio") {
+    return value.toFixed(2);
+  }
+  return value.toLocaleString("en-US");
+}
+
+function metricValue(metrics: LayoutMetrics, key: string) {
+  const { strokeMetrics } = metrics;
+  if (key === "efficiency") return metrics.efficiency;
+  if (key === "hand") return metrics.hand;
+  if (key === "sfb2") return strokeMetrics.bigram.sfb;
+  if (key === "scissors") return strokeMetrics.bigram.scissors;
+  if (key === "sfb3") return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
+  if (key === "sfs3")
+    return strokeMetrics.trigram.altSfs + strokeMetrics.trigram.redirectSfs;
+  if (key === "alt3") return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
+  if (key === "roll3")
+    return strokeMetrics.trigram.rollIn + strokeMetrics.trigram.rollOut;
+  if (key === "onehand3")
+    return strokeMetrics.trigram.oneHandIn + strokeMetrics.trigram.oneHandOut;
+  if (key === "redirect3")
+    return strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs;
+  if (key === "inOut") {
+    const inCount = strokeMetrics.trigram.rollIn + strokeMetrics.trigram.oneHandIn;
+    const outCount =
+      strokeMetrics.trigram.rollOut + strokeMetrics.trigram.oneHandOut;
+    return outCount ? inCount / outCount : 0;
+  }
+  return undefined;
+}
+
+function toPercent(value: number | undefined) {
+  return typeof value === "number" ? value * 100 : 0;
+}
+
+function buildLoadView(loadMetrics: LoadMetrics | undefined) {
+  const keyRows = keyboardRows.map((row) =>
+    row.map((code) => toPercent(loadMetrics?.key[code]))
+  );
+  const columnCount = Math.max(0, ...keyRows.map((row) => row.length));
+  const colSums = Array.from({ length: columnCount }, (_, colIndex) =>
+    keyRows.reduce((sum, row) => sum + (row[colIndex] ?? 0), 0)
+  );
+  const rowSums = rowOrder.map((row) => toPercent(loadMetrics?.row[row]));
+  const leftSum = toPercent(loadMetrics?.hand.L);
+  const rightSum = toPercent(loadMetrics?.hand.R);
+  const maxCell = Math.max(1, ...keyRows.flat());
+  const maxCol = Math.max(1, ...colSums);
+  const maxRow = Math.max(1, ...rowSums);
+
+  return {
+    keyRows,
+    colSums,
+    rowSums,
+    leftSum,
+    rightSum,
+    maxCell,
+    maxCol,
+    maxRow,
+  };
+}
+
+function loadClass(value: number) {
+  if (value >= 8) return "bg-rose-500/90 text-white";
+  if (value >= 6) return "bg-rose-400/90 text-white";
+  if (value >= 4) return "bg-rose-300/90 text-rose-900";
+  if (value >= 2) return "bg-rose-200/90 text-rose-900";
+  if (value >= 1) return "bg-rose-100/90 text-rose-900";
+  return "bg-slate-100 text-slate-500";
+}
+
+function barWidth(value: number, max: number) {
+  return `${Math.round((value / max) * 100)}%`;
+}
+
+function barHeight(value: number, max: number) {
+  return `${Math.round((value / max) * 100)}%`;
+}
+
+async function loadCorpusData() {
+  try {
+    const indexPath = new URL("../../public/metrics/index.json", import.meta.url);
+    const indexRaw = await fs.readFile(indexPath, "utf8");
+    const index = JSON.parse(indexRaw) as CorpusIndex;
+    const firstCorpus = index.corpora[0];
+    if (!firstCorpus) return null;
+    const corpusPath = new URL(`../../public${firstCorpus.file}`, import.meta.url);
+    const corpusRaw = await fs.readFile(corpusPath, "utf8");
+    return JSON.parse(corpusRaw) as CorpusPayload;
+  } catch {
+    return null;
+  }
+}
+
+const corpusData = await loadCorpusData();
+const layouts = Object.entries(corpusData?.layouts ?? {});
+const metricDefinitions = corpusData?.metrics ?? defaultMetrics;
 ---
 
 <html lang="ja">
@@ -96,16 +301,23 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
         </header>
 
         <section class="grid gap-8">
-          {layoutNames.map((name) => (
-            <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
+          {layouts.length === 0 && (
+            <div class="rounded-3xl border border-dashed border-slate-200 bg-white/90 p-6 text-slate-600">
+              exportコマンドで生成したメトリクスが見つかりませんでした。
+            </div>
+          )}
+          {layouts.map(([layoutId, entry]) => {
+            const loadView = buildLoadView(entry.metrics.loadMetrics);
+            return (
+              <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
               <div class="flex flex-wrap items-center justify-between gap-3">
-                <h2 class="text-2xl font-semibold text-slate-900">{name}</h2>
+                <h2 class="text-2xl font-semibold text-slate-900">{entry.name}</h2>
                 <div class="flex flex-wrap gap-2 text-sm text-slate-600">
                   <span class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                    コーパス: 青空文庫（仮）
+                    コーパス: {corpusData?.corpus.name ?? "未設定"}
                   </span>
                   <span class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                    更新: 2024-12-23
+                    ID: {layoutId}
                   </span>
                 </div>
               </div>
@@ -141,7 +353,7 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
                   <div class="grid gap-6 lg:grid-cols-[1fr_2fr_1fr]">
                     <div class="space-y-2 text-[11px] text-slate-600">
                       <div class="text-sm font-semibold text-slate-700">行負荷</div>
-                      {rowSums.map((value) => (
+                      {loadView.rowSums.map((value) => (
                         <div class="flex items-center gap-2">
                           <span class="w-10 text-right font-semibold text-slate-600">
                             {value.toFixed(1)}
@@ -149,7 +361,7 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
                           <div class="h-3 flex-1 rounded-full bg-rose-100">
                             <div
                               class="ml-auto h-3 rounded-full bg-rose-500"
-                              style={`width: ${barWidth(value, maxRow)};`}
+                              style={`width: ${barWidth(value, loadView.maxRow)};`}
                             ></div>
                           </div>
                         </div>
@@ -158,8 +370,11 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
 
                     <div class="space-y-2">
                       <div class="text-sm font-semibold text-slate-700">列負荷</div>
-                      <div class="grid grid-cols-10 gap-2 text-[11px] text-slate-600">
-                        {colSums.map((value) => (
+                      <div
+                        class="grid gap-2 text-[11px] text-slate-600"
+                        style={`grid-template-columns: repeat(${loadView.colSums.length}, minmax(0, 1fr));`}
+                      >
+                        {loadView.colSums.map((value) => (
                           <div class="flex flex-col items-center gap-2">
                             <span class="font-semibold text-slate-600">
                               {value.toFixed(1)}
@@ -167,7 +382,7 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
                             <div class="flex h-20 w-full items-end justify-center rounded-lg bg-rose-100">
                               <div
                                 class="w-full rounded-md bg-rose-500"
-                                style={`height: ${barHeight(value, maxCol)};`}
+                                style={`height: ${barHeight(value, loadView.maxCol)};`}
                               ></div>
                             </div>
                           </div>
@@ -177,12 +392,12 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
 
                     <div class="space-y-2 text-[11px] text-slate-600">
                       <div class="text-sm font-semibold text-slate-700 text-right">行負荷</div>
-                      {rowSums.map((value) => (
+                      {loadView.rowSums.map((value) => (
                         <div class="flex items-center gap-2">
                           <div class="h-3 flex-1 rounded-full bg-rose-100">
                             <div
                               class="h-3 rounded-full bg-rose-500"
-                              style={`width: ${barWidth(value, maxRow)};`}
+                              style={`width: ${barWidth(value, loadView.maxRow)};`}
                             ></div>
                           </div>
                           <span class="w-10 text-left font-semibold text-slate-600">
@@ -195,18 +410,21 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
 
                   <div class="mt-4 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
                     <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
-                      左手合計: {leftSum.toFixed(1)}%
+                      左手合計: {loadView.leftSum.toFixed(1)}%
                     </span>
                     <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
-                      右手合計: {rightSum.toFixed(1)}%
+                      右手合計: {loadView.rightSum.toFixed(1)}%
                     </span>
                   </div>
                 </div>
 
                 <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-3">
                   <div class="min-w-[640px] space-y-2">
-                    {loadMatrix.map((row) => (
-                      <div class="grid grid-cols-10 gap-2">
+                    {loadView.keyRows.map((row) => (
+                      <div
+                        class="grid gap-2"
+                        style={`grid-template-columns: repeat(${row.length}, minmax(0, 1fr));`}
+                      >
                         {row.map((value) => (
                           <div
                             class={`group relative flex h-9 items-center justify-center rounded-lg text-[11px] font-semibold ${loadClass(
@@ -247,23 +465,26 @@ const barHeight = (value: number, max: number) => `${Math.round((value / max) * 
                   <table class="min-w-full text-left text-sm sm:text-base">
                     <thead class="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500">
                       <tr>
-                        {metrics.map((metric) => (
+                        {metricDefinitions.map((metric) => (
                           <th class="px-4 py-3 font-medium">{metric.label}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="bg-white">
-                        {metrics.map((metric) => (
-                          <td class="px-4 py-3 text-slate-700">{metric.value}</td>
+                        {metricDefinitions.map((metric) => (
+                          <td class="px-4 py-3 text-slate-700">
+                            {formatMetric(metricValue(entry.metrics, metric.key), metric)}
+                          </td>
                         ))}
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </section>
 
         <section class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-sm text-slate-500">
