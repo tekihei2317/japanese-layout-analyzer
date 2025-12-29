@@ -1,4 +1,4 @@
-type Word = {
+export type Word = {
   display: string;
   kana: string;
   url: string;
@@ -8,7 +8,7 @@ type Word = {
   };
 };
 
-const words: Word[] = [
+export const words: Word[] = [
   {
     display: "",
     kana: "",
