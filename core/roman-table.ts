@@ -40,6 +40,7 @@ const layoutTables = {
 } as const;
 
 export type LayoutId = keyof typeof layoutTables;
+export const layoutIdOrder = Object.keys(layoutTables) as LayoutId[];
 
 export function getRomanTable(layoutId: LayoutId): RomanTable {
   return layoutTables[layoutId];

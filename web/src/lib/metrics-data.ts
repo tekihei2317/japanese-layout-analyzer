@@ -1,15 +1,5 @@
 import { promises as fs } from "node:fs";
 
-type MetricFormat = "percent" | "ratio" | "count";
-
-export type MetricDefinition = {
-  key: string;
-  label: string;
-  unit: string;
-  format: MetricFormat;
-  group?: string;
-};
-
 export type LayoutMetrics = {
   efficiency: number;
   hand: number;
@@ -46,7 +36,6 @@ export type CorpusPayload = {
     name: string;
     source?: string;
   };
-  metrics?: MetricDefinition[];
   layouts: Record<string, { name: string; metrics: LayoutMetrics }>;
 };
 

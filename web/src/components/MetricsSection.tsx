@@ -24,8 +24,8 @@ const tableOrder: Array<{ key: keyof MetricsSummary["table"]; label: string }> =
   [
     { key: "efficiency", label: "打鍵効率" },
     { key: "sfb2", label: "同指連続" },
-    { key: "sfs3", label: "同指スキップ連続" },
     { key: "scissors", label: "シザー" },
+    { key: "sfs3", label: "同指スキップ連続" },
     { key: "inOut", label: "内:外ロール比" },
   ];
 

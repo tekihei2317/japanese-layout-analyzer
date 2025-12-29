@@ -3,6 +3,7 @@ import path from "node:path";
 import type { LayoutId } from "@japanese-layout-analyzer/core";
 import {
   getRomanTable,
+  layoutIdOrder,
   findShortestKeystrokes,
   normalizeText,
   computeStrokeMetrics,
@@ -12,14 +13,6 @@ import {
 import { listLayouts } from "./layout";
 import { config } from "../config";
 
-type MetricDefinition = {
-  key: string;
-  label: string;
-  unit: string;
-  format: "percent" | "ratio" | "count";
-  group?: string;
-};
-
 type CorpusIndex = {
   schemaVersion: number;
   corpora: Array<{ id: string; name: string; file: string }>;
@@ -28,7 +21,6 @@ type CorpusIndex = {
 type CorpusMetrics = {
   schemaVersion: number;
   corpus: { id: string; name: string; source?: string };
-  metrics: MetricDefinition[];
   layouts: Record<
     string,
     {
@@ -50,86 +42,6 @@ type ExportOptions = {
   corpusId?: string;
   corpusName?: string;
 };
-
-const defaultMetrics: MetricDefinition[] = [
-  {
-    key: "efficiency",
-    label: "打鍵効率",
-    unit: "ratio",
-    format: "ratio",
-    group: "1-gram",
-  },
-  {
-    key: "sfb2",
-    label: "SFB (2-gram)",
-    unit: "%",
-    format: "percent",
-    group: "2-gram",
-  },
-  {
-    key: "scissors",
-    label: "Scissors",
-    unit: "%",
-    format: "percent",
-    group: "2-gram",
-  },
-  {
-    key: "sfb3",
-    label: "SFB (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "sfs3",
-    label: "SFS (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "alt3",
-    label: "ALT (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "roll3",
-    label: "ROLL (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "onehand3",
-    label: "ONEHAND (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "redirect3",
-    label: "REDIRECT (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "hand",
-    label: "Hand use (L)",
-    unit: "%",
-    format: "percent",
-    group: "load",
-  },
-  {
-    key: "inOut",
-    label: "In:out roll",
-    unit: "ratio",
-    format: "ratio",
-    group: "3-gram",
-  },
-];
 
 const ensureDir = async (dir: string) => {
   await fs.mkdir(dir, { recursive: true });
@@ -165,7 +77,10 @@ const resolveCorpusTargets = async (
   const addTarget = async (value: string) => {
     const filePath = await resolveCorpusFile(value);
     const id = corpusIdOverride ?? deriveCorpusId(value, filePath);
-    const name = corpusNameOverride ?? id;
+    const name =
+      corpusNameOverride ??
+      config.corpus.names[path.basename(filePath)] ??
+      id;
     targets.push({ id, name, filePath });
   };
 
@@ -178,7 +93,8 @@ const resolveCorpusTargets = async (
     for (const entry of files) {
       const id = entry.name.replace(/\.txt$/, "");
       const filePath = path.join(textsDir, entry.name);
-      targets.push({ id, name: id, filePath });
+      const name = config.corpus.names[entry.name] ?? id;
+      targets.push({ id, name, filePath });
     }
     return targets;
   }
@@ -189,23 +105,12 @@ const resolveCorpusTargets = async (
 
 const resolveCorpusFile = async (value: string) => {
   const directPath = path.resolve(value);
-  try {
-    const stat = await fs.stat(directPath);
-    if (stat.isFile()) return directPath;
-  } catch {
-    // ignore
-  }
-
-  const fromDataDir = path.join(process.cwd(), "data", "texts", `${value}.txt`);
-  const stat = await fs.stat(fromDataDir);
-  if (stat.isFile()) return fromDataDir;
+  const stat = await fs.stat(directPath);
+  if (stat.isFile()) return directPath;
   throw new Error(`Corpus not found: ${value}`);
 };
 
-const deriveCorpusId = (value: string, filePath: string) => {
-  if (value !== "all" && !value.includes(path.sep) && !value.endsWith(".txt")) {
-    return value;
-  }
+const deriveCorpusId = (_value: string, filePath: string) => {
   return path.basename(filePath).replace(/\.txt$/, "");
 };
 
@@ -223,13 +128,27 @@ const resolveLayouts = async (option: string | undefined) => {
         `Skipped layouts without roman table: ${invalidLayouts.join(", ")}`
       );
     }
-    return validLayouts;
+    return sortLayouts(validLayouts);
   }
   if (!getRomanTable(option as LayoutId)) {
     throw new Error(`Unknown layout: ${option}`);
   }
   return [option];
 };
+
+function sortLayouts(layouts: string[]) {
+  const orderMap = new Map(
+    layoutIdOrder.map((layoutId, index) => [layoutId, index])
+  );
+  return [...layouts].sort((a, b) => {
+    const aIndex = orderMap.get(a as LayoutId);
+    const bIndex = orderMap.get(b as LayoutId);
+    if (aIndex === undefined && bIndex === undefined) return 0;
+    if (aIndex === undefined) return 1;
+    if (bIndex === undefined) return -1;
+    return aIndex - bIndex;
+  });
+}
 
 const computeLayoutMetrics = (text: string, layoutId: string) => {
   const table = getRomanTable(layoutId as LayoutId);
@@ -292,7 +211,6 @@ export const exportCommand = async (options: ExportOptions) => {
         name: corpus.name,
         source: path.basename(corpus.filePath),
       },
-      metrics: [...defaultMetrics],
       layouts: {},
     };
 
@@ -302,7 +220,6 @@ export const exportCommand = async (options: ExportOptions) => {
       name: corpus.name,
       source: corpusData.corpus.source ?? path.basename(corpus.filePath),
     };
-    corpusData.metrics = [...defaultMetrics];
     if (!corpusData.layouts || Array.isArray(corpusData.layouts)) {
       corpusData.layouts = {};
     }
@@ -313,9 +230,7 @@ export const exportCommand = async (options: ExportOptions) => {
       const metrics = computeLayoutMetrics(text, layoutId);
       const existing = corpusData.layouts[layoutId];
       const name =
-        config.layout.names[layoutId as LayoutId] ??
-        existing?.name ??
-        layoutId;
+        config.layout.names[layoutId as LayoutId] ?? existing?.name ?? layoutId;
       corpusData.layouts[layoutId] = { name, metrics };
     }
 

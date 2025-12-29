@@ -124,7 +124,7 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
         <header className="flex flex-col gap-4 pb-6">
           <div className="flex flex-col gap-3">
             <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
-              配列指標ダッシュボード
+              配列一覧
             </h1>
           </div>
           <div className="flex flex-wrap items-center gap-3">

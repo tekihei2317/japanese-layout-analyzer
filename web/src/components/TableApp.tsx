@@ -1,15 +1,43 @@
 import { useMemo, useState } from "react";
-
-import type {
-  CorpusIndex,
-  CorpusPayload,
-  MetricDefinition,
-} from "../lib/metrics-data";
+import type { CorpusIndex, CorpusPayload } from "../lib/metrics-data";
 
 type LayoutRow = {
   id: string;
   name: string;
   metrics: CorpusPayload["layouts"][string]["metrics"];
+};
+
+type MetricFormat = "percent" | "ratio" | "count";
+
+type MetricKey =
+  | "efficiency"
+  | "sfbs"
+  | "scissors"
+  | "sfss"
+  | "SFB"
+  | "SFB_sfb"
+  | "SFB_sft"
+  | "ALT"
+  | "ALT_alt"
+  | "ALT_alt-sfs"
+  | "ROLL"
+  | "ROLL_roll-in"
+  | "ROLL_roll-out"
+  | "ONEHAND"
+  | "ONEHAND_onehand-in"
+  | "ONEHAND_onehand-out"
+  | "REDIRECT"
+  | "REDIRECT_redirect"
+  | "REDIRECT_redirect-sfs"
+  | "hand"
+  | "inOut";
+
+export type MetricDefinition = {
+  key: MetricKey;
+  label: string;
+  unit: string;
+  format: MetricFormat;
+  group?: string;
 };
 
 function formatMetric(value: number | undefined, metric: MetricDefinition) {
@@ -32,8 +60,8 @@ const displayMetrics: MetricDefinition[] = [
     group: "1-gram",
   },
   {
-    key: "sfb2",
-    label: "SFB (2-gram)",
+    key: "sfbs",
+    label: "SFBs",
     unit: "%",
     format: "percent",
     group: "2-gram",
@@ -46,50 +74,15 @@ const displayMetrics: MetricDefinition[] = [
     group: "2-gram",
   },
   {
-    key: "sfb3",
-    label: "SFB (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "sfs3",
-    label: "SFS (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "alt3",
-    label: "ALT (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "roll3",
-    label: "ROLL (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "onehand3",
-    label: "ONEHAND (3-gram)",
-    unit: "%",
-    format: "percent",
-    group: "3-gram",
-  },
-  {
-    key: "redirect3",
-    label: "REDIRECT (3-gram)",
+    key: "sfss",
+    label: "SFSs",
     unit: "%",
     format: "percent",
     group: "3-gram",
   },
   {
     key: "hand",
-    label: "Hand use (L)",
+    label: "Left hand",
     unit: "%",
     format: "percent",
     group: "load",
@@ -101,26 +94,121 @@ const displayMetrics: MetricDefinition[] = [
     format: "ratio",
     group: "3-gram",
   },
+  {
+    key: "SFB",
+    label: "SFB",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "SFB_sfb",
+    label: "sfb",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "SFB_sft",
+    label: "sft",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ALT",
+    label: "ALT",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ALT_alt",
+    label: "alt",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ALT_alt-sfs",
+    label: "alt-sfs",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ROLL",
+    label: "ROLL",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ROLL_roll-in",
+    label: "roll-in",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ROLL_roll-out",
+    label: "roll-out",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ONEHAND",
+    label: "ONEHAND",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ONEHAND_onehand-in",
+    label: "onehand-in",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "ONEHAND_onehand-out",
+    label: "onehand-out",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "REDIRECT",
+    label: "REDIRECT",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "REDIRECT_redirect",
+    label: "redirect",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
+  {
+    key: "REDIRECT_redirect-sfs",
+    label: "redirect-sfs",
+    unit: "%",
+    format: "percent",
+    group: "3-gram",
+  },
 ];
 
-function metricValue(row: LayoutRow, key: string) {
+function metricValue(row: LayoutRow, key: MetricKey) {
   const { strokeMetrics } = row.metrics;
   if (key === "efficiency") return row.metrics.efficiency;
   if (key === "hand") return row.metrics.hand;
-  if (key === "sfb2") return strokeMetrics.bigram.sfb;
+  if (key === "sfbs") return strokeMetrics.bigram.sfb;
   if (key === "scissors") return strokeMetrics.bigram.scissors;
-  if (key === "sfb3")
-    return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
-  if (key === "sfs3")
+  if (key === "sfss")
     return strokeMetrics.trigram.altSfs + strokeMetrics.trigram.redirectSfs;
-  if (key === "alt3")
-    return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
-  if (key === "roll3")
-    return strokeMetrics.trigram.rollIn + strokeMetrics.trigram.rollOut;
-  if (key === "onehand3")
-    return strokeMetrics.trigram.oneHandIn + strokeMetrics.trigram.oneHandOut;
-  if (key === "redirect3")
-    return strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs;
   if (key === "inOut") {
     const inCount =
       strokeMetrics.trigram.rollIn + strokeMetrics.trigram.oneHandIn;
@@ -128,6 +216,36 @@ function metricValue(row: LayoutRow, key: string) {
       strokeMetrics.trigram.rollOut + strokeMetrics.trigram.oneHandOut;
     return outCount ? inCount / outCount : 0;
   }
+
+  // SFB
+  if (key === "SFB")
+    return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
+  if (key === "SFB_sfb") return strokeMetrics.trigram.sfb;
+  if (key === "SFB_sft") return strokeMetrics.trigram.sft;
+
+  // ALT
+  if (key === "ALT")
+    return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
+  if (key === "ALT_alt") return strokeMetrics.trigram.alt;
+  if (key === "ALT_alt-sfs") return strokeMetrics.trigram.altSfs;
+  // ROLL
+  if (key === "ROLL")
+    return strokeMetrics.trigram.rollIn + strokeMetrics.trigram.rollOut;
+  if (key === "ROLL_roll-in") return strokeMetrics.trigram.rollIn;
+  if (key === "ROLL_roll-out") return strokeMetrics.trigram.rollOut;
+
+  // ONEHAND
+  if (key === "ONEHAND")
+    return strokeMetrics.trigram.oneHandIn + strokeMetrics.trigram.oneHandOut;
+  if (key === "ONEHAND_onehand-in") return strokeMetrics.trigram.oneHandIn;
+  if (key === "ONEHAND_onehand-out") return strokeMetrics.trigram.oneHandOut;
+
+  // REDIRECT
+  if (key === "REDIRECT")
+    return strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs;
+  if (key === "REDIRECT_redirect") return strokeMetrics.trigram.redirect;
+  if (key === "REDIRECT_redirect-sfs") return strokeMetrics.trigram.redirectSfs;
+
   return undefined;
 }
 
@@ -140,7 +258,7 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
   const [selectedId, setSelectedId] = useState<string>(
     index.corpora[0]?.id ?? ""
   );
-  const [sortKey, setSortKey] = useState<string | null>(null);
+  const [sortKey, setSortKey] = useState<MetricKey | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
   const data = selectedId ? corpusDataById[selectedId] ?? null : null;
@@ -157,11 +275,6 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
     }));
   }, [data]);
 
-  const corpusLabel = useMemo(() => {
-    if (!selectedId) return "-";
-    return index.corpora.find((item) => item.id === selectedId)?.name ?? "-";
-  }, [index, selectedId]);
-
   const sortedRows = useMemo(() => {
     if (!sortKey) return rows;
     const direction = sortDirection === "asc" ? 1 : -1;
@@ -175,7 +288,7 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
     });
   }, [rows, sortDirection, sortKey]);
 
-  const handleSort = (key: string) => {
+  const handleSort = (key: MetricKey) => {
     if (sortKey === key) {
       setSortDirection((current) => (current === "asc" ? "desc" : "asc"));
       return;
@@ -188,14 +301,15 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
     if (sortKey !== key) return "";
     return sortDirection === "asc" ? "▲" : "▼";
   };
+  const tableWidth = displayMetrics.length * 120;
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
-          <h2 className="text-xl font-semibold text-slate-900">指標一覧</h2>
+          <h2 className="text-xl font-semibold text-slate-900">テーブル</h2>
         </div>
-        <div className="flex flex-wrap items-center gap-2 text-sm">
+        <div className="flex flex-wrap items-center gap-2">
           <label className="rounded-full border border-slate-200 bg-white px-3 py-1 font-medium text-slate-600">
             <span className="mr-2">コーパス</span>
             <select
@@ -226,16 +340,19 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
       ) : null}
 
       <div className="overflow-x-auto rounded-2xl bg-white">
-        <table className="min-w-full text-left text-sm sm:text-base">
-          <thead className="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500">
+        <table
+          className="table-fixed text-left text-sm sm:text-base"
+          style={{ width: tableWidth }}
+        >
+          <thead className="bg-slate-50 text-sm tracking-wider text-slate-500">
             <tr>
-              <th className="sticky left-0 z-10 bg-slate-50 px-4 py-3 font-medium">
+              <th className="sticky left-0 z-10 bg-slate-50 px-3 py-2 font-medium w-40">
                 配列
               </th>
               {metrics.map((metric) => (
                 <th
                   key={metric.key}
-                  className="cursor-pointer select-none px-4 py-3 font-medium transition hover:bg-slate-100/70"
+                  className="cursor-pointer select-none px-3 py-2 font-medium transition hover:bg-slate-100/70"
                   onClick={() => handleSort(metric.key)}
                 >
                   <div className="flex items-center gap-2">
@@ -259,21 +376,21 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
                 </td>
               </tr>
             ) : (
-              sortedRows.map((row, index) => (
-                <tr
-                  key={row.id}
-                  className={index % 2 === 0 ? "bg-white" : "bg-slate-50/50"}
-                >
-                  <td className="whitespace-nowrap sticky left-0 z-10 bg-inherit px-4 py-3 font-semibold text-slate-800">
-                    {row.name}
-                  </td>
-                  {metrics.map((metric) => (
-                    <td key={metric.key} className="px-4 py-3 text-slate-600">
-                      {formatMetric(metricValue(row, metric.key), metric)}
+              sortedRows.map((row, index) => {
+                const rowBg = index % 2 === 0 ? "bg-white" : "bg-slate-50";
+                return (
+                  <tr key={row.id} className={rowBg}>
+                    <td className="whitespace-nowrap sticky left-0 z-10 bg-inherit px-4 py-3 font-semibold text-slate-800">
+                      {row.name}
                     </td>
-                  ))}
-                </tr>
-              ))
+                    {metrics.map((metric) => (
+                      <td key={metric.key} className="px-4 py-3 text-slate-600">
+                        {formatMetric(metricValue(row, metric.key), metric)}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>
