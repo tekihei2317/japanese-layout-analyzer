@@ -24,6 +24,7 @@
 - Match existing formatting in the file you touch; prefer small, readable components and hooks.
 - Layout IDs should match JSON filenames (e.g., `oonisi`, `yukika`) and stay consistent across `core/` and `web/`.
 - Use kebab-case for non-command filenames in `cli/`.
+- Use function declarations instead of function expressions for top-level functions.
 - Keep Markdown docs concise; use ATX headings and language-tagged fences.
 
 ## Testing Guidelines

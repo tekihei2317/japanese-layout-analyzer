@@ -46,7 +46,6 @@ const KeyCodes = [
   "j",
   "k",
   "l",
-  "p",
   "Semicolon",
   "Quote",
   "Backslash",
@@ -72,7 +71,7 @@ const KeyCodes = [
 
 export type KeyCode = (typeof KeyCodes)[number];
 
-type LayoutKeyInfo = {
+export type LayoutKeyInfo = {
   code: KeyCode;
   /** キーの横幅 */
   unit: number;
@@ -86,9 +85,9 @@ export type KeyboardRow =
   | "BottomRow"
   | "SpaceRow";
 
-type KeyboardLayout = Record<KeyboardRow, LayoutKeyInfo[]>;
+export type KeyboardLayout = Record<KeyboardRow, LayoutKeyInfo[]>;
 
-const rowStaggeredLayout: KeyboardLayout = {
+export const rowStaggeredLayout: KeyboardLayout = {
   NumberRow: [
     { code: "Hankaku", unit: 1 },
     { code: "1", unit: 1 },
@@ -157,7 +156,7 @@ const rowStaggeredLayout: KeyboardLayout = {
   SpaceRow: [{ code: "Space", unit: 3, offset: 5.25 }],
 };
 
-const ortholinierLayout: KeyboardLayout = {
+export const ortholinearLayout: KeyboardLayout = {
   NumberRow: [
     { code: "Escape", unit: 1 },
     { code: "1", unit: 1 },
@@ -225,3 +224,15 @@ const ortholinierLayout: KeyboardLayout = {
   ],
   SpaceRow: [{ code: "Space", unit: 2, offset: 6 }],
 };
+
+export const keyCodeToRow = (() => {
+  const map = {} as Record<KeyCode, KeyboardRow>;
+  (Object.entries(rowStaggeredLayout) as Array<
+    [KeyboardRow, LayoutKeyInfo[]]
+  >).forEach(([row, keys]) => {
+    keys.forEach((key) => {
+      map[key.code] = row;
+    });
+  });
+  return map;
+})();
