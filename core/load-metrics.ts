@@ -20,7 +20,7 @@ export type LoadMetrics = {
   /** キーごとの負荷 */
   key: Partial<Record<KeyCode, number>>;
   /** 行ごとの負荷 */
-  row: Record<KeyboardRow, number>;
+  row: Record<KeyboardRow, Record<Hand, number>>;
   /** 指ごとの負荷 */
   finger: Record<LoadFinger, number>;
   /** 手ごとの負荷 */
@@ -44,11 +44,11 @@ function createEmptyLoadMetrics(): LoadMetrics {
   return {
     key: {},
     row: {
-      NumberRow: 0,
-      TopRow: 0,
-      MiddleRow: 0,
-      BottomRow: 0,
-      SpaceRow: 0,
+      NumberRow: { L: 0, R: 0 },
+      TopRow: { L: 0, R: 0 },
+      MiddleRow: { L: 0, R: 0 },
+      BottomRow: { L: 0, R: 0 },
+      SpaceRow: { L: 0, R: 0 },
     },
     finger: {
       LeftPinky: 0,
@@ -80,7 +80,7 @@ export function computeLoadMetrics(strokes: string): LoadMetrics {
       metrics.key[code] = (metrics.key[code] ?? 0) + 1;
       const row = keyCodeToRow[code];
       if (row) {
-        metrics.row[row] += 1;
+        metrics.row[row][stroke.hand] += 1;
       }
     }
 
@@ -94,7 +94,8 @@ export function computeLoadMetrics(strokes: string): LoadMetrics {
     metrics.key[code] = (metrics.key[code] ?? 0) / denom;
   });
   (Object.keys(metrics.row) as KeyboardRow[]).forEach((row) => {
-    metrics.row[row] = metrics.row[row] / denom;
+    metrics.row[row].L = metrics.row[row].L / denom;
+    metrics.row[row].R = metrics.row[row].R / denom;
   });
   (Object.keys(metrics.finger) as Array<keyof LoadMetrics["finger"]>).forEach(
     (finger) => {

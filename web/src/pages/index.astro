@@ -2,17 +2,15 @@
 import "../styles/global.css";
 import { promises as fs } from "node:fs";
 import SiteHeader from "../components/SiteHeader.astro";
+import Layout from "../components/Layout.astro";
+import LoadSection from "../components/LoadSection.astro";
+import MetricsSection from "../components/MetricsSection.astro";
+
 import {
   rowStaggeredLayout,
   type KeyboardRow,
   type LoadMetrics,
 } from "@japanese-layout-analyzer/core";
-
-const layoutRows = [
-  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-  ["A", "S", "D", "F", "G", "H", "J", "K", "L", "—"],
-  ["Z", "X", "C", "V", "B", "N", "M", "—", "—", "—"],
-];
 
 type MetricFormat = "percent" | "ratio" | "count";
 
@@ -158,6 +156,19 @@ const rowOrder: KeyboardRow[] = [
 const keyboardRows = rowOrder.map((row) =>
   rowStaggeredLayout[row].map((key) => key.code)
 );
+const fingerOrder: Array<{ key: keyof LoadMetrics["finger"]; label: string }> =
+  [
+    { key: "LeftPinky", label: "LP" },
+    { key: "LeftRing", label: "LR" },
+    { key: "LeftMiddle", label: "LM" },
+    { key: "LeftIndex", label: "LI" },
+    { key: "LeftThumb", label: "LT" },
+    { key: "RightThumb", label: "RT" },
+    { key: "RightIndex", label: "RI" },
+    { key: "RightMiddle", label: "RM" },
+    { key: "RightRing", label: "RR" },
+    { key: "RightPinky", label: "RP" },
+  ];
 
 function formatMetric(value: number | undefined, metric: MetricDefinition) {
   if (value === undefined || Number.isNaN(value)) return "-";
@@ -176,10 +187,12 @@ function metricValue(metrics: LayoutMetrics, key: string) {
   if (key === "hand") return metrics.hand;
   if (key === "sfb2") return strokeMetrics.bigram.sfb;
   if (key === "scissors") return strokeMetrics.bigram.scissors;
-  if (key === "sfb3") return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
+  if (key === "sfb3")
+    return strokeMetrics.trigram.sfb + strokeMetrics.trigram.sft;
   if (key === "sfs3")
     return strokeMetrics.trigram.altSfs + strokeMetrics.trigram.redirectSfs;
-  if (key === "alt3") return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
+  if (key === "alt3")
+    return strokeMetrics.trigram.alt + strokeMetrics.trigram.altSfs;
   if (key === "roll3")
     return strokeMetrics.trigram.rollIn + strokeMetrics.trigram.rollOut;
   if (key === "onehand3")
@@ -187,7 +200,8 @@ function metricValue(metrics: LayoutMetrics, key: string) {
   if (key === "redirect3")
     return strokeMetrics.trigram.redirect + strokeMetrics.trigram.redirectSfs;
   if (key === "inOut") {
-    const inCount = strokeMetrics.trigram.rollIn + strokeMetrics.trigram.oneHandIn;
+    const inCount =
+      strokeMetrics.trigram.rollIn + strokeMetrics.trigram.oneHandIn;
     const outCount =
       strokeMetrics.trigram.rollOut + strokeMetrics.trigram.oneHandOut;
     return outCount ? inCount / outCount : 0;
@@ -203,54 +217,47 @@ function buildLoadView(loadMetrics: LoadMetrics | undefined) {
   const keyRows = keyboardRows.map((row) =>
     row.map((code) => toPercent(loadMetrics?.key[code]))
   );
-  const columnCount = Math.max(0, ...keyRows.map((row) => row.length));
-  const colSums = Array.from({ length: columnCount }, (_, colIndex) =>
-    keyRows.reduce((sum, row) => sum + (row[colIndex] ?? 0), 0)
+  const rowSumsLeft = rowOrder.map((row) =>
+    toPercent(loadMetrics?.row[row]?.L)
   );
-  const rowSums = rowOrder.map((row) => toPercent(loadMetrics?.row[row]));
+  const rowSumsRight = rowOrder.map((row) =>
+    toPercent(loadMetrics?.row[row]?.R)
+  );
+  const fingerLoads = fingerOrder.map((finger) => ({
+    label: finger.label,
+    value: toPercent(loadMetrics?.finger[finger.key]),
+  }));
   const leftSum = toPercent(loadMetrics?.hand.L);
   const rightSum = toPercent(loadMetrics?.hand.R);
-  const maxCell = Math.max(1, ...keyRows.flat());
-  const maxCol = Math.max(1, ...colSums);
-  const maxRow = Math.max(1, ...rowSums);
+  const maxFinger = Math.max(1, ...fingerLoads.map((entry) => entry.value));
+  const maxRow = Math.max(1, ...rowSumsLeft, ...rowSumsRight);
 
   return {
     keyRows,
-    colSums,
-    rowSums,
+    rowSumsLeft,
+    rowSumsRight,
+    fingerLoads,
     leftSum,
     rightSum,
-    maxCell,
-    maxCol,
+    maxFinger,
     maxRow,
   };
 }
 
-function loadClass(value: number) {
-  if (value >= 8) return "bg-rose-500/90 text-white";
-  if (value >= 6) return "bg-rose-400/90 text-white";
-  if (value >= 4) return "bg-rose-300/90 text-rose-900";
-  if (value >= 2) return "bg-rose-200/90 text-rose-900";
-  if (value >= 1) return "bg-rose-100/90 text-rose-900";
-  return "bg-slate-100 text-slate-500";
-}
-
-function barWidth(value: number, max: number) {
-  return `${Math.round((value / max) * 100)}%`;
-}
-
-function barHeight(value: number, max: number) {
-  return `${Math.round((value / max) * 100)}%`;
-}
-
 async function loadCorpusData() {
   try {
-    const indexPath = new URL("../../public/metrics/index.json", import.meta.url);
+    const indexPath = new URL(
+      "../../public/metrics/index.json",
+      import.meta.url
+    );
     const indexRaw = await fs.readFile(indexPath, "utf8");
     const index = JSON.parse(indexRaw) as CorpusIndex;
     const firstCorpus = index.corpora[0];
     if (!firstCorpus) return null;
-    const corpusPath = new URL(`../../public${firstCorpus.file}`, import.meta.url);
+    const corpusPath = new URL(
+      `../../public${firstCorpus.file}`,
+      import.meta.url
+    );
     const corpusRaw = await fs.readFile(corpusPath, "utf8");
     return JSON.parse(corpusRaw) as CorpusPayload;
   } catch {
@@ -261,6 +268,14 @@ async function loadCorpusData() {
 const corpusData = await loadCorpusData();
 const layouts = Object.entries(corpusData?.layouts ?? {});
 const metricDefinitions = corpusData?.metrics ?? defaultMetrics;
+const layoutViews = layouts.map(([layoutId, entry]) => {
+  const loadView = buildLoadView(entry.metrics.loadMetrics);
+  const metrics = metricDefinitions.map((metric) => ({
+    label: metric.label,
+    value: formatMetric(metricValue(entry.metrics, metric.key), metric),
+  }));
+  return { layoutId, entry, loadView, metrics };
+});
 ---
 
 <html lang="ja">
@@ -273,27 +288,30 @@ const metricDefinitions = corpusData?.metrics ?? defaultMetrics;
   </head>
   <body class="min-h-screen">
     <div class="relative overflow-hidden">
-      <div class="absolute -top-24 right-10 h-64 w-64 rounded-full bg-teal-100 blur-3xl"></div>
-      <div class="absolute top-24 -left-20 h-72 w-72 rounded-full bg-orange-100 blur-3xl"></div>
+      <div
+        class="absolute -top-24 right-10 h-64 w-64 rounded-full bg-teal-100 blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute top-24 -left-20 h-72 w-72 rounded-full bg-orange-100 blur-3xl"
+      >
+      </div>
       <SiteHeader />
-      <main class="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12">
+      <main
+        class="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12"
+      >
         <header class="flex flex-col gap-4">
-          <div class="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1 text-xs uppercase tracking-[0.35em] text-slate-500 shadow-sm">
+          <div
+            class="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1 text-xs uppercase tracking-[0.35em] text-slate-500 shadow-sm"
+          >
             Layout Overview
           </div>
           <div class="flex flex-col gap-3">
-            <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">
+            <h1 class="text-2xl font-semibold text-slate-900 sm:text-4xl">
               配列指標ダッシュボード
             </h1>
-            <p class="max-w-2xl text-base text-slate-600 sm:text-lg">
-              各配列のキーボード配置、負担率、主要指標をまとめて確認するモックアップです。
-              データは仮値で、静的表示のみを想定しています。
-            </p>
           </div>
           <div class="flex flex-wrap items-center gap-3 text-sm text-slate-600">
-            <span class="rounded-full bg-white px-3 py-1 shadow-sm">
-              配列: 月見草配列（仮）
-            </span>
             <span class="rounded-full bg-white px-3 py-1 shadow-sm">
               コーパス: 青空文庫（仮）
             </span>
@@ -301,194 +319,36 @@ const metricDefinitions = corpusData?.metrics ?? defaultMetrics;
         </header>
 
         <section class="grid gap-8">
-          {layouts.length === 0 && (
-            <div class="rounded-3xl border border-dashed border-slate-200 bg-white/90 p-6 text-slate-600">
-              exportコマンドで生成したメトリクスが見つかりませんでした。
-            </div>
-          )}
-          {layouts.map(([layoutId, entry]) => {
-            const loadView = buildLoadView(entry.metrics.loadMetrics);
-            return (
-              <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
+          {
+            layoutViews.length === 0 && (
+              <div class="rounded-3xl border border-dashed border-slate-200 bg-white/90 p-6 text-slate-600">
+                exportコマンドで生成したメトリクスが見つかりませんでした。
+              </div>
+            )
+          }
+          {layoutViews.map((view) => (
+            <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
               <div class="flex flex-wrap items-center justify-between gap-3">
-                <h2 class="text-2xl font-semibold text-slate-900">{entry.name}</h2>
-                <div class="flex flex-wrap gap-2 text-sm text-slate-600">
-                  <span class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                    コーパス: {corpusData?.corpus.name ?? "未設定"}
-                  </span>
-                  <span class="rounded-full border border-slate-200 bg-white px-3 py-1">
-                    ID: {layoutId}
-                  </span>
-                </div>
+                <h2 class="text-2xl font-semibold text-slate-900">
+                  {view.entry.name}
+                </h2>
               </div>
 
               <div class="mt-6">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xl font-semibold text-slate-900">配列図</h3>
-                  <span class="text-sm text-slate-500">3行 x 10列</span>
-                </div>
-                <div class="mt-4 grid gap-2">
-                  {layoutRows.map((row) => (
-                    <div class="grid grid-cols-10 gap-2">
-                      {row.map((keyLabel) => (
-                        <div class="flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-700 shadow-sm">
-                          {keyLabel}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
+                <Layout />
               </div>
 
-              <div class="mt-8">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xl font-semibold text-slate-900">負担率</h3>
-                  <span class="text-sm text-slate-500">%</span>
-                </div>
-                <p class="mt-2 text-sm text-slate-500">
-                  行・列の負荷棒グラフと、キー別の負担率ヒートマップを分けて表示します。
-                </p>
-
-                <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
-                  <div class="grid gap-6 lg:grid-cols-[1fr_2fr_1fr]">
-                    <div class="space-y-2 text-[11px] text-slate-600">
-                      <div class="text-sm font-semibold text-slate-700">行負荷</div>
-                      {loadView.rowSums.map((value) => (
-                        <div class="flex items-center gap-2">
-                          <span class="w-10 text-right font-semibold text-slate-600">
-                            {value.toFixed(1)}
-                          </span>
-                          <div class="h-3 flex-1 rounded-full bg-rose-100">
-                            <div
-                              class="ml-auto h-3 rounded-full bg-rose-500"
-                              style={`width: ${barWidth(value, loadView.maxRow)};`}
-                            ></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div class="space-y-2">
-                      <div class="text-sm font-semibold text-slate-700">列負荷</div>
-                      <div
-                        class="grid gap-2 text-[11px] text-slate-600"
-                        style={`grid-template-columns: repeat(${loadView.colSums.length}, minmax(0, 1fr));`}
-                      >
-                        {loadView.colSums.map((value) => (
-                          <div class="flex flex-col items-center gap-2">
-                            <span class="font-semibold text-slate-600">
-                              {value.toFixed(1)}
-                            </span>
-                            <div class="flex h-20 w-full items-end justify-center rounded-lg bg-rose-100">
-                              <div
-                                class="w-full rounded-md bg-rose-500"
-                                style={`height: ${barHeight(value, loadView.maxCol)};`}
-                              ></div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div class="space-y-2 text-[11px] text-slate-600">
-                      <div class="text-sm font-semibold text-slate-700 text-right">行負荷</div>
-                      {loadView.rowSums.map((value) => (
-                        <div class="flex items-center gap-2">
-                          <div class="h-3 flex-1 rounded-full bg-rose-100">
-                            <div
-                              class="h-3 rounded-full bg-rose-500"
-                              style={`width: ${barWidth(value, loadView.maxRow)};`}
-                            ></div>
-                          </div>
-                          <span class="w-10 text-left font-semibold text-slate-600">
-                            {value.toFixed(1)}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div class="mt-4 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
-                    <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
-                      左手合計: {loadView.leftSum.toFixed(1)}%
-                    </span>
-                    <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-center">
-                      右手合計: {loadView.rightSum.toFixed(1)}%
-                    </span>
-                  </div>
-                </div>
-
-                <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-3">
-                  <div class="min-w-[640px] space-y-2">
-                    {loadView.keyRows.map((row) => (
-                      <div
-                        class="grid gap-2"
-                        style={`grid-template-columns: repeat(${row.length}, minmax(0, 1fr));`}
-                      >
-                        {row.map((value) => (
-                          <div
-                            class={`group relative flex h-9 items-center justify-center rounded-lg text-[11px] font-semibold ${loadClass(
-                              value
-                            )}`}
-                            title={`${value.toFixed(1)}%`}
-                          >
-                            <span class="truncate px-1">{value.toFixed(1)}</span>
-                            <div class="pointer-events-none absolute -top-8 hidden rounded-full bg-slate-900 px-2 py-1 text-[10px] text-white shadow-lg group-hover:block">
-                              {value.toFixed(1)}%
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-6">
-                <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <h3 class="text-xl font-semibold text-slate-900">指標</h3>
-                    <p class="text-sm text-slate-500">
-                      シンプルな横並びテーブルで表示します。
-                    </p>
-                  </div>
-                  <div class="flex flex-wrap gap-2 text-sm">
-                    <button class="rounded-full border border-slate-200 bg-slate-50 px-4 py-1 font-medium text-slate-600">
-                      フィルタ: 全指標
-                    </button>
-                    <button class="rounded-full border border-slate-200 bg-white px-4 py-1 font-medium text-slate-600">
-                      比較: QWERTY
-                    </button>
-                  </div>
-                </div>
-                <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200">
-                  <table class="min-w-full text-left text-sm sm:text-base">
-                    <thead class="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500">
-                      <tr>
-                        {metricDefinitions.map((metric) => (
-                          <th class="px-4 py-3 font-medium">{metric.label}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="bg-white">
-                        {metricDefinitions.map((metric) => (
-                          <td class="px-4 py-3 text-slate-700">
-                            {formatMetric(metricValue(entry.metrics, metric.key), metric)}
-                          </td>
-                        ))}
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              </div>
-            );
-          })}
+              <LoadSection loadView={view.loadView} />
+              <MetricsSection metrics={view.metrics} />
+            </div>
+          ))}
         </section>
 
-        <section class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-sm text-slate-500">
-          次のステップ: 実データの型を決めたら、配列図や負担率をJSONから生成できるように置き換えます。
+        <section
+          class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-sm text-slate-500"
+        >
+          次のステップ:
+          実データの型を決めたら、配列図や負担率をJSONから生成できるように置き換えます。
         </section>
       </main>
     </div>

@@ -1,0 +1,25 @@
+---
+const layoutRows = [
+  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+  ["A", "S", "D", "F", "G", "H", "J", "K", "L", "—"],
+  ["Z", "X", "C", "V", "B", "N", "M", "—", "—", "—"],
+];
+---
+
+<div class="flex items-center justify-between">
+  <h3 class="text-xl font-semibold text-slate-900">配列図</h3>
+  <span class="text-sm text-slate-500">3行 x 10列</span>
+</div>
+<div class="mt-4 grid gap-2">
+  {
+    layoutRows.map((row) => (
+      <div class="grid grid-cols-10 gap-2">
+        {row.map((keyLabel) => (
+          <div class="flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-700 shadow-sm">
+            {keyLabel}
+          </div>
+        ))}
+      </div>
+    ))
+  }
+</div>

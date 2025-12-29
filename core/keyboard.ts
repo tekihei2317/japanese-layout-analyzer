@@ -225,7 +225,7 @@ export const ortholinearLayout: KeyboardLayout = {
   SpaceRow: [{ code: "Space", unit: 2, offset: 6 }],
 };
 
-export const keyCodeToRow = (() => {
+function createKeyCodeToRow() {
   const map = {} as Record<KeyCode, KeyboardRow>;
   (Object.entries(rowStaggeredLayout) as Array<
     [KeyboardRow, LayoutKeyInfo[]]
@@ -235,4 +235,6 @@ export const keyCodeToRow = (() => {
     });
   });
   return map;
-})();
+}
+
+export const keyCodeToRow = createKeyCodeToRow();
