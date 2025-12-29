@@ -13,7 +13,6 @@
 body {
   font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic",
     "Meiryo", sans-serif;
-  background-color: var(--paper);
   color: var(--ink);
 }
 

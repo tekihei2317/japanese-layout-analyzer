@@ -2,13 +2,23 @@ import { LayoutId } from "@japanese-layout-analyzer/core";
 
 type LayoutName = string;
 
+type CorpusName = string;
+
 export type Config = {
+  corpus: {
+    names: Record<string, CorpusName>;
+  };
   layout: {
     names: Record<LayoutId, LayoutName>;
   };
 };
 
 export const config: Config = {
+  corpus: {
+    names: {
+      "kenpou.txt": "日本国憲法前文",
+    },
+  },
   layout: {
     names: {
       qwerty: "Qwerty配列",

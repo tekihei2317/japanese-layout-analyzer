@@ -15,14 +15,8 @@ const { index, corpusDataById } = await loadMetricsData();
   </head>
   <body class="min-h-screen">
     <div class="relative overflow-hidden">
-      <div
-        class="absolute -top-24 right-10 h-64 w-64 rounded-full bg-teal-100 blur-3xl"
-      >
-      </div>
-      <div
-        class="absolute top-32 -left-16 h-72 w-72 rounded-full bg-orange-100 blur-3xl"
-      >
-      </div>
+      <div class="absolute -top-24 right-10 h-64 w-64 rounded-full"></div>
+      <div class="absolute top-32 -left-16 h-72 w-72 rounded-full"></div>
       <SiteHeader />
       <main
         class="relative mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-6 py-12"
@@ -30,22 +24,13 @@ const { index, corpusDataById } = await loadMetricsData();
         <header class="flex flex-col gap-4">
           <div class="flex flex-col gap-3">
             <h1 class="text-2xl font-semibold text-slate-900 sm:text-3xl">
-              配列評価テーブル
+              指標一覧
             </h1>
-            <p class="max-w-2xl text-base text-slate-600 sm:text-lg">
-              コーパス×配列の組み合わせから、主要指標を一覧で比較します。
-            </p>
           </div>
         </header>
 
-        <section
-          class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur"
-        >
-          <TableApp
-            client:load
-            index={index}
-            corpusDataById={corpusDataById}
-          />
+        <section class="backdrop-blur">
+          <TableApp client:load index={index} corpusDataById={corpusDataById} />
         </section>
       </main>
     </div>

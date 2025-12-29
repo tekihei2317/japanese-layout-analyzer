@@ -1,4 +1,9 @@
-export { getRomanTable, type LayoutId, type RomanTable } from "./roman-table";
+export {
+  getRomanTable,
+  layoutIdOrder,
+  type LayoutId,
+  type RomanTable,
+} from "./roman-table";
 
 export {
   createStrokeStepper as createStrokeProcessor,
