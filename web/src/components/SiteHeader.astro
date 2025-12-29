@@ -2,8 +2,8 @@
 const current = Astro.url.pathname;
 const links = [
   // { href: "/", label: "トップ" },
-  { href: "/table", label: "比較する" },
-  { href: "/typing", label: "配列を試す" },
+  { href: "/table", label: "Table" },
+  { href: "/typing", label: "Playground" },
 ];
 const isActive = (href: string) => current === href;
 ---
@@ -48,9 +48,10 @@ const isActive = (href: string) => current === href;
           stroke-linecap="round"
           stroke-linejoin="round"
         >
-          <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
-          <path d="M15 3h6v6" />
-          <path d="M10 14L21 3" />
+          <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"
+          ></path>
+          <path d="M15 3h6v6"></path>
+          <path d="M10 14L21 3"></path>
         </svg>
       </a>
     </nav>
