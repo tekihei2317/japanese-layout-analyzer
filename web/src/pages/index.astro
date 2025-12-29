@@ -6,11 +6,7 @@ import Layout from "../components/Layout.astro";
 import LoadSection from "../components/LoadSection.astro";
 import MetricsSection from "../components/MetricsSection.astro";
 
-import {
-  rowStaggeredLayout,
-  type KeyboardRow,
-  type LoadMetrics,
-} from "@japanese-layout-analyzer/core";
+import type { LoadMetrics } from "@japanese-layout-analyzer/core";
 
 type MetricFormat = "percent" | "ratio" | "count";
 
@@ -146,30 +142,6 @@ const defaultMetrics: MetricDefinition[] = [
   },
 ];
 
-const rowOrder: KeyboardRow[] = [
-  "NumberRow",
-  "TopRow",
-  "MiddleRow",
-  "BottomRow",
-  "SpaceRow",
-];
-const keyboardRows = rowOrder.map((row) =>
-  rowStaggeredLayout[row].map((key) => key.code)
-);
-const fingerOrder: Array<{ key: keyof LoadMetrics["finger"]; label: string }> =
-  [
-    { key: "LeftPinky", label: "LP" },
-    { key: "LeftRing", label: "LR" },
-    { key: "LeftMiddle", label: "LM" },
-    { key: "LeftIndex", label: "LI" },
-    { key: "LeftThumb", label: "LT" },
-    { key: "RightThumb", label: "RT" },
-    { key: "RightIndex", label: "RI" },
-    { key: "RightMiddle", label: "RM" },
-    { key: "RightRing", label: "RR" },
-    { key: "RightPinky", label: "RP" },
-  ];
-
 function formatMetric(value: number | undefined, metric: MetricDefinition) {
   if (value === undefined || Number.isNaN(value)) return "-";
   if (metric.format === "percent") {
@@ -209,41 +181,6 @@ function metricValue(metrics: LayoutMetrics, key: string) {
   return undefined;
 }
 
-function toPercent(value: number | undefined) {
-  return typeof value === "number" ? value * 100 : 0;
-}
-
-function buildLoadView(loadMetrics: LoadMetrics | undefined) {
-  const keyRows = keyboardRows.map((row) =>
-    row.map((code) => toPercent(loadMetrics?.key[code]))
-  );
-  const rowSumsLeft = rowOrder.map((row) =>
-    toPercent(loadMetrics?.row[row]?.L)
-  );
-  const rowSumsRight = rowOrder.map((row) =>
-    toPercent(loadMetrics?.row[row]?.R)
-  );
-  const fingerLoads = fingerOrder.map((finger) => ({
-    label: finger.label,
-    value: toPercent(loadMetrics?.finger[finger.key]),
-  }));
-  const leftSum = toPercent(loadMetrics?.hand.L);
-  const rightSum = toPercent(loadMetrics?.hand.R);
-  const maxFinger = Math.max(1, ...fingerLoads.map((entry) => entry.value));
-  const maxRow = Math.max(1, ...rowSumsLeft, ...rowSumsRight);
-
-  return {
-    keyRows,
-    rowSumsLeft,
-    rowSumsRight,
-    fingerLoads,
-    leftSum,
-    rightSum,
-    maxFinger,
-    maxRow,
-  };
-}
-
 async function loadCorpusData() {
   try {
     const indexPath = new URL(
@@ -269,12 +206,11 @@ const corpusData = await loadCorpusData();
 const layouts = Object.entries(corpusData?.layouts ?? {});
 const metricDefinitions = corpusData?.metrics ?? defaultMetrics;
 const layoutViews = layouts.map(([layoutId, entry]) => {
-  const loadView = buildLoadView(entry.metrics.loadMetrics);
   const metrics = metricDefinitions.map((metric) => ({
     label: metric.label,
     value: formatMetric(metricValue(entry.metrics, metric.key), metric),
   }));
-  return { layoutId, entry, loadView, metrics };
+  return { layoutId, entry, metrics };
 });
 ---
 
@@ -326,29 +262,27 @@ const layoutViews = layouts.map(([layoutId, entry]) => {
               </div>
             )
           }
-          {layoutViews.map((view) => (
-            <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
-              <div class="flex flex-wrap items-center justify-between gap-3">
-                <h2 class="text-2xl font-semibold text-slate-900">
-                  {view.entry.name}
-                </h2>
+          {
+            layoutViews.map((view) => (
+              <div class="rounded-3xl border border-slate-200 bg-white/90 p-6 backdrop-blur">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h2 class="text-2xl font-semibold text-slate-900">
+                    {view.entry.name}
+                  </h2>
+                </div>
+
+                <div class="mt-6">
+                  <Layout />
+                </div>
+
+              <LoadSection
+                loadMetrics={view.entry.metrics.loadMetrics}
+                layoutId={view.layoutId}
+              />
+                <MetricsSection metrics={view.metrics} />
               </div>
-
-              <div class="mt-6">
-                <Layout />
-              </div>
-
-              <LoadSection loadView={view.loadView} />
-              <MetricsSection metrics={view.metrics} />
-            </div>
-          ))}
-        </section>
-
-        <section
-          class="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-sm text-slate-500"
-        >
-          次のステップ:
-          実データの型を決めたら、配列図や負担率をJSONから生成できるように置き換えます。
+            ))
+          }
         </section>
       </main>
     </div>
