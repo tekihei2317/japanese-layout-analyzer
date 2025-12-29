@@ -199,7 +199,7 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
         </nav>
       </aside>
 
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-4">
         <header className="flex flex-col gap-4 pb-6">
           <div className="flex flex-col gap-3">
             <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
@@ -256,15 +256,16 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
                 </h2>
               </div>
 
-            <div className="mt-6">
-              <LayoutPanel
-                diagram={
-                  layoutDiagrams[
-                    view.layoutId as keyof typeof layoutDiagrams
-                  ] ?? {}
-                }
-              />
-            </div>
+              <div className="mt-6">
+                <LayoutPanel
+                  diagram={
+                    layoutDiagrams[
+                      view.layoutId as keyof typeof layoutDiagrams
+                    ] ?? {}
+                  }
+                  layoutMode={layoutMode}
+                />
+              </div>
 
               <LoadSection
                 loadMetrics={view.loadMetrics}

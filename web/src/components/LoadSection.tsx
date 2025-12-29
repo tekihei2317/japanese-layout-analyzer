@@ -106,9 +106,6 @@ export default function LoadSection({
         <h3 className="text-xl font-semibold text-slate-900">負担率</h3>
         <span className="text-sm text-slate-500">%</span>
       </div>
-      <p className="mt-2 text-sm text-slate-500">
-        行・指の負荷棒グラフと、キー別の負担率ヒートマップを分けて表示します。
-      </p>
 
       <div className="mt-8">
         <div className="grid gap-6 lg:grid-cols-[1fr_2fr_1fr]">
