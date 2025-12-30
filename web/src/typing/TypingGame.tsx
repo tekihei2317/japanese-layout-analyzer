@@ -15,7 +15,7 @@ type Settings = {
 
 export const TypingGame = () => {
   const [settings, setSettings] = useState<Settings>({
-    wordSetId: "original",
+    wordSetId: "aozora",
     count: 5,
     layoutId: "qwerty",
   });
@@ -96,7 +96,7 @@ export const TypingGame = () => {
               }))
             }
           >
-            <option value="original">オリジナル</option>
+            <option value="aozora">青空文庫（小説）</option>
           </select>
         </label>
         <div className="flex flex-col gap-2">
