@@ -36,7 +36,7 @@ export const TypingGame = () => {
     wordList[0] ?? { display: "", kana: "" };
 
   useEffect(() => {
-    resetGame();
+    // resetGame();
   }, [settings.wordSetId, settings.count, settings.layoutId, resetGame]);
 
   const counts = [5, 10, 15, 30];

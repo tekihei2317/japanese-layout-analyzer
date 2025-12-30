@@ -4,7 +4,7 @@ export const words = {
   aozora: aozoraWords,
 };
 
-type Word = {
+export type Word = {
   display: string;
   kana: string;
 };

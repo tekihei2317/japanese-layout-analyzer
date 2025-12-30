@@ -66,7 +66,7 @@ export const PlayingScreen = ({
   const restStart = wrongChar ? mismatchIndex + 1 : correctLength;
 
   return (
-    <section className="p-6">
+    <section className="py-6">
       <div className="flex flex-col gap-4">
         <div className="text-xs text-slate-500">ワード表示</div>
         <div className="text-2xl font-semibold text-slate-900 sm:text-3xl">

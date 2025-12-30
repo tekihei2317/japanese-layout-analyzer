@@ -5,7 +5,7 @@ type FinishedScreenProps = {
 
 export const FinishedScreen = ({ typed, onReset }: FinishedScreenProps) => {
   return (
-    <section className="p-6">
+    <section className="py-6">
       <div className="flex flex-col gap-3">
         <div className="text-xs uppercase tracking-wider text-slate-400">
           Finished
