@@ -106,7 +106,7 @@ const hana: LayoutDiagrams = [
       BracketLeft: "ー",
       a: "す",
       s: "か",
-      d: "☆",
+      d: "★",
       f: "き",
       g: "た",
       h: "ん",
@@ -636,7 +636,6 @@ const mizunara: LayoutDiagrams = [
       e: "ぁ",
       r: "ど",
       t: "ぞ",
-      y: "　",
       u: "ぱ",
       i: "ぽ",
       o: "ば",
@@ -706,7 +705,6 @@ const buna: LayoutDiagrams = [
     name: "☆シフト",
     diagram: {
       q: "づ",
-      w: "＿",
       e: "ぢ",
       r: "ぷ",
       t: "ぅ",
@@ -729,7 +727,6 @@ const buna: LayoutDiagrams = [
       Quote: "」",
       z: "ぴ",
       x: "ぞ",
-      c: "＿",
       v: "ゆ",
       b: "ヴ",
       n: "ず",
@@ -737,7 +734,6 @@ const buna: LayoutDiagrams = [
       Comma: "ぎ",
       Period: "ぐ",
       Slash: "ぽ",
-      IntlRo: "",
     },
   },
   {
@@ -748,12 +744,10 @@ const buna: LayoutDiagrams = [
       e: "ほ",
       r: "そ",
       t: "へ",
-      y: "＿",
       u: "ぺ",
       i: "ぇ",
       o: "え",
       p: "や",
-      BracketLeft: "",
       a: "わ",
       s: "せ",
       d: "け",
@@ -775,7 +769,6 @@ const buna: LayoutDiagrams = [
       Comma: "ぉ",
       Period: "ぃ",
       Slash: "ぁ",
-      IntlRo: "",
     },
   },
 ];
@@ -892,7 +885,7 @@ const burichutoro: LayoutDiagrams = [
     },
   },
   {
-    name: "Kシフト",
+    name: "。シフト",
     diagram: {
       q: "ひ",
       w: "ね",
@@ -930,7 +923,7 @@ const burichutoro: LayoutDiagrams = [
     },
   },
   {
-    name: "Dシフト",
+    name: "、シフト",
     diagram: {
       q: "ぴ",
       w: "ご",
