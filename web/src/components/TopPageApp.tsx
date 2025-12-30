@@ -178,14 +178,13 @@ export default function TopPageApp({ index, corpusDataById }: TopPageAppProps) {
               </div>
 
               <div className="mt-6">
-                <LayoutPanel
-                  diagram={
-                    layoutDiagrams[
-                      view.layoutId as keyof typeof layoutDiagrams
-                    ] ?? {}
-                  }
-                  layoutMode={layoutMode}
-                />
+              <LayoutPanel
+                diagram={
+                  layoutDiagrams[view.layoutId as keyof typeof layoutDiagrams]?.[0]
+                    ?.diagram ?? {}
+                }
+                layoutMode={layoutMode}
+              />
               </div>
 
               <LoadSection
