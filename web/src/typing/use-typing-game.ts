@@ -18,6 +18,7 @@ type Action =
   | { type: "INPUT"; output: string; newBuffer: string }
   | { type: "FLUSH_BUFFER" }
   | { type: "BACKSPACE" }
+  | { type: "FINISH" }
   | { type: "RESET" };
 
 type UseTypingReturn = {
@@ -26,6 +27,7 @@ type UseTypingReturn = {
   inputKey: (key: string) => void;
   flushBuffer: () => void;
   backspace: () => void;
+  finishGame: () => void;
   resetGame: () => void;
 };
 
@@ -56,12 +58,9 @@ function createGameReducer(words: Word[]) {
         const nextTyped = state.typed + action.output;
         if (nextTyped === currentWord.kana) {
           const nextIndex = state.currentIndex + 1;
-          if (nextIndex >= words.length) {
-            return { status: "finished", typed: nextTyped };
-          }
           return {
             status: "playing",
-            currentIndex: nextIndex,
+            currentIndex: nextIndex >= words.length ? 0 : nextIndex,
             buffer: "",
             typed: "",
             matchedIndex: null,
@@ -83,12 +82,9 @@ function createGameReducer(words: Word[]) {
         const nextTyped = state.typed + state.buffer;
         if (nextTyped === currentWord.kana) {
           const nextIndex = state.currentIndex + 1;
-          if (nextIndex >= words.length) {
-            return { status: "finished", typed: nextTyped };
-          }
           return {
             status: "playing",
-            currentIndex: nextIndex,
+            currentIndex: nextIndex >= words.length ? 0 : nextIndex,
             buffer: "",
             typed: "",
             matchedIndex: null,
@@ -122,6 +118,10 @@ function createGameReducer(words: Word[]) {
             matchedIndex: null,
           };
         }
+      }
+    } else if (action.type === "FINISH") {
+      if (state.status === "playing") {
+        return { status: "finished", typed: state.typed };
       }
     } else if (action.type === "RESET") {
       return { status: "waiting" };
@@ -173,12 +173,17 @@ export function useTypingGame({
     dispatch({ type: "RESET" });
   }, []);
 
+  const finishGame = useCallback(() => {
+    dispatch({ type: "FINISH" });
+  }, []);
+
   return {
     state,
     startGame,
     inputKey,
     flushBuffer,
     backspace,
+    finishGame,
     resetGame,
   };
 }

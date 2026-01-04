@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { isEditableTarget } from "./keyboard";
 import type { Word } from "./words";
 
@@ -6,21 +6,35 @@ type PlayingScreenProps = {
   currentWord: Word;
   typed: string;
   buffer: string;
+  durationSec: number;
   onInputKey: (key: string) => void;
   onBackspace: () => void;
   onFlushBuffer: () => void;
   onReset: () => void;
+  onFinish: () => void;
+};
+
+const findMismatchIndex = (target: string, input: string) => {
+  const minLength = Math.min(target.length, input.length);
+  for (let i = 0; i < minLength; i += 1) {
+    if (target[i] !== input[i]) return i;
+  }
+  if (input.length > target.length) return target.length;
+  return -1;
 };
 
 export const PlayingScreen = ({
   currentWord,
   typed,
   buffer,
+  durationSec,
   onInputKey,
   onBackspace,
   onFlushBuffer,
   onReset,
+  onFinish,
 }: PlayingScreenProps) => {
+  // キー入力のハンドリング
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (isEditableTarget(event.target)) return;
@@ -48,14 +62,23 @@ export const PlayingScreen = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onInputKey, onBackspace, onFlushBuffer, onReset]);
 
-  const findMismatchIndex = (target: string, input: string) => {
-    const minLength = Math.min(target.length, input.length);
-    for (let i = 0; i < minLength; i += 1) {
-      if (target[i] !== input[i]) return i;
-    }
-    if (input.length > target.length) return target.length;
-    return -1;
-  };
+  const [timeLeftSec, setTimeLeftSec] = useState(durationSec);
+
+  // タイマーの管理
+  useEffect(() => {
+    const startedAt = Date.now();
+    const tick = () => {
+      const elapsedSec = Math.floor((Date.now() - startedAt) / 1000);
+      const remaining = Math.max(0, durationSec - elapsedSec);
+      setTimeLeftSec(remaining);
+      if (remaining <= 0) {
+        onFinish();
+      }
+    };
+    tick();
+    const timerId = window.setInterval(tick, 250);
+    return () => window.clearInterval(timerId);
+  }, [durationSec]);
 
   const mismatchIndex = findMismatchIndex(currentWord.kana, typed);
   const correctLength = mismatchIndex === -1 ? typed.length : mismatchIndex;
@@ -68,6 +91,10 @@ export const PlayingScreen = ({
   return (
     <section className="py-6">
       <div className="flex flex-col gap-4">
+        <div className="text-xs text-slate-500">
+          残り時間{" "}
+          <span className="font-semibold text-slate-700">{timeLeftSec}</span>秒
+        </div>
         <div className="text-xs text-slate-500">ワード表示</div>
         <div className="text-2xl font-semibold text-slate-900 sm:text-3xl">
           {currentWord.display}
