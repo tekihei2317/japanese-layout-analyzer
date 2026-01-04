@@ -1,13 +1,10 @@
-import { aozoraWords } from "./words-aozora";
+import { aozoraWords, type AozoraWord } from "./words-aozora";
 
 export const words = {
   aozora: aozoraWords,
 };
 
-export type Word = {
-  display: string;
-  kana: string;
-};
+export type Word = AozoraWord;
 
 export function generateWords(
   wordSetId: keyof typeof words,

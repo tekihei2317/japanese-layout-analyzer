@@ -87,6 +87,9 @@ export const PlayingScreen = ({
       ? currentWord.kana[mismatchIndex]
       : "";
   const restStart = wrongChar ? mismatchIndex + 1 : correctLength;
+  const bookLabel = currentWord.book
+    ? `${currentWord.book.name} / ${currentWord.book.author}`
+    : "";
 
   return (
     <section className="py-6">
@@ -95,9 +98,10 @@ export const PlayingScreen = ({
           残り時間{" "}
           <span className="font-semibold text-slate-700">{timeLeftSec}</span>秒
         </div>
-        <div className="text-xs text-slate-500">ワード表示</div>
-        <div className="text-2xl font-semibold text-slate-900 sm:text-3xl">
+        <div className="text-2xl font-semibold text-slate-900">
           {currentWord.display}
+
+          <span className="text-lg font-normal">（{bookLabel}）</span>
         </div>
         <div className="text-2xl text-slate-500">
           <span className="text-emerald-600">
