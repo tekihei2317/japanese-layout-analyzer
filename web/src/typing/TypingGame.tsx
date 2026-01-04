@@ -13,11 +13,16 @@ export const TypingGame = () => {
     durationSec: 15,
     layoutId: "qwerty",
   });
+  const wordCount = settings.wordSetId === "typewell" ? 800 : 200;
 
-  const wordList = useMemo(
-    () => generateWords(settings.wordSetId, 200),
-    [settings.wordSetId]
-  );
+  const wordList = useMemo(() => {
+    const baseWords = generateWords(settings.wordSetId, wordCount);
+    if (settings.wordSetId !== "typewell") return baseWords;
+    return baseWords.map((word) => ({
+      ...word,
+      kana: `${word.kana} `,
+    }));
+  }, [settings.wordSetId, wordCount]);
 
   const {
     state,
@@ -56,6 +61,9 @@ export const TypingGame = () => {
         <SettingPanel settings={settings} setSettings={setSettings} />
         <PlayingScreen
           currentWord={currentWord}
+          currentIndex={currentIndex}
+          wordList={wordList}
+          wordSetId={settings.wordSetId}
           typed={state.typed}
           buffer={state.buffer}
           durationSec={settings.durationSec}

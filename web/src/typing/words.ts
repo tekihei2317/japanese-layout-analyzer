@@ -1,10 +1,12 @@
 import { aozoraWords, type AozoraWord } from "./words-aozora";
+import { typewellWords, type TypeWellWord } from "./words-typewell";
 
 export const words = {
   aozora: aozoraWords,
+  typewell: typewellWords,
 };
 
-export type Word = AozoraWord;
+export type Word = AozoraWord | TypeWellWord;
 
 export function generateWords(
   wordSetId: keyof typeof words,

@@ -70,6 +70,7 @@ export const SettingPanel = ({ settings, setSettings }: SettingPanelProps) => {
             }
           >
             <option value="aozora">青空文庫（小説）</option>
+            <option value="typewell">タイプウェル 基本常用語</option>
           </select>
         </label>
         <div className="flex flex-col gap-2">

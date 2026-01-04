@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { isEditableTarget } from "./keyboard";
-import type { Word } from "./words";
+import { words, type Word } from "./words";
+import { TypewellWordStream } from "./TypewellWordStream";
 
 type PlayingScreenProps = {
   currentWord: Word;
+  currentIndex: number;
+  wordList: Word[];
+  wordSetId: keyof typeof words;
   typed: string;
   buffer: string;
   durationSec: number;
@@ -25,6 +29,9 @@ const findMismatchIndex = (target: string, input: string) => {
 
 export const PlayingScreen = ({
   currentWord,
+  currentIndex,
+  wordList,
+  wordSetId,
   typed,
   buffer,
   durationSec,
@@ -63,7 +70,6 @@ export const PlayingScreen = ({
   }, [onInputKey, onBackspace, onFlushBuffer, onReset]);
 
   const [timeLeftSec, setTimeLeftSec] = useState(durationSec);
-
   // タイマーの管理
   useEffect(() => {
     const startedAt = Date.now();
@@ -98,20 +104,34 @@ export const PlayingScreen = ({
           残り時間{" "}
           <span className="font-semibold text-slate-700">{timeLeftSec}</span>秒
         </div>
-        <div className="text-2xl font-semibold text-slate-900">
-          {currentWord.display}
-
-          <span className="text-lg font-normal">（{bookLabel}）</span>
-        </div>
-        <div className="text-2xl text-slate-500">
-          <span className="text-emerald-600">
-            {currentWord.kana.slice(0, correctLength)}
-          </span>
-          {wrongChar ? (
-            <span className="text-rose-600">{wrongChar}</span>
-          ) : null}
-          <span>{currentWord.kana.slice(restStart)}</span>
-        </div>
+        {wordSetId === "typewell" ? (
+          <TypewellWordStream
+            wordList={wordList}
+            currentIndex={currentIndex}
+            currentWord={currentWord}
+            correctLength={correctLength}
+            wrongChar={wrongChar}
+            restStart={restStart}
+          />
+        ) : (
+          <>
+            <div className="text-2xl font-semibold text-slate-900 sm:text-3xl">
+              {currentWord.display}
+            </div>
+            {bookLabel ? (
+              <div className="text-xs text-slate-500">{bookLabel}</div>
+            ) : null}
+            <div className="text-2xl text-slate-500">
+              <span className="text-emerald-600">
+                {currentWord.kana.slice(0, correctLength)}
+              </span>
+              {wrongChar ? (
+                <span className="text-rose-600">{wrongChar}</span>
+              ) : null}
+              <span>{currentWord.kana.slice(restStart)}</span>
+            </div>
+          </>
+        )}
         <div className="mt-4 rounded-2xl bg-slate-50 px-4 py-3 text-2xl text-slate-700">
           <span>{typed}</span>
           <span className="underline decoration-teal-500 decoration-2 underline-offset-4">
