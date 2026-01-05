@@ -20,9 +20,10 @@ export function generateWords(
   count: number
 ): Word[] {
   const source = words[wordSetId] ?? [];
+  const offset = 0;
   if (source.length === 0) return [];
   return Array.from(
     { length: count },
-    (_, index) => source[index % source.length]
+    (_, index) => source[(offset + index) % source.length]
   );
 }
