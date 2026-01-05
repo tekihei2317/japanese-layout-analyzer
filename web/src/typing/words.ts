@@ -1,9 +1,16 @@
 import { aozoraWords, type AozoraWord } from "./words-aozora";
-import { typewellWords, type TypeWellWord } from "./words-typewell";
+import type { TypeWellWord } from "./words-type";
+import { typewellWords } from "./words-typewell";
+import { typewellKanjiWords } from "./words-typewell-kanji";
+import { typewellKankotoWords } from "./words-typewell-kankoto";
+import { typewellKatakanaWords } from "./words-typewell-katakana";
 
 export const words = {
   aozora: aozoraWords,
   typewell: typewellWords,
+  typewellKatakana: typewellKatakanaWords,
+  typewellKanji: typewellKanjiWords,
+  typewellKankoto: typewellKankotoWords,
 };
 
 export type Word = AozoraWord | TypeWellWord;
