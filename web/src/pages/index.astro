@@ -1,24 +1,11 @@
 ---
-import "../styles/global.css";
-import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import TopPageApp from "../components/TopPageApp";
 import { loadMetricsData } from "../lib/metrics-data";
 
 const { index, corpusDataById } = await loadMetricsData();
 ---
 
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Japanese Layout Analyzer</title>
-  </head>
-  <body class="min-h-screen bg-white">
-    <div>
-      <SiteHeader />
-      <TopPageApp client:load index={index} corpusDataById={corpusDataById} />
-    </div>
-  </body>
-</html>
+<BaseLayout title="Japanese Layout Analyzer">
+  <TopPageApp client:load index={index} corpusDataById={corpusDataById} />
+</BaseLayout>

@@ -1,631 +1,388 @@
 import type { LayoutId } from "@japanese-layout-analyzer/core";
+import { layoutDiagrams } from "../lib/layout-diagram";
+import LayoutDiagramPanel from "./LayoutDiagramPanel";
 
 type LayoutProps = {
   layoutId: LayoutId;
 };
 
 type LayoutMetaProps = {
-  description?: string;
   linkHref: string;
   linkLabel: string;
 };
 
-type KeyGridProps = {
-  rows: string[][];
-};
-
-const KeyGrid = ({ rows }: KeyGridProps) => {
-  const columns = Math.max(...rows.map((row) => row.length));
-
+function LayoutMeta({ linkHref, linkLabel }: LayoutMetaProps) {
   return (
-    <div className="grid gap-2">
-      {rows.map((row, rowIndex) => (
-        <div
-          key={rowIndex}
-          className="grid gap-2"
-          style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
-        >
-          {row.map((keyLabel, colIndex) => (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              className="flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 font-semibold text-slate-700 shadow-sm"
-            >
-              {keyLabel}
-            </div>
-          ))}
-        </div>
-      ))}
+    <div>
+      <a
+        className="text-teal-700 underline underline-offset-4"
+        href={linkHref}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {linkLabel}
+      </a>
     </div>
   );
-};
+}
 
-const LayoutMeta = ({ description, linkHref, linkLabel }: LayoutMetaProps) => {
-  return (
-    <div className="grid gap-3 text-slate-600">
-      <div>
-        <a
-          className="text-teal-700 underline underline-offset-4"
-          href={linkHref}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {linkLabel}
-        </a>
-      </div>
-      <div>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-};
-
-const QwertyLayout = () => {
-  const rows = [
-    ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-    ["A", "S", "D", "F", "G", "H", "J", "K", "L", ";"],
-    ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"],
-  ];
+function QwertyLayout() {
+  const diagrams = layoutDiagrams.qwerty;
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://ja.wikipedia.org/wiki/QWERTY%E9%85%8D%E5%88%97"
-        linkLabel="QWERTY配列 (Wikipedia)"
-      />
-      <div>
-        <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <KeyGrid rows={rows} />
+      <LayoutDiagramPanel diagrams={diagrams} showName={false} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">Qwerty配列</h3>
+        <LayoutMeta
+          linkHref="https://ja.wikipedia.org/wiki/QWERTY%E9%85%8D%E5%88%97"
+          linkLabel="QWERTY配列 (Wikipedia)"
+        />
+      </div>
+      <div className="space-y-2">
+        <p>
+          ほとんどのキーボードに採用されている標準的な配列。文字の配置はタイプライターが元になっている。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const TsukiLayout = () => {
-  const oneStroke = [
-    ["そ", "こ", "し", "て", "ょ", "つ", "ん", "い", "の", "り", "ち"],
-    ["は", "か", "☆", "と", "た", "く", "う", "★", "゛", "き", "れ"],
-    ["す", "け", "に", "な", "さ", "っ", "る", "、", "。", "゜", "・"],
-  ];
-
-  const shift = [
-    ["ぁ", "ひ", "ほ", "ふ", "め", "ぬ", "え", "み", "や", "ぇ", "「"],
-    ["ぃ", "を", "ら", "あ", "よ", "ま", "お", "も", "わ", "ゆ", "」"],
-    ["ぅ", "へ", "せ", "ゅ", "ゃ", "む", "ろ", "ね", "ー", "ぉ", "　"],
-  ];
+function OnishiLayout() {
+  const diagrams = layoutDiagrams.oonisi;
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://jisx6004.client.jp/tsuki.html"
-        linkLabel="中指前置シフト新JIS「月配列」"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            単打
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            シフト
-          </div>
-          <KeyGrid rows={shift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} showName={false} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">大西配列</h3>
+        <LayoutMeta
+          linkHref="https://o24.works/layout/"
+          linkLabel="大西配列｜ローマ字をもっと打ちやすく"
+        />
+      </div>
+      <div className="space-y-2">
+        <p>作: 大西拓磨</p>
+        <p>
+          ローマ字をもっとも入力しやすいように、100万文字の統計から開発された配列。
+        </p>
+        <p>母音と子音が左右に分かれているため、交互打鍵率が高い。</p>
+        <p>
+          頻度の多い文字が打ちやすい場所に配置することや、同指連続を少なくすることが考えられており、悪運指が少ない。
+        </p>
+        <p>
+          また、覚えやすさを考慮して、濁音・半濁音が清音の上下に配置されている。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const HanaLayout = () => {
-  const oneStroke = [
-    ["ょ", "て", "と", "こ", "は", "っ", "く", "う", "る", "ら", "ー"],
-    ["す", "か", "☆", "き", "た", "ん", "れ", "☆", "゛", "ろ", "り"],
-    ["さ", "し", "な", "の", "に", "し", "つ", "。", "、", "め", "え"],
-  ];
-
-  const shift = [
-    ["ひ", "け", "ぇ", "ほ", "へ", "ゃ", "ま", "そ", "も", "ぃ", "「"],
-    ["ぁ", "よ", "ゅ", "や", "゜", "よ", "ふ", "ち", "む", "ぉ", "」"],
-    ["ぅ", "せ", "あ", "わ", "ゆ", "ね", "み", "を", "お", "ぬ", "　"],
-  ];
+function HanaLayout() {
+  const diagrams = layoutDiagrams.hana;
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://powerhouse63w.blogspot.com/2019/02/blog-post.html"
-        linkLabel="花配列のキー配列図を作った"
-        description="中指前置シフトの先駆けとなった配列で、月配列より上段の使用率が高いのが特徴です。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            単打
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ☆前置
-          </div>
-          <KeyGrid rows={shift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">花配列</h3>
+      </div>
+      <div className="space-y-2">
+        <p>作: 冨樫雅文</p>
+        <p>
+          頻度の高いシフトキーは押しやすい位置にあるべきという考えから、中指前置シフトを採用した配列。
+        </p>
+        <p>
+          シフト面のかなは、反対の手の中指（dキーまたはkキー）を押してから入力する。
+        </p>
+        <p>交互打鍵率が高くなるように設計されている。</p>
+        <p>
+          中指前置シフトの他の配列と比べると、上段の使用率が高い特徴がある。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const YukikaLayout = () => {
-  const oneStroke = [
-    ["こ", "な", "と", "け", "ろ", "", "む", "る", "い", "の", "れ", "め"],
-    ["た", "て", "☆", "か", "は", "", "っ", "ん", "☆", "゛", "し", "ー"],
-    ["す", "ょ", "せ", "き", "さ", "", "く", "う", "、", "。", "゜", ""],
-  ];
-
-  const shift = [
-    ["ぁ", "ね", "や", "ほ", "ゆ", "", "ぬ", "わ", "あ", "に", "ぇ", "「"],
-    ["ぃ", "お", "ら", "も", "ふ", "", "ゃ", "つ", "ま", "ち", "え", "」"],
-    ["ぅ", "ゅ", "そ", "よ", "へ", "", "み", "り", "ひ", "を", "ぉ", ""],
-  ];
+function TsukiLayout() {
+  const diagrams = layoutDiagrams["tsuki-2-263"];
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="http://oookaworks.seesaa.net/article/503093275.html#gsc.tab=0"
-        linkLabel="月配列一覧: 大岡俊彦の作品置き場"
-        description="月配列4-698式、◯配列とも呼ばれる計算配列の先駆け。遺伝的アルゴリズムで配置を決めています。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            単打
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ☆前置
-          </div>
-          <KeyGrid rows={shift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">
+          月配列2-263式
+        </h3>
+        <LayoutMeta
+          linkHref="https://jisx6004.client.jp/tsuki.html"
+          linkLabel="中指前置シフト新JIS「月配列」"
+        />
+      </div>
+      <div className="space-y-2">
+        <p>作: 2ちゃんねる</p>
+        <p>
+          シフト面のかなは、反対の手の中指（dキーまたはkキー）を押してから入力する。
+        </p>
+        <p>2chの、パソコン一般板・新JISスレッドで生まれた配列。</p>
+        <p>
+          新JIS配列に中指シフトを組み合わせたらどうなるかというアイデアで作られた。
+        </p>
+        <p>
+          新JIS配列の特性を引き継いでいるため、交互打鍵率の高い配列になっている。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const BunaLayout = () => {
-  const oneStroke = [
-    ["こ", "に", "は", "て", "も", "り", "っ", "し", "の", "き", "れ"],
-    ["で", "か", "☆", "な", "た", "く", "ん", "★", "い", "と", "ら"],
-    ["だ", "が", "ま", "す", "ょ", "る", "う", "、", "。", "", ""],
-  ];
-
-  const starShift = [
-    ["づ", "＿", "ぢ", "ぷ", "ぅ", "ぬ", "ぱ", "げ", "じ", "ゃ", "「"],
-    ["ば", "さ", "☆", "ゅ", "ぜ", "ひ", "を", "め", "ー", "ぶ", "」"],
-    ["ぴ", "ぞ", "＿", "ゆ", "ヴ", "ず", "む", "ぎ", "ぐ", "ぽ", ""],
-  ];
-
-  const blackShift = [
-    ["べ", "ぼ", "ほ", "そ", "へ", "＿", "ぺ", "ぇ", "え", "や", ""],
-    ["わ", "せ", "け", "ど", "あ", "び", "つ", "★", "お", "ろ", ""],
-    ["ふ", "ざ", "ご", "ね", "よ", "み", "ち", "ぉ", "ぃ", "ぁ", ""],
-  ];
+function YukikaLayout() {
+  const diagrams = layoutDiagrams.yukika;
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="http://keybor.blog96.fc2.com/blog-entry-107.html"
-        linkLabel="ちょっと、かな配列 ぶな配列v2.0 (20180325-04版)"
-        description="月系の前置シフト計算配列。2連節頻度と2打鍵時間を基に、山登り法で入力時間が最小化されるよう配置されています。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            シフト無し
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ☆シフト
-          </div>
-          <KeyGrid rows={starShift} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ★シフト
-          </div>
-          <KeyGrid rows={blackShift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">幸花配列</h3>
+        <LayoutMeta
+          linkHref="http://oookaworks.seesaa.net/article/503093275.html#gsc.tab=0"
+          linkLabel="月配列一覧: 大岡俊彦の作品置き場"
+        />
+      </div>
+      <div className="space-y-2">
+        <p>月配列4-698式、◯配列とも呼ばれる。</p>
+        <p>シフトは中指前置シフトで、逆手シフトを使う。</p>
+        <p>遺伝的アルゴリズムによって作られた計算配列。</p>
       </div>
     </div>
   );
-};
+}
 
-const MizunaraLayout = () => {
-  const oneStroke = [
-    ["も", "に", "は", "て", "で", "れ", "っ", "し", "と", "の"],
-    ["か", "★", "☆", "な", "る", "き", "ん", "☆", "★", "い"],
-    ["こ", "が", "だ", "た", "ょ", "く", "う", "、", "。", "　"],
-  ];
-
-  const starShift = [
-    ["ご", "づ", "ぼ", "ほ", "へ", "ぉ", "ぷ", "ぶ", "え", "ゃ"],
-    ["あ", "け", "す", "お", "さ", "ひ", "つ", "ち", "じ", "ま"],
-    ["や", "ゆ", "ぜ", "ね", "よ", "ぬ", "み", "ぺ", "ゅ", "ぴ"],
-  ];
-
-  const blackShift = [
-    ["べ", "ぃ", "ぁ", "ど", "ぞ", "　", "ぱ", "ぽ", "ば", "ず"],
-    ["ら", "せ", "わ", "ろ", "そ", "ぎ", "ー", "め", "り", "を"],
-    ["び", "ぇ", "げ", "ふ", "ざ", "ぐ", "む", "ゔ", "ぅ", "ぢ"],
-  ];
+function MizunaraLayout() {
+  const diagrams = layoutDiagrams.mizunara;
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="http://keybor.web.fc2.com/mizunara-v1.0.html"
-        linkLabel="ミズナラ配列 v1.0"
-        description="ぶな配列と同じ方法で作られた計算配列。前置シフトで中指・薬指の4キーを使い、クロスシフトを採用しています。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            単打
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ☆シフト
-          </div>
-          <KeyGrid rows={starShift} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ★シフト
-          </div>
-          <KeyGrid rows={blackShift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">ミズナラ配列</h3>
+        <LayoutMeta
+          linkHref="http://keybor.web.fc2.com/mizunara-v1.0.html"
+          linkLabel="ミズナラ配列 v1.0"
+        />
+      </div>
+      <div className="space-y-2">
+        <p>作: keybor</p>
+        <p>清濁分置、30キー以内の月配列。</p>
+        <p>シフトは中指と薬指の前置シフトで、逆手シフトを使う。</p>
+        <p>
+          シフト方式は異なるが、ぶな配列と同じ評価基準とアルゴリズムで作られている。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const TukiringoLayout = () => {
-  const oneStroke = [
-    ["", "せ", "こ", "ょ", "ら", "さ", "や", "す", "゛", "ん", "ゃ", "ー"],
-    ["き", "れ", "し", "て", "と", "く", "は", "か", "い", "う", "る", "っ"],
-    ["", "ち", "よ", "に", "の", "ゅ", "な", "た", "お", "め", "つ", ""],
-  ];
-
-  const shift = [
-    ["", "ぁ", "ぃ", "ょ", "け", "ろ", "ほ", "ね", "", "み", "ぉ", "ぅ"],
-    ["", "ふ", "", "ぬ", "り", "。", "、", "あ", "ま", "え", "へ", "む"],
-    ["", "", "ゎ", "", "も", "ひ", "そ", "を", "わ", "ゆ", "ぇ", ""],
-  ];
+function HybridTsukiLayout() {
+  const diagrams = layoutDiagrams["hybrid-tsuki"];
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://menmentsu.hateblo.jp/entry/2021/01/12/230614"
-        linkLabel="月林檎配列（上段中指シフト3段かな配列）"
-        description="後置シフトの月系配列。33キーを使い、清濁同置で濁音は2打鍵。ょを後置シフトと兼用します。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            通常面
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ょ後置シフト
-          </div>
-          <KeyGrid rows={shift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">
+          ハイブリッド月配列
+        </h3>
+        <LayoutMeta
+          linkHref="https://takahata-shin.hatenadiary.org/entry/20150505/1430818677"
+          linkLabel="ハイブリッド月配列"
+        />
+      </div>
+      <div className="space-y-2">
+        <p>作: takahata_shin</p>
+        <p>キー範囲が広く、様々機能があり、やや複雑な月系配列。</p>
+        <p>「。」「、」「？」の3キーが前置シフトキーを兼用している。</p>
+        <p>
+          拗音になるかなが排他的に配置されているため、拗音はシフトを省略して入力できる。
+        </p>
+        <p>
+          上記の配列図には載っていない部分があるが、一部は行段のように入力できるため、覚えやすくなっている。
+        </p>
+        <p>
+          濁音は「a k @」を「ZBP」行、「a j s d h / p
+          :」を「あいうえおゃゅょ」段と考えて、
+          <br /> (aa, aj, as, ad, a/, ap, a:) =
+          (ざ、じ、ず、ぜ、ぞ、じゃ、じゅ、じょ) のように入力できる。
+        </p>
+        <p>
+          外来音は「ertg」を「FVWL」行、「/ 8 p y
+          :」を「あいうえお」段と考えて、
+          <br />
+          (e/, e8, ep, ey, e:) =
+          (ふぁ、ふぃ、ふ、ふぇ、ふぉ)のように入力できる。
+        </p>
       </div>
     </div>
   );
-};
-
-const FumidukiLayout = () => {
-  const oneStroke = [
-    ["も", "か", "し", "て", "よ", "つ", "ん", "い", "の", "ま", "を"],
-    ["は", "濁", "★", "た", "と", "く", "う", "☆", "濁", "が", "に"],
-    ["よ", "せ", "す", "な", "で", "っ", "る", "、", "。", "ー", ""],
-  ];
-
-  const shift = [
-    ["　", "け", "れ", "そ", "ろ", "　", "み", "ふ", "や", "へ", "　"],
-    ["め", "さ", "き", "あ", "お", "り", "ら", "こ", "ゆ", "え", "　"],
-    ["　", "ぬ", "ね", "ほ", "　", "む", "ち", "ひ", "わ", "　", "　"],
-  ];
+}
+function BunaLayout() {
+  const diagrams = layoutDiagrams.buna;
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://x.com/CordialBun/status/1974436234165625290"
-        linkLabel="文月配列"
-        description="日本語を楽しく効率的に書くために作られた配列です。頻出濁音は単打、それ以外は清濁同置で、小書き・濁音は排他的配置です。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            単打
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ★前置
-          </div>
-          <KeyGrid rows={shift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">ぶな配列</h3>
+        <LayoutMeta
+          linkHref="http://keybor.blog96.fc2.com/blog-entry-107.html"
+          linkLabel="ちょっと、かな配列 ぶな配列v2.0 (20180325-04版)"
+        />
+      </div>
+      <div className="space-y-2">
+        <p>作: keybor</p>
+        <p>清濁別置、速度重視の計算配列。</p>
+        <p>シフトは中指前置シフトで、同手シフトも使うことが特徴。</p>
+        <p>
+          2文字の連節の頻度と、2打鍵の所要時間をもとに、打鍵時間が最小になるように計算によって作られた。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const BurichutoroLayout = () => {
-  const oneStroke = [
-    ["ゅ", "こ", "と", "さ", "ゃ", "わ", "き", "し", "く", "ち", ""],
-    ["た", "か", "、", "て", "は", "の", "い", "。", "う", "ん", "ー"],
-    ["ょ", "に", "な", "る", "も", "つ", "す", "お", "あ", "っ", ""],
-  ];
-
-  const kShift = [
-    ["ひ", "ね", "ど", "め", "ふ", "ゔ", "ぎ", "ぃ", "ぐ", "ぢ", ""],
-    ["だ", "が", "を", "で", "ま", "ぁ", "り", "？", "れ", "", "/"],
-    ["へ", "そ", "せ", "け", "ほ", "づ", "ず", "ぅ", "ぇ", "ぉ", ""],
-  ];
-
-  const dShift = [
-    ["ぴ", "ご", "ぬ", "ざ", "ぷ", "む", "ゆ", "じ", "や", "ふぁ", ""],
-    ["ょう", "ら", "！", "よ", "ぱ", "ば", "ろ", "を", "ます", "ゅう", "~"],
-    ["ぺ", "ぞ", "ぜ", "げ", "ぽ", "ぼ", "です", "え", "み", "ふぉ", ""],
-  ];
+function HidedukiLayout() {
+  const diagrams = layoutDiagrams.hideduki;
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://mobitan.hateblo.jp/entry/2022/11/30/221433"
-        linkLabel="ブリ中トロ配列 3年目の改良（2022/10/15版）"
-        description="TRONかな配列の中指シフト化をベースに、ハイブリッド月配列の拗音シフトを導入した配列です。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            単打
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            K前置
-          </div>
-          <KeyGrid rows={kShift} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            D前置
-          </div>
-          <KeyGrid rows={dShift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">英月配列</h3>
+        <LayoutMeta
+          linkHref="https://x.com/madeinwariofan/status/1147041872583331842"
+          linkLabel="英月配列（ひでづきはいれつ）v4.1"
+        />
+      </div>
+      <div className="space-y-2">
+        <p>作: ソケセテ</p>
+        <p>30キーに収まるコンパクトな月配列。</p>
+        <p>シフトは前置シフトで、清・濁・半濁・小書き同置。</p>
+        <p>
+          シフト面は逆手中指前置シフト、濁音はL前置シフト、半濁音と小書きは同手中指前置シフトで入力する。
+        </p>
+        <p>
+          小書き、濁音、半濁音が排他的に配置されており、シフトを省略して2打鍵で入力できる。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const HybridTsukiLayout = () => {
-  const oneStroke = [
-    ["ま", "て", "た", "っ", "を", "ぇ", "に", "な", "の", "ゅ", "ぱ"],
-    ["？", "う", "、", "し", "が", "お", "い", "。", "と", "か", "ょ"],
-    ["は", "も", "る", "こ", "ら", "く", "ん", "す", "で", "ゃ", ""],
-  ];
-
-  const dotShift = [
-    ["ぎ", "ぐ", "ふ", "ゔ", "", "", "", "", "", "びゅ", ""],
-    ["ば", "ぶ", "べ", "せ", "む", "ぼ", "び", "や", "つ", "れ", "びょ"],
-    ["", "", "", "き", "", "", "ほ", "", "", "びゃ", ""],
-  ];
-
-  const commaShift = [
-    ["", "", "", "", "", "", "", "ひ", "み", "ご", ""],
-    ["あ", "ち", "え", "だ", "げ", "", "り", "よ", "そ", "け", ""],
-    ["", "", "", "め", "", "", "ぬ", "ね", "", "", ""],
-  ];
-
-  const questionShift = [
-    ["", "", "", "", "", "", "", "へ", "ゆ", "じゅ", ""],
-    ["ざ", "ず", "ぜ", "さ", "", "ぞ", "じ", "ど", "わ", "ろ", "じょ"],
-    ["", "", "", "", "", "", "", "", "", "じゃ", ""],
-  ];
+function BurichutoroLayout() {
+  const diagrams = layoutDiagrams["burichutoro-20221015"];
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://takahata-shin.hatenadiary.org/entry/20150505/1430818677"
-        linkLabel="ハイブリッド月配列"
-        description="句読点や拗音のキー共有を取り入れた月系配列。拗音になるイ段を排他的に配置し、2打で拗音が打てる設計です。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            単打
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            。シフト
-          </div>
-          <KeyGrid rows={dotShift} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            、シフト
-          </div>
-          <KeyGrid rows={commaShift} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            ？シフト
-          </div>
-          <KeyGrid rows={questionShift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">ブリ中トロ配列</h3>
+        <LayoutMeta
+          linkHref="https://mobitan.hateblo.jp/entry/2022/11/30/221433"
+          linkLabel="ブリ中トロ配列 3年目の改良（2022/10/15版）"
+        />
+      </div>
+      <div className="space-y-2">
+        <div>作: mobitan</div>
+        <p>
+          TRONかな配列をベースに、ハイブリッド月配列の句読点共有などのアイデアを取り入れた配列。
+        </p>
+        <p>「、」「。」の2キーが前置シフトキーを兼用している。</p>
+        <p>
+          拗音と外来音の入力方法についてはここでは省略するが、すべてのモーラを2打鍵以内で入力できる。
+        </p>
+        <p>
+          他にも、ですます調の文章を効率的に打つためのショートカットが用意されている。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const HidedukiLayout = () => {
-  const oneStroke = [
-    ["そ", "き", "し", "て", "は", "を", "ん", "い", "る", "ー"],
-    ["す", "か", "★", "と", "た", "く", "う", "☆", "△", "；"],
-    ["ち", "こ", "に", "な", "さ", "の", "り", "、", "。", "・"],
-  ];
-
-  const shift = [
-    ["ゐ", "お", "み", "え", "め", "へ", "ふ", "せ", "ゆ", "ぬ"],
-    ["ね", "れ", "ら", "あ", "わ", "や", "ま", "も", "よ", "；"],
-    ["ゑ", "ろ", "け", "ほ", "む", "ひ", "つ", "", "", "・"],
-  ];
+function TukiringoLayout() {
+  const diagrams = layoutDiagrams.tukiringo;
 
   return (
     <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://zenn.dev/bantako/scraps/f0744cac168cb0"
-        linkLabel="英月配列の紹介"
-        description="30キーに収まるコンパクトな月配列。全てのかなを2打鍵以内に入力できる。濁音はL前置シフト、半濁音と小書きは同手の中指前置シフト。"
-      />
-      <div className="flex flex-col gap-6">
-        <div className="text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            単打
-          </div>
-          <KeyGrid rows={oneStroke} />
-        </div>
-        <div>
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-            シフト
-          </div>
-          <KeyGrid rows={shift} />
-        </div>
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">月林檎配列</h3>
+        <LayoutMeta
+          linkHref="https://menmentsu.hateblo.jp/entry/2021/01/12/230614"
+          linkLabel="月林檎配列（上段中指シフト3段かな配列）"
+        />
+      </div>
+      <div className="space-y-2">
+        <div>作: めんめんつ</div>
+        <p>
+          清濁同置のシンプルな月配列。薙刀式や月見草配列に影響を受けている。
+        </p>
+        <p>シフトは後置シフトで、シフトキーは「ょ」「゛」の2つ。</p>
+        <p>
+          シフト面は「ょ」後置、濁音は「゛」後置で入力する。半濁点の代わりに
+          ぱ行＝ま行＋濁点で入力する。
+        </p>
+        <p>濁音は排他的に配置されているため、シフトが省略可能。</p>
+        <p>
+          CapsLock/Control位置に
+          \（バッククォート）を割り当てて使うことが想定されている。
+        </p>
       </div>
     </div>
   );
-};
+}
 
-const LayoutFallback = ({ label }: { label: string }) => {
+function FumidukiLayout() {
+  const diagrams = layoutDiagrams.fumiduki;
+
+  return (
+    <div className="flex flex-col gap-6">
+      <LayoutDiagramPanel diagrams={diagrams} />
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-slate-900">文月配列</h3>
+        <LayoutMeta
+          linkHref="https://x.com/CordialBun/status/1974436234165625290"
+          linkLabel="文月配列"
+        />
+      </div>
+      <div className="space-y-2">
+        <div>作: さんごぱん</div>
+        <div>
+          日本語の文章を楽しく、効率的に入力するために作られたかな入力配列。
+        </div>
+        <div>
+          清・濁・半濁・小書き同置で、排他的配置によりすべてのかなを2打鍵以内で入力できる。
+        </div>
+        <p>シフトは前置で、シフトキーは中指と薬指の4つ。</p>
+        <p>
+          シフト面は中指逆手シフトで入力する。小書きは「っ」「ょ」は単打で、それ以外は中指同手シフトで入力する。
+        </p>
+        <p>
+          濁音は「が」「で」は単打で、それ以外は逆手薬指シフトで入力する。半濁音は同手薬指シフトで入力する。
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function LayoutFallback({ label }: { label: string }) {
   return (
     <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
       {label} の配列図は準備中です。
     </div>
   );
-};
+}
 
-const OnishiLayout = () => {
-  const mapping: Record<string, string> = {
-    q: "q",
-    w: "l",
-    e: "u",
-    r: ",",
-    t: ".",
-    y: "f",
-    u: "w",
-    i: "r",
-    o: "y",
-    p: "p",
-    a: "e",
-    s: "i",
-    d: "a",
-    f: "o",
-    g: "-",
-    h: "k",
-    j: "t",
-    k: "n",
-    l: "s",
-    ";": "h",
-    z: "z",
-    x: "x",
-    c: "c",
-    v: "v",
-    b: ";",
-    n: "g",
-    m: "d",
-    ",": "m",
-    ".": "j",
-    "/": "b",
-    "-": "/",
-  };
-
-  const toLabel = (value: string) =>
-    /[a-z]/.test(value) ? value.toUpperCase() : value;
-
-  const rows = [
-    ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", ""].map((key) =>
-      key ? toLabel(mapping[key]) : key
-    ),
-    ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";", ""].map((key) =>
-      key ? toLabel(mapping[key]) : key
-    ),
-    ["z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "-"].map((key) =>
-      toLabel(mapping[key])
-    ),
-  ];
-
-  return (
-    <div className="flex flex-col gap-6">
-      <LayoutMeta
-        linkHref="https://o24.works/layout/"
-        linkLabel="大西配列｜ローマ字をもっと打ちやすく"
-      />
-      <div>
-        <div className="mb-2 text-xs uppercase tracking-wider text-slate-400">
-          配列図
-        </div>
-        <KeyGrid rows={rows} />
-      </div>
-    </div>
-  );
-};
-
-export const Layouts = ({ layoutId }: LayoutProps) => {
+export function Layouts({ layoutId }: LayoutProps) {
   if (layoutId === "qwerty") {
     return <QwertyLayout />;
   }
@@ -663,4 +420,4 @@ export const Layouts = ({ layoutId }: LayoutProps) => {
     return <OnishiLayout />;
   }
   return <LayoutFallback label={layoutId} />;
-};
+}

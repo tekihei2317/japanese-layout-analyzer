@@ -301,7 +301,7 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
     if (sortKey !== key) return "";
     return sortDirection === "asc" ? "▲" : "▼";
   };
-  const tableWidth = displayMetrics.length * 120;
+  const tableWidth = displayMetrics.length * 105;
 
   return (
     <div className="flex flex-col gap-4">
@@ -341,10 +341,10 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
 
       <div className="overflow-x-auto rounded-2xl bg-white">
         <table
-          className="table-fixed text-left text-sm sm:text-base"
+          className="table-fixed text-left text-xs sm:text-sm"
           style={{ width: tableWidth }}
         >
-          <thead className="bg-slate-50 text-sm tracking-wider text-slate-500">
+          <thead className="bg-slate-50 tracking-wider text-slate-500">
             <tr>
               <th className="sticky left-0 z-10 bg-slate-50 px-3 py-2 font-medium w-40">
                 配列
@@ -352,7 +352,7 @@ export default function TableApp({ index, corpusDataById }: TableAppProps) {
               {metrics.map((metric) => (
                 <th
                   key={metric.key}
-                  className="cursor-pointer select-none px-3 py-2 font-medium transition hover:bg-slate-100/70"
+                  className="cursor-pointer select-none px-3 py-2 text-xs font-medium transition hover:bg-slate-100/70"
                   onClick={() => handleSort(metric.key)}
                 >
                   <div className="flex items-center gap-2">
